@@ -1,0 +1,63 @@
+\section{Introduction and Historical Context}
+
+\subsection{Hermite's Original Problem}
+
+In 1848, Charles Hermite posed a profound question to Carl Gustav Jacob Jacobi concerning the relationship between periodicity in number representations and algebraic properties \cite{Hermite1848}. At the time, it was known that:
+\begin{enumerate}
+    \item A real number has an eventually periodic decimal expansion if and only if it is rational.
+    \item A real number has an eventually periodic continued fraction expansion if and only if it is a quadratic irrational \cite{Lagrange1770}.
+\end{enumerate}
+
+Hermite asked whether a representation system could be found where periodicity would characterize cubic irrationals, extending this pattern to the next degree. This question, now known as Hermite's problem, remained unsolved for over 170 years, despite significant advances in number theory and algebraic geometry.
+
+\subsection{Previous Approaches and Their Limitations}
+
+Several mathematicians attempted to solve Hermite's problem, with notable contributions including:
+
+\begin{enumerate}
+    \item Jacobi's work on generalized continued fractions \cite{Jacobi1868}, which laid important groundwork but did not yield a complete solution.
+    
+    \item The Jacobi-Perron algorithm \cite{Perron1907}, which generalizes continued fractions to higher dimensions but fails to provide a clean characterization of cubic irrationals through periodicity.
+    
+    \item Karpenkov's significant research on Dirichlet groups and projective algorithms \cite{Karpenkov2022}, which provides a substantial foundation for my work and includes the first proven solution for the totally-real cubic case.
+\end{enumerate}
+
+Karpenkov's contribution deserves particular attention, as his work established several groundbreaking innovations. First, he made an explicit connection between Hermite's problem and the geometric structure of Dirichlet groups acting on projective space - a theoretical framework that fundamentally explains why periodicity occurs in certain number systems and links the problem to geometric group theory. Second, he introduced two significant algorithms: the heuristic algebraic periodicity detecting algorithm (APD-algorithm) and the sin²-algorithm. The latter was proven (in \cite{Karpenkov2019}) to produce periodic sequences for all totally-real cubic irrationals, representing the first complete proof for a major case of Hermite's problem. Third, Karpenkov demonstrated practical applications of his theoretical work by connecting it to the computation of independent elements in maximal groups of commuting matrices, showing how his approach solves concrete problems in computational number theory. His application of projective geometry and Dirichlet groups to Hermite's problem established the theoretical framework that I build upon and extend in this paper.
+
+These approaches encountered a fundamental obstacle: as I demonstrate in Section \ref{sec:galois_theory}, cubic irrationals cannot have periodic continued fraction expansions. This result—while known in certain specialized circles—explains why direct analogies to the quadratic case necessarily fail and why the problem remained open for so long.
+
+\subsection{My Contribution and Approach}
+
+This paper builds upon Karpenkov's projective framework to present a comprehensive solution to Hermite's problem through two complementary approaches:
+
+\begin{enumerate}
+    \item The \HAPD{} algorithm (Section \ref{sec:hapd_algorithm}), which extends Karpenkov's heuristic APD-algorithm and operates in three-dimensional projective space rather than the one-dimensional space of standard continued fractions, producing a sequence that is eventually periodic if and only if the input is a cubic irrational.
+    
+    \item An equivalent matrix-based characterization (Section \ref{sec:matrix_approach}) that relates cubic irrationals to properties of companion matrices and their traces, providing a more algebraic perspective on the problem.
+\end{enumerate}
+
+The key insight connecting these approaches is that by moving to a higher-dimensional space, I can capture the algebraic structure of cubic fields in a way that reveals periodicity. While Karpenkov demonstrated this for totally-real cubic irrationals, my approach extends to all cubic irrationals, providing more comprehensive mathematical formalism, detailed analysis, and numerical validation.
+
+I present evidence that this solution is sound, complete, and computationally effective, addressing all potential edge cases and providing robust numerical validation. This extends Karpenkov's work to provide a more general solution to Hermite's problem, maintaining the pattern of representation systems where periodicity characterizes algebraic numbers of specific degrees.
+
+\subsection{Outline of the Paper}
+
+The remainder of this paper is organized as follows:
+
+\begin{itemize}
+    \item Section \ref{sec:galois_theory} demonstrates that cubic irrationals cannot have periodic continued fraction expansions, establishing why the problem requires a higher-dimensional approach.
+    
+    \item Section \ref{sec:hapd_algorithm} introduces the \HAPD{} algorithm as an extension of Karpenkov's work, analyzes its correctness, and examines its key properties.
+    
+    \item Section \ref{sec:matrix_approach} presents the matrix-based characterization of cubic irrationals and demonstrates its equivalence to the algorithmic approach.
+    
+    \item Section \ref{sec:equivalence} formally shows the equivalence between the \HAPD{} algorithm and the matrix characterization.
+    
+    \item Section \ref{sec:numerical_validation} provides numerical validation of my approach across different number types.
+    
+    \item Section \ref{sec:objections} addresses potential objections and edge cases, ensuring the completeness of the solution.
+    
+    \item Section \ref{sec:conclusion} summarizes my findings and discusses their implications for number theory and algorithmic approaches to algebraic number detection.
+\end{itemize}
+
+Throughout, I maintain mathematical rigor while ensuring that the conceptual insights are accessible to readers with a solid foundation in algebraic number theory and projective geometry.

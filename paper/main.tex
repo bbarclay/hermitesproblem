@@ -1,0 +1,76 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb,amsthm,amsfonts}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{mathtools}
+\usepackage{tikz}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{enumitem}
+\usepackage{thmtools}
+\usepackage{bm}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{algorithm_def}[theorem]{Algorithm}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{objection}[theorem]{Objection}
+\newtheorem{response}[theorem]{Response}
+
+% Custom commands
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceiling}[1]{\lceil #1 \rceil}
+\newcommand{\norm}[1]{\left\| #1 \right\|}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\tuple}[1]{\left( #1 \right)}
+\newcommand{\seq}[1]{\left[ #1 \right]}
+\newcommand{\HAPD}{\textsf{HAPD}}
+
+% Title information
+\title{An Enhanced Solution to Hermite's Problem:\\Building on Projective Algorithms and Dirichlet Groups}
+\author{Brandon Barclay}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\input{abstract}
+\tableofcontents
+\newpage
+
+\input{introduction}
+\input{galois-theory}
+\input{hapd-algorithm}
+\input{matrix-approach}
+\input{matrix-verification}
+\input{equivalence}
+\input{numerical-validation}
+\input{objections-tex}
+\input{conclusion}
+
+\newpage
+\bibliographystyle{alpha}
+\bibliography{references}
+
+\end{document}

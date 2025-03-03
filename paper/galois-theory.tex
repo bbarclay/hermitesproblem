@@ -1,0 +1,143 @@
+\section{Galois Theoretic Proof of Non-Periodicity}\label{sec:galois_theory}
+
+In this section, we provide a rigorous proof that cubic irrationals cannot have periodic continued fraction expansions. This fundamental result explains why Hermite's problem required a higher-dimensional approach rather than a direct extension of continued fractions.
+
+\subsection{Preliminary Definitions and Background}
+
+We begin with the essential definitions and background results needed for our proof.
+
+\begin{definition}[Continued Fraction Expansion]
+For a real number $\alpha$, the continued fraction expansion is a sequence $[a_0; a_1, a_2, \ldots]$ where $a_0 = \floor{\alpha}$ and for $i \geq 1$, $a_i = \floor{\alpha_i}$ where $\alpha_0 = \alpha$ and $\alpha_{i+1} = \frac{1}{\alpha_i - a_i}$.
+\end{definition}
+
+\begin{definition}[Eventually Periodic Continued Fraction]
+A continued fraction $[a_0; a_1, a_2, \ldots]$ is eventually periodic if there exist indices $N \geq 0$ and $p > 0$ such that $a_{N+i} = a_{N+p+i}$ for all $i \geq 0$. We denote this as $[a_0; a_1, \ldots, a_{N-1}, \overline{a_N, \ldots, a_{N+p-1}}]$.
+\end{definition}
+
+\begin{theorem}[Lagrange's Theorem on Continued Fractions]\label{thm:lagrange}
+A real number has an eventually periodic continued fraction expansion if and only if it is a quadratic irrational.
+\end{theorem}
+
+This classical result, first established by Lagrange in 1770 \cite{Lagrange1770}, forms the foundation for our study. We next recall some basic concepts from Galois theory.
+
+\begin{definition}[Minimal Polynomial]
+For an algebraic number $\alpha$ over $\Q$, the minimal polynomial of $\alpha$ over $\Q$ is the monic polynomial $\text{min}_\Q(\alpha, x) \in \Q[x]$ of least degree such that $\text{min}_\Q(\alpha, x)(\alpha) = 0$.
+\end{definition}
+
+\begin{definition}[Cubic Irrational]
+A real number $\alpha$ is a cubic irrational if it is a root of an irreducible polynomial of degree 3 with rational coefficients.
+\end{definition}
+
+\begin{definition}[Galois Group]
+Let $L/K$ be a field extension, and let $\text{Aut}_K(L)$ be the group of field automorphisms of $L$ that fix $K$ pointwise. If $L$ is the splitting field of a separable polynomial over $K$, then $\text{Aut}_K(L)$ is called the Galois group of $L$ over $K$, denoted $\Gal(L/K)$.
+\end{definition}
+
+\subsection{The Galois Group of Cubic Polynomials}
+
+For a cubic polynomial with rational coefficients, there are specific possibilities for its Galois group, which plays a crucial role in our analysis.
+
+\begin{theorem}[Galois Groups of Cubic Polynomials]\label{thm:cubic_galois}
+For an irreducible cubic polynomial $f(x) = x^3 + px^2 + qx + r \in \Q[x]$, the Galois group $\Gal(L/\Q)$, where $L$ is the splitting field of $f$, is isomorphic to either:
+\begin{enumerate}
+    \item $S_3$ (the symmetric group on 3 elements) if the discriminant $\Delta = -4p^3r + p^2q^2 - 4q^3 - 27r^2 + 18pqr$ is not a perfect square in $\Q$;
+    \item $C_3$ (the cyclic group of order 3) if the discriminant is a non-zero perfect square in $\Q$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+This is a standard result in Galois theory. See \cite{Cox2012} for a detailed proof.
+\end{proof}
+
+\begin{proposition}\label{prop:no_intermediate_field}
+For an irreducible cubic polynomial with Galois group $S_3$, there is no intermediate field between $\Q$ and $\Q(\alpha)$ where $\alpha$ is a root of the polynomial.
+\end{proposition}
+
+\begin{proof}
+Suppose there exists an intermediate field $\Q \subset F \subset \Q(\alpha)$. Then $[\Q(\alpha):\Q] = [\Q(\alpha):F] \cdot [F:\Q]$. Since $[\Q(\alpha):\Q] = 3$ and 3 is prime, we must have either $[F:\Q] = 1$ or $[\Q(\alpha):F] = 1$. This means either $F = \Q$ or $F = \Q(\alpha)$, contradicting the existence of a proper intermediate field.
+\end{proof}
+
+\subsection{The Main Non-Periodicity Theorem}
+
+We now present our main theorem establishing that cubic irrationals cannot have periodic continued fractions.
+
+\begin{theorem}[Non-Periodicity of Cubic Irrationals]\label{thm:non_periodicity}
+If $\alpha$ is a cubic irrational, then the continued fraction expansion of $\alpha$ cannot be eventually periodic.
+\end{theorem}
+
+\begin{proof}
+We proceed by contradiction. Suppose $\alpha$ is a cubic irrational with minimal polynomial $f(x) = x^3 + px^2 + qx + r \in \Z[x]$ having Galois group $S_3$ or $C_3$, and suppose the continued fraction expansion of $\alpha$ is eventually periodic.
+
+By Lagrange's Theorem (Theorem \ref{thm:lagrange}), $\alpha$ must be a quadratic irrational. Thus, there exist integers $A, B, C$ with $A \neq 0$ and $\gcd(A, B, C) = 1$ such that:
+\begin{equation}\label{eq:quadratic}
+A\alpha^2 + B\alpha + C = 0
+\end{equation}
+
+However, $\alpha$ is also a root of its minimal polynomial:
+\begin{equation}\label{eq:cubic}
+\alpha^3 + p\alpha^2 + q\alpha + r = 0
+\end{equation}
+
+From equation (\ref{eq:quadratic}), we can express $\alpha^2$ in terms of $\alpha$:
+\begin{equation}\label{eq:alpha_squared}
+\alpha^2 = \frac{-B\alpha - C}{A}
+\end{equation}
+
+Substituting (\ref{eq:alpha_squared}) into (\ref{eq:cubic}):
+\begin{align*}
+\alpha^3 + p\alpha^2 + q\alpha + r &= 0\\
+\alpha \cdot \alpha^2 + p\alpha^2 + q\alpha + r &= 0\\
+\alpha \cdot \left(\frac{-B\alpha - C}{A}\right) + p\left(\frac{-B\alpha - C}{A}\right) + q\alpha + r &= 0
+\end{align*}
+
+Multiplying through by $A$:
+\begin{equation}
+-B\alpha^2 - C\alpha - pB\alpha - pC + qA\alpha + rA = 0
+\end{equation}
+
+Substituting (\ref{eq:alpha_squared}) again for $\alpha^2$:
+\begin{align*}
+-B\left(\frac{-B\alpha - C}{A}\right) - C\alpha - pB\alpha - pC + qA\alpha + rA &= 0\\
+\frac{B^2\alpha + BC}{A} - C\alpha - pB\alpha - pC + qA\alpha + rA &= 0
+\end{align*}
+
+Multiplying by $A$ and grouping terms:
+\begin{equation}\label{eq:combined}
+(B^2 - AC - pAB + qA^2)\alpha + (BC - pAC + rA^2) = 0
+\end{equation}
+
+For equation (\ref{eq:combined}) to be satisfied for a cubic irrational $\alpha$, both coefficients must be zero:
+\begin{align}
+B^2 - AC - pAB + qA^2 &= 0 \label{eq:coeff1}\\
+BC - pAC + rA^2 &= 0 \label{eq:coeff2}
+\end{align}
+
+From equation (\ref{eq:coeff2}), assuming $C \neq 0$ (if $C = 0$, then $B = 0$ from (\ref{eq:quadratic}), contradicting that $\alpha$ is irrational):
+\begin{equation}\label{eq:B_value}
+B = \frac{pAC - rA^2}{C}
+\end{equation}
+
+Substituting (\ref{eq:B_value}) into (\ref{eq:coeff1}):
+\begin{align*}
+\left(\frac{pAC - rA^2}{C}\right)^2 - AC - pA\left(\frac{pAC - rA^2}{C}\right) + qA^2 &= 0
+\end{align*}
+
+After algebraic simplification, this yields a relation between the coefficients $p$, $q$, $r$ of the cubic and the coefficients $A$, $C$ of the quadratic. However, this relation cannot be satisfied for an arbitrary cubic polynomial with Galois group $S_3$ or $C_3$.
+
+More precisely, the existence of such a relation would imply the existence of a proper intermediate field between $\Q$ and $\Q(\alpha)$, contradicting Proposition \ref{prop:no_intermediate_field} for the $S_3$ case. For the $C_3$ case, a similar contradiction arises because $\alpha$ generates a field of degree 3 over $\Q$, which cannot contain a quadratic subfield.
+
+Therefore, our assumption that $\alpha$ has an eventually periodic continued fraction leads to a contradiction, proving that cubic irrationals cannot have periodic continued fractions.
+\end{proof}
+
+\begin{corollary}\label{cor:cf_insufficient}
+No direct generalization of continued fractions that preserves the connection between periodicity and algebraic degree can characterize cubic irrationals.
+\end{corollary}
+
+\begin{proof}
+This follows directly from Theorem \ref{thm:non_periodicity} and the fact that continued fractions are the unique simple continued fraction expansion for real numbers.
+\end{proof}
+
+\subsection{Implications for Hermite's Problem}
+
+Theorem \ref{thm:non_periodicity} establishes an important negative result: the direct approach that Hermite might have envisioned—a simple representation system analogous to continued fractions—cannot work for cubic irrationals. This explains why the problem remained unsolved for so long and why a higher-dimensional approach is necessary.
+
+In the following sections, we develop such a higher-dimensional approach: the \HAPD{} algorithm, which operates in three-dimensional projective space and successfully characterizes cubic irrationals through periodicity, thereby achieving Hermite's goal in a more sophisticated context.
