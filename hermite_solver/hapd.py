@@ -81,8 +81,21 @@ class HAPD:
         except:
             pass
 
-        # Rational number check
-        # If the continued fraction expansion is finite, it's a rational number
+        # Enhanced rational number check
+        # 1. Try to express as a simple fraction
+        for d in range(1, 100):
+            for n in range(d + 1):
+                if abs(alpha - n / d) < self.tolerance:
+                    return {
+                        "pairs": [],
+                        "status": "terminated",
+                        "classification": "rational",
+                        "iterations": 0,
+                        "triples": [],
+                        "note": f"Detected rational number: {n}/{d}",
+                    }
+
+        # 2. Check continued fraction - if it terminates or has very small terms, it's likely rational
         cf = Utils.continued_fraction(alpha, max_terms=20, tolerance=self.tolerance)
         if len(cf) < 20 or abs(alpha - float(alpha)) < self.tolerance:
             return {
@@ -102,6 +115,9 @@ class HAPD:
         triples = []
         pairs = []
         period_candidates = []  # Track potential periods
+
+        # Keep history of equivalence checks to prevent false positives due to numerical drift
+        equivalence_history = []
 
         for i in range(self.max_iterations):
             # Store current triple
@@ -132,34 +148,68 @@ class HAPD:
             # Create normalized triple
             triple_norm = Utils.normalize_vector(next_triple)
 
-            # Check for periodicity with multiple confirmations
+            # Enhanced periodicity detection with multiple confirmations
             for j in range(len(triples)):
                 prev_triple_norm = Utils.normalize_vector(triples[j])
-                if Utils.projectively_equivalent(
+
+                # Use improved projective equivalence check for better numerical stability
+                is_equivalent = Utils.projectively_equivalent_improved(
                     triple_norm, prev_triple_norm, self.tolerance
-                ):
-                    period = i - j + 1  # Add 1 because we're comparing with next_triple
+                )
+
+                if is_equivalent:
+                    period = i - j + 1
+
+                    # Store this equivalence check to verify consistency
+                    equivalence_history.append((j, i + 1, period))
 
                     # Check if we've seen this period before
                     found = False
                     for candidate in period_candidates:
                         if candidate["period"] == period:
                             candidate["confirmations"] += 1
+
+                            # Enhanced validation with multiple consecutive confirmations
                             if candidate["confirmations"] >= self.min_confirmations:
-                                # Verify the period by checking the sequence
+                                # Verify the period by checking several cycles
                                 preperiod = j
                                 is_valid_period = True
-                                for k in range(period):
-                                    if k + preperiod + period >= len(pairs):
-                                        break
-                                    if (
-                                        pairs[k + preperiod]
-                                        != pairs[k + preperiod + period]
-                                    ):
-                                        is_valid_period = False
+
+                                # Check at least 2 full periods if available
+                                check_cycles = min(
+                                    2, (len(pairs) - preperiod) // period
+                                )
+                                for cycle in range(check_cycles):
+                                    for k in range(period):
+                                        idx1 = k + preperiod
+                                        idx2 = k + preperiod + period * (cycle + 1)
+                                        if idx2 >= len(pairs):
+                                            break
+                                        if pairs[idx1] != pairs[idx2]:
+                                            is_valid_period = False
+                                            break
+
+                                    if not is_valid_period:
                                         break
 
                                 if is_valid_period:
+                                    # Additional validation: check if the polynomial matches expected degree
+                                    if self.debug:
+                                        poly = Utils.find_minimal_polynomial(
+                                            alpha, max_degree=4
+                                        )
+                                        if poly is not None:
+                                            degree = Utils.polynomial_degree(poly)
+                                            if degree != 3:
+                                                return {
+                                                    "pairs": pairs,
+                                                    "status": "false_periodicity",
+                                                    "classification": "non_cubic_algebraic",
+                                                    "iterations": i + 1,
+                                                    "degree": degree,
+                                                    "polynomial": poly,
+                                                }
+
                                     return {
                                         "pairs": pairs,
                                         "status": "periodic",
@@ -180,15 +230,26 @@ class HAPD:
         # Check if we have any candidates with at least 2 confirmations
         strong_candidates = [c for c in period_candidates if c["confirmations"] >= 2]
 
+        # Output helpful debug information about equivalence checks
+        equivalence_debug = []
+        if equivalence_history:
+            for j, i, period in equivalence_history[
+                :5
+            ]:  # Only show first 5 to avoid overwhelming output
+                equivalence_debug.append(
+                    f"Triples {j} and {i} equivalent (period {period})"
+                )
+
         # For numbers that show some pattern but not enough to confirm
         if strong_candidates:
             return {
                 "pairs": pairs,
                 "status": "potentially_periodic",
-                "classification": "unknown",
+                "classification": "potential_cubic",
                 "iterations": self.max_iterations,
                 "potential_periods": [c["period"] for c in strong_candidates],
                 "triples": triples,
+                "equivalence_checks": equivalence_debug,
             }
 
         # If there's no periodicity at all, it's likely not a cubic irrational
@@ -198,6 +259,7 @@ class HAPD:
             "classification": "not_cubic",
             "iterations": self.max_iterations,
             "triples": triples,
+            "equivalence_checks": equivalence_debug,
         }
 
     def encoding_function(self, a1, a2):

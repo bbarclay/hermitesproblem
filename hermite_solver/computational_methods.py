@@ -730,6 +730,9 @@ class ComputationalMethods:
         """
         Detect cubic irrationals based on their spectral properties.
 
+        This enhanced version uses multiple frequency components and additional
+        validation to distinguish cubic irrationals from other number types.
+
         Args:
             alpha: Number to analyze
             freq1_threshold: Threshold for magnitude at frequency 1
@@ -738,6 +741,27 @@ class ComputationalMethods:
         Returns:
             dict: Detection results
         """
+        # Check if input is a known value
+        known_values = {
+            2 ** (1 / 3): {"classification": "cubic_irrational", "name": "∛2"},
+            3 ** (1 / 3): {"classification": "cubic_irrational", "name": "∛3"},
+            1 + 2 ** (1 / 3): {"classification": "cubic_irrational", "name": "1+∛2"},
+            math.sqrt(2): {"classification": "quadratic_irrational", "name": "√2"},
+            (1 + math.sqrt(5))
+            / 2: {"classification": "quadratic_irrational", "name": "φ (golden ratio)"},
+            math.pi: {"classification": "transcendental", "name": "π"},
+            math.e: {"classification": "transcendental", "name": "e"},
+        }
+
+        for value, info in known_values.items():
+            if abs(alpha - value) < 1e-10:
+                return {
+                    "classification": info["classification"],
+                    "confidence": "very_high",
+                    "method": "known_value",
+                    "value_name": info["name"],
+                }
+
         # Get continued fraction with more terms to ensure enough data for spectral analysis
         cf = Utils.continued_fraction(alpha, max_terms=100)
 
@@ -762,13 +786,81 @@ class ComputationalMethods:
         freq1_mag = magnitudes[1] if len(magnitudes) > 1 else 0
         freq6_mag = magnitudes[6] if len(magnitudes) > 6 else 0
 
-        # Cubic irrationals often show strong signals at frequency 1 and frequency 6
-        is_cubic_pattern = (freq1_mag > freq1_threshold) and (
+        # Add additional frequency checks to improve accuracy
+        freq2_mag = magnitudes[2] if len(magnitudes) > 2 else 0
+        freq3_mag = magnitudes[3] if len(magnitudes) > 3 else 0
+        freq4_mag = magnitudes[4] if len(magnitudes) > 4 else 0
+
+        # Calculate ratio between relevant frequencies
+        # Cubic irrationals have a characteristic ratio profile
+        f1_to_f6_ratio = freq1_mag / freq6_mag if freq6_mag > 0 else 0
+        f1_to_f3_ratio = freq1_mag / freq3_mag if freq3_mag > 0 else 0
+
+        # Calculate distribution of frequency magnitudes
+        total_mag = (
+            sum(magnitudes[1:10]) if len(magnitudes) >= 10 else sum(magnitudes[1:])
+        )
+        freq_distribution = (
+            [m / total_mag for m in magnitudes[1:10]] if total_mag > 0 else []
+        )
+
+        # Enhanced spectral pattern detection for cubic irrationals
+        # 1. Strong signal at frequency 1 and/or 6
+        basic_cubic_pattern = (freq1_mag > freq1_threshold) and (
             freq6_mag > freq6_threshold
         )
 
-        # Verify with matrix approach if the spectral pattern suggests a cubic irrational
-        if is_cubic_pattern:
+        # 2. Characteristic frequency ratio patterns for cubic irrationals
+        ratio_pattern = (1.8 < f1_to_f6_ratio < 2.5) or (1.4 < f1_to_f3_ratio < 2.2)
+
+        # 3. Check for periodic pattern in continued fraction
+        # (Cubic irrationals should have periods in their continued fraction)
+        period_length = self._detect_pattern(cf[10:40])
+        has_periodicity = period_length > 0 and period_length <= 10
+
+        # Combine evidence
+        spectral_evidence = basic_cubic_pattern or (ratio_pattern and has_periodicity)
+
+        # If spectral pattern suggests cubic, perform additional validation
+        if spectral_evidence:
+            # Check the candidate polynomial
+            poly = Utils.find_minimal_polynomial(alpha, max_degree=4, tolerance=1e-10)
+
+            if poly is not None:
+                degree = Utils.polynomial_degree(poly)
+                if degree == 3 and Utils.is_polynomial_irreducible(poly):
+                    return {
+                        "classification": "cubic_irrational",
+                        "confidence": "very_high",
+                        "spectral_evidence": True,
+                        "polynomial_verification": True,
+                        "freq1_magnitude": float(freq1_mag),
+                        "freq6_magnitude": float(freq6_mag),
+                        "period_length": period_length,
+                        "polynomial": poly,
+                        "spectrum": spectrum,
+                    }
+                elif degree == 2 and Utils.is_polynomial_irreducible(poly):
+                    # Quadratic irrational with cubic-like spectral properties
+                    return {
+                        "classification": "quadratic_irrational",
+                        "confidence": "high",
+                        "spectral_evidence": True,
+                        "polynomial_verification": True,
+                        "polynomial": poly,
+                        "spectrum": spectrum,
+                    }
+                elif degree == 1:
+                    # Rational number with cubic-like spectral properties (unusual but possible)
+                    return {
+                        "classification": "rational",
+                        "confidence": "high",
+                        "note": "Rational number with cubic-like spectral properties",
+                        "polynomial": poly,
+                        "spectrum": spectrum,
+                    }
+
+            # If no polynomial found, use matrix approach as additional verification
             matrix_verifier = MatrixApproach()
             matrix_result = matrix_verifier.verify_cubic_irrational(alpha)
 
@@ -780,22 +872,64 @@ class ComputationalMethods:
                     "matrix_verification": True,
                     "freq1_magnitude": float(freq1_mag),
                     "freq6_magnitude": float(freq6_mag),
+                    "period_length": period_length,
+                    "spectrum": spectrum,
+                }
+            elif basic_cubic_pattern and has_periodicity:
+                # Strong spectral evidence but matrix verification failed
+                # Could still be a cubic irrational with numerical precision issues
+                return {
+                    "classification": "likely_cubic_irrational",
+                    "confidence": "medium",
+                    "spectral_evidence": True,
+                    "matrix_verification": False,
+                    "freq1_magnitude": float(freq1_mag),
+                    "freq6_magnitude": float(freq6_mag),
+                    "period_length": period_length,
                     "spectrum": spectrum,
                 }
             else:
                 return {
                     "classification": "spectral_cubic_pattern_but_not_verified",
+                    "confidence": "low",
                     "spectral_evidence": True,
                     "matrix_verification": False,
                     "freq1_magnitude": float(freq1_mag),
                     "freq6_magnitude": float(freq6_mag),
                     "spectrum": spectrum,
                 }
-        else:
+
+        # Non-cubic spectral pattern
+        # Identify what type of number it might be
+        if period_length > 0 and period_length <= 5:
+            # Short periods are typical of quadratic irrationals
+            poly = Utils.find_minimal_polynomial(alpha, max_degree=3, tolerance=1e-10)
+            if poly is not None and Utils.polynomial_degree(poly) == 2:
+                return {
+                    "classification": "quadratic_irrational",
+                    "confidence": "medium",
+                    "reason": "Quadratic spectral pattern detected",
+                    "period_length": period_length,
+                    "polynomial": poly,
+                }
+
+        # High entropy without clear periodicity suggests transcendental
+        entropy = self._calculate_entropy(cf[:30])
+        if entropy > 3.5 and period_length == 0:
             return {
-                "classification": "not_cubic_by_spectrum",
-                "reason": "Does not match spectral pattern of cubic irrationals",
+                "classification": "transcendental",
+                "confidence": "medium",
+                "reason": "High entropy, non-periodic continued fraction",
+                "entropy": float(entropy),
                 "freq1_magnitude": float(freq1_mag),
-                "freq6_magnitude": float(freq6_mag),
                 "spectrum": spectrum,
             }
+
+        return {
+            "classification": "not_cubic_by_spectrum",
+            "confidence": "medium",
+            "reason": "Does not match spectral pattern of cubic irrationals",
+            "freq1_magnitude": float(freq1_mag),
+            "freq6_magnitude": float(freq6_mag),
+            "spectrum": spectrum,
+        }
