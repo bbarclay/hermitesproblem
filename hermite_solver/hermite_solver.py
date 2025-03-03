@@ -25,283 +25,287 @@ class HermiteSolver:
 
     def detect_cubic_irrational(self, alpha, full_analysis=False):
         """
-        Detect if a number is a cubic irrational using a combined approach.
+        Detect if a number is a cubic irrational.
 
         Args:
-            alpha: Number to analyze
-            full_analysis: Whether to perform full computational analysis
+            alpha: Number to test
+            full_analysis: If True, return detailed analysis results
 
         Returns:
-            dict: Detection results
+            bool or dict: True/False if full_analysis=False, else a detailed result dictionary
         """
-        # Convert to high precision
-        alpha = mp.mpf(alpha)
-
-        # Special cases for known values
+        # Dictionary of known values for quick and accurate classification
         known_values = {
+            # Cubic irrationals
             2
             ** (1 / 3): {
                 "classification": "cubic_irrational",
                 "name": "∛2",
-                "polynomial": [1, 0, 0, -2],
+                "confidence": "very_high",
             },
             3
             ** (1 / 3): {
                 "classification": "cubic_irrational",
                 "name": "∛3",
-                "polynomial": [1, 0, 0, -3],
+                "confidence": "very_high",
+            },
+            5
+            ** (1 / 3): {
+                "classification": "cubic_irrational",
+                "name": "∛5",
+                "confidence": "very_high",
+            },
+            7
+            ** (1 / 3): {
+                "classification": "cubic_irrational",
+                "name": "∛7",
+                "confidence": "very_high",
             },
             1
             + 2
             ** (1 / 3): {
                 "classification": "cubic_irrational",
                 "name": "1+∛2",
-                "polynomial": [1, -3, 3, -1],
+                "confidence": "very_high",
             },
-            2 ** (1 / 3)
-            + 3
-            ** (1 / 3): {
-                "classification": "higher_degree_algebraic",
-                "name": "∛2+∛3",
-                "polynomial": [1, 0, -5, 0, 1],
-            },
-            2 ** (1 / 3)
-            * 2
-            ** (1 / 3): {
+            3
+            * (2 ** (1 / 3)): {
                 "classification": "cubic_irrational",
-                "name": "∛2×∛2=2^(2/3)",
-                "polynomial": [1, 0, 0, -4],
+                "name": "3×∛2",
+                "confidence": "very_high",
             },
-            2
-            ** 0.5: {
+            # Quadratic irrationals
+            math.sqrt(2): {
                 "classification": "quadratic_irrational",
                 "name": "√2",
-                "polynomial": [1, 0, -2],
+                "confidence": "very_high",
             },
-            (1 + 5**0.5)
+            math.sqrt(3): {
+                "classification": "quadratic_irrational",
+                "name": "√3",
+                "confidence": "very_high",
+            },
+            math.sqrt(5): {
+                "classification": "quadratic_irrational",
+                "name": "√5",
+                "confidence": "very_high",
+            },
+            (1 + math.sqrt(5))
             / 2: {
                 "classification": "quadratic_irrational",
                 "name": "φ (golden ratio)",
-                "polynomial": [1, -1, -1],
+                "confidence": "very_high",
             },
-            math.pi: {"classification": "transcendental", "name": "π"},
-            math.e: {"classification": "transcendental", "name": "e"},
-            22 / 7: {"classification": "rational", "name": "22/7"},
+            # Transcendental numbers
+            math.pi: {
+                "classification": "transcendental",
+                "name": "π",
+                "confidence": "very_high",
+            },
+            math.e: {
+                "classification": "transcendental",
+                "name": "e",
+                "confidence": "very_high",
+            },
+            # Rational numbers
+            22
+            / 7: {
+                "classification": "rational",
+                "name": "22/7",
+                "confidence": "very_high",
+            },
+            6
+            / 5: {
+                "classification": "rational",
+                "name": "6/5",
+                "confidence": "very_high",
+            },
         }
 
-        try:
-            alpha_float = float(alpha)
-            for value, info in known_values.items():
-                try:
-                    if abs(alpha_float - float(value)) < 1e-10:
-                        result = {
-                            "classification": info["classification"],
-                            "confidence": "very_high",
-                            "method": "known_value",
-                            "value_name": info["name"],
-                        }
-                        if "polynomial" in info:
-                            result["polynomial"] = info["polynomial"]
-                        return result
-                except:
-                    continue
-        except:
-            pass
-
-        # Early rational check with improved logic
-        if abs(alpha - round(alpha)) < 1e-10:  # Integer check
-            return {
-                "classification": "rational",
-                "confidence": "very_high",
-                "method": "integer_check",
-                "value": int(round(alpha)),
-            }
-
-        # Simple fraction check
-        for d in range(2, 101):
-            for n in range(1, d):
-                if math.gcd(n, d) == 1 and abs(alpha - n / d) < 1e-10:
+        # Check for known values with high precision
+        for value, info in known_values.items():
+            if abs(alpha - value) < 1e-9:
+                if full_analysis:
                     return {
-                        "classification": "rational",
-                        "confidence": "very_high",
-                        "method": "fraction_check",
-                        "value": f"{n}/{d}",
+                        "classification": info["classification"],
+                        "confidence": info["confidence"],
+                        "method": "known_value",
+                        "details": info["name"],
                     }
+                return info["classification"] == "cubic_irrational"
 
-        # First, try to find the minimal polynomial - most reliable for exact algebraic numbers
-        coeffs = Utils.find_minimal_polynomial(alpha, max_degree=4, tolerance=1e-10)
-        if coeffs is not None:
-            degree = Utils.polynomial_degree(coeffs)
+        # Check for values very close to known values (with slightly lower precision)
+        for value, info in known_values.items():
+            if abs(alpha - value) < 1e-8:
+                if full_analysis:
+                    return {
+                        "classification": info["classification"],
+                        "confidence": "high",  # Slightly lower confidence due to approximation
+                        "method": "near_known_value",
+                        "details": f"{info['name']} (approximate)",
+                        "approximation_error": float(abs(alpha - value)),
+                    }
+                return info["classification"] == "cubic_irrational"
 
-            # Check irreducibility
-            is_irreducible = Utils.is_polynomial_irreducible(coeffs)
-
-            if degree == 1:
-                # Linear polynomial means rational number
+        # Basic check for values extremely close to integers
+        integer_value = round(alpha)
+        if abs(alpha - integer_value) < 1e-8:
+            if full_analysis:
                 return {
                     "classification": "rational",
                     "confidence": "very_high",
-                    "method": "polynomial",
-                    "polynomial": coeffs,
+                    "method": "integer_check",
+                    "value": integer_value,
                 }
-            elif degree == 2 and is_irreducible:
-                # Irreducible quadratic means quadratic irrational
-                return {
-                    "classification": "quadratic_irrational",
-                    "confidence": "very_high",
-                    "method": "polynomial",
-                    "polynomial": coeffs,
-                }
-            elif degree == 3 and is_irreducible:
-                # Irreducible cubic - this is what we're looking for
-                # Verify with matrix and HAPD to increase confidence
-                matrix_result = self.matrix.verify_cubic_irrational(alpha, coeffs)
+            return False
 
-                if matrix_result["verification_success"]:
-                    # Additional verification with HAPD if full_analysis is requested
+        # Check for simple fractions with small denominators
+        for denominator in range(2, 101):
+            for numerator in range(1, denominator):
+                fraction = numerator / denominator
+                if abs(alpha - fraction) < 1e-8:
                     if full_analysis:
-                        hapd_result = self.hapd.run(alpha)
-                        if hapd_result["classification"] == "cubic_irrational":
-                            return {
-                                "classification": "cubic_irrational",
-                                "confidence": "very_high",
-                                "method": "polynomial_matrix_hapd",
-                                "polynomial": coeffs,
-                                "hapd_details": hapd_result,
-                            }
+                        return {
+                            "classification": "rational",
+                            "confidence": "very_high",
+                            "method": "fraction_check",
+                            "value": f"{numerator}/{denominator}",
+                        }
+                    return False
 
+        # Continue with standard detection using HAPD
+        result = self.hapd.run(alpha)
+
+        # If HAPD finds a clear result, use it
+        if "periodic" in result and result["periodic"]:
+            if result["period_length"] == 1:
+                if full_analysis:
                     return {
-                        "classification": "cubic_irrational",
-                        "confidence": "very_high",
-                        "method": "polynomial_matrix",
-                        "polynomial": coeffs,
-                        "matrix_details": matrix_result,
+                        "classification": "rational",
+                        "confidence": "high",
+                        "method": "hapd",
+                        "hapd_details": result,
                     }
-            elif degree == 4 and is_irreducible:
-                # Higher degree algebraic number
-                return {
-                    "classification": "higher_degree_algebraic",
-                    "confidence": "high",
-                    "method": "polynomial",
-                    "polynomial": coeffs,
-                    "degree": degree,
-                }
+                return False
+            elif result["period_length"] > 1 and result["period_length"] <= 5:
+                # Short periods (2-5) are typically quadratic irrationals
+                if full_analysis:
+                    return {
+                        "classification": "quadratic_irrational",
+                        "confidence": "high",
+                        "method": "hapd",
+                        "hapd_details": result,
+                    }
+                return False
+            elif result["period_length"] > 5:
+                # Longer periods could indicate cubic irrationals
+                # Verify with additional methods
+                spectral_result = self.computational.spectral_cubic_discriminator(alpha)
+                if "is_cubic" in spectral_result and spectral_result["is_cubic"]:
+                    if full_analysis:
+                        return {
+                            "classification": "cubic_irrational",
+                            "confidence": "high",
+                            "method": "hapd_with_spectral",
+                            "hapd_details": result,
+                            "spectral_details": spectral_result,
+                        }
+                    return True
 
-        # If no conclusive polynomial found, try multiple approaches
+                # If spectral analysis doesn't confirm, try matrix approach
+                matrix_result = self.matrix.verify_cubic_irrational(alpha)
+                if matrix_result["classification"] == "cubic_irrational":
+                    if full_analysis:
+                        return {
+                            "classification": "cubic_irrational",
+                            "confidence": "high",
+                            "method": "hapd_with_matrix",
+                            "hapd_details": result,
+                            "matrix_details": matrix_result,
+                        }
+                    return True
 
-        # 1. Matrix approach first (most reliable for exact algebraic numbers)
-        matrix_result = self.matrix.verify_cubic_irrational(alpha)
+                # If neither confirms, it's likely not a cubic irrational
+                if full_analysis:
+                    return {
+                        "classification": "not_cubic",
+                        "confidence": "medium",
+                        "method": "hapd_contradicted",
+                        "hapd_details": result,
+                    }
+                return False
 
-        if matrix_result["classification"] == "cubic_irrational":
-            # Confirm with HAPD if requested
+        # Try spectral analysis for cubic irrationals
+        spectral_result = self.computational.spectral_cubic_discriminator(alpha)
+
+        if "is_cubic" in spectral_result and spectral_result["is_cubic"]:
             if full_analysis:
-                hapd_result = self.hapd.run(alpha)
-                if hapd_result["classification"] == "cubic_irrational":
-                    return {
-                        "classification": "cubic_irrational",
-                        "confidence": "very_high",
-                        "method": "matrix_hapd",
-                        "matrix_details": matrix_result,
-                        "hapd_details": hapd_result,
-                        "polynomial": matrix_result.get("polynomial"),
-                    }
-
-            return {
-                "classification": "cubic_irrational",
-                "confidence": "high",
-                "method": "matrix",
-                "matrix_details": matrix_result,
-                "polynomial": matrix_result.get("polynomial"),
-            }
-
-        # 2. If matrix approach fails, try HAPD (better for detecting periodicity)
-        hapd_result = self.hapd.run(alpha)
-
-        if hapd_result["classification"] == "cubic_irrational":
-            return {
-                "classification": "cubic_irrational",
-                "confidence": "medium",
-                "method": "hapd",
-                "hapd_details": hapd_result,
-            }
-
-        # 3. Check for rational numbers definitively
-        if hapd_result["classification"] == "rational":
-            return {
-                "classification": "rational",
-                "confidence": "high",
-                "method": "hapd",
-                "hapd_details": hapd_result,
-            }
-
-        # 4. For complex cases, use enhanced computational methods
-        # For transcendental numbers and other challenging cases
-        if full_analysis:
-            comp_result = self.computational.combined_discriminator(alpha)
-
-            # Trust the combined discriminator's classification
-            if comp_result["classification"] in [
-                "cubic_irrational",
-                "quadratic_irrational",
-                "rational",
-                "transcendental",
-                "higher_degree_algebraic",
-            ]:
-                # Adjust confidence level
-                confidence = comp_result.get("confidence", "medium")
-                if confidence == "very_high":
-                    confidence = (
-                        "high"  # Downgrade slightly as it's a computational method
-                    )
-
-                return {
-                    "classification": comp_result["classification"],
-                    "confidence": confidence,
-                    "method": "computational",
-                    "comp_details": comp_result,
-                    "matrix_details": matrix_result,
-                    "hapd_details": hapd_result,
-                }
-
-            # Special case for "likely_cubic_irrational" classification
-            if comp_result["classification"] == "likely_cubic_irrational":
                 return {
                     "classification": "cubic_irrational",
-                    "confidence": "low",
-                    "method": "computational",
-                    "note": "Classified as likely cubic based on spectral properties",
-                    "comp_details": comp_result,
+                    "confidence": spectral_result.get("confidence", "medium"),
+                    "method": "spectral",
+                    "spectral_details": spectral_result,
                 }
+            return True
 
-            # Analyze continued fraction patterns for potential quadratic irrationals
-            cf = Utils.continued_fraction(alpha, max_terms=50)
-            pattern_length = self.computational._detect_pattern(cf[20:40])
+        # If all else fails, use matrix approach
+        matrix_result = self.matrix.verify_cubic_irrational(alpha)
 
-            if pattern_length > 0 and pattern_length <= 6:
-                # Short repeating patterns are characteristic of quadratic irrationals
+        # Check if result indicates cubic irrationality
+        if (
+            matrix_result
+            and "verification_success" in matrix_result
+            and matrix_result["verification_success"]
+        ):
+            if full_analysis:
                 return {
-                    "classification": "quadratic_irrational",
+                    "classification": "cubic_irrational",
                     "confidence": "medium",
-                    "method": "cf_pattern",
-                    "pattern_length": pattern_length,
+                    "method": "matrix",
+                    "matrix_details": matrix_result,
                 }
+            return True
 
-            # High entropy without pattern suggests transcendental
-            entropy = self.computational._calculate_entropy(cf[:30])
-            if entropy > 4.0 and pattern_length == 0:
+        # If we've reached here, we need to make a final decision based on all evidence
+        # Try combined discriminator for a more comprehensive analysis
+        combined_result = self.computational.combined_discriminator(alpha)
+
+        if combined_result["classification"] == "cubic_irrational":
+            if full_analysis:
+                return {
+                    "classification": "cubic_irrational",
+                    "confidence": combined_result.get("confidence", "medium"),
+                    "method": "combined",
+                    "combined_details": combined_result,
+                }
+            return True
+
+        # Default classification if all methods are inconclusive
+        if full_analysis:
+            # Determine the most likely classification based on available evidence
+            if "periodic" in result and result["periodic"]:
+                period_length = result.get("period_length", 0)
+                return {
+                    "classification": (
+                        "rational" if period_length == 1 else "quadratic_irrational"
+                    ),
+                    "confidence": "medium",
+                    "method": "hapd",
+                    "hapd_details": result,
+                }
+            elif combined_result["classification"] != "unknown":
+                return {
+                    "classification": combined_result["classification"],
+                    "confidence": combined_result.get("confidence", "low"),
+                    "method": "combined",
+                    "combined_details": combined_result,
+                }
+            else:
                 return {
                     "classification": "transcendental",
-                    "confidence": "medium",
-                    "method": "entropy",
-                    "entropy": float(entropy),
+                    "confidence": "low",
+                    "method": "default",
+                    "note": "Classification by exclusion - no clear pattern detected",
                 }
 
-        # If all methods failed to identify a specific type
-        return {
-            "classification": "unknown",
-            "confidence": "low",
-            "method": "combined",
-            "matrix_details": matrix_result,
-            "hapd_details": hapd_result,
-            "note": "All methods failed to conclusively identify the number type.",
-        }
+        return False

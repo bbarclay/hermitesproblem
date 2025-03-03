@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.5)  2 MAR 2025 10:16
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.5)  3 MAR 2025 09:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1057,11 +1057,11 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: A91396579C09E8A6E9169130321DA73C;14684.
  ) 
 Here is how much of TeX's memory you used:
- 23278 strings out of 475567
- 429874 string characters out of 5777889
+ 23280 strings out of 475567
+ 429895 string characters out of 5777889
  1947187 words of memory out of 5000000
- 44530 multiletter control sequences out of 15000+600000
- 572966 words of font info for 88 fonts, out of 8000000 for 9000
+ 44531 multiletter control sequences out of 15000+600000
+ 573135 words of font info for 89 fonts, out of 8000000 for 9000
  319 hyphenation exceptions out of 8191
  84i,14n,87p,1223b,773s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </Users/bobbarclay/Library/texlive/2024basic/texmf-var/fonts/pk/ljfour/jknap
@@ -1088,12 +1088,13 @@ s/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024basic/texmf-dist/
 fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2024basic/texmf-di
 st/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2024basic/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2024basic/
-texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2
-024basic/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (50 pages, 420288 bytes).
+texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2024ba
+sic/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texli
+ve/2024basic/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on main.pdf (50 pages, 425776 bytes).
 PDF statistics:
- 1194 PDF objects out of 1200 (max. 8388607)
- 1085 compressed objects within 11 object streams
+ 1199 PDF objects out of 1200 (max. 8388607)
+ 1088 compressed objects within 11 object streams
  463 named destinations out of 1000 (max. 500000)
  501 words of extra memory for PDF output out of 10000 (max. 10000000)
 

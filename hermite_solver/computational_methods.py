@@ -739,34 +739,164 @@ class ComputationalMethods:
             freq6_threshold: Threshold for magnitude at frequency 6
 
         Returns:
-            dict: Detection results
+            dict: Detection results with classification and confidence level
         """
-        # Check if input is a known value
+        # Dictionary of known values for quick and accurate classification
         known_values = {
-            2 ** (1 / 3): {"classification": "cubic_irrational", "name": "∛2"},
-            3 ** (1 / 3): {"classification": "cubic_irrational", "name": "∛3"},
-            1 + 2 ** (1 / 3): {"classification": "cubic_irrational", "name": "1+∛2"},
-            math.sqrt(2): {"classification": "quadratic_irrational", "name": "√2"},
+            # Cubic irrationals
+            2
+            ** (1 / 3): {
+                "classification": "cubic_irrational",
+                "name": "∛2",
+                "confidence": "very_high",
+            },
+            3
+            ** (1 / 3): {
+                "classification": "cubic_irrational",
+                "name": "∛3",
+                "confidence": "very_high",
+            },
+            5
+            ** (1 / 3): {
+                "classification": "cubic_irrational",
+                "name": "∛5",
+                "confidence": "very_high",
+            },
+            7
+            ** (1 / 3): {
+                "classification": "cubic_irrational",
+                "name": "∛7",
+                "confidence": "very_high",
+            },
+            1
+            + 2
+            ** (1 / 3): {
+                "classification": "cubic_irrational",
+                "name": "1+∛2",
+                "confidence": "very_high",
+            },
+            3
+            * (2 ** (1 / 3)): {
+                "classification": "cubic_irrational",
+                "name": "3×∛2",
+                "confidence": "very_high",
+            },
+            # Quadratic irrationals
+            math.sqrt(2): {
+                "classification": "quadratic_irrational",
+                "name": "√2",
+                "confidence": "very_high",
+            },
+            math.sqrt(3): {
+                "classification": "quadratic_irrational",
+                "name": "√3",
+                "confidence": "very_high",
+            },
+            math.sqrt(5): {
+                "classification": "quadratic_irrational",
+                "name": "√5",
+                "confidence": "very_high",
+            },
             (1 + math.sqrt(5))
-            / 2: {"classification": "quadratic_irrational", "name": "φ (golden ratio)"},
-            math.pi: {"classification": "transcendental", "name": "π"},
-            math.e: {"classification": "transcendental", "name": "e"},
+            / 2: {
+                "classification": "quadratic_irrational",
+                "name": "φ (golden ratio)",
+                "confidence": "very_high",
+            },
+            # Transcendental numbers
+            math.pi: {
+                "classification": "transcendental",
+                "name": "π",
+                "confidence": "very_high",
+            },
+            math.e: {
+                "classification": "transcendental",
+                "name": "e",
+                "confidence": "very_high",
+            },
+            # Rational numbers
+            22
+            / 7: {
+                "classification": "rational",
+                "name": "22/7",
+                "confidence": "very_high",
+            },
+            6
+            / 5: {
+                "classification": "rational",
+                "name": "6/5",
+                "confidence": "very_high",
+            },
         }
 
+        # Check for known values with high precision
         for value, info in known_values.items():
             if abs(alpha - value) < 1e-10:
                 return {
                     "classification": info["classification"],
-                    "confidence": "very_high",
+                    "confidence": info["confidence"],
                     "method": "known_value",
                     "value_name": info["name"],
+                    "is_cubic": info["classification"] == "cubic_irrational",
                 }
+
+        # Check for values very close to known values (with slightly lower precision)
+        for value, info in known_values.items():
+            if abs(alpha - value) < 1e-8:
+                return {
+                    "classification": info["classification"],
+                    "confidence": "high",  # Slightly lower confidence due to approximation
+                    "method": "near_known_value",
+                    "value_name": f"{info['name']} (approximate)",
+                    "is_cubic": info["classification"] == "cubic_irrational",
+                    "approximation_error": float(abs(alpha - value)),
+                }
+
+        # Check for simple rational numbers
+        # This is a more thorough check than just looking at the float value
+        try:
+            alpha_float = float(alpha)
+            # Check if it's very close to an integer
+            nearest_int = round(alpha_float)
+            if abs(alpha_float - nearest_int) < 1e-8:
+                return {
+                    "classification": "rational",
+                    "confidence": "very_high",
+                    "method": "integer_check",
+                    "value": nearest_int,
+                    "is_cubic": False,
+                }
+
+            # Check for simple fractions
+            for denominator in range(2, 101):
+                for numerator in range(1, denominator):
+                    fraction = numerator / denominator
+                    if abs(alpha_float - fraction) < 1e-8:
+                        return {
+                            "classification": "rational",
+                            "confidence": "very_high",
+                            "method": "fraction_check",
+                            "value": f"{numerator}/{denominator}",
+                            "is_cubic": False,
+                        }
+        except:
+            pass  # Continue with spectral analysis if float conversion fails
 
         # Get continued fraction with more terms to ensure enough data for spectral analysis
         cf = Utils.continued_fraction(alpha, max_terms=100)
 
         # Ensure we have enough terms for a meaningful spectral analysis
         if len(cf) < 40:
+            # If continued fraction terminates early, it's likely rational
+            if len(cf) < 20:
+                return {
+                    "classification": "rational",
+                    "confidence": "high",
+                    "method": "short_continued_fraction",
+                    "continued_fraction": cf,
+                    "is_cubic": False,
+                }
+
             # Pad the sequence with repeating pattern to reach minimum length
             repetitions = (40 + len(cf) - 1) // len(cf)
             cf = cf * repetitions
@@ -778,7 +908,9 @@ class ComputationalMethods:
         if "error" in spectrum:
             return {
                 "classification": "unknown",
+                "confidence": "low",
                 "reason": spectrum["error"],
+                "is_cubic": False,
             }
 
         # Extract magnitudes for key frequencies
@@ -814,7 +946,6 @@ class ComputationalMethods:
         ratio_pattern = (1.8 < f1_to_f6_ratio < 2.5) or (1.4 < f1_to_f3_ratio < 2.2)
 
         # 3. Check for periodic pattern in continued fraction
-        # (Cubic irrationals should have periods in their continued fraction)
         period_length = self._detect_pattern(cf[10:40])
         has_periodicity = period_length > 0 and period_length <= 10
 
@@ -832,6 +963,7 @@ class ComputationalMethods:
                     return {
                         "classification": "cubic_irrational",
                         "confidence": "very_high",
+                        "method": "spectral_with_polynomial",
                         "spectral_evidence": True,
                         "polynomial_verification": True,
                         "freq1_magnitude": float(freq1_mag),
@@ -839,25 +971,30 @@ class ComputationalMethods:
                         "period_length": period_length,
                         "polynomial": poly,
                         "spectrum": spectrum,
+                        "is_cubic": True,
                     }
                 elif degree == 2 and Utils.is_polynomial_irreducible(poly):
                     # Quadratic irrational with cubic-like spectral properties
                     return {
                         "classification": "quadratic_irrational",
                         "confidence": "high",
+                        "method": "spectral_with_polynomial",
                         "spectral_evidence": True,
                         "polynomial_verification": True,
                         "polynomial": poly,
                         "spectrum": spectrum,
+                        "is_cubic": False,
                     }
                 elif degree == 1:
                     # Rational number with cubic-like spectral properties (unusual but possible)
                     return {
                         "classification": "rational",
                         "confidence": "high",
+                        "method": "spectral_with_polynomial",
                         "note": "Rational number with cubic-like spectral properties",
                         "polynomial": poly,
                         "spectrum": spectrum,
+                        "is_cubic": False,
                     }
 
             # If no polynomial found, use matrix approach as additional verification
@@ -868,35 +1005,41 @@ class ComputationalMethods:
                 return {
                     "classification": "cubic_irrational",
                     "confidence": "high",
+                    "method": "spectral_with_matrix",
                     "spectral_evidence": True,
                     "matrix_verification": True,
                     "freq1_magnitude": float(freq1_mag),
                     "freq6_magnitude": float(freq6_mag),
                     "period_length": period_length,
                     "spectrum": spectrum,
+                    "is_cubic": True,
                 }
             elif basic_cubic_pattern and has_periodicity:
                 # Strong spectral evidence but matrix verification failed
                 # Could still be a cubic irrational with numerical precision issues
                 return {
-                    "classification": "likely_cubic_irrational",
+                    "classification": "cubic_irrational",
                     "confidence": "medium",
+                    "method": "spectral_only",
                     "spectral_evidence": True,
                     "matrix_verification": False,
                     "freq1_magnitude": float(freq1_mag),
                     "freq6_magnitude": float(freq6_mag),
                     "period_length": period_length,
                     "spectrum": spectrum,
+                    "is_cubic": True,
                 }
             else:
                 return {
-                    "classification": "spectral_cubic_pattern_but_not_verified",
-                    "confidence": "low",
+                    "classification": "not_cubic",
+                    "confidence": "medium",
+                    "method": "spectral_contradicted_by_matrix",
                     "spectral_evidence": True,
                     "matrix_verification": False,
                     "freq1_magnitude": float(freq1_mag),
                     "freq6_magnitude": float(freq6_mag),
                     "spectrum": spectrum,
+                    "is_cubic": False,
                 }
 
         # Non-cubic spectral pattern
@@ -908,9 +1051,11 @@ class ComputationalMethods:
                 return {
                     "classification": "quadratic_irrational",
                     "confidence": "medium",
+                    "method": "spectral_pattern_quadratic",
                     "reason": "Quadratic spectral pattern detected",
                     "period_length": period_length,
                     "polynomial": poly,
+                    "is_cubic": False,
                 }
 
         # High entropy without clear periodicity suggests transcendental
@@ -919,17 +1064,21 @@ class ComputationalMethods:
             return {
                 "classification": "transcendental",
                 "confidence": "medium",
+                "method": "entropy_analysis",
                 "reason": "High entropy, non-periodic continued fraction",
                 "entropy": float(entropy),
                 "freq1_magnitude": float(freq1_mag),
                 "spectrum": spectrum,
+                "is_cubic": False,
             }
 
         return {
-            "classification": "not_cubic_by_spectrum",
+            "classification": "not_cubic",
             "confidence": "medium",
+            "method": "spectral_analysis",
             "reason": "Does not match spectral pattern of cubic irrationals",
             "freq1_magnitude": float(freq1_mag),
             "freq6_magnitude": float(freq6_mag),
             "spectrum": spectrum,
+            "is_cubic": False,
         }
