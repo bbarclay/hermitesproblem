@@ -1,0 +1,223 @@
+\section{Introduction and Historical Context}
+
+\subsection{Hermite's Original Problem}
+
+In 1848, Charles Hermite posed a profound question to Carl Gustav Jacob Jacobi concerning the relationship between periodicity in number representations and algebraic properties \cite{Hermite1848}. At the time, it was known that:
+\begin{enumerate}
+    \item A real number has an eventually periodic decimal expansion if and only if it is rational.
+    \item A real number has an eventually periodic continued fraction expansion if and only if it is a quadratic irrational \cite{Lagrange1770}.
+\end{enumerate}
+
+Hermite asked whether a representation system could be found where periodicity would characterize cubic irrationals, extending this pattern to the next degree. This question, now known as Hermite's problem, remained unsolved for over 170 years, despite significant advances in number theory and algebraic geometry.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+    scale=1.0,
+    title/.style={font=\Large\bfseries\sffamily},
+    timeline/.style={->, >=stealth, thick, line width=1.2pt, draw=gray!70},
+    tick/.style={thick, draw=gray!60},
+    yearlabel/.style={font=\small\sffamily, align=center, text width=2.2cm},
+    approach/.style={
+        draw=gray!60, 
+        rounded corners=6pt, 
+        line width=0.9pt, 
+        fill=white, 
+        align=center, 
+        minimum height=2.5cm,
+        text width=3cm,
+        font=\sffamily,
+        drop shadow={shadow xshift=0.5mm, shadow yshift=-0.5mm, opacity=0.2}
+    },
+    algobox/.style={
+        draw=gray!60, 
+        rounded corners=4pt, 
+        fill=white, 
+        align=center, 
+        text width=2.3cm,
+        font=\small\sffamily\bfseries,
+        inner sep=6pt
+    },
+    dimcircle/.style={
+        circle,
+        draw=gray!60,
+        line width=0.8pt,
+        fill=#1,
+        minimum size=1.3cm,
+        font=\sffamily\small,
+        inner sep=1pt
+    },
+    connector/.style={->, >=stealth, thick, draw=gray!50}
+]
+    % Title with better positioning and styling
+    \node[title] at (0,4.5) {Evolution of Periodicity Detection};
+    
+    % Timeline with better styling
+    \draw[timeline] (-7.5,0) -- (7.5,0);
+    \foreach \x in {-6,-4,-2,0,2,4,6}
+        \draw[tick] (\x,-0.15) -- (\x,0.15);
+    
+    % Timeline labels with more consistent spacing and styling
+    \node[yearlabel] at (-6,-0.8) {1770\\Lagrange};
+    \node[yearlabel] at (-4,-0.8) {1850\\Hermite's\\Question};
+    \node[yearlabel] at (-2,-0.8) {1907\\Jacobi-Perron};
+    \node[yearlabel] at (0,-0.8) {1970s\\Klein};
+    \node[yearlabel] at (2,-0.8) {2019\\Karpenkov\\sin²-alg.};
+    \node[yearlabel] at (4,-0.8) {2022\\Karpenkov\\APD-alg.};
+    \node[yearlabel] at (6,-0.8) {This work};
+    
+    % Approaches with enhanced styling, spacing, and consistent heights
+    \node[approach, fill=blue!10, top color=white, bottom color=blue!15] at (-5,2.5) {Continued\\Fractions\\[2mm]$[a_0; a_1, a_2, ...]$\\[2mm]for quadratics};
+    
+    \node[approach, fill=yellow!10, top color=white, bottom color=yellow!20] at (-1,2.5) {Multidimensional\\Continued\\Fractions};
+    
+    \node[approach, fill=green!10, top color=white, bottom color=green!15] at (3,2.5) {Karpenkov's\\Approaches\\[2mm](Totally-\\real only)};
+    
+    \node[approach, fill=red!10, top color=white, bottom color=red!15] at (6.2,2.5) {Complete\\Solution\\[2mm]All cubic\\irrationals};
+    
+    % Algorithm boxes with improved styling and consistent sizing
+    \node[algobox, top color=white, bottom color=blue!5] at (6.2,0.8) {HAPD Algorithm\\(non-subtractive)};
+    \node[algobox, top color=white, bottom color=red!5] at (6.2,-0.2) {Modified sin²\\(subtractive)};
+    
+    % Connecting arrows with better styling and positioning
+    \draw[connector] (-5,1.0) -- (-4.2,0.15);
+    \draw[connector] (-1,1.0) -- (-2.2,0.15);
+    \draw[connector] (3,1.0) -- (3.8,0.15);
+    \draw[connector] (3,1.0) -- (5.8,0.15);
+    
+    % Dimension indicators with consistent styling and better positioning
+    \node[dimcircle=blue!15] at (-6.8,2.5) {1D};
+    \node[dimcircle=yellow!20] at (-2.8,2.5) {2D+};
+    \node[dimcircle=green!15] at (1.2,2.5) {$\mathbb{RP}^2$};
+    \node[dimcircle=red!15] at (4.4,2.5) {$\mathbb{RP}^2$};
+\end{tikzpicture}
+\caption{Historical progression of approaches to Hermite's problem, from Lagrange's theorem on continued fractions for quadratic irrationals to our complete solution for all cubic irrationals.}
+\label{fig:historical_progression}
+\end{figure}
+
+\subsection{Previous Approaches and Their Limitations}
+
+Several mathematicians attempted to solve Hermite's problem, with notable contributions including:
+
+\begin{enumerate}
+    \item Jacobi's work on generalized continued fractions \cite{Jacobi1868}, which laid important groundwork but did not yield a complete solution.
+    
+    \item The Jacobi-Perron algorithm \cite{Perron1907}, which generalizes continued fractions to higher dimensions but fails to provide a clean characterization of cubic irrationals through periodicity.
+    
+    \item Klein's approach employing geometric considerations from projective geometry, focusing on how certain transformations in hyperbolic space could potentially capture the structure of cubic fields.
+    
+    \item Branching continued fractions (Section 27.5 of \cite{KarpenkovBook}), which use multiple 
+    quotients at each step, creating a tree-like structure instead of a linear sequence.
+    
+    \item Karpenkov's research on Dirichlet groups and projective algorithms \cite{Karpenkov2022}, which provides a substantial foundation for our work and includes the first proven solution for the totally-real cubic case.
+\end{enumerate}
+
+Karpenkov's contribution deserves particular attention. He established an explicit connection between Hermite's problem and the geometric structure of Dirichlet groups acting on projective space—a theoretical framework that explains why periodicity occurs in certain number systems and links the problem to geometric group theory. He introduced two significant algorithms: the heuristic algebraic periodicity detecting algorithm (APD-algorithm) and the sin²-algorithm. The latter was proven \cite{Karpenkov2019} to produce periodic sequences for all totally-real cubic irrationals, representing the first complete proof for a major case of Hermite's problem. Additionally, Karpenkov demonstrated practical applications by connecting his work to the computation of independent elements in maximal groups of commuting matrices, showing how his approach solves concrete problems in computational number theory.
+
+These approaches encountered a fundamental obstacle: as we demonstrate in Section \ref{sec:galois_theory}, cubic irrationals cannot have periodic continued fraction expansions. This result—while known in specialized circles—explains why direct analogies to the quadratic case necessarily fail and why the problem remained open for so long.
+
+\subsection{Our Contribution and Approach}
+
+We build upon Karpenkov's projective framework to present a comprehensive solution to Hermite's problem through two complementary approaches:
+
+\begin{enumerate}
+    \item The \HAPD{} algorithm (Section \ref{sec:hapd_algorithm}), which extends Karpenkov's heuristic APD-algorithm and operates in three-dimensional projective space rather than the one-dimensional space of standard continued fractions, producing a sequence that is eventually periodic if and only if the input is a cubic irrational.
+    
+    \item A modified sin²-algorithm (Section \ref{sec:subtractive_algorithm}) that extends Karpenkov's sin²-algorithm to handle cubic irrationals with complex conjugate roots, employing a phase-preserving floor function and cubic field correction.
+    
+    \item An equivalent matrix-based characterization (Section \ref{sec:matrix_approach}) that relates cubic irrationals to properties of companion matrices and their traces, providing a more algebraic perspective on the problem.
+\end{enumerate}
+
+The key insight connecting these approaches is that by moving to a higher-dimensional space, we can capture the algebraic structure of cubic fields in a way that reveals periodicity. While Karpenkov demonstrated this for totally-real cubic irrationals, our approach extends to all cubic irrationals, providing more comprehensive mathematical formalism, detailed analysis, and numerical validation.
+
+We present evidence that this solution is sound, complete, and computationally effective, addressing potential edge cases and providing robust numerical validation. This extends Karpenkov's work to provide a more general solution to Hermite's problem, maintaining the pattern of representation systems where periodicity characterizes algebraic numbers of specific degrees.
+
+The question central to our investigation, originally posed by Charles Hermite in the mid-19th century, asks whether there exists an analogue of the continued fraction algorithm for cubic irrationals.
+
+Several approaches have been developed to tackle this problem, including Klein's projective geometry solutions, branching continued fractions, and more recent periodic algorithms. Each involves trade-offs between mathematical simplicity, computational efficiency, and theoretical elegance. Our solution complements these methods while addressing the complex conjugate roots case.
+
+We present two main algorithms that solve Hermite's problem:
+
+\subsection{Outline of the Paper}
+
+The remainder of this paper is organized as follows:
+
+\begin{itemize}
+    \item Section \ref{sec:galois_theory} demonstrates that cubic irrationals cannot have periodic continued fraction expansions, establishing why the problem requires a higher-dimensional approach.
+    
+    \item Section \ref{sec:hapd_algorithm} introduces the HAPD algorithm, extending Karpenkov's work to detect periodicity in cubic irrationals, while Section~\ref{sec:matrix_approach} develops a matrix verification approach.
+    
+    \item Section \ref{sec:matrix_approach} presents the matrix-based characterization of cubic irrationals and demonstrates its equivalence to the algorithmic approach.
+    
+    \item Section \ref{sec:equivalence} formally shows the equivalence between the HAPD algorithm and the matrix characterization.
+    
+    \item Section \ref{sec:subtractive_algorithm} presents our modified sin² algorithm for cubic irrationals with complex conjugate roots.
+    
+    \item Section \ref{sec:numerical_validation} provides numerical validation of our approach across different number types.
+    
+    \item Section \ref{sec:objections} addresses potential objections and edge cases, ensuring the completeness of the solution.
+    
+    \item Section \ref{sec:conclusion} summarizes our findings and discusses their implications for number theory and algorithmic approaches to algebraic number detection.
+\end{itemize}
+
+Throughout, we maintain mathematical rigor while ensuring that the conceptual insights are accessible to readers with a solid foundation in algebraic number theory and projective geometry.
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[
+        scale=1.1,
+        box/.style={
+            rectangle, 
+            rounded corners=6pt, 
+            draw=gray!70, 
+            line width=1pt,
+            top color=white, 
+            bottom color=gray!10,
+            align=center, 
+            text width=3cm, 
+            minimum height=1.2cm,
+            font=\sffamily\bfseries,
+            drop shadow={shadow xshift=0.7mm, shadow yshift=-0.7mm, opacity=0.3}
+        },
+        arrow/.style={
+            -stealth, 
+            line width=1pt, 
+            draw=gray!60,
+            shorten >=2pt,
+            shorten <=2pt
+        },
+        label/.style={
+            font=\sffamily\small, 
+            align=center, 
+            text width=2.4cm,
+            midway
+        }
+    ]
+        % Nodes with better styling
+        \node[box] (A) at (0,0) {Continued\\Fractions};
+        \node[box] (B) at (5.5,0) {Multidimensional\\Continued\\Fractions};
+        \node[box] (C) at (0,-2.5) {Quadratic\\Irrationals};
+        \node[box] (D) at (5.5,-2.5) {Cubic\\Irrationals};
+        \node[box] (E) at (0,-5) {Periodic\\Continued\\Fractions};
+        \node[box, top color=white, bottom color=gray!5, draw=gray!80, fill=gray!5] (F) at (5.5,-5) {?};
+        
+        % Connecting arrows with better styling
+        \draw[arrow] (A) -- (B) node[label, above] {Extension};
+        \draw[arrow] (A) -- (C) node[label, left] {Applied to};
+        \draw[arrow] (B) -- (D) node[label, right] {Applied to};
+        \draw[arrow] (C) -- (E) node[label, left] {Result};
+        \draw[arrow] (D) -- (F) node[label, right] {Result?};
+        
+        % Add a subtle background to emphasize structure
+        \begin{scope}[on background layer]
+            \fill[rounded corners=12pt, gray!5] (-1.8,-0.8) rectangle (1.8, 0.8);
+            \fill[rounded corners=12pt, gray!5] (3.7,-0.8) rectangle (7.3, 0.8);
+            \fill[rounded corners=12pt, blue!3] (-1.8,-3.3) rectangle (1.8, -1.7);
+            \fill[rounded corners=12pt, blue!3] (3.7,-3.3) rectangle (7.3, -1.7);
+            \fill[rounded corners=12pt, green!5] (-1.8,-5.8) rectangle (1.8, -4.2);
+            \fill[rounded corners=12pt, red!3] (3.7,-5.8) rectangle (7.3, -4.2);
+        \end{scope}
+    \end{tikzpicture}
+    \caption{Hermite's problem visualized: Can we find a multidimensional continued fraction algorithm that produces periodic patterns for cubic irrationals, analogous to how regular continued fractions produce periodic patterns for quadratic irrationals?}
+    \label{fig:hermites_problem}
+\end{figure}

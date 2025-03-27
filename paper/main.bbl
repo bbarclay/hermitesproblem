@@ -23,6 +23,12 @@ Carl Gustav~Jacob Jacobi.
 \newblock {\em Journal für die reine und angewandte Mathematik}, 69:29--64,
   1868.
 
+\bibitem[Kar18]{KarpenkovBook}
+Oleg Karpenkov.
+\newblock {\em Geometry of Continued Fractions}, volume~26 of {\em Algorithms
+  and Computation in Mathematics}.
+\newblock Springer, 2nd edition, 2018.
+
 \bibitem[Kar19]{Karpenkov2019}
 Oleg Karpenkov.
 \newblock Periodicity of the $\sin^2$-algorithm for cubic totally-real

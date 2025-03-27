@@ -1,0 +1,70 @@
+% HAPD Algorithm Flowchart
+% Professional redesign with proper spacing and clear layout
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[
+    scale=0.8, % Slightly reduce scale to fit better
+    % Clean, modern styles with plenty of space
+    block/.style={rectangle, draw=blue!50, rounded corners, fill=blue!5, 
+                 minimum width=7cm, minimum height=1.6cm, % Increased height 
+                 text centered, font=\sffamily, align=center},
+    io/.style={rectangle, draw=green!50, rounded corners, fill=green!5, 
+              minimum width=7cm, minimum height=1.6cm, % Increased height
+              text centered, font=\sffamily, align=center},
+    decision/.style={diamond, draw=orange!50, fill=orange!5, 
+                    minimum width=4cm, minimum height=4cm, % Larger diamond
+                    text centered, align=center, font=\sffamily,
+                    inner sep=3pt}, % More padding
+    arrow/.style={thick, ->, >=stealth},
+    note/.style={font=\sffamily\small, align=center, text width=3cm}
+]
+    % Clean background for the entire diagram - make taller
+    \fill[rounded corners=15pt, gray!3, draw=gray!10] 
+        (-8,8) rectangle (8,-9.5);
+
+    % Title - properly positioned higher up
+    \node[font=\bfseries\sffamily\large, align=center] at (0,7) 
+        {HAPD Algorithm: Periodicity Detection};
+
+    % Input node - more spacing between nodes
+    \node[io] (input) at (0,5.0) {Input: Cubic irrational $\alpha$};
+
+    % Initialization - clear description - increased vertical spacing
+    \node[block] (init) at (0,2.8) 
+        {Initialize projective coordinates\\
+         $(v_1, v_2, v_3) = (\alpha, \alpha^2, 1)$};
+
+    % Iteration with clear formula - increased vertical spacing
+    \node[block] (iterate) at (0,0.4) 
+        {Compute floor quotients:\\
+         $a_1 = \lfloor v_1/v_3 \rfloor$, 
+         $a_2 = \lfloor v_2/v_3 \rfloor$};
+
+    % Update step - clear description - increased vertical spacing
+    \node[block] (update) at (0,-2.0) 
+        {Update triple:\\
+         $(v_1, v_2, v_3) \leftarrow$ (remainders after division)};
+
+    % Decision diamond - much larger with centered text and more space
+    \node[decision] (check) at (0,-5.0) 
+        {Is the current\\triple projectively\\equivalent to a\\previous one?};
+
+    % Output - clear result - moved down for better spacing
+    \node[io] (output) at (0,-8.0) 
+        {Output: Period detected,\\cubic irrational confirmed};
+
+    % Connect with clean arrows - adjusted for new positions
+    \draw[arrow] (input) -- (init);
+    \draw[arrow] (init) -- (iterate);
+    \draw[arrow] (iterate) -- (update);
+    \draw[arrow] (update) -- (check);
+    \draw[arrow] (check) -- node[right, note, xshift=0.3cm] {Yes} (output);
+
+    % Loop back - wider path to avoid crowding
+    \draw[arrow] (check) -- node[note, below, yshift=-0.3cm] {No} ++(6.0,0) -- ++(0,5.0) -- ++(-6.0,0) -- (iterate);
+
+\end{tikzpicture}
+\caption{Flowchart of the HAPD algorithm for detecting periodicity in cubic irrationals. The algorithm transforms points in projective space and checks for repetition, which confirms that the input is a cubic irrational.}
+\label{fig:hapd_flowchart}
+\end{figure} 

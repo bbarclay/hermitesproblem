@@ -1,19 +1,33 @@
-\documentclass[11pt,a4paper]{article}
+\documentclass[a4paper,11pt]{article}
 \usepackage{amsmath,amssymb,amsthm,amsfonts}
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{xcolor}
 \usepackage{mathtools}
 \usepackage{tikz}
+\usetikzlibrary{shapes,shapes.misc,shapes.geometric,positioning,calc,patterns,arrows.meta}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 \usepackage{enumitem}
 \usepackage{thmtools}
+\usepackage{chngcntr}
 \usepackage{bm}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xspace}
+
+% Configure counters for continuous numbering
+\counterwithout{figure}{section}
+\counterwithout{table}{section}
+\counterwithout{algorithm}{section}
 
 % Theorem environments
 \theoremstyle{plain}
-\newtheorem{theorem}{Theorem}[section]
+\newtheorem{theorem}{Theorem}
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
@@ -44,33 +58,34 @@
 \newcommand{\set}[1]{\left\{ #1 \right\}}
 \newcommand{\tuple}[1]{\left( #1 \right)}
 \newcommand{\seq}[1]{\left[ #1 \right]}
-\newcommand{\HAPD}{\textsf{HAPD}}
+\newcommand{\HAPD}{\textsc{HAPD}\xspace}
 
 % Title information
-\title{An Enhanced Solution to Hermite's Problem:\\Building on Projective Algorithms and Dirichlet Groups}
-\author{Brandon Barclay \\ \texttt{barclaybrandon@hotmail.com}}
+\title{A Complete Solution to Hermite's Problem\\For Cubic Irrationals with Complex Conjugate Roots}
+\author{Authors}
 \date{\today}
 
 \begin{document}
 
 \maketitle
 
-\input{abstract}
+\input{abstract.tex}
 \tableofcontents
 \newpage
 
-\input{introduction}
-\input{galois-theory}
-\input{hapd-algorithm}
-\input{matrix-approach}
-\input{matrix-verification}
-\input{equivalence}
-\input{numerical-validation}
-\input{objections-tex}
-\input{conclusion}
+\input{introduction.tex}
+\input{galois-theory.tex}
+\input{hapd-algorithm.tex}
+\input{visuals/complementary_solutions_diagram.tex}
+\input{matrix-approach.tex}
+\input{matrix-verification.tex}
+\input{equivalence.tex}
+\input{subtractive-algorithm.tex}
+\input{numerical-validation.tex}
+\input{objections-tex.tex}
+\input{conclusion.tex}
 
-\newpage
-\bibliographystyle{alpha}
+\bibliographystyle{plain}
 \bibliography{references}
 
 \end{document}

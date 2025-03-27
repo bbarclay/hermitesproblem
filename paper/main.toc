@@ -1,61 +1,73 @@
-\contentsline {section}{\numberline {1}Introduction and Historical Context}{4}{section.1}%
-\contentsline {subsection}{\numberline {1.1}Hermite's Original Problem}{4}{subsection.1.1}%
-\contentsline {subsection}{\numberline {1.2}Previous Approaches and Their Limitations}{4}{subsection.1.2}%
-\contentsline {subsection}{\numberline {1.3}My Contribution and Approach}{5}{subsection.1.3}%
-\contentsline {subsection}{\numberline {1.4}Outline of the Paper}{5}{subsection.1.4}%
+\contentsline {section}{\numberline {1}Introduction}{4}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Historical Context and Previous Approaches}{4}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Our Contribution}{5}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Outline of the Paper}{5}{subsection.1.3}%
 \contentsline {section}{\numberline {2}Galois Theoretic Proof of Non-Periodicity}{6}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Preliminary Definitions and Background}{6}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}The Galois Group of Cubic Polynomials}{7}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}The Main Non-Periodicity Theorem}{8}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.3}The Main Non-Periodicity Theorem}{7}{subsection.2.3}%
 \contentsline {subsection}{\numberline {2.4}Implications for Hermite's Problem}{9}{subsection.2.4}%
-\contentsline {section}{\numberline {3}The HAPD Algorithm}{10}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Algorithm Definition and Description}{10}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Projective Geometry Interpretation}{11}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}Main Periodicity Theorem}{12}{subsection.3.3}%
-\contentsline {subsection}{\numberline {3.4}Preperiod Properties and Edge Cases}{14}{subsection.3.4}%
-\contentsline {subsection}{\numberline {3.5}Algorithm Complexity and Implementation Considerations}{15}{subsection.3.5}%
-\contentsline {subsection}{\numberline {3.6}Comparison with Karpenkov's Algorithms}{15}{subsection.3.6}%
-\contentsline {section}{\numberline {4}The Matrix-Based Characterization}{16}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Companion Matrices and Minimal Polynomials}{16}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Trace Characterization of Cubic Irrationals}{17}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Connection to Field Extensions and Galois Theory}{18}{subsection.4.3}%
-\contentsline {subsection}{\numberline {4.4}Matrix Formulation of the HAPD Algorithm}{19}{subsection.4.4}%
-\contentsline {subsection}{\numberline {4.5}Numerical Aspects and Precision Considerations}{20}{subsection.4.5}%
-\contentsline {subsection}{\numberline {4.6}Non-real Cubic Irrationals}{21}{subsection.4.6}%
-\contentsline {section}{\numberline {5}Enhanced Matrix-Based Verification}{21}{section.5}%
-\contentsline {subsection}{\numberline {5.1}The Matrix Verification Method}{21}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Theoretical Foundation}{22}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Numerical Validation}{23}{subsection.5.3}%
-\contentsline {subsection}{\numberline {5.4}Comparison with the HAPD Algorithm}{24}{subsection.5.4}%
-\contentsline {subsection}{\numberline {5.5}Implementation Strategy}{24}{subsection.5.5}%
-\contentsline {section}{\numberline {6}Equivalence of Characterizations}{25}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Structural Equivalence}{25}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Algebraic Connection}{25}{subsection.6.2}%
-\contentsline {subsection}{\numberline {6.3}Computational Perspective}{26}{subsection.6.3}%
-\contentsline {subsection}{\numberline {6.4}Theoretical Unification}{28}{subsection.6.4}%
-\contentsline {subsection}{\numberline {6.5}Generalizations and Extensions}{29}{subsection.6.5}%
-\contentsline {section}{\numberline {7}Numerical Validation and Implementation}{30}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Implementation of the HAPD Algorithm}{30}{subsection.7.1}%
-\contentsline {subsection}{\numberline {7.2}Test Cases and Results}{32}{subsection.7.2}%
-\contentsline {subsection}{\numberline {7.3}Matrix Approach Implementation}{33}{subsection.7.3}%
-\contentsline {subsection}{\numberline {7.4}Combined Approach and Practical Algorithm}{35}{subsection.7.4}%
-\contentsline {subsection}{\numberline {7.5}Implementation Guidelines and Best Practices}{35}{subsection.7.5}%
-\contentsline {subsection}{\numberline {7.6}Implementation Challenges and Solutions}{38}{subsection.7.6}%
-\contentsline {section}{\numberline {8}Addressing Potential Objections and Edge Cases}{38}{section.8}%
-\contentsline {subsection}{\numberline {8.1}Objection: The Solution Does Not Directly Extend Continued Fractions}{39}{subsection.8.1}%
-\contentsline {subsection}{\numberline {8.2}Objection: Numerical Implementation Challenges}{39}{subsection.8.2}%
-\contentsline {subsection}{\numberline {8.3}Objection: Special Cases of Cubic Irrationals}{40}{subsection.8.3}%
-\contentsline {subsection}{\numberline {8.4}Objection: Relation to Previous Approaches}{40}{subsection.8.4}%
-\contentsline {subsection}{\numberline {8.5}Objection: Encoding Function Complexity}{41}{subsection.8.5}%
-\contentsline {subsection}{\numberline {8.6}Objection: Complex Cubic Irrationals}{42}{subsection.8.6}%
-\contentsline {subsection}{\numberline {8.7}Extension to Complex Cubic Irrationals}{42}{subsection.8.7}%
-\contentsline {subsection}{\numberline {8.8}Objection: Computational Complexity and Practical Utility}{43}{subsection.8.8}%
-\contentsline {subsection}{\numberline {8.9}Objection: Generalizations to Higher Degrees}{44}{subsection.8.9}%
-\contentsline {subsection}{\numberline {8.10}Objection: Potential for Alternative Solutions}{45}{subsection.8.10}%
-\contentsline {section}{\numberline {9}Conclusion and Future Directions}{46}{section.9}%
-\contentsline {subsection}{\numberline {9.1}Summary of Main Results}{46}{subsection.9.1}%
-\contentsline {subsection}{\numberline {9.2}Significance and Implications}{47}{subsection.9.2}%
-\contentsline {subsection}{\numberline {9.3}Connections to Broader Mathematical Areas}{47}{subsection.9.3}%
-\contentsline {subsection}{\numberline {9.4}Future Research Directions}{48}{subsection.9.4}%
-\contentsline {subsection}{\numberline {9.5}Higher-Degree Generalizations: Challenges and Approaches}{48}{subsection.9.5}%
-\contentsline {subsection}{\numberline {9.6}Final Remarks}{49}{subsection.9.6}%
+\contentsline {section}{\numberline {3}Hermite Algorithm for Periodicity Detection (\textsc {HAPD}\xspace )}{9}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Theoretical Foundation}{9}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Algorithm Description}{11}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Detecting Periodicity}{11}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Algorithm Definition and Description}{11}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Projective Geometry Interpretation}{13}{subsection.3.5}%
+\contentsline {subsection}{\numberline {3.6}Main Periodicity Theorem}{14}{subsection.3.6}%
+\contentsline {subsection}{\numberline {3.7}Preperiod Properties and Edge Cases}{16}{subsection.3.7}%
+\contentsline {subsection}{\numberline {3.8}Algorithm Complexity and Implementation Considerations}{17}{subsection.3.8}%
+\contentsline {subsection}{\numberline {3.9}Algorithmic Comparison}{18}{subsection.3.9}%
+\contentsline {section}{\numberline {4}The Matrix-Based Characterization}{18}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Companion Matrices and Minimal Polynomials}{19}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Trace Characterization of Cubic Irrationals}{19}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Connection to Field Extensions and Galois Theory}{20}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Matrix Formulation of the HAPD Algorithm}{21}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Numerical Aspects and Precision Considerations}{22}{subsection.4.5}%
+\contentsline {subsection}{\numberline {4.6}Non-real Cubic Irrationals}{23}{subsection.4.6}%
+\contentsline {section}{\numberline {5}Enhanced Matrix-Based Verification}{24}{section.5}%
+\contentsline {subsection}{\numberline {5.1}The Matrix Verification Method}{24}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Theoretical Foundation}{24}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Numerical Validation}{25}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Comparison with the HAPD Algorithm}{26}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}Implementation Strategy}{27}{subsection.5.5}%
+\contentsline {section}{\numberline {6}Equivalence of Characterizations}{27}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Structural Equivalence}{27}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Algebraic Connection}{28}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Computational Perspective}{29}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Theoretical Unification}{30}{subsection.6.4}%
+\contentsline {subsection}{\numberline {6.5}Generalizations and Extensions}{31}{subsection.6.5}%
+\contentsline {section}{\numberline {7}A Subtractive Approach to Cubic Irrationals with Complex Conjugate Roots}{32}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Extending Karpenkov's Work to Complex Roots}{33}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Phase-Preserving Floor Function}{33}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}The Modified Sin²-Algorithm}{34}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.4}Cubic Field-Sensitive Correction Term}{34}{subsection.7.4}%
+\contentsline {subsection}{\numberline {7.5}Theoretical Analysis}{35}{subsection.7.5}%
+\contentsline {subsection}{\numberline {7.6}Numerical Validation}{40}{subsection.7.6}%
+\contentsline {subsection}{\numberline {7.7}Comparison with the HAPD Algorithm}{41}{subsection.7.7}%
+\contentsline {subsection}{\numberline {7.8}Broader Implications}{42}{subsection.7.8}%
+\contentsline {section}{\numberline {8}Comparison of Approaches}{42}{section.8}%
+\contentsline {section}{\numberline {9}Numerical Validation and Implementation}{42}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Implementation of the HAPD Algorithm}{42}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}Test Cases and Results}{44}{subsection.9.2}%
+\contentsline {subsection}{\numberline {9.3}Matrix Approach Implementation}{46}{subsection.9.3}%
+\contentsline {subsection}{\numberline {9.4}Combined Approach and Practical Algorithm}{47}{subsection.9.4}%
+\contentsline {subsection}{\numberline {9.5}Validation of the Subtractive Algorithm}{47}{subsection.9.5}%
+\contentsline {subsubsection}{\numberline {9.5.1}Experimental Results}{50}{subsubsection.9.5.1}%
+\contentsline {subsubsection}{\numberline {9.5.2}Comparison with the HAPD Algorithm}{50}{subsubsection.9.5.2}%
+\contentsline {subsubsection}{\numberline {9.5.3}Numerical Precision Considerations}{51}{subsubsection.9.5.3}%
+\contentsline {subsection}{\numberline {9.6}Implementation Guidelines and Best Practices}{52}{subsection.9.6}%
+\contentsline {subsection}{\numberline {9.7}Implementation Challenges and Solutions}{53}{subsection.9.7}%
+\contentsline {subsection}{\numberline {9.8}Benchmarking and Convergence Analysis}{54}{subsection.9.8}%
+\contentsline {section}{\numberline {10}Addressing Potential Objections and Edge Cases}{54}{section.10}%
+\contentsline {subsection}{\numberline {10.1}Relationship to Classical Continued Fractions}{55}{subsection.10.1}%
+\contentsline {subsection}{\numberline {10.2}Numerical Implementation Challenges}{55}{subsection.10.2}%
+\contentsline {subsection}{\numberline {10.3}Variation Among Cubic Irrationals}{56}{subsection.10.3}%
+\contentsline {subsection}{\numberline {10.4}Connection to Prior Approaches}{56}{subsection.10.4}%
+\contentsline {subsection}{\numberline {10.5}On the Encoding Function}{57}{subsection.10.5}%
+\contentsline {subsection}{\numberline {10.6}Complex Cubic Irrationals}{58}{subsection.10.6}%
+\contentsline {subsection}{\numberline {10.7}Extension to Complex Cubic Irrationals}{58}{subsection.10.7}%
+\contentsline {subsection}{\numberline {10.8}Computational Complexity and Practical Applications}{59}{subsection.10.8}%
+\contentsline {subsection}{\numberline {10.9}Generalization to Higher Degrees}{59}{subsection.10.9}%
+\contentsline {subsection}{\numberline {10.10}Uniqueness of Our Solution}{60}{subsection.10.10}%
+\contentsline {subsection}{\numberline {10.11}Objection 2: Lack of Originality}{61}{subsection.10.11}%
+\contentsline {section}{\numberline {11}Conclusion}{62}{section.11}%
