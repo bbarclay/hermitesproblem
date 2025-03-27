@@ -559,7 +559,7 @@ def create_algorithm_comparison_chart():
     ]
 
     hapd_values = [
-        "All cubic numbers (rational and irrational)",
+        "All cubic numbers",
         "Yes (projective space)",
         "Non-subtractive",
         "Projective geometry",
@@ -568,7 +568,7 @@ def create_algorithm_comparison_chart():
     ]
 
     sin2_values = [
-        "All cubic numbers (rational and irrational)",
+        "All cubic numbers",
         "Yes (complex plane)",
         "Subtractive",
         "Complex analysis",
@@ -860,51 +860,55 @@ def create_algorithmic_comparison_visualization():
     ax2.set_ylabel("Detection Accuracy (%)", fontsize=12)
     ax2.set_title("Discriminative Power", fontsize=14)
     ax2.set_xticks(x)
-    ax2.set_xticklabels(input_complexity, rotation=40, ha="right")
-    ax2.set_ylim([60, 101])  # Make sure 100% is visible
+    # Increase bottom margin and rotate labels for better readability
+    plt.subplots_adjust(bottom=0.2)
+    ax2.set_xticklabels(input_complexity, rotation=45, ha="right")
     ax2.grid(axis="y", linestyle="--", linewidth=0.5, alpha=0.7)
     ax2.legend(loc="lower left")
 
-    # Add annotations for perfect detection
+    # Add value annotations above bars
     for i, v in enumerate(hapd_accuracy):
-        if v == 100.0:
-            ax2.text(
-                i - width / 2,
-                v + 0.5,
-                "100%",
-                ha="center",
-                va="bottom",
-                fontsize=9,
-                fontweight="bold",
-            )
+        ax2.text(
+            i - width / 2,
+            v + 0.5,
+            str(v),
+            ha="center",
+            va="bottom",
+            fontsize=9,
+            rotation=0,
+        )
 
     for i, v in enumerate(sin2_accuracy):
-        if v == 100.0:
-            ax2.text(
-                i + width / 2,
-                v + 0.5,
-                "100%",
-                ha="center",
-                va="bottom",
-                fontsize=9,
-                fontweight="bold",
-            )
+        ax2.text(
+            i + width / 2,
+            v + 0.5,
+            str(v),
+            ha="center",
+            va="bottom",
+            fontsize=9,
+            rotation=0,
+        )
 
-    # Add overall title
+    # Add overall title with adjusted spacing
     fig.suptitle(
-        "HAPD Algorithm vs. Modified sin² Algorithm Comparison", fontsize=16, y=0.98
+        "HAPD Algorithm vs. Modified sin² Algorithm Comparison",
+        fontsize=16,
+        y=0.98,
     )
 
-    # Add explanatory text at the bottom
+    # Add explanatory text at the bottom with adjusted position
     fig.text(
         0.5,
-        0.01,
+        0.02,
         "This visualization compares the computational performance and discriminative power of both algorithms.\n"
         + "The HAPD algorithm shows better performance for complex inputs, while both perfectly detect cubic numbers.",
         ha="center",
         fontsize=10,
         style="italic",
     )
+
+    # Ensure tight layout while respecting the adjusted margins
+    plt.tight_layout(rect=[0, 0.1, 1, 0.95])
 
     # Save figure
     save_figure(fig, "algorithmic_comparison_visualization")

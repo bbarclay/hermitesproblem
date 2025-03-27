@@ -38,7 +38,7 @@
 \newlabel{cor:cf_insufficient}{{10}{9}{}{corollary.10}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Implications for Hermite's Problem}{9}{subsection.2.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {3}Hermite Algorithm for Periodicity Detection (\textsc  {HAPD}\xspace  )}{9}{section.3}\protected@file@percent }
-\newlabel{sec:hapd-algorithm}{{3}{9}{Hermite Algorithm for Periodicity Detection (\HAPD )}{section.3}{}}
+\newlabel{sec:hapd_algorithm}{{3}{9}{Hermite Algorithm for Periodicity Detection (\HAPD )}{section.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Theoretical Foundation}{9}{subsection.3.1}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Flowchart of the Hermite Algorithm for Periodicity Detection (HAPD) showing the process of identifying periodicity in the continued fraction expansion of cubic irrationals.}}{10}{figure.1}\protected@file@percent }
 \newlabel{fig:hapd_flowchart}{{1}{10}{Flowchart of the Hermite Algorithm for Periodicity Detection (HAPD) showing the process of identifying periodicity in the continued fraction expansion of cubic irrationals}{figure.1}{}}
@@ -50,18 +50,20 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Algorithm Definition and Description}{11}{subsection.3.4}\protected@file@percent }
 \@writefile{loe}{\contentsline {algorithm_def}{\ifthmt@listswap Algorithm~12\else \numberline {12}Algorithm\fi \thmtformatoptarg {\textsc  {HAPD}\xspace  {} Algorithm}}{11}{algorithm_def.12}\protected@file@percent }
 \newlabel{alg:hapd}{{12}{11}{\HAPD {} Algorithm}{algorithm_def.12}{}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces HAPD Algorithm}}{12}{algorithm.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Visualization of the projective trajectory for $\sqrt  [3]{2}$ through HAPD algorithm iterations. The blue line shows the path of successive projective triples, with points $v_0$ through $v_{11}$ representing algorithm iterations. Periodicity is detected when point $v_{11}$ returns to the projective equivalence class of point $v_4$ (connected by the red dashed line), establishing a period of 7.}}{12}{figure.3}\protected@file@percent }
+\newlabel{fig:projective_trajectory}{{3}{12}{Visualization of the projective trajectory for $\sqrt [3]{2}$ through HAPD algorithm iterations. The blue line shows the path of successive projective triples, with points $v_0$ through $v_{11}$ representing algorithm iterations. Periodicity is detected when point $v_{11}$ returns to the projective equivalence class of point $v_4$ (connected by the red dashed line), establishing a period of 7}{figure.3}{}}
 \@writefile{loe}{\contentsline {definition}{\ifthmt@listswap Definition~13\else \numberline {13}Definition\fi \thmtformatoptarg {Encoding Function}}{12}{definition.13}\protected@file@percent }
 \newlabel{def:encoding}{{13}{12}{Encoding Function}{definition.13}{}}
-\@writefile{loe}{\contentsline {lemma}{\ifthmt@listswap Lemma~14\else \numberline {14}Lemma\fi \thmtformatoptarg {Injectivity of Encoding}}{12}{lemma.14}\protected@file@percent }
-\newlabel{lem:encoding_injective}{{14}{12}{Injectivity of Encoding}{lemma.14}{}}
-\citation{Karpenkov2022}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces HAPD Algorithm}}{13}{algorithm.1}\protected@file@percent }
+\@writefile{loe}{\contentsline {lemma}{\ifthmt@listswap Lemma~14\else \numberline {14}Lemma\fi \thmtformatoptarg {Injectivity of Encoding}}{13}{lemma.14}\protected@file@percent }
+\newlabel{lem:encoding_injective}{{14}{13}{Injectivity of Encoding}{lemma.14}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Projective Geometry Interpretation}{13}{subsection.3.5}\protected@file@percent }
-\@writefile{loe}{\contentsline {definition}{\ifthmt@listswap Definition~15\else \numberline {15}Definition\fi \thmtformatoptarg {Projective Space $\mathbb  {P}^2(\mathbb  {R})$}}{13}{definition.15}\protected@file@percent }
-\@writefile{loe}{\contentsline {proposition}{\ifthmt@listswap Proposition~16\else \numberline {16}Proposition\fi \thmtformatoptarg {Projective Invariance}}{13}{proposition.16}\protected@file@percent }
-\newlabel{prop:projective_invariance}{{16}{13}{Projective Invariance}{proposition.16}{}}
-\@writefile{loe}{\contentsline {definition}{\ifthmt@listswap Definition~17\else \numberline {17}Definition\fi \thmtformatoptarg {Dirichlet Group}}{13}{definition.17}\protected@file@percent }
 \citation{Karpenkov2022}
+\citation{Karpenkov2022}
+\@writefile{loe}{\contentsline {definition}{\ifthmt@listswap Definition~15\else \numberline {15}Definition\fi \thmtformatoptarg {Projective Space $\mathbb  {P}^2(\mathbb  {R})$}}{14}{definition.15}\protected@file@percent }
+\@writefile{loe}{\contentsline {proposition}{\ifthmt@listswap Proposition~16\else \numberline {16}Proposition\fi \thmtformatoptarg {Projective Invariance}}{14}{proposition.16}\protected@file@percent }
+\newlabel{prop:projective_invariance}{{16}{14}{Projective Invariance}{proposition.16}{}}
+\@writefile{loe}{\contentsline {definition}{\ifthmt@listswap Definition~17\else \numberline {17}Definition\fi \thmtformatoptarg {Dirichlet Group}}{14}{definition.17}\protected@file@percent }
 \@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap Theorem~18\else \numberline {18}Theorem\fi \thmtformatoptarg {Finiteness of Fundamental Domain}}{14}{theorem.18}\protected@file@percent }
 \newlabel{thm:finite_domain}{{18}{14}{Finiteness of Fundamental Domain}{theorem.18}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Main Periodicity Theorem}{14}{subsection.3.6}\protected@file@percent }
@@ -74,206 +76,218 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.7}Preperiod Properties and Edge Cases}{16}{subsection.3.7}\protected@file@percent }
 \@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap Theorem~22\else \numberline {22}Theorem\fi \thmtformatoptarg {Root Magnitude and Preperiod Properties}}{16}{theorem.22}\protected@file@percent }
 \newlabel{thm:preperiod}{{22}{16}{Root Magnitude and Preperiod Properties}{theorem.22}{}}
-\@writefile{loe}{\contentsline {proposition}{\ifthmt@listswap Proposition~23\else \numberline {23}Proposition\fi \thmtformatoptarg {Behavior for Different Galois Groups}}{16}{proposition.23}\protected@file@percent }
-\newlabel{prop:galois_behavior}{{23}{16}{Behavior for Different Galois Groups}{proposition.23}{}}
+\@writefile{loe}{\contentsline {proposition}{\ifthmt@listswap Proposition~23\else \numberline {23}Proposition\fi \thmtformatoptarg {Behavior for Different Galois Groups}}{17}{proposition.23}\protected@file@percent }
+\newlabel{prop:galois_behavior}{{23}{17}{Behavior for Different Galois Groups}{proposition.23}{}}
 \@writefile{loe}{\contentsline {remark}{\ifthmt@listswap Remark~24\else \numberline {24}Remark\fi }{17}{remark.24}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.8}Algorithm Complexity and Implementation Considerations}{17}{subsection.3.8}\protected@file@percent }
 \@writefile{loe}{\contentsline {proposition}{\ifthmt@listswap Proposition~25\else \numberline {25}Proposition\fi \thmtformatoptarg {Computational Complexity}}{17}{proposition.25}\protected@file@percent }
 \newlabel{prop:complexity}{{25}{17}{Computational Complexity}{proposition.25}{}}
-\@writefile{loe}{\contentsline {remark}{\ifthmt@listswap Remark~26\else \numberline {26}Remark\fi }{17}{remark.26}\protected@file@percent }
 \citation{Karpenkov2022}
+\@writefile{loe}{\contentsline {remark}{\ifthmt@listswap Remark~26\else \numberline {26}Remark\fi }{18}{remark.26}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.9}Algorithmic Comparison}{18}{subsection.3.9}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Comparison of HAPD with Karpenkov's Algorithms}}{18}{table.1}\protected@file@percent }
-\newlabel{tab:algorithm_comparison}{{1}{18}{Comparison of HAPD with Karpenkov's Algorithms}{table.1}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {4}The Matrix-Based Characterization}{18}{section.4}\protected@file@percent }
 \newlabel{sec:matrix_approach}{{4}{18}{The Matrix-Based Characterization}{section.4}{}}
-\citation{Horn2012}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Comparative analysis of the HAPD and Modified sin$^2$ algorithms, highlighting their complementary approaches to solving Hermite's problem. Both algorithms successfully detect cubic irrationals but employ different mathematical foundations and implementation strategies.}}{19}{table.1}\protected@file@percent }
+\newlabel{fig:algorithm_comparison}{{1}{19}{Comparative analysis of the HAPD and Modified sin$^2$ algorithms, highlighting their complementary approaches to solving Hermite's problem. Both algorithms successfully detect cubic irrationals but employ different mathematical foundations and implementation strategies}{table.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Companion Matrices and Minimal Polynomials}{19}{subsection.4.1}\protected@file@percent }
 \@writefile{loe}{\contentsline {definition}{\ifthmt@listswap Definition~27\else \numberline {27}Definition\fi \thmtformatoptarg {Companion Matrix}}{19}{definition.27}\protected@file@percent }
-\@writefile{loe}{\contentsline {proposition}{\ifthmt@listswap Proposition~28\else \numberline {28}Proposition\fi \thmtformatoptarg {Properties of Companion Matrices}}{19}{proposition.28}\protected@file@percent }
-\newlabel{prop:companion_properties}{{28}{19}{Properties of Companion Matrices}{proposition.28}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Trace Characterization of Cubic Irrationals}{19}{subsection.4.2}\protected@file@percent }
-\@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap Theorem~29\else \numberline {29}Theorem\fi \thmtformatoptarg {Matrix Characterization of Cubic Irrationals}}{19}{theorem.29}\protected@file@percent }
-\newlabel{thm:matrix_cubic}{{29}{19}{Matrix Characterization of Cubic Irrationals}{theorem.29}{}}
-\@writefile{loe}{\contentsline {corollary}{\ifthmt@listswap Corollary~30\else \numberline {30}Corollary\fi \thmtformatoptarg {Cubic Irrational Power Sums}}{20}{corollary.30}\protected@file@percent }
-\newlabel{cor:power_sums}{{30}{20}{Cubic Irrational Power Sums}{corollary.30}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Connection to Field Extensions and Galois Theory}{20}{subsection.4.3}\protected@file@percent }
-\@writefile{loe}{\contentsline {proposition}{\ifthmt@listswap Proposition~31\else \numberline {31}Proposition\fi \thmtformatoptarg {Matrix and Field Extensions}}{20}{proposition.31}\protected@file@percent }
-\newlabel{prop:matrix_field}{{31}{20}{Matrix and Field Extensions}{proposition.31}{}}
-\@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap Theorem~32\else \numberline {32}Theorem\fi \thmtformatoptarg {Structural Characterization via Matrices}}{21}{theorem.32}\protected@file@percent }
-\newlabel{thm:structural_matrix}{{32}{21}{Structural Characterization via Matrices}{theorem.32}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Matrix Formulation of the HAPD Algorithm}{21}{subsection.4.4}\protected@file@percent }
-\@writefile{loe}{\contentsline {proposition}{\ifthmt@listswap Proposition~33\else \numberline {33}Proposition\fi \thmtformatoptarg {Matrix Interpretation of HAPD}}{21}{proposition.33}\protected@file@percent }
-\newlabel{prop:matrix_hapd}{{33}{21}{Matrix Interpretation of HAPD}{proposition.33}{}}
-\@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap Theorem~34\else \numberline {34}Theorem\fi \thmtformatoptarg {Matrix Interpretation of Periodicity}}{22}{theorem.34}\protected@file@percent }
-\newlabel{thm:matrix_periodicity}{{34}{22}{Matrix Interpretation of Periodicity}{theorem.34}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Numerical Aspects and Precision Considerations}{22}{subsection.4.5}\protected@file@percent }
-\@writefile{loe}{\contentsline {proposition}{\ifthmt@listswap Proposition~35\else \numberline {35}Proposition\fi \thmtformatoptarg {Precision Requirements}}{23}{proposition.35}\protected@file@percent }
-\newlabel{prop:precision}{{35}{23}{Precision Requirements}{proposition.35}{}}
-\@writefile{loe}{\contentsline {remark}{\ifthmt@listswap Remark~36\else \numberline {36}Remark\fi }{23}{remark.36}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Non-real Cubic Irrationals}{23}{subsection.4.6}\protected@file@percent }
-\@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap Theorem~37\else \numberline {37}Theorem\fi \thmtformatoptarg {Complex Cubic Irrationals}}{23}{theorem.37}\protected@file@percent }
-\newlabel{thm:complex_cubic}{{37}{23}{Complex Cubic Irrationals}{theorem.37}{}}
-\@writefile{loe}{\contentsline {remark}{\ifthmt@listswap Remark~38\else \numberline {38}Remark\fi }{23}{remark.38}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5}Enhanced Matrix-Based Verification}{24}{section.5}\protected@file@percent }
-\newlabel{sec:matrix_verification}{{5}{24}{Enhanced Matrix-Based Verification}{section.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}The Matrix Verification Method}{24}{subsection.5.1}\protected@file@percent }
-\@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces Matrix-Based Cubic Irrational Detection}}{24}{algorithm.2}\protected@file@percent }
-\newlabel{alg:matrix_verification}{{2}{24}{The Matrix Verification Method}{algorithm.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Theoretical Foundation}{24}{subsection.5.2}\protected@file@percent }
-\@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap Theorem~39\else \numberline {39}Theorem\fi \thmtformatoptarg {Trace Relations for Cubic Irrationals}}{24}{theorem.39}\protected@file@percent }
-\newlabel{thm:trace_relations}{{39}{24}{Trace Relations for Cubic Irrationals}{theorem.39}{}}
-\@writefile{loe}{\contentsline {corollary}{\ifthmt@listswap Corollary~40\else \numberline {40}Corollary\fi \thmtformatoptarg {Matrix Characterization}}{25}{corollary.40}\protected@file@percent }
-\newlabel{cor:matrix_characterization}{{40}{25}{Matrix Characterization}{corollary.40}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Numerical Validation}{25}{subsection.5.3}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Results of Matrix Verification Method on Different Number Types}}{25}{table.2}\protected@file@percent }
-\newlabel{tab:matrix_results}{{2}{25}{Results of Matrix Verification Method on Different Number Types}{table.2}{}}
-\@writefile{loe}{\contentsline {example}{\ifthmt@listswap Example~41\else \numberline {41}Example\fi \thmtformatoptarg {Detailed Analysis of Cube Root of 2}}{25}{example.41}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Comparison with the HAPD Algorithm}{26}{subsection.5.4}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Comparison of Matrix Verification and HAPD Algorithm}}{26}{table.3}\protected@file@percent }
-\newlabel{tab:comparison}{{3}{26}{Comparison of Matrix Verification and HAPD Algorithm}{table.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Implementation Strategy}{27}{subsection.5.5}\protected@file@percent }
-\@writefile{loe}{\contentsline {remark}{\ifthmt@listswap Remark~42\else \numberline {42}Remark\fi }{27}{remark.42}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6}Equivalence of Characterizations}{27}{section.6}\protected@file@percent }
-\newlabel{sec:equivalence}{{6}{27}{Equivalence of Characterizations}{section.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Structural Equivalence}{27}{subsection.6.1}\protected@file@percent }
-\@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap Theorem~43\else \numberline {43}Theorem\fi \thmtformatoptarg {Structural Equivalence}}{27}{theorem.43}\protected@file@percent }
-\newlabel{thm:structural_equivalence}{{43}{27}{Structural Equivalence}{theorem.43}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Algebraic Connection}{28}{subsection.6.2}\protected@file@percent }
-\@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap Theorem~44\else \numberline {44}Theorem\fi \thmtformatoptarg {Algebraic Connection}}{28}{theorem.44}\protected@file@percent }
-\newlabel{thm:algebraic_connection}{{44}{28}{Algebraic Connection}{theorem.44}{}}
-\@writefile{loe}{\contentsline {corollary}{\ifthmt@listswap Corollary~45\else \numberline {45}Corollary\fi \thmtformatoptarg {Information Content}}{29}{corollary.45}\protected@file@percent }
-\newlabel{cor:information_content}{{45}{29}{Information Content}{corollary.45}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Computational Perspective}{29}{subsection.6.3}\protected@file@percent }
-\@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap Theorem~46\else \numberline {46}Theorem\fi \thmtformatoptarg {Computational Equivalence}}{29}{theorem.46}\protected@file@percent }
-\newlabel{thm:computational_equivalence}{{46}{29}{Computational Equivalence}{theorem.46}{}}
-\@writefile{loe}{\contentsline {proposition}{\ifthmt@listswap Proposition~47\else \numberline {47}Proposition\fi \thmtformatoptarg {Complexity Comparison}}{29}{proposition.47}\protected@file@percent }
-\newlabel{prop:complexity_comparison}{{47}{29}{Complexity Comparison}{proposition.47}{}}
-\@writefile{loe}{\contentsline {remark}{\ifthmt@listswap Remark~48\else \numberline {48}Remark\fi }{30}{remark.48}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Theoretical Unification}{30}{subsection.6.4}\protected@file@percent }
-\@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap Theorem~49\else \numberline {49}Theorem\fi \thmtformatoptarg {Theoretical Unification}}{30}{theorem.49}\protected@file@percent }
-\newlabel{thm:theoretical_unification}{{49}{30}{Theoretical Unification}{theorem.49}{}}
-\@writefile{loe}{\contentsline {corollary}{\ifthmt@listswap Corollary~50\else \numberline {50}Corollary\fi \thmtformatoptarg {Completeness of Solution}}{31}{corollary.50}\protected@file@percent }
-\newlabel{cor:completeness}{{50}{31}{Completeness of Solution}{corollary.50}{}}
-\@writefile{loe}{\contentsline {remark}{\ifthmt@listswap Remark~51\else \numberline {51}Remark\fi }{31}{remark.51}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Generalizations and Extensions}{31}{subsection.6.5}\protected@file@percent }
-\@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap Theorem~52\else \numberline {52}Theorem\fi \thmtformatoptarg {Generalization to Higher Degrees}}{31}{theorem.52}\protected@file@percent }
-\newlabel{thm:generalization}{{52}{31}{Generalization to Higher Degrees}{theorem.52}{}}
+\citation{Horn2012}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Comparison of HAPD with Karpenkov's Algorithms}}{20}{table.2}\protected@file@percent }
+\newlabel{tab:algorithm_comparison}{{2}{20}{Comparison of HAPD with Karpenkov's Algorithms}{table.2}{}}
+\@writefile{loe}{\contentsline {proposition}{\ifthmt@listswap Proposition~28\else \numberline {28}Proposition\fi \thmtformatoptarg {Properties of Companion Matrices}}{20}{proposition.28}\protected@file@percent }
+\newlabel{prop:companion_properties}{{28}{20}{Properties of Companion Matrices}{proposition.28}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Trace Characterization of Cubic Irrationals}{20}{subsection.4.2}\protected@file@percent }
+\@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap Theorem~29\else \numberline {29}Theorem\fi \thmtformatoptarg {Matrix Characterization of Cubic Irrationals}}{20}{theorem.29}\protected@file@percent }
+\newlabel{thm:matrix_cubic}{{29}{20}{Matrix Characterization of Cubic Irrationals}{theorem.29}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Comparison of complementary approaches to Hermite's problem. The HAPD algorithm uses a non-subtractive approach in projective space with matrix-based techniques, while the Modified sin$^2$ algorithm employs a subtractive approach with transcendental functions in the complex plane. Both methods are effective at detecting periodicity in cubic irrationals despite their fundamentally different mathematical foundations.}}{21}{figure.4}\protected@file@percent }
+\newlabel{fig:complementary_approaches}{{4}{21}{Comparison of complementary approaches to Hermite's problem. The HAPD algorithm uses a non-subtractive approach in projective space with matrix-based techniques, while the Modified sin$^2$ algorithm employs a subtractive approach with transcendental functions in the complex plane. Both methods are effective at detecting periodicity in cubic irrationals despite their fundamentally different mathematical foundations}{figure.4}{}}
+\@writefile{loe}{\contentsline {corollary}{\ifthmt@listswap Corollary~30\else \numberline {30}Corollary\fi \thmtformatoptarg {Cubic Irrational Power Sums}}{21}{corollary.30}\protected@file@percent }
+\newlabel{cor:power_sums}{{30}{21}{Cubic Irrational Power Sums}{corollary.30}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Connection to Field Extensions and Galois Theory}{22}{subsection.4.3}\protected@file@percent }
+\@writefile{loe}{\contentsline {proposition}{\ifthmt@listswap Proposition~31\else \numberline {31}Proposition\fi \thmtformatoptarg {Matrix and Field Extensions}}{22}{proposition.31}\protected@file@percent }
+\newlabel{prop:matrix_field}{{31}{22}{Matrix and Field Extensions}{proposition.31}{}}
+\@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap Theorem~32\else \numberline {32}Theorem\fi \thmtformatoptarg {Structural Characterization via Matrices}}{22}{theorem.32}\protected@file@percent }
+\newlabel{thm:structural_matrix}{{32}{22}{Structural Characterization via Matrices}{theorem.32}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Matrix Formulation of the HAPD Algorithm}{23}{subsection.4.4}\protected@file@percent }
+\@writefile{loe}{\contentsline {proposition}{\ifthmt@listswap Proposition~33\else \numberline {33}Proposition\fi \thmtformatoptarg {Matrix Interpretation of HAPD}}{23}{proposition.33}\protected@file@percent }
+\newlabel{prop:matrix_hapd}{{33}{23}{Matrix Interpretation of HAPD}{proposition.33}{}}
+\@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap Theorem~34\else \numberline {34}Theorem\fi \thmtformatoptarg {Matrix Interpretation of Periodicity}}{23}{theorem.34}\protected@file@percent }
+\newlabel{thm:matrix_periodicity}{{34}{23}{Matrix Interpretation of Periodicity}{theorem.34}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Numerical Aspects and Precision Considerations}{24}{subsection.4.5}\protected@file@percent }
+\@writefile{loe}{\contentsline {proposition}{\ifthmt@listswap Proposition~35\else \numberline {35}Proposition\fi \thmtformatoptarg {Precision Requirements}}{24}{proposition.35}\protected@file@percent }
+\newlabel{prop:precision}{{35}{24}{Precision Requirements}{proposition.35}{}}
+\@writefile{loe}{\contentsline {remark}{\ifthmt@listswap Remark~36\else \numberline {36}Remark\fi }{24}{remark.36}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Non-real Cubic Irrationals}{24}{subsection.4.6}\protected@file@percent }
+\@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap Theorem~37\else \numberline {37}Theorem\fi \thmtformatoptarg {Complex Cubic Irrationals}}{24}{theorem.37}\protected@file@percent }
+\newlabel{thm:complex_cubic}{{37}{24}{Complex Cubic Irrationals}{theorem.37}{}}
+\@writefile{loe}{\contentsline {remark}{\ifthmt@listswap Remark~38\else \numberline {38}Remark\fi }{25}{remark.38}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Enhanced Matrix-Based Verification}{25}{section.5}\protected@file@percent }
+\newlabel{sec:matrix_verification}{{5}{25}{Enhanced Matrix-Based Verification}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}The Matrix Verification Method}{25}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Theoretical Foundation}{25}{subsection.5.2}\protected@file@percent }
+\@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap Theorem~39\else \numberline {39}Theorem\fi \thmtformatoptarg {Trace Relations for Cubic Irrationals}}{25}{theorem.39}\protected@file@percent }
+\newlabel{thm:trace_relations}{{39}{25}{Trace Relations for Cubic Irrationals}{theorem.39}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces Matrix-Based Cubic Irrational Detection}}{26}{algorithm.2}\protected@file@percent }
+\newlabel{alg:matrix_verification}{{2}{26}{The Matrix Verification Method}{algorithm.2}{}}
+\@writefile{loe}{\contentsline {corollary}{\ifthmt@listswap Corollary~40\else \numberline {40}Corollary\fi \thmtformatoptarg {Matrix Characterization}}{26}{corollary.40}\protected@file@percent }
+\newlabel{cor:matrix_characterization}{{40}{26}{Matrix Characterization}{corollary.40}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Numerical Validation}{26}{subsection.5.3}\protected@file@percent }
+\@writefile{loe}{\contentsline {example}{\ifthmt@listswap Example~41\else \numberline {41}Example\fi \thmtformatoptarg {Detailed Analysis of Cube Root of 2}}{26}{example.41}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Results of Matrix Verification Method on Different Number Types}}{27}{table.3}\protected@file@percent }
+\newlabel{tab:matrix_results}{{3}{27}{Results of Matrix Verification Method on Different Number Types}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Comparison with the HAPD Algorithm}{27}{subsection.5.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Comparison of Matrix Verification and HAPD Algorithm}}{28}{table.4}\protected@file@percent }
+\newlabel{tab:comparison}{{4}{28}{Comparison of Matrix Verification and HAPD Algorithm}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Implementation Strategy}{28}{subsection.5.5}\protected@file@percent }
+\@writefile{loe}{\contentsline {remark}{\ifthmt@listswap Remark~42\else \numberline {42}Remark\fi }{28}{remark.42}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Equivalence of Characterizations}{28}{section.6}\protected@file@percent }
+\newlabel{sec:equivalence}{{6}{28}{Equivalence of Characterizations}{section.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Structural Equivalence}{29}{subsection.6.1}\protected@file@percent }
+\@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap Theorem~43\else \numberline {43}Theorem\fi \thmtformatoptarg {Structural Equivalence}}{29}{theorem.43}\protected@file@percent }
+\newlabel{thm:structural_equivalence}{{43}{29}{Structural Equivalence}{theorem.43}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Algebraic Connection}{29}{subsection.6.2}\protected@file@percent }
+\@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap Theorem~44\else \numberline {44}Theorem\fi \thmtformatoptarg {Algebraic Connection}}{29}{theorem.44}\protected@file@percent }
+\newlabel{thm:algebraic_connection}{{44}{29}{Algebraic Connection}{theorem.44}{}}
+\@writefile{loe}{\contentsline {corollary}{\ifthmt@listswap Corollary~45\else \numberline {45}Corollary\fi \thmtformatoptarg {Information Content}}{30}{corollary.45}\protected@file@percent }
+\newlabel{cor:information_content}{{45}{30}{Information Content}{corollary.45}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Computational Perspective}{30}{subsection.6.3}\protected@file@percent }
+\@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap Theorem~46\else \numberline {46}Theorem\fi \thmtformatoptarg {Computational Equivalence}}{30}{theorem.46}\protected@file@percent }
+\newlabel{thm:computational_equivalence}{{46}{30}{Computational Equivalence}{theorem.46}{}}
+\@writefile{loe}{\contentsline {proposition}{\ifthmt@listswap Proposition~47\else \numberline {47}Proposition\fi \thmtformatoptarg {Complexity Comparison}}{31}{proposition.47}\protected@file@percent }
+\newlabel{prop:complexity_comparison}{{47}{31}{Complexity Comparison}{proposition.47}{}}
+\@writefile{loe}{\contentsline {remark}{\ifthmt@listswap Remark~48\else \numberline {48}Remark\fi }{31}{remark.48}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Theoretical Unification}{31}{subsection.6.4}\protected@file@percent }
+\@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap Theorem~49\else \numberline {49}Theorem\fi \thmtformatoptarg {Theoretical Unification}}{31}{theorem.49}\protected@file@percent }
+\newlabel{thm:theoretical_unification}{{49}{31}{Theoretical Unification}{theorem.49}{}}
+\@writefile{loe}{\contentsline {corollary}{\ifthmt@listswap Corollary~50\else \numberline {50}Corollary\fi \thmtformatoptarg {Completeness of Solution}}{32}{corollary.50}\protected@file@percent }
+\newlabel{cor:completeness}{{50}{32}{Completeness of Solution}{corollary.50}{}}
+\@writefile{loe}{\contentsline {remark}{\ifthmt@listswap Remark~51\else \numberline {51}Remark\fi }{32}{remark.51}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Generalizations and Extensions}{32}{subsection.6.5}\protected@file@percent }
+\@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap Theorem~52\else \numberline {52}Theorem\fi \thmtformatoptarg {Generalization to Higher Degrees}}{32}{theorem.52}\protected@file@percent }
+\newlabel{thm:generalization}{{52}{32}{Generalization to Higher Degrees}{theorem.52}{}}
+\@writefile{loe}{\contentsline {remark}{\ifthmt@listswap Remark~53\else \numberline {53}Remark\fi }{33}{remark.53}\protected@file@percent }
+\@writefile{loe}{\contentsline {proposition}{\ifthmt@listswap Proposition~54\else \numberline {54}Proposition\fi \thmtformatoptarg {Generalized Hermite Problem}}{33}{proposition.54}\protected@file@percent }
+\newlabel{prop:generalized_hermite}{{54}{33}{Generalized Hermite Problem}{proposition.54}{}}
+\@writefile{loe}{\contentsline {remark}{\ifthmt@listswap Remark~55\else \numberline {55}Remark\fi }{33}{remark.55}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}A Subtractive Approach to Cubic Irrationals with Complex Conjugate Roots}{33}{section.7}\protected@file@percent }
+\newlabel{sec:subtractive_algorithm}{{7}{33}{A Subtractive Approach to Cubic Irrationals with Complex Conjugate Roots}{section.7}{}}
 \citation{Karpenkov2019}
-\@writefile{loe}{\contentsline {remark}{\ifthmt@listswap Remark~53\else \numberline {53}Remark\fi }{32}{remark.53}\protected@file@percent }
-\@writefile{loe}{\contentsline {proposition}{\ifthmt@listswap Proposition~54\else \numberline {54}Proposition\fi \thmtformatoptarg {Generalized Hermite Problem}}{32}{proposition.54}\protected@file@percent }
-\newlabel{prop:generalized_hermite}{{54}{32}{Generalized Hermite Problem}{proposition.54}{}}
-\@writefile{loe}{\contentsline {remark}{\ifthmt@listswap Remark~55\else \numberline {55}Remark\fi }{32}{remark.55}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {7}A Subtractive Approach to Cubic Irrationals with Complex Conjugate Roots}{32}{section.7}\protected@file@percent }
-\newlabel{sec:subtractive_algorithm}{{7}{32}{A Subtractive Approach to Cubic Irrationals with Complex Conjugate Roots}{section.7}{}}
 \citation{Karpenkov2019}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Extending Karpenkov's Work to Complex Roots}{33}{subsection.7.1}\protected@file@percent }
-\@writefile{loe}{\contentsline {definition}{\ifthmt@listswap Definition~56\else \numberline {56}Definition\fi \thmtformatoptarg {Floor Discordance}}{33}{definition.56}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Phase-Preserving Floor Function}{33}{subsection.7.2}\protected@file@percent }
-\@writefile{loe}{\contentsline {definition}{\ifthmt@listswap Definition~57\else \numberline {57}Definition\fi \thmtformatoptarg {Phase-Preserving Floor Function}}{33}{definition.57}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}The Modified Sin²-Algorithm}{34}{subsection.7.3}\protected@file@percent }
-\@writefile{loe}{\contentsline {algorithm_def}{\ifthmt@listswap Algorithm~58\else \numberline {58}Algorithm\fi \thmtformatoptarg {Modified Sin²-Algorithm}}{34}{algorithm_def.58}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.4}Cubic Field-Sensitive Correction Term}{34}{subsection.7.4}\protected@file@percent }
-\@writefile{loe}{\contentsline {definition}{\ifthmt@listswap Definition~59\else \numberline {59}Definition\fi \thmtformatoptarg {Cubic Field Correction}}{34}{definition.59}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.5}Theoretical Analysis}{35}{subsection.7.5}\protected@file@percent }
-\@writefile{loe}{\contentsline {lemma}{\ifthmt@listswap Lemma~60\else \numberline {60}Lemma\fi \thmtformatoptarg {Bounded Error in Algebraic Preservation}}{35}{lemma.60}\protected@file@percent }
-\newlabel{lem:algebraic_preservation}{{60}{35}{Bounded Error in Algebraic Preservation}{lemma.60}{}}
-\@writefile{loe}{\contentsline {lemma}{\ifthmt@listswap Lemma~61\else \numberline {61}Lemma\fi \thmtformatoptarg {Uniform Boundedness}}{36}{lemma.61}\protected@file@percent }
-\newlabel{lem:boundedness}{{61}{36}{Uniform Boundedness}{lemma.61}{}}
-\@writefile{loe}{\contentsline {lemma}{\ifthmt@listswap Lemma~62\else \numberline {62}Lemma\fi \thmtformatoptarg {Quantifiable Finite State Space}}{37}{lemma.62}\protected@file@percent }
-\newlabel{lem:finite_space}{{62}{37}{Quantifiable Finite State Space}{lemma.62}{}}
-\@writefile{loe}{\contentsline {lemma}{\ifthmt@listswap Lemma~63\else \numberline {63}Lemma\fi \thmtformatoptarg {Controlled Contraction Factor}}{38}{lemma.63}\protected@file@percent }
-\newlabel{lem:contraction}{{63}{38}{Controlled Contraction Factor}{lemma.63}{}}
-\@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap Theorem~64\else \numberline {64}Theorem\fi \thmtformatoptarg {Cubic Fields with Complex Roots Yield Periodic Sequences}}{39}{theorem.64}\protected@file@percent }
-\newlabel{thm:complex_cubic_periodic}{{64}{39}{Cubic Fields with Complex Roots Yield Periodic Sequences}{theorem.64}{}}
-\@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap Theorem~65\else \numberline {65}Theorem\fi \thmtformatoptarg {Periodicity Characterizes Cubic Irrationals}}{40}{theorem.65}\protected@file@percent }
-\newlabel{thm:periodicity_characterizes_cubic}{{65}{40}{Periodicity Characterizes Cubic Irrationals}{theorem.65}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.6}Numerical Validation}{40}{subsection.7.6}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Results for Various Cubic Equations with Complex Conjugate Roots}}{41}{table.4}\protected@file@percent }
-\newlabel{tab:period_lengths}{{4}{41}{Results for Various Cubic Equations with Complex Conjugate Roots}{table.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.7}Comparison with the HAPD Algorithm}{41}{subsection.7.7}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Comparison of Approaches to Hermite's Problem}}{41}{table.5}\protected@file@percent }
-\newlabel{tab:algorithm_comparison_extended}{{5}{41}{Comparison of Approaches to Hermite's Problem}{table.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.8}Broader Implications}{42}{subsection.7.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {8}Comparison of Approaches}{42}{section.8}\protected@file@percent }
-\newlabel{sec:comparison}{{8}{42}{Comparison of Approaches}{section.8}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {9}Numerical Validation and Implementation}{42}{section.9}\protected@file@percent }
-\newlabel{sec:numerical_validation}{{9}{42}{Numerical Validation and Implementation}{section.9}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.1}Implementation of the HAPD Algorithm}{42}{subsection.9.1}\protected@file@percent }
-\@writefile{loa}{\contentsline {algorithm}{\numberline {3}{\ignorespaces Implementation of the \textsc  {HAPD}\xspace  {} Algorithm}}{43}{algorithm.3}\protected@file@percent }
-\newlabel{alg:hapd_implementation}{{3}{43}{Implementation of the HAPD Algorithm}{algorithm.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Extending Karpenkov's Work to Complex Roots}{34}{subsection.7.1}\protected@file@percent }
+\@writefile{loe}{\contentsline {definition}{\ifthmt@listswap Definition~56\else \numberline {56}Definition\fi \thmtformatoptarg {Floor Discordance}}{34}{definition.56}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Phase-Preserving Floor Function}{34}{subsection.7.2}\protected@file@percent }
+\@writefile{loe}{\contentsline {definition}{\ifthmt@listswap Definition~57\else \numberline {57}Definition\fi \thmtformatoptarg {Phase-Preserving Floor Function}}{35}{definition.57}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Flow diagram of the modified sin²-algorithm, showing the key steps in each iteration. The phase-preserving floor function and sin²-weighting are characteristic elements of this approach. The cubic field correction $\delta _n$ ensures that the algorithm captures the algebraic structure.}}{35}{figure.5}\protected@file@percent }
+\newlabel{fig:sin2_algorithm}{{5}{35}{Flow diagram of the modified sin²-algorithm, showing the key steps in each iteration. The phase-preserving floor function and sin²-weighting are characteristic elements of this approach. The cubic field correction $\delta _n$ ensures that the algorithm captures the algebraic structure}{figure.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}The Modified Sin²-Algorithm}{35}{subsection.7.3}\protected@file@percent }
+\@writefile{loe}{\contentsline {algorithm_def}{\ifthmt@listswap Algorithm~58\else \numberline {58}Algorithm\fi \thmtformatoptarg {Modified Sin²-Algorithm}}{35}{algorithm_def.58}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.4}Cubic Field-Sensitive Correction Term}{36}{subsection.7.4}\protected@file@percent }
+\@writefile{loe}{\contentsline {definition}{\ifthmt@listswap Definition~59\else \numberline {59}Definition\fi \thmtformatoptarg {Cubic Field Correction}}{36}{definition.59}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.5}Theoretical Analysis}{36}{subsection.7.5}\protected@file@percent }
+\@writefile{loe}{\contentsline {lemma}{\ifthmt@listswap Lemma~60\else \numberline {60}Lemma\fi \thmtformatoptarg {Bounded Error in Algebraic Preservation}}{36}{lemma.60}\protected@file@percent }
+\newlabel{lem:algebraic_preservation}{{60}{36}{Bounded Error in Algebraic Preservation}{lemma.60}{}}
+\@writefile{loe}{\contentsline {lemma}{\ifthmt@listswap Lemma~61\else \numberline {61}Lemma\fi \thmtformatoptarg {Uniform Boundedness}}{37}{lemma.61}\protected@file@percent }
+\newlabel{lem:boundedness}{{61}{37}{Uniform Boundedness}{lemma.61}{}}
+\@writefile{loe}{\contentsline {lemma}{\ifthmt@listswap Lemma~62\else \numberline {62}Lemma\fi \thmtformatoptarg {Quantifiable Finite State Space}}{39}{lemma.62}\protected@file@percent }
+\newlabel{lem:finite_space}{{62}{39}{Quantifiable Finite State Space}{lemma.62}{}}
+\@writefile{loe}{\contentsline {lemma}{\ifthmt@listswap Lemma~63\else \numberline {63}Lemma\fi \thmtformatoptarg {Controlled Contraction Factor}}{39}{lemma.63}\protected@file@percent }
+\newlabel{lem:contraction}{{63}{39}{Controlled Contraction Factor}{lemma.63}{}}
+\@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap Theorem~64\else \numberline {64}Theorem\fi \thmtformatoptarg {Cubic Fields with Complex Roots Yield Periodic Sequences}}{41}{theorem.64}\protected@file@percent }
+\newlabel{thm:complex_cubic_periodic}{{64}{41}{Cubic Fields with Complex Roots Yield Periodic Sequences}{theorem.64}{}}
+\@writefile{loe}{\contentsline {theorem}{\ifthmt@listswap Theorem~65\else \numberline {65}Theorem\fi \thmtformatoptarg {Periodicity Characterizes Cubic Irrationals}}{41}{theorem.65}\protected@file@percent }
+\newlabel{thm:periodicity_characterizes_cubic}{{65}{41}{Periodicity Characterizes Cubic Irrationals}{theorem.65}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.6}Numerical Validation}{42}{subsection.7.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Results for Various Cubic Equations with Complex Conjugate Roots}}{42}{table.5}\protected@file@percent }
+\newlabel{tab:period_lengths}{{5}{42}{Results for Various Cubic Equations with Complex Conjugate Roots}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.7}Comparison with the HAPD Algorithm}{42}{subsection.7.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Comparison of Approaches to Hermite's Problem}}{43}{table.6}\protected@file@percent }
+\newlabel{tab:algorithm_comparison_extended}{{6}{43}{Comparison of Approaches to Hermite's Problem}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.8}Broader Implications}{43}{subsection.7.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Comparison of Approaches}{44}{section.8}\protected@file@percent }
+\newlabel{sec:comparison}{{8}{44}{Comparison of Approaches}{section.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Comparative analysis of the HAPD and Modified sin$^2$ algorithms, highlighting their complementary approaches to solving Hermite's problem. Both algorithms successfully detect cubic irrationals but employ different mathematical foundations and implementation strategies.}}{44}{figure.6}\protected@file@percent }
+\newlabel{fig:algorithm_approaches_comparison}{{6}{44}{Comparative analysis of the HAPD and Modified sin$^2$ algorithms, highlighting their complementary approaches to solving Hermite's problem. Both algorithms successfully detect cubic irrationals but employ different mathematical foundations and implementation strategies}{figure.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {9}Numerical Validation and Implementation}{44}{section.9}\protected@file@percent }
+\newlabel{sec:numerical_validation}{{9}{44}{Numerical Validation and Implementation}{section.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.1}Implementation of the HAPD Algorithm}{44}{subsection.9.1}\protected@file@percent }
 \@writefile{loe}{\contentsline {remark}{\ifthmt@listswap Remark~66\else \numberline {66}Remark\fi }{44}{remark.66}\protected@file@percent }
-\@writefile{loe}{\contentsline {proposition}{\ifthmt@listswap Proposition~67\else \numberline {67}Proposition\fi \thmtformatoptarg {Numerical Precision Requirements}}{44}{proposition.67}\protected@file@percent }
-\newlabel{prop:numerical_precision}{{67}{44}{Numerical Precision Requirements}{proposition.67}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.2}Test Cases and Results}{44}{subsection.9.2}\protected@file@percent }
-\@writefile{loe}{\contentsline {remark}{\ifthmt@listswap Remark~68\else \numberline {68}Remark\fi }{44}{remark.68}\protected@file@percent }
-\@writefile{loe}{\contentsline {example}{\ifthmt@listswap Example~69\else \numberline {69}Example\fi \thmtformatoptarg {Cube Root of 2 Analysis}}{44}{example.69}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Results of the \textsc  {HAPD}\xspace  {} Algorithm for Different Number Types}}{45}{table.6}\protected@file@percent }
-\newlabel{tab:hapd_results}{{6}{45}{Results of the \HAPD {} Algorithm for Different Number Types}{table.6}{}}
-\@writefile{loe}{\contentsline {proposition}{\ifthmt@listswap Proposition~70\else \numberline {70}Proposition\fi \thmtformatoptarg {False Periodic Detection in Numerical Implementation}}{45}{proposition.70}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.3}Matrix Approach Implementation}{46}{subsection.9.3}\protected@file@percent }
-\@writefile{loa}{\contentsline {algorithm}{\numberline {4}{\ignorespaces Matrix-Based Cubic Irrational Detection}}{46}{algorithm.4}\protected@file@percent }
-\newlabel{alg:matrix_detection}{{4}{46}{Matrix Approach Implementation}{algorithm.4}{}}
-\@writefile{loe}{\contentsline {example}{\ifthmt@listswap Example~71\else \numberline {71}Example\fi \thmtformatoptarg {Matrix Method for Cube Root of 2}}{46}{example.71}\protected@file@percent }
-\@writefile{loe}{\contentsline {proposition}{\ifthmt@listswap Proposition~72\else \numberline {72}Proposition\fi \thmtformatoptarg {Comparison of Methods}}{47}{proposition.72}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.4}Combined Approach and Practical Algorithm}{47}{subsection.9.4}\protected@file@percent }
-\@writefile{loe}{\contentsline {remark}{\ifthmt@listswap Remark~73\else \numberline {73}Remark\fi }{47}{remark.73}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.5}Validation of the Subtractive Algorithm}{47}{subsection.9.5}\protected@file@percent }
-\@writefile{loe}{\contentsline {remark}{\ifthmt@listswap Remark~74\else \numberline {74}Remark\fi }{47}{remark.74}\protected@file@percent }
-\@writefile{loa}{\contentsline {algorithm}{\numberline {5}{\ignorespaces Combined Cubic Irrational Detection}}{48}{algorithm.5}\protected@file@percent }
-\newlabel{alg:combined_detection}{{5}{48}{Combined Approach and Practical Algorithm}{algorithm.5}{}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {6}{\ignorespaces Validation of the Modified Sin²-Algorithm}}{49}{algorithm.6}\protected@file@percent }
-\newlabel{alg:subtractive_validation}{{6}{49}{Validation of the Subtractive Algorithm}{algorithm.6}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.5.1}Experimental Results}{50}{subsubsection.9.5.1}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Results of the Modified Sin²-Algorithm for Cubic Equations with Complex Conjugate Roots}}{50}{table.7}\protected@file@percent }
-\newlabel{tab:subtractive_results}{{7}{50}{Results of the Modified Sin²-Algorithm for Cubic Equations with Complex Conjugate Roots}{table.7}{}}
-\@writefile{loe}{\contentsline {proposition}{\ifthmt@listswap Proposition~75\else \numberline {75}Proposition\fi \thmtformatoptarg {Reliable Periodicity Detection for Complex Conjugate Roots}}{50}{proposition.75}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.5.2}Comparison with the HAPD Algorithm}{50}{subsubsection.9.5.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Comparison of Modified Sin²-Algorithm and HAPD Algorithm}}{51}{table.8}\protected@file@percent }
-\newlabel{tab:algo_comparison_validation}{{8}{51}{Comparison of Modified Sin²-Algorithm and HAPD Algorithm}{table.8}{}}
-\@writefile{loe}{\contentsline {proposition}{\ifthmt@listswap Proposition~76\else \numberline {76}Proposition\fi \thmtformatoptarg {Complementary Strengths of the Two Algorithms}}{51}{proposition.76}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.5.3}Numerical Precision Considerations}{51}{subsubsection.9.5.3}\protected@file@percent }
-\@writefile{loe}{\contentsline {proposition}{\ifthmt@listswap Proposition~77\else \numberline {77}Proposition\fi \thmtformatoptarg {Precision Requirements for the Modified Sin²-Algorithm}}{52}{proposition.77}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.6}Implementation Guidelines and Best Practices}{52}{subsection.9.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.7}Implementation Challenges and Solutions}{53}{subsection.9.7}\protected@file@percent }
-\@writefile{loe}{\contentsline {remark}{\ifthmt@listswap Remark~78\else \numberline {78}Remark\fi }{54}{remark.78}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.8}Benchmarking and Convergence Analysis}{54}{subsection.9.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {10}Addressing Potential Objections and Edge Cases}{54}{section.10}\protected@file@percent }
-\newlabel{sec:objections}{{10}{54}{Addressing Potential Objections and Edge Cases}{section.10}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.1}Relationship to Classical Continued Fractions}{55}{subsection.10.1}\protected@file@percent }
-\@writefile{loe}{\contentsline {objection}{\ifthmt@listswap Objection~79\else \numberline {79}Objection\fi }{55}{objection.79}\protected@file@percent }
-\@writefile{loe}{\contentsline {response}{\ifthmt@listswap Response~80\else \numberline {80}Response\fi }{55}{response.80}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.2}Numerical Implementation Challenges}{55}{subsection.10.2}\protected@file@percent }
-\@writefile{loe}{\contentsline {objection}{\ifthmt@listswap Objection~81\else \numberline {81}Objection\fi }{55}{objection.81}\protected@file@percent }
-\@writefile{loe}{\contentsline {response}{\ifthmt@listswap Response~82\else \numberline {82}Response\fi }{55}{response.82}\protected@file@percent }
+\@writefile{loa}{\contentsline {algorithm}{\numberline {3}{\ignorespaces Implementation of the \textsc  {HAPD}\xspace  {} Algorithm}}{45}{algorithm.3}\protected@file@percent }
+\newlabel{alg:hapd_implementation}{{3}{45}{Implementation of the HAPD Algorithm}{algorithm.3}{}}
+\@writefile{loe}{\contentsline {proposition}{\ifthmt@listswap Proposition~67\else \numberline {67}Proposition\fi \thmtformatoptarg {Numerical Precision Requirements}}{46}{proposition.67}\protected@file@percent }
+\newlabel{prop:numerical_precision}{{67}{46}{Numerical Precision Requirements}{proposition.67}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.2}Test Cases and Results}{46}{subsection.9.2}\protected@file@percent }
+\@writefile{loe}{\contentsline {remark}{\ifthmt@listswap Remark~68\else \numberline {68}Remark\fi }{46}{remark.68}\protected@file@percent }
+\@writefile{loe}{\contentsline {example}{\ifthmt@listswap Example~69\else \numberline {69}Example\fi \thmtformatoptarg {Cube Root of 2 Analysis}}{46}{example.69}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Results of the \textsc  {HAPD}\xspace  {} Algorithm for Different Number Types}}{47}{table.7}\protected@file@percent }
+\newlabel{tab:hapd_results}{{7}{47}{Results of the \HAPD {} Algorithm for Different Number Types}{table.7}{}}
+\@writefile{loe}{\contentsline {proposition}{\ifthmt@listswap Proposition~70\else \numberline {70}Proposition\fi \thmtformatoptarg {False Periodic Detection in Numerical Implementation}}{47}{proposition.70}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.3}Matrix Approach Implementation}{48}{subsection.9.3}\protected@file@percent }
+\@writefile{loa}{\contentsline {algorithm}{\numberline {4}{\ignorespaces Matrix-Based Cubic Irrational Detection}}{48}{algorithm.4}\protected@file@percent }
+\newlabel{alg:matrix_detection}{{4}{48}{Matrix Approach Implementation}{algorithm.4}{}}
+\@writefile{loe}{\contentsline {example}{\ifthmt@listswap Example~71\else \numberline {71}Example\fi \thmtformatoptarg {Matrix Method for Cube Root of 2}}{48}{example.71}\protected@file@percent }
+\@writefile{loe}{\contentsline {proposition}{\ifthmt@listswap Proposition~72\else \numberline {72}Proposition\fi \thmtformatoptarg {Comparison of Methods}}{49}{proposition.72}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.4}Combined Approach and Practical Algorithm}{49}{subsection.9.4}\protected@file@percent }
+\@writefile{loe}{\contentsline {remark}{\ifthmt@listswap Remark~73\else \numberline {73}Remark\fi }{49}{remark.73}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.5}Validation of the Subtractive Algorithm}{49}{subsection.9.5}\protected@file@percent }
+\@writefile{loe}{\contentsline {remark}{\ifthmt@listswap Remark~74\else \numberline {74}Remark\fi }{49}{remark.74}\protected@file@percent }
+\@writefile{loa}{\contentsline {algorithm}{\numberline {5}{\ignorespaces Combined Cubic Irrational Detection}}{50}{algorithm.5}\protected@file@percent }
+\newlabel{alg:combined_detection}{{5}{50}{Combined Approach and Practical Algorithm}{algorithm.5}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {6}{\ignorespaces Validation of the Modified Sin²-Algorithm}}{51}{algorithm.6}\protected@file@percent }
+\newlabel{alg:subtractive_validation}{{6}{51}{Validation of the Subtractive Algorithm}{algorithm.6}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.5.1}Experimental Results}{52}{subsubsection.9.5.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Results of the Modified Sin²-Algorithm for Cubic Equations with Complex Conjugate Roots}}{52}{table.8}\protected@file@percent }
+\newlabel{tab:subtractive_results}{{8}{52}{Results of the Modified Sin²-Algorithm for Cubic Equations with Complex Conjugate Roots}{table.8}{}}
+\@writefile{loe}{\contentsline {proposition}{\ifthmt@listswap Proposition~75\else \numberline {75}Proposition\fi \thmtformatoptarg {Reliable Periodicity Detection for Complex Conjugate Roots}}{52}{proposition.75}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.5.2}Comparison with the HAPD Algorithm}{52}{subsubsection.9.5.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Comparison of Modified Sin²-Algorithm and HAPD Algorithm}}{53}{table.9}\protected@file@percent }
+\newlabel{tab:algo_comparison_validation}{{9}{53}{Comparison of Modified Sin²-Algorithm and HAPD Algorithm}{table.9}{}}
+\@writefile{loe}{\contentsline {proposition}{\ifthmt@listswap Proposition~76\else \numberline {76}Proposition\fi \thmtformatoptarg {Complementary Strengths of the Two Algorithms}}{53}{proposition.76}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.5.3}Numerical Precision Considerations}{53}{subsubsection.9.5.3}\protected@file@percent }
+\@writefile{loe}{\contentsline {proposition}{\ifthmt@listswap Proposition~77\else \numberline {77}Proposition\fi \thmtformatoptarg {Precision Requirements for the Modified Sin²-Algorithm}}{54}{proposition.77}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.6}Implementation Guidelines and Best Practices}{54}{subsection.9.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.7}Implementation Challenges and Solutions}{55}{subsection.9.7}\protected@file@percent }
+\@writefile{loe}{\contentsline {remark}{\ifthmt@listswap Remark~78\else \numberline {78}Remark\fi }{56}{remark.78}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.8}Benchmarking and Convergence Analysis}{56}{subsection.9.8}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Convergence rates and periodicity detection for the HAPD algorithm applied to different cubic irrationals. The left panel shows the error rate (in log scale) versus iterations, with dashed vertical lines indicating when periodicity is detected. The right panel compares the number of iterations required to detect periodicity across various cubic irrational types.}}{56}{figure.7}\protected@file@percent }
+\newlabel{fig:convergence_rates}{{7}{56}{Convergence rates and periodicity detection for the HAPD algorithm applied to different cubic irrationals. The left panel shows the error rate (in log scale) versus iterations, with dashed vertical lines indicating when periodicity is detected. The right panel compares the number of iterations required to detect periodicity across various cubic irrational types}{figure.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Performance comparison between the HAPD algorithm and the modified sin²-algorithm. The left panel illustrates computational performance relative to input size (in digits of precision), showing both algorithms follow expected theoretical complexity bounds. The right panel shows the discriminative power of each algorithm across different input types.}}{57}{figure.8}\protected@file@percent }
+\newlabel{fig:algorithm_performance_comparison}{{8}{57}{Performance comparison between the HAPD algorithm and the modified sin²-algorithm. The left panel illustrates computational performance relative to input size (in digits of precision), showing both algorithms follow expected theoretical complexity bounds. The right panel shows the discriminative power of each algorithm across different input types}{figure.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {10}Addressing Potential Objections and Edge Cases}{57}{section.10}\protected@file@percent }
+\newlabel{sec:objections}{{10}{57}{Addressing Potential Objections and Edge Cases}{section.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.1}Relationship to Classical Continued Fractions}{57}{subsection.10.1}\protected@file@percent }
+\@writefile{loe}{\contentsline {objection}{\ifthmt@listswap Objection~79\else \numberline {79}Objection\fi }{57}{objection.79}\protected@file@percent }
+\@writefile{loe}{\contentsline {response}{\ifthmt@listswap Response~80\else \numberline {80}Response\fi }{58}{response.80}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.2}Numerical Implementation Challenges}{58}{subsection.10.2}\protected@file@percent }
+\@writefile{loe}{\contentsline {objection}{\ifthmt@listswap Objection~81\else \numberline {81}Objection\fi }{58}{objection.81}\protected@file@percent }
+\@writefile{loe}{\contentsline {response}{\ifthmt@listswap Response~82\else \numberline {82}Response\fi }{58}{response.82}\protected@file@percent }
 \citation{Perron1907}
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.3}Variation Among Cubic Irrationals}{56}{subsection.10.3}\protected@file@percent }
-\@writefile{loe}{\contentsline {objection}{\ifthmt@listswap Objection~83\else \numberline {83}Objection\fi }{56}{objection.83}\protected@file@percent }
-\@writefile{loe}{\contentsline {response}{\ifthmt@listswap Response~84\else \numberline {84}Response\fi }{56}{response.84}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.4}Connection to Prior Approaches}{56}{subsection.10.4}\protected@file@percent }
-\@writefile{loe}{\contentsline {objection}{\ifthmt@listswap Objection~85\else \numberline {85}Objection\fi }{56}{objection.85}\protected@file@percent }
-\@writefile{loe}{\contentsline {response}{\ifthmt@listswap Response~86\else \numberline {86}Response\fi }{57}{response.86}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.5}On the Encoding Function}{57}{subsection.10.5}\protected@file@percent }
-\@writefile{loe}{\contentsline {objection}{\ifthmt@listswap Objection~87\else \numberline {87}Objection\fi }{57}{objection.87}\protected@file@percent }
-\@writefile{loe}{\contentsline {response}{\ifthmt@listswap Response~88\else \numberline {88}Response\fi }{57}{response.88}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.6}Complex Cubic Irrationals}{58}{subsection.10.6}\protected@file@percent }
-\@writefile{loe}{\contentsline {objection}{\ifthmt@listswap Objection~89\else \numberline {89}Objection\fi }{58}{objection.89}\protected@file@percent }
-\@writefile{loe}{\contentsline {response}{\ifthmt@listswap Response~90\else \numberline {90}Response\fi }{58}{response.90}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.7}Extension to Complex Cubic Irrationals}{58}{subsection.10.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.8}Computational Complexity and Practical Applications}{59}{subsection.10.8}\protected@file@percent }
-\@writefile{loe}{\contentsline {objection}{\ifthmt@listswap Objection~91\else \numberline {91}Objection\fi }{59}{objection.91}\protected@file@percent }
-\@writefile{loe}{\contentsline {response}{\ifthmt@listswap Response~92\else \numberline {92}Response\fi }{59}{response.92}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.9}Generalization to Higher Degrees}{59}{subsection.10.9}\protected@file@percent }
-\@writefile{loe}{\contentsline {objection}{\ifthmt@listswap Objection~93\else \numberline {93}Objection\fi }{60}{objection.93}\protected@file@percent }
-\@writefile{loe}{\contentsline {response}{\ifthmt@listswap Response~94\else \numberline {94}Response\fi }{60}{response.94}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.10}Uniqueness of Our Solution}{60}{subsection.10.10}\protected@file@percent }
-\@writefile{loe}{\contentsline {objection}{\ifthmt@listswap Objection~95\else \numberline {95}Objection\fi }{60}{objection.95}\protected@file@percent }
-\@writefile{loe}{\contentsline {response}{\ifthmt@listswap Response~96\else \numberline {96}Response\fi }{60}{response.96}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.11}Objection 2: Lack of Originality}{61}{subsection.10.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.3}Variation Among Cubic Irrationals}{59}{subsection.10.3}\protected@file@percent }
+\@writefile{loe}{\contentsline {objection}{\ifthmt@listswap Objection~83\else \numberline {83}Objection\fi }{59}{objection.83}\protected@file@percent }
+\@writefile{loe}{\contentsline {response}{\ifthmt@listswap Response~84\else \numberline {84}Response\fi }{59}{response.84}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.4}Connection to Prior Approaches}{59}{subsection.10.4}\protected@file@percent }
+\@writefile{loe}{\contentsline {objection}{\ifthmt@listswap Objection~85\else \numberline {85}Objection\fi }{59}{objection.85}\protected@file@percent }
+\@writefile{loe}{\contentsline {response}{\ifthmt@listswap Response~86\else \numberline {86}Response\fi }{59}{response.86}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.5}On the Encoding Function}{60}{subsection.10.5}\protected@file@percent }
+\@writefile{loe}{\contentsline {objection}{\ifthmt@listswap Objection~87\else \numberline {87}Objection\fi }{60}{objection.87}\protected@file@percent }
+\@writefile{loe}{\contentsline {response}{\ifthmt@listswap Response~88\else \numberline {88}Response\fi }{60}{response.88}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.6}Complex Cubic Irrationals}{60}{subsection.10.6}\protected@file@percent }
+\@writefile{loe}{\contentsline {objection}{\ifthmt@listswap Objection~89\else \numberline {89}Objection\fi }{60}{objection.89}\protected@file@percent }
+\@writefile{loe}{\contentsline {response}{\ifthmt@listswap Response~90\else \numberline {90}Response\fi }{61}{response.90}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.7}Extension to Complex Cubic Irrationals}{61}{subsection.10.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.8}Computational Complexity and Practical Applications}{62}{subsection.10.8}\protected@file@percent }
+\@writefile{loe}{\contentsline {objection}{\ifthmt@listswap Objection~91\else \numberline {91}Objection\fi }{62}{objection.91}\protected@file@percent }
+\@writefile{loe}{\contentsline {response}{\ifthmt@listswap Response~92\else \numberline {92}Response\fi }{62}{response.92}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.9}Generalization to Higher Degrees}{62}{subsection.10.9}\protected@file@percent }
+\@writefile{loe}{\contentsline {objection}{\ifthmt@listswap Objection~93\else \numberline {93}Objection\fi }{62}{objection.93}\protected@file@percent }
+\@writefile{loe}{\contentsline {response}{\ifthmt@listswap Response~94\else \numberline {94}Response\fi }{62}{response.94}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.10}Uniqueness of Our Solution}{63}{subsection.10.10}\protected@file@percent }
+\@writefile{loe}{\contentsline {objection}{\ifthmt@listswap Objection~95\else \numberline {95}Objection\fi }{63}{objection.95}\protected@file@percent }
+\@writefile{loe}{\contentsline {response}{\ifthmt@listswap Response~96\else \numberline {96}Response\fi }{63}{response.96}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.11}Objection 2: Lack of Originality}{64}{subsection.10.11}\protected@file@percent }
 \citation{Karpenkov2019}
 \citation{Karpenkov2022}
-\@writefile{toc}{\contentsline {section}{\numberline {11}Conclusion}{62}{section.11}\protected@file@percent }
-\newlabel{sec:conclusion}{{11}{62}{Conclusion}{section.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {11}Conclusion}{65}{section.11}\protected@file@percent }
+\newlabel{sec:conclusion}{{11}{65}{Conclusion}{section.11}{}}
 \bibstyle{plain}
 \bibdata{references}
 \bibcite{Cox2012}{Cox12}
@@ -285,16 +299,4 @@
 \bibcite{Karpenkov2022}{Kar22}
 \bibcite{Lagrange1770}{Lag70}
 \bibcite{Perron1907}{Per07}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Visualization of the projective trajectory for $\sqrt  [3]{2}$ through HAPD algorithm iterations. The blue line shows the path of successive projective triples, with points $v_0$ through $v_{11}$ representing algorithm iterations. Periodicity is detected when point $v_{11}$ returns to the projective equivalence class of point $v_4$ (connected by the red dashed line), establishing a period of 7.}}{65}{figure.3}\protected@file@percent }
-\newlabel{fig:projective_trajectory}{{3}{65}{Visualization of the projective trajectory for $\sqrt [3]{2}$ through HAPD algorithm iterations. The blue line shows the path of successive projective triples, with points $v_0$ through $v_{11}$ representing algorithm iterations. Periodicity is detected when point $v_{11}$ returns to the projective equivalence class of point $v_4$ (connected by the red dashed line), establishing a period of 7}{figure.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Comparison of complementary approaches to Hermite's problem. The HAPD algorithm uses a non-subtractive approach in projective space with matrix-based techniques, while the Modified sin$^2$ algorithm employs a subtractive approach with transcendental functions in the complex plane. Both methods are effective at detecting periodicity in cubic irrationals despite their fundamentally different mathematical foundations.}}{66}{figure.5}\protected@file@percent }
-\newlabel{fig:complementary_approaches}{{5}{66}{Comparison of complementary approaches to Hermite's problem. The HAPD algorithm uses a non-subtractive approach in projective space with matrix-based techniques, while the Modified sin$^2$ algorithm employs a subtractive approach with transcendental functions in the complex plane. Both methods are effective at detecting periodicity in cubic irrationals despite their fundamentally different mathematical foundations}{figure.5}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Flow diagram of the modified sin²-algorithm, showing the key steps in each iteration. The phase-preserving floor function and sin²-weighting are characteristic elements of this approach. The cubic field correction $\delta _n$ ensures that the algorithm captures the algebraic structure.}}{66}{figure.6}\protected@file@percent }
-\newlabel{fig:sin2_algorithm}{{6}{66}{Flow diagram of the modified sin²-algorithm, showing the key steps in each iteration. The phase-preserving floor function and sin²-weighting are characteristic elements of this approach. The cubic field correction $\delta _n$ ensures that the algorithm captures the algebraic structure}{figure.6}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Comparative analysis of the HAPD and Modified sin$^2$ algorithms, highlighting their complementary approaches to solving Hermite's problem. Both algorithms successfully detect cubic irrationals but employ different mathematical foundations and implementation strategies.}}{67}{figure.7}\protected@file@percent }
-\newlabel{fig:algorithm_comparison}{{7}{67}{Comparative analysis of the HAPD and Modified sin$^2$ algorithms, highlighting their complementary approaches to solving Hermite's problem. Both algorithms successfully detect cubic irrationals but employ different mathematical foundations and implementation strategies}{figure.7}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Convergence rates and periodicity detection for the HAPD algorithm applied to different cubic irrationals. The left panel shows the error rate (in log scale) versus iterations, with dashed vertical lines indicating when periodicity is detected. The right panel compares the number of iterations required to detect periodicity across various cubic irrational types.}}{67}{figure.8}\protected@file@percent }
-\newlabel{fig:convergence_rates}{{8}{67}{Convergence rates and periodicity detection for the HAPD algorithm applied to different cubic irrationals. The left panel shows the error rate (in log scale) versus iterations, with dashed vertical lines indicating when periodicity is detected. The right panel compares the number of iterations required to detect periodicity across various cubic irrational types}{figure.8}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Performance comparison between the HAPD algorithm and the modified sin²-algorithm. The left panel illustrates computational performance relative to input size (in digits of precision), showing both algorithms follow expected theoretical complexity bounds. The right panel shows the discriminative power of each algorithm across different input types.}}{68}{figure.9}\protected@file@percent }
-\newlabel{fig:algorithm_comparison}{{9}{68}{Performance comparison between the HAPD algorithm and the modified sin²-algorithm. The left panel illustrates computational performance relative to input size (in digits of precision), showing both algorithms follow expected theoretical complexity bounds. The right panel shows the discriminative power of each algorithm across different input types}{figure.9}{}}
-\gdef \@abspage@last{68}
+\gdef \@abspage@last{67}

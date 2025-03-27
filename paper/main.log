@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025/Homebrew) (preloaded format=pdflatex 2025.3.15)  27 MAR 2025 02:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025/Homebrew) (preloaded format=pdflatex 2025.3.15)  27 MAR 2025 10:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1075,11 +1075,7 @@ ckend-pdftex.def
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count345
 \l__pdf_internal_box=\box92
-) (./main.aux
-
-LaTeX Warning: Label `fig:algorithm_comparison' multiply defined.
-
-)
+) (./main.aux)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 68.
@@ -1178,15 +1174,6 @@ Overfull \hbox (1.95879pt too wide) in paragraph at lines 14--15
 
 [4]
 
-LaTeX Warning: Reference `sec:hapd_algorithm' on page 5 undefined on input line
- 28.
-
-
-LaTeX Warning: Reference `sec:hapd_algorithm' on page 5 undefined on input line
- 44.
-
-
-
 [5]) (./galois-theory.tex
 Package hyperref Info: bookmark level for unknown definition defaults to 0 on i
 nput line 9.
@@ -1224,14 +1211,14 @@ Overfull \hbox (12.69588pt too wide) in paragraph at lines 3--4
 -ic-ity De-tec-tion (HAPD),
  []
 
-<figures/output/hapd_algorithm_flowchart.pdf, id=486, 711.13678pt x 851.34058pt
+<figures/output/hapd_algorithm_flowchart.pdf, id=488, 711.13678pt x 851.34058pt
 >
 File: figures/output/hapd_algorithm_flowchart.pdf Graphic file (type pdf)
 <use figures/output/hapd_algorithm_flowchart.pdf>
 Package pdftex.def Info: figures/output/hapd_algorithm_flowchart.pdf  used on i
 nput line 7.
 (pdftex.def)             Requested size: 288.0011pt x 344.77806pt.
-<figures/output/projective_periodicity_visualization.pdf, id=487, 630.70311pt x
+<figures/output/projective_periodicity_visualization.pdf, id=489, 630.70311pt x
  497.26527pt>
 File: figures/output/projective_periodicity_visualization.pdf Graphic file (typ
 e pdf)
@@ -1239,14 +1226,14 @@ e pdf)
 Package pdftex.def Info: figures/output/projective_periodicity_visualization.pd
 f  used on input line 14.
 (pdftex.def)             Requested size: 306.0022pt x 241.26442pt.
-<../figures/output/projective_trajectory_visualization.pdf, id=488, 458.49292pt
- x 482.7636pt>
+<../figures/output/projective_trajectory_visualization.pdf, id=490, 770.04681pt
+ x 550.69742pt>
 File: ../figures/output/projective_trajectory_visualization.pdf Graphic file (t
 ype pdf)
 <use ../figures/output/projective_trajectory_visualization.pdf>
 Package pdftex.def Info: ../figures/output/projective_trajectory_visualization.
 pdf  used on input line 21.
-(pdftex.def)             Requested size: 323.9978pt x 341.15868pt.
+(pdftex.def)             Requested size: 323.9978pt x 231.70308pt.
 
 
 [9]
@@ -1276,7 +1263,14 @@ Package hyperref Info: bookmark level for unknown lemma defaults to 0 on input
 line 105.
 
 
-[12]
+[12
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.106 T
+       he encoding function $E$ is injective, mapping each distinct pair to ...
+ <../figures/output/projective_trajectory_visualization.pdf>]
 
 [13]
 
@@ -1294,29 +1288,17 @@ e-ri-od-ic-ity within $\OML/cmm/m/it/10.95 O\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/1
 0.95 M[]\OT1/cmr/m/n/10.95 )$
  []
 
-(./visuals/algorithm_comparison_chart.tex
 
-! LaTeX Error: Not in outer par mode.
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.3 \begin{figure}[ht]
-                      
-You've lost some text.  Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-<../figures/output/algorithm_comparison_chart.pdf, id=733, 711.13678pt x 426.39
+[17] (./visuals/algorithm_comparison_chart.tex
+<../figures/output/algorithm_comparison_chart.pdf, id=835, 711.13678pt x 426.39
 299pt>
 File: ../figures/output/algorithm_comparison_chart.pdf Graphic file (type pdf)
 <use ../figures/output/algorithm_comparison_chart.pdf>
 Package pdftex.def Info: ../figures/output/algorithm_comparison_chart.pdf  used
- on input line 5.
+ on input line 3.
 (pdftex.def)             Requested size: 341.9989pt x 205.06319pt.
 )
-
-[17]
 Underfull \hbox (badness 10000) in paragraph at lines 289--289
 []|\OT1/cmr/bx/n/10.95 APD
  []
@@ -1371,8 +1353,11 @@ Overfull \hbox (17.60129pt too wide) in paragraph at lines 287--302
  [][] 
  []
 
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 ) (./visuals/complementary_solutions_diagram.tex
-<../figures/output/complementary_solutions_diagram.pdf, id=747, 682.22879pt x 4
+<../figures/output/complementary_solutions_diagram.pdf, id=836, 682.22879pt x 4
 59.6372pt>
 File: ../figures/output/complementary_solutions_diagram.pdf Graphic file (type 
 pdf)
@@ -1382,51 +1367,62 @@ Package pdftex.def Info: ../figures/output/complementary_solutions_diagram.pdf
 (pdftex.def)             Requested size: 323.9978pt x 218.28786pt.
 ) (./matrix-approach.tex
 
-[18
+[18]
+
+[19
 pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has
  been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.6 
-    ]
+l.27     \item
+               The characteristic polynomial of $C_p$ is exactly $p(x)$ <../fig
+ures/output/algorithm_comparison_chart.pdf>]
 
-[19]
+[20
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has
+ been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.62 
+     ]
 
-[20]
+[21
+pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.84 \end{equation}
+                    <../figures/output/complementary_solutions_diagram.pdf>]
+
+[22]
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
 (Font)              using `OT1/cmr/m/sc' instead on input line 130.
 
 
-
-[21]
-
 LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
 (Font)              using `OT1/cmr/m/sc' instead on input line 168.
 
+
+
+[23]
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
 (Font)              using `OT1/cmr/m/sc' instead on input line 188.
 
 
 
-[22]) (./matrix-verification.tex
+[24]) (./matrix-verification.tex
 
-[23]
+[25]
 
-[24]
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 Package hyperref Info: bookmark level for unknown example defaults to 0 on inpu
 t line 97.
 
 
-[25
-pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has
- been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.101     \item T
-                 races: $\tr(C^0) = 3$, $\tr(C^1) = 0$, $\tr(C^2) = 0$, $\tr...
-]
+[26]
 Underfull \hbox (badness 2452) in paragraph at lines 122--122
 []|\OT1/cmr/bx/n/10.95 Matrix Ver-i-fi-ca-tion Ad-van-
  []
@@ -1442,8 +1438,11 @@ Underfull \hbox (badness 5359) in paragraph at lines 124--124
  []
 
 
+LaTeX Warning: `h' float specifier changed to `ht'.
 
-[26
+
+
+[27
 pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has
  been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
@@ -1452,12 +1451,17 @@ l.143     \item F
                  or initial screening, run a few iterations of the \HAPD{} a...
 ]) (./equivalence.tex
 
+[28
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has
+ been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.9 \begin{theorem}[Structural Equivalence]
+                                           \label{thm:structural_equivalence}]
+
 LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
 (Font)              using `OT1/cmr/m/sc' instead on input line 13.
 
-
-
-[27]
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
 (Font)              using `OT1/cmr/m/sc' instead on input line 37.
@@ -1468,7 +1472,7 @@ LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
 
 
 
-[28]
+[29]
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
 (Font)              using `OT1/cmr/m/sc' instead on input line 54.
@@ -1490,23 +1494,19 @@ Overfull \hbox (15.88971pt too wide) in paragraph at lines 82--83
  []
 
 
+
+[30]
+
 LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
 (Font)              using `OT1/cmr/m/sc' instead on input line 88.
 
-
-
-[29]
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
 (Font)              using `OT1/cmr/m/sc' instead on input line 111.
 
 
-LaTeX Warning: Reference `sec:hapd_algorithm' on page 30 undefined on input lin
-e 118.
 
-
-
-[30]
+[31]
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
 (Font)              using `OT1/cmr/m/sc' instead on input line 128.
@@ -1527,23 +1527,25 @@ LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
 
 
 
-[31]) (./subtractive-algorithm.tex
+[32]) (./subtractive-algorithm.tex
 Overfull \hbox (1.13457pt too wide) in paragraph at lines 178--1
 []\OT1/cmr/m/n/10.95 This es-tab-lishes the equiv-a-lence of our ap-proaches an
 d places them within
  []
 
 
-LaTeX Warning: Reference `sec:hapd_algorithm' on page 32 undefined on input lin
-e 3.
-
-
-
-[32]
 
 [33]
 
 [34]
+
+[35
+pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.73 
+     ]
 Overfull \hbox (3.20908pt too wide) in paragraph at lines 92--93
 \OT1/cmr/m/n/10.95 We now es-tab-lish the key the-o-ret-i-cal prop-er-ties of t
 he mod-i-fied sin\TS1/cmr/m/n/10.95 ²\OT1/cmr/m/n/10.95 -algorithm
@@ -1556,7 +1558,9 @@ Overfull \hbox (48.71231pt too wide) detected at line 118
 
 
 
-[35]
+[36]
+
+[37]
 Overfull \hbox (4.02422pt too wide) in paragraph at lines 173--174
 []\OT1/cmr/m/n/10.95 Since the phase-preserving floor func-tion pre-serves this
  struc-ture to within
@@ -1564,19 +1568,13 @@ Overfull \hbox (4.02422pt too wide) in paragraph at lines 173--174
 
 
 
-[36]
-
-[37]
-
 [38]
 
 [39]
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-
 [40]
+
+[41]
 Underfull \hbox (badness 10000) in paragraph at lines 360--360
 []|\OT1/cmr/bx/n/10 APD
  []
@@ -1697,32 +1695,49 @@ Underfull \hbox (badness 10000) in paragraph at lines 372--372
  []
 
 
+LaTeX Warning: `h' float specifier changed to `ht'.
 
-[41
-pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has
- been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.379 \subsection
-                 {Broader Implications}
+
+
+[42
 pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has
  been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.379 \subsection
-                 {Broader Implications}]
-<figures/output/algorithm_comparison_chart.pdf, id=1068, 711.13678pt x 426.3929
+l.378 
+      ]
+<figures/output/algorithm_comparison_chart.pdf, id=1323, 711.13678pt x 426.3929
 9pt>
 File: figures/output/algorithm_comparison_chart.pdf Graphic file (type pdf)
 <use figures/output/algorithm_comparison_chart.pdf>
 Package pdftex.def Info: figures/output/algorithm_comparison_chart.pdf  used on
  input line 395.
 (pdftex.def)             Requested size: 341.9989pt x 205.06319pt.
-) (./numerical-validation.tex
 
-[42]
 
-[43]
+[43
+pdfTeX warning (ext4): destination with the same identifier (name{table.6}) has
+ been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.398 \end{figure}
+                  ]) (./numerical-validation.tex
+Overfull \hbox (1.13457pt too wide) in paragraph at lines 400--1
+[]\OT1/cmr/m/n/10.95 This es-tab-lishes the equiv-a-lence of our ap-proaches an
+d places them within
+ []
+
+
+
+[44
+pdfTeX warning (ext4): destination with the same identifier (name{figure.6}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.62 \end{remark}
+                  <./figures/output/algorithm_comparison_chart.pdf>]
+
+[45]
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
 (Font)              using `OT1/cmr/m/sc' instead on input line 65.
@@ -1768,22 +1783,22 @@ cmsy/m/n/10.95 ^^@\OT1/cmr/m/n/10.95 1)$, new triple: $(\OMS/cmsy/m/n/10.95 ^^@
 
 
 
-[44]
+[46]
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
 (Font)              using `OT1/cmr/m/sc' instead on input line 127.
 
 
 
-[45
-pdfTeX warning (ext4): destination with the same identifier (name{table.6}) has
+[47
+pdfTeX warning (ext4): destination with the same identifier (name{table.7}) has
  been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.179 \end{algorithm}
                      ]
 
-[46]
+[48]
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
 (Font)              using `OT1/cmr/m/sc' instead on input line 195.
@@ -1805,11 +1820,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 292--293
 
 
 
-[47]
-
-[48]
-
 [49]
+
+[50]
+
+[51]
 Overfull \hbox (4.89679pt too wide) in paragraph at lines 351--352
 \OT1/cmr/m/n/10.95 We com-pared the per-for-mance of the mod-i-fied sin\TS1/cmr
 /m/n/10.95 ²\OT1/cmr/m/n/10.95 -algorithm with the \OT1/cmr/m/sc/10.95 HAPD
@@ -1861,8 +1876,8 @@ LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
 
 
 
-[50
-pdfTeX warning (ext4): destination with the same identifier (name{table.7}) has
+[52
+pdfTeX warning (ext4): destination with the same identifier (name{table.8}) has
  been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
@@ -1879,8 +1894,8 @@ LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
 
 
 
-[51
-pdfTeX warning (ext4): destination with the same identifier (name{table.8}) has
+[53
+pdfTeX warning (ext4): destination with the same identifier (name{table.9}) has
  been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
@@ -1888,50 +1903,64 @@ l.397 F
        or reliable operation of the modified sinÂ²-algorithm on cubic irrati...
 ]
 
-[52]
+[54]
 
-[53]
-<../figures/output/convergence_rate_visualization.pdf, id=1187, 738.5561pt x 43
-7.29247pt>
+[55]
+<../figures/output/convergence_rate_visualization.pdf, id=1521, 1086.11203pt x 
+419.94768pt>
 File: ../figures/output/convergence_rate_visualization.pdf Graphic file (type p
 df)
 <use ../figures/output/convergence_rate_visualization.pdf>
 Package pdftex.def Info: ../figures/output/convergence_rate_visualization.pdf  
 used on input line 485.
-(pdftex.def)             Requested size: 323.9978pt x 191.8421pt.
-<../figures/output/algorithmic_comparison_visualization.pdf, id=1189, 731.52986
-pt x 468.77058pt>
+(pdftex.def)             Requested size: 323.9978pt x 125.27399pt.
+<../figures/output/algorithmic_comparison_visualization.pdf, id=1523, 856.6942p
+t x 432.95627pt>
 File: ../figures/output/algorithmic_comparison_visualization.pdf Graphic file (
 type pdf)
 <use ../figures/output/algorithmic_comparison_visualization.pdf>
 Package pdftex.def Info: ../figures/output/algorithmic_comparison_visualization
 .pdf  used on input line 494.
-(pdftex.def)             Requested size: 323.9978pt x 207.62589pt.
-) (./objections-tex.tex
+(pdftex.def)             Requested size: 323.9978pt x 163.73892pt.
+
+
+[56
+pdfTeX warning (ext4): destination with the same identifier (name{figure.7}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.497 \end{figure}
+                   <../figures/output/convergence_rate_visualization.pdf>])
+(./objections-tex.tex
 Overfull \hbox (9.79965pt too wide) in paragraph at lines 1--1
 []\OT1/cmr/bx/sc/14.4 Addressing Po-ten-tial Ob-jec-tions and Edge Cases 
  []
 
-
-
-[54]
 Package hyperref Info: bookmark level for unknown objection defaults to 0 on in
 put line 10.
 Package hyperref Info: bookmark level for unknown response defaults to 0 on inp
 ut line 14.
 
 
-[55]
-
-[56]
-
-[57]
+[57
+pdfTeX warning (ext4): destination with the same identifier (name{figure.8}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.15 
+      <../figures/output/algorithmic_comparison_visualization.pdf>]
 
 [58]
 
 [59]
 
-[60]) (./conclusion.tex
+[60]
+
+[61]
+
+[62]
+
+[63]) (./conclusion.tex
 Overfull \hbox (3.71996pt too wide) in paragraph at lines 252--1
 []\OT1/cmr/m/n/10.95 By ad-dress-ing these po-ten-tial ob-jec-tions and edge ca
 ses, we have strength-
@@ -1939,9 +1968,9 @@ ses, we have strength-
 
 
 
-[61]
+[64]
 
-[62]) (./main.bbl
+[65]) (./main.bbl
 Underfull \hbox (badness 1635) in paragraph at lines 20--25
 []\OT1/cmr/m/n/10.95 Carl Gus-tav Ja-cob Ja-cobi.  All-ge-meine the-o-rie der k
 et-ten-
@@ -1949,56 +1978,9 @@ et-ten-
 
 
 
-[63])
+[66])
 
-[64]
-
-[65
-pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) ha
-s been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.91 \end{document}
-                    <../figures/output/projective_trajectory_visualization.pdf>
-]
-
-[66
-pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) ha
-s been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.91 \end{document}
-                   
-pdfTeX warning (ext4): destination with the same identifier (name{figure.6}) ha
-s been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.91 \end{document}
-                    <../figures/output/complementary_solutions_diagram.pdf>]
-
-[67
-pdfTeX warning (ext4): destination with the same identifier (name{figure.7}) ha
-s been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.91 \end{document}
-                   
-pdfTeX warning (ext4): destination with the same identifier (name{figure.8}) ha
-s been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.91 \end{document}
-                    <./figures/output/algorithm_comparison_chart.pdf> <../figur
-es/output/convergence_rate_visualization.pdf>]
-
-[68
-pdfTeX warning (ext4): destination with the same identifier (name{figure.9}) ha
-s been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.91 \end{document}
-                    <../figures/output/algorithmic_comparison_visualization.pdf
->] (./main.aux)
+[67] (./main.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
@@ -2007,23 +1989,17 @@ L3 programming layer <2025-01-18>
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: There were multiply-defined labels.
-
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: B82F624AA2C09A51CB69815400043A21;16518.
  ) 
 Here is how much of TeX's memory you used:
- 36298 strings out of 473190
- 859907 string characters out of 5705898
- 1377518 words of memory out of 5000000
- 58331 multiletter control sequences out of 15000+600000
+ 36299 strings out of 473190
+ 859962 string characters out of 5705898
+ 1373519 words of memory out of 5000000
+ 58332 multiletter control sequences out of 15000+600000
  577978 words of font info for 104 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,15n,87p,1010b,776s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,15n,87p,1010b,766s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/ams
 fonts/cm/cmbx10.pfb></usr/local/Cellar/texlive/20250308_1/share/texmf-dist/font
 s/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/Cellar/texlive/20250308_1/sha
@@ -2058,10 +2034,10 @@ mf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/Cellar/texlive/202
 50308_1/share/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/C
 ellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-super/sfti1095.
 pfb>
-Output written on main.pdf (68 pages, 743568 bytes).
+Output written on main.pdf (67 pages, 766696 bytes).
 PDF statistics:
- 2028 PDF objects out of 2073 (max. 8388607)
- 1387 compressed objects within 14 object streams
+ 2098 PDF objects out of 2487 (max. 8388607)
+ 1394 compressed objects within 14 object streams
  554 named destinations out of 1000 (max. 500000)
  637 words of extra memory for PDF output out of 10000 (max. 10000000)
 
