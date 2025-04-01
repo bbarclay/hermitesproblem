@@ -39,8 +39,8 @@ This repository contains the implementation of the Hermite Algorithm for Periodi
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/hapd-algorithm.git
-   cd hapd-algorithm
+   git clone https://github.com/bbarclay/hermitesproblem.git
+   cd hermitesproblem
    ```
 
 2. Install the required dependencies:
@@ -111,11 +111,11 @@ Hermite's Problem concerns the detection of periodicity in the continued fractio
 If you use this algorithm in your research, please cite:
 
 ```bibtex
-@article{hapd2023,
-  title={HAPD: A Projective Geometric Approach to Hermite's Problem},
-  author={Your Name},
+@article{barclay2025hapd,
+  title={A Complete Solution to Hermite's Problem For Cubic Irrationals with Complex Conjugate Roots},
+  author={Barclay, Brandon},
   journal={ArXiv},
-  year={2023}
+  year={2025}
 }
 ```
 
@@ -125,6 +125,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## 📧 Contact
 
-Your Name - yourname@example.com
+Brandon Barclay - barclaybrandon@hotmail.com
 
-Project Link: [https://github.com/yourusername/hapd-algorithm](https://github.com/yourusername/hapd-algorithm) 
+Project Link: [https://github.com/bbarclay/hermitesproblem](https://github.com/bbarclay/hermitesproblem) 
