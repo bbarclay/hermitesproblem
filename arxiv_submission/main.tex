@@ -1,0 +1,121 @@
+% Setting pdfoutput to ensure PDFLaTeX processing
+\pdfoutput=1
+\documentclass[a4paper,11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,amsfonts}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{mathtools}
+\usepackage{geometry}
+\geometry{
+  a4paper,
+  total={6.5in,9in},
+  left=1in,
+  right=1in,
+  top=1in,
+  bottom=1in,
+}
+\usepackage{tikz}
+\usetikzlibrary{shapes,shapes.misc,shapes.geometric,positioning,calc,patterns,arrows.meta}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{enumitem}
+\usepackage{thmtools}
+\usepackage{chngcntr}
+\usepackage{bm}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xspace}
+\usepackage{caption}
+\captionsetup{
+  font=normal,
+  labelfont=bf,
+  format=plain,
+  justification=justified,
+  singlelinecheck=true,
+  belowskip=30pt,
+  aboveskip=20pt,
+  margin=50pt,
+  parskip=10pt,
+  position=bottom
+}
+
+% Configure counters for continuous numbering
+\counterwithout{figure}{section}
+\counterwithout{table}{section}
+\counterwithout{algorithm}{section}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{algorithm_def}[theorem]{Algorithm}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{objection}[theorem]{Objection}
+\newtheorem{response}[theorem]{Response}
+
+% Custom commands
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceiling}[1]{\lceil #1 \rceil}
+\newcommand{\norm}[1]{\left\| #1 \right\|}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\tuple}[1]{\left( #1 \right)}
+\newcommand{\seq}[1]{\left[ #1 \right]}
+\newcommand{\HAPD}{\textsc{HAPD}\xspace}
+
+% Adjust spacing for figures
+\setlength{\textfloatsep}{40pt plus 10pt minus 10pt}
+\setlength{\floatsep}{40pt plus 10pt minus 10pt}
+\setlength{\intextsep}{40pt plus 10pt minus 10pt}
+\setlength{\abovecaptionskip}{20pt plus 10pt minus 5pt}
+\setlength{\belowcaptionskip}{20pt plus 10pt minus 5pt}
+
+% Title information
+\title{A Complete Solution to Hermite's Problem\\For Cubic Irrationals with Complex Conjugate Roots}
+\author{Brandon Barclay\thanks{Email: barclaybrandon@hotmail.com}}
+\date{2025}
+
+\begin{document}
+
+\maketitle
+
+\input{abstract.tex}
+\tableofcontents
+\newpage
+
+\input{introduction.tex}
+\input{galois-theory.tex}
+\input{hapd-algorithm.tex}
+\input{matrix-approach.tex}
+\input{matrix-verification.tex}
+\input{equivalence.tex}
+\input{subtractive-algorithm.tex}
+\input{numerical-validation.tex}
+\input{objections-tex.tex}
+\input{conclusion.tex}
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}

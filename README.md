@@ -1,88 +1,68 @@
-# Hermite Solver
+# Hermite's Problem Presentation
 
-A rigorous implementation of algorithms for solving Hermite's problem on cubic irrationals.
-
-## Overview
-
-The Hermite Solver is a comprehensive Python library that implements multiple approaches to detect and characterize cubic irrationals. It provides a complete solution to Hermite's problem as described in "The Complete Solution to Hermite's Problem: A Definitive Proof."
-
-Key components include:
-
-1. **HAPD Algorithm**: A Hermite-like Algorithm with Projective Dual action that characterizes cubic irrationals through their periodicity properties in projective space.
-
-2. **Matrix-Based Verification**: Techniques for verifying cubic irrationals using companion matrices and trace relations.
-
-3. **Computational Methods**: Advanced computational approaches including entropy analysis and spectral analysis.
-
-4. **Combined Approach**: A unified methodology that integrates all approaches for high-confidence classification.
-
-## Installation
-
-```bash
-pip install hermite_solver
-```
-
-Or install from source:
-
-```bash
-git clone https://github.com/yourusername/hermite-solver.git
-cd hermite-solver
-pip install -e .
-```
+This is an animated presentation about Hermite's Problem and its solution using Python and Manim.
 
 ## Requirements
 
 - Python 3.8+
-- NumPy
-- mpmath
-- SymPy
-- SciPy
+- Manim library
+- OpenGL and Metal support (for GPU acceleration)
 
-## Usage
+## Installation
 
-Basic usage example:
-
-```python
-from hermite_solver import HermiteSolver
-
-# Create a solver instance
-solver = HermiteSolver()
-
-# Analyze a number
-result = solver.detect_cubic_irrational(2**(1/3))
-print(result["classification"])  # Should output "cubic_irrational"
-print(result["confidence"])      # Should output "very_high" or "high"
-
-# Non-cubic numbers
-result = solver.detect_cubic_irrational(2**0.5)  # Quadratic irrational (√2)
-print(result["classification"])  # Should not be "cubic_irrational"
-
-result = solver.detect_cubic_irrational(3.14159)  # Approximation of π
-print(result["classification"])  # Should not be "cubic_irrational"
-```
-
-## Theory
-
-The library implements the theoretical framework presented in "The Complete Solution to Hermite's Problem: A Definitive Proof" which establishes that:
-
-1. Cubic irrationals exhibit periodic behavior under the HAPD algorithm
-2. This periodicity can be rigorously verified through matrix-based approaches
-3. The period length of the algorithm is related to the regulator of the associated cubic field
-
-The implementation has been extensively validated against known cubic irrationals, rational numbers, quadratic irrationals, and transcendental numbers.
-
-## Testing
-
-To run the comprehensive test suite:
+If you haven't installed Manim yet, you can do so with:
 
 ```bash
-python -m unittest hermite_solver_test.py
+pip install manim
 ```
 
-## License
+## Rendering the Presentation
 
-MIT License
+To render the presentation with GPU acceleration:
 
-## Author
+1. Make the render script executable:
+   ```bash
+   chmod +x render_presentation.sh
+   ```
 
-Brandon Barclay 
+2. Run the render script:
+   ```bash
+   ./render_presentation.sh
+   ```
+
+This will generate a high-quality MP4 video with all 10 slides and their animations.
+
+## Presentation Content
+
+The presentation consists of 10 slides covering:
+
+1. Title and Introduction
+2. What is Hermite's Problem?
+3. Cubic Numbers Explained
+4. The Challenge of Periodicity Detection
+5. Our Solution: HAPD Algorithm
+6. The Modified sin² Algorithm
+7. Comparison of Approaches
+8. Numerical Validation
+9. Future Research Directions
+10. Thank You / Q&A
+
+## Customization
+
+You can modify the `hermite_presentation.py` file to:
+- Change colors or styles
+- Adjust animation timings
+- Add or remove content
+- Customize transition effects
+
+## Troubleshooting
+
+If you encounter issues with GPU acceleration:
+
+1. Check if your Mac supports Metal framework
+2. Try rendering without GPU acceleration by removing the environment variables in the render script
+3. For quality issues, adjust the `--quality` parameter (l for low, m for medium, h for high)
+
+## Credits
+
+This presentation was created using Manim, the Mathematical Animation Engine originally developed by 3Blue1Brown. 
