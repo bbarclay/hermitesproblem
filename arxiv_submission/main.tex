@@ -9,7 +9,6 @@
 \usepackage{geometry}
 \geometry{
   a4paper,
-  total={6.5in,9in},
   left=1in,
   right=1in,
   top=1in,
@@ -18,7 +17,7 @@
 \usepackage{tikz}
 \usetikzlibrary{shapes,shapes.misc,shapes.geometric,positioning,calc,patterns,arrows.meta}
 \usepackage{pgfplots}
-\pgfplotsset{compat=1.17}
+\pgfplotsset{compat=1.18}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 \usepackage{enumitem}
@@ -31,6 +30,22 @@
 \usepackage{multirow}
 \usepackage{xspace}
 \usepackage{caption}
+\usepackage{textcomp}  % More complete text companion fonts
+
+% Fix for font warnings
+\DeclareRobustCommand{\scshape}{\fontshape{sc}\selectfont}
+\DeclareTextFontCommand{\textsc}{\scshape}
+
+% Define a substitute for scit font shape
+\makeatletter
+\DeclareFontShape{OT1}{cmr}{m}{scit}{
+  <-> ssub * cmr/m/sc
+}{}
+\DeclareFontShape{OT1}{cmr}{bx}{sc}{
+  <-> ssub * cmr/bx/n
+}{}
+\makeatother
+
 \captionsetup{
   font=normal,
   labelfont=bf,

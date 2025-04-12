@@ -96,15 +96,15 @@ We now present results from applying the \HAPD{} algorithm to various types of n
 \label{tab:hapd_results}
 \begin{tabular}{|p{2.2cm}|p{2.8cm}|p{2.7cm}|p{1.8cm}|p{1.5cm}|}
 \hline
-\textbf{Number} & \textbf{Type} & \textbf{Behavior} & \textbf{Preperiod} & \textbf{Period} \\
+\textbf{Number} & \textbf{Type} & \textbf{Behavior} & \textbf{Pre-\newline period} & \textbf{Period} \\
 \hline
-$\sqrt{2}$ & Quadratic Irrational & Non-periodic & - & - \\
-$\sqrt{3}$ & Quadratic Irrational & Non-periodic & - & - \\
-$\frac{1+\sqrt{5}}{2}$ & Quadratic Irrational & Non-periodic & - & - \\
+$\sqrt{2}$ & Quadratic Irr. & Non-periodic & - & - \\
+$\sqrt{3}$ & Quadratic Irr. & Non-periodic & - & - \\
+$\frac{1+\sqrt{5}}{2}$ & Quadratic Irr. & Non-periodic & - & - \\
 \hline
-$2^{1/3}$ & Cubic Irrational & Periodic & 1 & 2 \\
-$3^{1/3}$ & Cubic Irrational & Periodic & 1 & 3 \\
-$1+2^{1/3}$ & Cubic Irrational & Periodic & 0 & 4 \\
+$2^{1/3}$ & Cubic Irr. & Periodic & 1 & 2 \\
+$3^{1/3}$ & Cubic Irr. & Periodic & 1 & 3 \\
+$1+2^{1/3}$ & Cubic Irr. & Periodic & 0 & 4 \\
 \hline
 $\pi$ & Transcendental & Non-periodic & - & - \\
 $e$ & Transcendental & Non-periodic & - & - \\
@@ -129,7 +129,11 @@ For $\alpha = 2^{1/3}$, the \HAPD{} algorithm produces the following sequence:
     \item Iteration 4: $(a_1, a_2) = (0, 0)$, new triple: $(-0.2354, -0.2133, -0.7914)$
 \end{enumerate}
 
-Notice that iterations 3 and 4 produce the same triple (up to normalization), indicating periodicity with preperiod 1 and period 2. The pattern of pairs $(a_1, a_2)$ is: $(1, 1), (1, 3), (-1, -1), (0, 0), (0, 0), \ldots$
+Notice that iterations 3 and 4 produce the same triple (up to normalization), indicating periodicity with preperiod 1 and period 2. 
+The pattern of pairs $(a_1, a_2)$ is: 
+\begin{align}
+(1, 1), (1, 3), (-1, -1), (0, 0), (0, 0), \ldots
+\end{align}
 \end{example}
 
 \begin{proposition}[False Periodic Detection in Numerical Implementation]
@@ -385,15 +389,15 @@ We compared the performance of the modified sin²-algorithm with the \HAPD{} alg
 \hline
 \textbf{Aspect} & \textbf{\HAPD{} Algorithm} & \textbf{Modified Sin²-Algorithm} \\
 \hline
-\textbf{Handle complex roots} & Yes, with projective encoding & Yes, with phase-preserving floor \\
+\textbf{Handle\newline complex} & Yes, with projective encoding & Yes, with phase-preserving floor \\
 \hline
-\textbf{Numerical stability} & Higher for real-dominant cubic fields & Higher for complex-dominant cubic fields \\
+\textbf{Numerical\newline stability} & Higher for real-dominant cubic fields & Higher for complex-dominant cubic fields \\
 \hline
 \textbf{Period length} & Typically shorter (20-50) & Typically longer (50-100) \\
 \hline
-\textbf{Implementation complexity} & Moderate (projective arithmetic) & Moderate (complex arithmetic) \\
+\textbf{Implementation} & Moderate (projective arithmetic) & Moderate (complex arithmetic) \\
 \hline
-\textbf{Distinguishing power} & Higher for quadratic vs. cubic & Higher for cubic vs. non-algebraic \\
+\textbf{Distinguishing} & Higher for quadratic vs. cubic & Higher for cubic vs. non-algebraic \\
 \hline
 \end{tabular}
 \end{table}
@@ -410,6 +414,7 @@ The \HAPD{} algorithm and the modified sin²-algorithm exhibit complementary str
 
 \begin{proof}
 Both algorithms successfully detect periodicity for cubic irrationals with complex conjugate roots. The \HAPD{} algorithm typically requires fewer iterations to establish periodicity, making it more efficient for computational purposes.
+\end{proof}
 
 \subsection{Benchmarking and Convergence Analysis}
 
@@ -424,7 +429,7 @@ To evaluate the practical efficiency of our algorithms, we conducted extensive b
 \end{minipage}
 \end{figure}
 
-As shown in Figure~\ref{fig:algorithmic_convergence}, the HAPD algorithm exhibits different convergence rates for various types of cubic irrationals. Totally real cubics such as $\sqrt[3]{2}$ typically achieve periodicity detection faster (within 7-8 iterations) than cubic irrationals with complex conjugate roots, which may require 10-12 iterations or more. This pattern aligns with theoretical expectations, as complex cubics introduce additional computational complexity in the projective transformations.
+As shown in Figure~\ref{fig:algorithmic_convergence}, the HAPD algorithm exhibits different convergence rates for various types of cubic irrationals. Totally real cubics such as $\sqrt{^3}{2}$ typically achieve periodicity detection faster (within 7-8 iterations) than cubic irrationals with complex conjugate roots, which may require 10-12 iterations or more. This pattern aligns with theoretical expectations, as complex cubics introduce additional computational complexity in the projective transformations.
 
 \begin{figure}[htbp]
 \begin{minipage}{\textwidth}

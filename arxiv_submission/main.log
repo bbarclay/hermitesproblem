@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025/Homebrew) (preloaded format=pdflatex 2025.3.15)  28 MAR 2025 17:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025/Homebrew) (preloaded format=pdflatex 2025.3.15)  12 APR 2025 02:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -397,15 +397,6 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 \Gm@layoutvoffset=\dimen174
 \Gm@dimlist=\toks29
 )
-
-Package geometry Warning: Over-specification in `h'-direction.
-    `width' (469.75499pt) is ignored.
-
-
-Package geometry Warning: Over-specification in `v'-direction.
-    `height' (650.43pt) is ignored.
-
-
 (/usr/local/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/pgf/frontendla
 yer/tikz.sty
 (/usr/local/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/pgf/basiclayer
@@ -1120,6 +1111,12 @@ Package caption Info: Standard document class detected.
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 )
+(/usr/local/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/base/textcomp.
+sty
+Package: textcomp 2024/04/24 v2.1b Standard LaTeX package
+)
+LaTeX Info: Redefining \scshape on input line 36.
+LaTeX Info: Redefining \textsc on input line 37.
 \c@theorem=\count349
 
 (/usr/local/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/l3backend/l3ba
@@ -1130,24 +1127,24 @@ File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
 ) (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 99.
-LaTeX Font Info:    ... okay on input line 99.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 99.
-LaTeX Font Info:    ... okay on input line 99.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 99.
-LaTeX Font Info:    ... okay on input line 99.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 99.
-LaTeX Font Info:    ... okay on input line 99.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 99.
-LaTeX Font Info:    ... okay on input line 99.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 99.
-LaTeX Font Info:    ... okay on input line 99.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 99.
-LaTeX Font Info:    ... okay on input line 99.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 99.
-LaTeX Font Info:    ... okay on input line 99.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 99.
-LaTeX Font Info:    ... okay on input line 99.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
 
 (/usr/local/Cellar/texlive/20250308_1/share/texmf-dist/tex/context/base/mkii/su
 pp-pdf.mkii
@@ -1175,7 +1172,7 @@ stopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package hyperref Info: Link coloring OFF on input line 99.
+Package hyperref Info: Link coloring OFF on input line 114.
  (./main.out) (./main.out)
 \@outlinefile=\write4
 \openout4 = `main.out'.
@@ -1215,406 +1212,128 @@ Package hyperref Info: Link coloring OFF on input line 99.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package pgfplots notification 'compat/show suggested version=true': you might b
-enefit from \pgfplotsset{compat=1.18} (current compat level: 1.17).
+Package pgfplots notification 'compat/show suggested version=true': document ha
+s been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 102
+LaTeX Font Info:    Trying to load font information for U+msa on input line 117
 .
 
 (/usr/local/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/amsfonts/umsa.
 fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 102
+LaTeX Font Info:    Trying to load font information for U+msb on input line 117
 .
 
 (/usr/local/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/amsfonts/umsb.
 fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) (./abstract.tex
-! Undefined control sequence.
-l.7 \keywords
-             {Cubic irrationals, periodicity detection, number theory, proje...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-) (./main.toc
-
-LaTeX Font Warning: Font shape `OT1/cmr/bx/sc' undefined
-(Font)              using `OT1/cmr/bx/n' instead on input line 10.
-
+) (./abstract.tex) (./main.toc
+LaTeX Font Info:    Font shape `OT1/cmr/bx/sc' in size <10.95> not available
+(Font)              Font shape `OT1/cmr/bx/n' tried instead on input line 3.
 
 
 [1
 
 {/usr/local/Cellar/texlive/20250308_1/share/texmf-dist/fonts/map/pdftex/updmap/
 pdftex.map}{/usr/local/Cellar/texlive/20250308_1/share/texmf-dist/fonts/enc/dvi
-ps/cm-super/cm-super-ts1.enc}]
-
-[2])
+ps/cm-super/cm-super-ts1.enc}])
 \tf@toc=\write5
 \openout5 = `main.toc'.
 
 
 
-[3] (./introduction.tex
-
-[4]) (./galois-theory.tex
+[2] (./introduction.tex) (./galois-theory.tex
 Package hyperref Info: bookmark level for unknown definition defaults to 0 on i
-nput line 9.
+nput line 5.
 Package hyperref Info: bookmark level for unknown theorem defaults to 0 on inpu
-t line 21.
+t line 16.
 
 
-[5]
+[3]
 Package hyperref Info: bookmark level for unknown proposition defaults to 0 on 
-input line 58.
+input line 42.
 
 
-[6]
+[4]
 Package hyperref Info: bookmark level for unknown corollary defaults to 0 on in
-put line 138.
-
-
-[7]) (./hapd-algorithm.tex
-Overfull \hbox (4.37767pt too wide) in paragraph at lines 3--4
-\OT1/cmr/m/n/10.95 This sec-tion presents the Her-mite Al-go-rithm for Pe-ri-od
--ic-ity De-tec-tion (HAPD), a non-subtractive
- []
-
-<figures/output/hapd_algorithm_flowchart.pdf, id=479, 570.93298pt x 715.47299pt
+put line 101.
+) (./hapd-algorithm.tex
+LaTeX Font Info:    Font shape `OT1/cmr/bx/sc' in size <14.4> not available
+(Font)              Font shape `OT1/cmr/bx/n' tried instead on input line 1.
+<figures/output/hapd_algorithm_flowchart.pdf, id=344, 570.93298pt x 715.47299pt
 >
 File: figures/output/hapd_algorithm_flowchart.pdf Graphic file (type pdf)
 <use figures/output/hapd_algorithm_flowchart.pdf>
 Package pdftex.def Info: figures/output/hapd_algorithm_flowchart.pdf  used on i
-nput line 8.
+nput line 6.
 (pdftex.def)             Requested size: 452.9679pt x 567.66293pt.
-<figures/output/projective_periodicity_visualization.pdf, id=480, 439.18027pt x
+<figures/output/projective_periodicity_visualization.pdf, id=345, 439.18027pt x
  426.39299pt>
 File: figures/output/projective_periodicity_visualization.pdf Graphic file (typ
 e pdf)
 <use figures/output/projective_periodicity_visualization.pdf>
 Package pdftex.def Info: figures/output/projective_periodicity_visualization.pd
-f  used on input line 17.
+f  used on input line 15.
 (pdftex.def)             Requested size: 452.9679pt x 439.80125pt.
-<figures/projective_space_regions.pdf, id=481, 429.03537pt x 426.19664pt>
+<figures/projective_space_regions.pdf, id=346, 429.03537pt x 426.19664pt>
 File: figures/projective_space_regions.pdf Graphic file (type pdf)
 <use figures/projective_space_regions.pdf>
 Package pdftex.def Info: figures/projective_space_regions.pdf  used on input li
-ne 26.
+ne 24.
 (pdftex.def)             Requested size: 452.9679pt x 449.97139pt.
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 59.
-
-
-[8]
-
-[9 <./figures/output/hapd_algorithm_flowchart.pdf>]
-
-[10 <./figures/output/projective_periodicity_visualization.pdf>]
-
-[11 <./figures/projective_space_regions.pdf>]
 Package hyperref Info: bookmark level for unknown algorithm_def defaults to 0 o
-n input line 86.
+n input line 32.
 Package hyperref Info: bookmark level for unknown lemma defaults to 0 on input 
-line 111.
+line 59.
 
+
+[5]
+
+[6 <./figures/output/hapd_algorithm_flowchart.pdf>]
+
+[7 <./figures/output/projective_periodicity_visualization.pdf>]
+
+[8 <./figures/projective_space_regions.pdf>]) (./matrix-approach.tex
+
+[9]
+
+[10]) (./matrix-verification.tex
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
+put line 10.
+
+
+[11]
 
 [12]
-Overfull \hbox (8.87877pt too wide) in paragraph at lines 148--149
-[]\OT1/cmr/m/n/10.95 Let $\OML/cmm/m/it/10.95 ^^U \OMS/cmsy/m/n/10.95 6\OT1/cmr
-/m/n/10.95 = 0$ and con-sider $(\OML/cmm/m/it/10.95 v[]; v[]; v[]\OT1/cmr/m/n/1
-0.95 )$ and $(\OML/cmm/m/it/10.95 ^^Uv[]; ^^Uv[]; ^^Uv[]\OT1/cmr/m/n/10.95 )$. 
-The in-te-ger parts scale: $\OMS/cmsy/m/n/10.95 b\OML/cmm/m/it/10.95 ^^Uv[]=^^U
-v[]\OMS/cmsy/m/n/10.95 c \OT1/cmr/m/n/10.95 =
- []
-
+Package hyperref Info: bookmark level for unknown example defaults to 0 on inpu
+t line 97.
 
 
 [13]
 
 [14]
 Package hyperref Info: bookmark level for unknown remark defaults to 0 on input
- line 252.
+ line 151.
+) (./equivalence.tex
+LaTeX Font Info:    Font shape `OT1/cmr/m/scit' in size <10.95> not available
+(Font)              Font shape `OT1/cmr/m/sc' tried instead on input line 13.
 
 
 [15]
-<figures/complementary_solutions_diagram.pdf, id=788, 650.47516pt x 570.93298pt
->
-File: figures/complementary_solutions_diagram.pdf Graphic file (type pdf)
-<use figures/complementary_solutions_diagram.pdf>
-Package pdftex.def Info: figures/complementary_solutions_diagram.pdf  used on i
-nput line 285.
-(pdftex.def)             Requested size: 452.9679pt x 397.57697pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 295--295
-[]|\OT1/cmr/bx/n/10.95 APD Al-go-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 295--295
-[]|\OT1/cmr/bx/n/10.95 sin\TS1/cmr/bx/n/10.95 ²\OT1/cmr/bx/n/10.95 -
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 297--297
-[]|\OT1/cmr/m/n/10.95 Real cu-bics
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 297--297
-\OT1/cmr/m/n/10.95 with pos-i-tive
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 299--299
-[]|\OT1/cmr/bx/n/10.95 Periodicity
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 299--299
-[]|\OT1/cmr/m/n/10.95 Guaranteed
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 299--299
-\OT1/cmr/m/n/10.95 for pos-i-tive
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 299--300
-[]|\OT1/cmr/m/n/10.95 Guaranteed
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 301--301
-[]|\OT1/cmr/bx/n/10.95 Algebraic
- []
-
-
-Underfull \hbox (badness 2197) in paragraph at lines 301--301
-[]|\OT1/cmr/m/n/10.95 Continued frac-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 301--301
-[]|\OT1/cmr/m/n/10.95 Modified
- []
-
-
-Overfull \hbox (2.53268pt too wide) in paragraph at lines 303--303
-[]|\OT1/cmr/bx/n/10.95 Computational
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 303--304
-[]|$\OML/cmm/m/it/10.95 O\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 M[]\OT1/cmr/m/
-n/10.95 )$ with
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 303--304
-\OT1/cmr/m/n/10.95 ex-plicit
- []
-
-) (./matrix-approach.tex
 
 [16]
 
-[17 <./figures/complementary_solutions_diagram.pdf>]
+[17]) (./subtractive-algorithm.tex
 
 [18]
 
 [19]
 
-LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
-(Font)              using `OT1/cmr/m/sc' instead on input line 130.
-
-<figures/output/matrix_transformation.pdf, id=961, 518.53723pt x 237.04561pt>
-File: figures/output/matrix_transformation.pdf Graphic file (type pdf)
-<use figures/output/matrix_transformation.pdf>
-Package pdftex.def Info: figures/output/matrix_transformation.pdf  used on inpu
-t line 146.
-(pdftex.def)             Requested size: 339.72592pt x 155.30397pt.
-
-LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
-(Font)              using `OT1/cmr/m/sc' instead on input line 181.
-
-
-
-[20]
-
-[21 <./figures/output/matrix_transformation.pdf>]
-
-LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
-(Font)              using `OT1/cmr/m/sc' instead on input line 201.
-
-) (./matrix-verification.tex
-
-[22]
-
-[23]
-Package hyperref Info: bookmark level for unknown example defaults to 0 on inpu
-t line 97.
-
-
-[24]) (./equivalence.tex
-
-[25]
-
-LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
-(Font)              using `OT1/cmr/m/sc' instead on input line 13.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
-(Font)              using `OT1/cmr/m/sc' instead on input line 37.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
-(Font)              using `OT1/cmr/m/sc' instead on input line 39.
-
-
-
-[26]
-
-LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
-(Font)              using `OT1/cmr/m/sc' instead on input line 54.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
-(Font)              using `OT1/cmr/m/sc' instead on input line 68.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
-(Font)              using `OT1/cmr/m/sc' instead on input line 88.
-
-
-
-[27]
-
-LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
-(Font)              using `OT1/cmr/m/sc' instead on input line 111.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
-(Font)              using `OT1/cmr/m/sc' instead on input line 128.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
-(Font)              using `OT1/cmr/m/sc' instead on input line 144.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
-(Font)              using `OT1/cmr/m/sc' instead on input line 146.
-
-
-
-[28]) (./subtractive-algorithm.tex
-
-[29]
-<figures/output/sin2_algorithm_visualization.pdf, id=1187, 569.7724pt x 424.524
-95pt>
-File: figures/output/sin2_algorithm_visualization.pdf Graphic file (type pdf)
-<use figures/output/sin2_algorithm_visualization.pdf>
-Package pdftex.def Info: figures/output/sin2_algorithm_visualization.pdf  used 
-on input line 45.
-(pdftex.def)             Requested size: 339.72592pt x 253.12988pt.
-
-
-[30]
-
-[31 <./figures/output/sin2_algorithm_visualization.pdf>]
-
-[32
-
-]
-
-[33]
-
-[34]
-
-[35]
-
-[36]
-Underfull \hbox (badness 10000) in paragraph at lines 367--367
-[]|\OT1/cmr/bx/n/10 APD
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 367--367
-[]|\OT1/cmr/bx/n/10 sin\TS1/cmr/bx/n/10 ²
- []
-
-
-Underfull \hbox (badness 6428) in paragraph at lines 367--367
-[]|\OT1/cmr/bx/n/10 HAPD (This
- []
-
-
-Underfull \hbox (badness 1565) in paragraph at lines 367--368
-[]|\OT1/cmr/bx/n/10 Modified sin\TS1/cmr/bx/n/10 ²
- []
-
-
-Underfull \hbox (badness 3612) in paragraph at lines 369--369
-[]|\OT1/cmr/m/n/10 All cu-bic ir-ra-
- []
-
-
-Underfull \hbox (badness 3612) in paragraph at lines 369--370
-[]|\OT1/cmr/m/n/10 All cu-bic ir-ra-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 373--373
-[]|\OT1/cmr/m/n/10 Subtractive
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 375--376
-[]|\OT1/cmr/m/n/10 Phase-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 377--377
-[]|\OT1/cmr/m/n/10 Periodicity for
- []
-
-
-Underfull \hbox (badness 4168) in paragraph at lines 379--379
-[]|\OT1/cmr/m/n/10 Theoretical ap-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 379--379
-[]|\OT1/cmr/m/n/10 Extended
- []
-
-
-Underfull \hbox (badness 1502) in paragraph at lines 379--380
-[]|\OT1/cmr/m/n/10 Phase preser-va-
- []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-
-[37]
-<figures/output/algorithm_comparison_chart.pdf, id=1393, 714.32472pt x 499.6269
-5pt>
-File: figures/output/algorithm_comparison_chart.pdf Graphic file (type pdf)
-<use figures/output/algorithm_comparison_chart.pdf>
-Package pdftex.def Info: figures/output/algorithm_comparison_chart.pdf  used on
- input line 402.
-(pdftex.def)             Requested size: 430.31812pt x 300.98302pt.
-) (./numerical-validation.tex
-<figures/output/cubic_trajectories.pdf, id=1394, 411.62723pt x 426.41685pt>
+[20]) (./numerical-validation.tex
+<figures/output/cubic_trajectories.pdf, id=824, 411.62723pt x 426.41685pt>
 File: figures/output/cubic_trajectories.pdf Graphic file (type pdf)
 <use figures/output/cubic_trajectories.pdf>
 Package pdftex.def Info: figures/output/cubic_trajectories.pdf  used on input l
@@ -1622,254 +1341,144 @@ ine 12.
 (pdftex.def)             Requested size: 452.9679pt x 469.24216pt.
 
 
-[38]
-
-[39]
-
-LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
-(Font)              using `OT1/cmr/m/sc' instead on input line 74.
-
-
-
-[40 <./figures/output/algorithm_comparison_chart.pdf>]
-
-[41 <./figures/output/cubic_trajectories.pdf>]
-Overfull \hbox (3.79315pt too wide) in paragraph at lines 99--99
-[]|\OT1/cmr/bx/n/10.95 Preperiod| 
- []
-
-
-Underfull \hbox (badness 4048) in paragraph at lines 101--101
-[]|\OT1/cmr/m/n/10.95 Quadratic Ir-ra-
- []
-
-
-Underfull \hbox (badness 4048) in paragraph at lines 102--102
-[]|\OT1/cmr/m/n/10.95 Quadratic Ir-ra-
- []
-
-
-Underfull \hbox (badness 4048) in paragraph at lines 103--103
-[]|\OT1/cmr/m/n/10.95 Quadratic Ir-ra-
- []
-
-
-Overfull \hbox (50.99348pt too wide) in paragraph at lines 132--133
-\OT1/cmr/m/n/10.95 od-ic-ity with prepe-riod 1 and pe-riod 2. The pat-tern of p
-airs $(\OML/cmm/m/it/10.95 a[]; a[]\OT1/cmr/m/n/10.95 )$ is: $(1\OML/cmm/m/it/1
-0.95 ; \OT1/cmr/m/n/10.95 1)\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 (1\OML/cmm
-/m/it/10.95 ; \OT1/cmr/m/n/10.95 3)\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 (\O
-MS/cmsy/m/n/10.95 ^^@\OT1/cmr/m/n/10.95 1\OML/cmm/m/it/10.95 ; \OMS/cmsy/m/n/10
-.95 ^^@\OT1/cmr/m/n/10.95 1)\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 (0\OML/cmm
-/m/it/10.95 ; \OT1/cmr/m/n/10.95 0)\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 (0\
-OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 0)\OML/cmm/m/it/10.95 ; []$ 
- []
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
-(Font)              using `OT1/cmr/m/sc' instead on input line 136.
-
-
-
-[42]
-<figures/output/number_type_comparison.pdf, id=1586, 715.3463pt x 426.17633pt>
-File: figures/output/number_type_comparison.pdf Graphic file (type pdf)
-<use figures/output/number_type_comparison.pdf>
-Package pdftex.def Info: figures/output/number_type_comparison.pdf  used on inp
-ut line 155.
-(pdftex.def)             Requested size: 452.9679pt x 269.85811pt.
-
-
-[43 <./figures/output/number_type_comparison.pdf>]
-
-LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
-(Font)              using `OT1/cmr/m/sc' instead on input line 213.
-
-
-
-[44]
-
-[45]
-<figures/output/periodicity_detection.pdf, id=1671, 570.91418pt x 426.05548pt>
-File: figures/output/periodicity_detection.pdf Graphic file (type pdf)
-<use figures/output/periodicity_detection.pdf>
-Package pdftex.def Info: figures/output/periodicity_detection.pdf  used on inpu
-t line 276.
-(pdftex.def)             Requested size: 452.9679pt x 338.03638pt.
-
-
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 
-[46 <./figures/output/periodicity_detection.pdf>]
+[21]
 
-[47]
-Underfull \hbox (badness 10000) in paragraph at lines 388--388
-[]|\OT1/cmr/bx/sc/10.95 Handle com-
- []
+[22 <./figures/output/cubic_trajectories.pdf>]
+
+[23]
+
+[24]
+<figures/output/number_type_comparison.pdf, id=933, 715.3463pt x 426.17633pt>
+File: figures/output/number_type_comparison.pdf Graphic file (type pdf)
+<use figures/output/number_type_comparison.pdf>
+Package pdftex.def Info: figures/output/number_type_comparison.pdf  used on inp
+ut line 159.
+(pdftex.def)             Requested size: 452.9679pt x 269.85811pt.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 388--389
+[25 <./figures/output/number_type_comparison.pdf>]
+
+[26]
+<figures/output/periodicity_detection.pdf, id=1009, 570.91418pt x 426.05548pt>
+File: figures/output/periodicity_detection.pdf Graphic file (type pdf)
+<use figures/output/periodicity_detection.pdf>
+Package pdftex.def Info: figures/output/periodicity_detection.pdf  used on inpu
+t line 280.
+(pdftex.def)             Requested size: 452.9679pt x 338.03638pt.
+
+
+[27]
+
+[28 <./figures/output/periodicity_detection.pdf>]
+
+[29]
+Underfull \hbox (badness 10000) in paragraph at lines 392--393
 []|\OT1/cmr/m/n/10.95 Yes, with phase-preserving
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 390--390
-[]|\OT1/cmr/bx/sc/10.95 Numerical
+Overfull \hbox (7.48299pt too wide) in paragraph at lines 398--398
+[]|\OT1/cmr/bx/n/10.95 Implementation| 
  []
 
 
-Overfull \hbox (7.48299pt too wide) in paragraph at lines 394--394
-[]|\OT1/cmr/bx/sc/10.95 Implementation
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 394--394
+Underfull \hbox (badness 10000) in paragraph at lines 398--398
 []|\OT1/cmr/m/n/10.95 Moderate (pro-jec-tive arith-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 396--396
-[]|\OT1/cmr/bx/sc/10.95 Distinguishing
- []
-
-
-Underfull \hbox (badness 1609) in paragraph at lines 396--397
+Underfull \hbox (badness 1609) in paragraph at lines 400--401
 []|\OT1/cmr/m/n/10.95 Higher for cu-bic vs. non-
  []
 
 
-LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
-(Font)              using `OT1/cmr/m/sc' instead on input line 402.
 
-
-LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
-(Font)              using `OT1/cmr/m/sc' instead on input line 404.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
-(Font)              using `OT1/cmr/m/sc' instead on input line 406.
-
-
-
-[48]
-<figures/algorithmic_convergence.pdf, id=1763, 859.79654pt x 507.0832pt>
+[30]
+<figures/algorithmic_convergence.pdf, id=1105, 859.79654pt x 507.0832pt>
 File: figures/algorithmic_convergence.pdf Graphic file (type pdf)
 <use figures/algorithmic_convergence.pdf>
 Package pdftex.def Info: figures/algorithmic_convergence.pdf  used on input lin
-e 421.
+e 426.
 (pdftex.def)             Requested size: 452.9679pt x 267.15115pt.
-<figures/convergence_rate_visualization.pdf, id=1765, 715.50626pt x 496.76154pt
+<figures/convergence_rate_visualization.pdf, id=1107, 715.50626pt x 496.76154pt
 >
 File: figures/convergence_rate_visualization.pdf Graphic file (type pdf)
 <use figures/convergence_rate_visualization.pdf>
 Package pdftex.def Info: figures/convergence_rate_visualization.pdf  used on in
-put line 432.
+put line 437.
 (pdftex.def)             Requested size: 452.9679pt x 314.48499pt.
 ) (./objections-tex.tex
 Package hyperref Info: bookmark level for unknown objection defaults to 0 on in
-put line 10.
+put line 6.
 Package hyperref Info: bookmark level for unknown response defaults to 0 on inp
-ut line 14.
+ut line 10.
 
 
-[49]
+[31]
 
-[50 <./figures/algorithmic_convergence.pdf>]
+[32 <./figures/algorithmic_convergence.pdf>]
 
-[51 <./figures/convergence_rate_visualization.pdf>]
+[33 <./figures/convergence_rate_visualization.pdf>]
 
-[52]
+[34]) (./conclusion.tex
 
-[53]
+[35]) (./main.bbl)
 
-[54]
-
-[55]) (./conclusion.tex
-
-[56])
-
-[57] (./main.bbl)
-
-[58]
-
-! LaTeX Error: \begin{proof} on input line 411 ended by \end{document}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.121 \end{document}
-                    
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-(./main.aux)
+[36] (./main.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
-
-
-LaTeX Font Warning: Some font shapes were not available, defaults substituted.
-
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 2D83B0F5868DF595641D78E756E42CAC;15722.
- )
-(\end occurred inside a group at level 1)
-
-### semi simple group (level 1) entered at line 411 (\begingroup)
-### bottom level 
+(rerunfilecheck)             Checksum: 32EC7EB80826B0D30ECF8228B190D3FC;9894.
+ ) 
 Here is how much of TeX's memory you used:
- 38087 strings out of 473190
- 893373 string characters out of 5705898
- 1391803 words of memory out of 5000000
- 60136 multiletter control sequences out of 15000+600000
- 580990 words of font info for 115 fonts, out of 8000000 for 9000
+ 37925 strings out of 473190
+ 890330 string characters out of 5705898
+ 1392171 words of memory out of 5000000
+ 60083 multiletter control sequences out of 15000+600000
+ 577554 words of font info for 102 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,15n,87p,1219b,900s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/Cellar/texlive/20250308_1/share/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmbx10.pfb></usr/local/Cellar/texlive/20250308_1/share/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/Cellar/texlive/
-20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/lo
-cal/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mex10.pfb></usr/local/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmmi10.pfb></usr/local/Cellar/texlive/20250308_1/share/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/Cellar/texlive/2025030
-8_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/Cella
-r/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>
-</usr/local/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmr12.pfb></usr/local/Cellar/texlive/20250308_1/share/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmr17.pfb></usr/local/Cellar/texlive/20250308_1/share/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/Cellar/texlive/20
-250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/C
-ellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.p
+ 84i,14n,87p,755b,782s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmbx10.pfb></usr/local/Cellar/texlive/20250308_1/share/texmf-dist/font
+s/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/Cellar/texlive/20250308_1/sha
+re/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/Cellar/tex
+live/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></us
+r/local/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmmi10.pfb></usr/local/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmmi6.pfb></usr/local/Cellar/texlive/20250308_1/share/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/Cellar/texlive/2025
+0308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/Ce
+llar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.p
 fb></usr/local/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmr9.pfb></usr/local/Cellar/texlive/20250308_1/share/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/Cellar/texlive/20250308_1/shar
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/Cellar/texliv
-e/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/lo
-cal/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mti10.pfb></usr/local/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmtt10.pfb></usr/local/Cellar/texlive/20250308_1/share/texmf-d
-ist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/Cellar/texlive/2
-0250308_1/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr
-/local/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-super/s
-fbx1000.pfb></usr/local/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/
-public/cm-super/sfbx1095.pfb></usr/local/Cellar/texlive/20250308_1/share/texmf-
-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/Cellar/texlive/202503
-08_1/share/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb></usr/local/Cell
-ar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb
-></usr/local/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-s
-uper/sfrm1000.pfb></usr/local/Cellar/texlive/20250308_1/share/texmf-dist/fonts/
-type1/public/cm-super/sfrm1095.pfb></usr/local/Cellar/texlive/20250308_1/share/
-texmf-dist/fonts/type1/public/cm-super/sfti1095.pfb>
-Output written on main.pdf (58 pages, 795157 bytes).
+sfonts/cm/cmr17.pfb></usr/local/Cellar/texlive/20250308_1/share/texmf-dist/font
+s/type1/public/amsfonts/cm/cmr6.pfb></usr/local/Cellar/texlive/20250308_1/share
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/Cellar/texlive/
+20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local
+/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
+10.pfb></usr/local/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmsy8.pfb></usr/local/Cellar/texlive/20250308_1/share/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/Cellar/texlive/20250308_1
+/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/Cellar/
+texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.
+pfb></usr/local/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/a
+msfonts/symbols/msbm10.pfb></usr/local/Cellar/texlive/20250308_1/share/texmf-di
+st/fonts/type1/public/cm-super/sfbx1095.pfb></usr/local/Cellar/texlive/20250308
+_1/share/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb></usr/local/Cellar
+/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb><
+/usr/local/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-sup
+er/sfrm1000.pfb></usr/local/Cellar/texlive/20250308_1/share/texmf-dist/fonts/ty
+pe1/public/cm-super/sfrm1095.pfb></usr/local/Cellar/texlive/20250308_1/share/te
+xmf-dist/fonts/type1/public/cm-super/sfti1095.pfb>
+Output written on main.pdf (36 pages, 580426 bytes).
 PDF statistics:
- 2315 PDF objects out of 2487 (max. 8388607)
- 1378 compressed objects within 14 object streams
- 526 named destinations out of 1000 (max. 500000)
- 633 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1591 PDF objects out of 1728 (max. 8388607)
+ 1006 compressed objects within 11 object streams
+ 419 named destinations out of 1000 (max. 500000)
+ 445 words of extra memory for PDF output out of 10000 (max. 10000000)
 

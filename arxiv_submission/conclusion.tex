@@ -1,33 +1,21 @@
 \section{Conclusion}\label{sec:conclusion}
 
-We have presented a comprehensive solution to Hermite's problem through two complementary approaches: the Homogeneous Augmented Projective Diophantine (\HAPD) algorithm and the modified sin²-algorithm. Both successfully detect cubic irrationals through periodicity, including those with complex conjugate roots.
-
-Our solution has several key components:
-
-First, we demonstrated that direct analogies to continued fractions for quadratic irrationals inevitably fail for cubic irrationals, as proven in Section~\ref{sec:galois_theory}. This explains why creating a periodic continued fraction expansion for cubic irrationals has remained elusive.
-
-Second, we introduced the \HAPD{} algorithm, which operates in projective space without subtractive terms. This algorithm extends Karpenkov's projective approach to accommodate all cubic irrationals, including those with complex conjugate roots. The \HAPD{} algorithm produces eventually periodic sequences precisely for cubic irrationals.
-
-Third, we developed a modified sin²-algorithm that extends Karpenkov's subtractive approach to handle cubic irrationals with complex conjugate roots. This algorithm employs a phase-preserving floor function and cubic field correction to maintain the essential algebraic relationships in the complex domain.
-
-Fourth, we provided rigorous mathematical analysis establishing that both algorithms exhibit periodicity precisely for cubic irrationals. This dual approach provides strong evidence that periodicity is a fundamental property of cubic field structure, independent of the specific algorithmic approach.
-
-Through extensive numerical validation, we confirmed that both algorithms correctly distinguish cubic irrationals from other number types with high precision. This validation covered various test cases, including cubic equations with different Galois group structures and edge cases near discriminant boundaries.
-
-The approaches presented in this paper build upon Karpenkov's work \cite{Karpenkov2019, Karpenkov2022} but extend beyond it in significant ways. While Karpenkov's original sin²-algorithm offered a solution for the totally-real cubic case, our dual approach extends to all cubic irrationals, providing a complete resolution to Hermite's question.
-
-Looking forward, this work opens several promising research directions:
+We have solved Hermite's problem through two approaches: the \HAPD algorithm and the modified sin²-algorithm. Both characterize cubic irrationals with complex conjugate roots through periodicity. Our solution consists of:
 
 \begin{enumerate}
-    \item \textbf{Higher-degree generalizations:} Can similar algorithms be developed for detecting irrationals of higher algebraic degree? The projective space approach seems particularly amenable to extension.
-    
-    \item \textbf{Computational complexity:} What are the optimal implementations of these algorithms, and how do their time and space complexities compare to other algorithms for detecting algebraic irrationals?
-    
-    \item \textbf{Geometric interpretation:} Both algorithms have natural geometric interpretations. Further exploration of these geometric perspectives may yield deeper insights into the connection between periodicity and algebraic structure.
-    
-    \item \textbf{Applications:} These algorithms may find applications in various areas, including integer relation detection, lattice basis reduction, and cryptographic systems based on algebraic number fields.
-    
-    \item \textbf{Connections to dynamical systems:} The periodicity properties demonstrated here suggest deeper connections to ergodic theory and dynamical systems on homogeneous spaces, particularly in relation to Dirichlet groups and their actions.
+\item Proof that cubic irrationals cannot have periodic continued fraction expansions, necessitating higher-dimensional methods
+\item The \HAPD algorithm operating in projective space, producing eventually periodic sequences precisely for cubic irrationals
+\item A modified sin²-algorithm with phase-preserving floor function handling complex conjugates
+\item Proof of equivalence between both approaches, demonstrating periodicity as an intrinsic property of cubic fields
 \end{enumerate}
 
-In summary, this paper provides a comprehensive solution to Hermite's problem through two complementary approaches. The dual nature of this solution not only resolves the longstanding question but also illuminates the fundamental connection between periodicity and cubic field structure.
+Numerical validation confirms both algorithms correctly classify number types across test cases including different Galois group structures and discriminant edge cases.
+
+This approach generalizes naturally to several directions:
+\begin{enumerate}
+\item Higher-degree algebraic irrationals
+\item Optimized implementations with quantified complexity bounds
+\item Geometric interpretations in projective and hyperbolic spaces
+\item Applications to integer relation detection and lattice basis reduction
+\item Connections to ergodic theory via Dirichlet groups on homogeneous spaces
+\end{enumerate}

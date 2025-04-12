@@ -1,59 +1,30 @@
 \section{Introduction}\label{sec:intro}
 
-Hermite's problem, originally posed by Charles Hermite in 1848, addresses a fundamental question in number theory: given any cubic irrational number, can we find an algorithm that produces a purely periodic sequence? For quadratic irrationals, the answer has long been known—the simple continued fraction algorithm produces a purely periodic sequence if and only if the number is a reduced quadratic irrational. However, for cubic irrationals, the problem has remained incompletely solved for over 170 years, particularly for cubic irrationals with complex conjugate roots.
+Hermite's original problem, raised in correspondence with Jacobi in 1848 \cite{Hermite1848}, asked for a natural generalization of continued fractions that would characterize cubic irrationals through periodicity. For quadratic irrationals, the answer is known—continued fractions produce an eventually periodic sequence if and only if a number is quadratic irrational. The cubic case has remained unresolved for cubic irrationals with complex conjugate roots.
 
-This paper presents two complementary algorithms that successfully address Hermite's problem for cubic irrationals with complex conjugate roots, completing a significant chapter in the historical development of periodicity detection algorithms.
-
-\subsection{Historical Context and Previous Approaches}
-
-The history of Hermite's problem is interwoven with the development of continued fractions and their multidimensional extensions. Traditional continued fractions have been a powerful tool for understanding the structure of quadratic irrationals since at least Euler's time, providing elegant representations and revealing fundamental properties about their periodicity. However, when applied to cubic irrationals, continued fractions fail to produce purely periodic expansions in general. This limitation led to the development of various multidimensional continued fraction algorithms, including:
-
+Four main approaches have been previously attempted:
 \begin{itemize}
-\item Jacobi-Perron algorithm, introduced by Jacobi in 1868 and later developed by Perron, which generalizes continued fractions to higher dimensions but does not guarantee periodicity for cubic irrationals with complex conjugate roots.
-
-\item Brun's algorithm, introduced in 1920, which modifies the Jacobi-Perron approach but still faces limitations similar to its predecessor.
-
-\item Poincaré's algorithm, developed in the late 19th century, which offers a geometric interpretation of multidimensional continued fractions but lacks consistent periodicity properties for the complex conjugate case.
-
-\item The subtractive algorithms of Karpenkov, which introduced innovative techniques including the sin²-algorithm that demonstrated periodicity for totally-real cubic irrationals but left the complex conjugate case open.
+\item Jacobi-Perron algorithm (1868): higher-dimensional but fails for complex conjugate roots
+\item Brun's algorithm (1920): modified Jacobi-Perron with similar limitations
+\item Poincaré's geometric approach: lacks consistent periodicity properties
+\item Karpenkov's sin²-algorithm: demonstrated periodicity for totally-real cubic irrationals only
 \end{itemize}
 
-Despite these advances, the challenge of finding a purely periodic representation for cubic irrationals with complex conjugate roots remained unsolved.
-
-\subsection{Our Contribution}
-
-This paper resolves Hermite's problem for cubic irrationals with complex conjugate roots by introducing two distinct but complementary algorithms:
-
+We resolve Hermite's problem by developing:
 \begin{enumerate}
-\item The Hermite Algorithm for Periodicity Detection (HAPD), presented in Section~\ref{sec:hapd_algorithm}, which employs projective transformations without subtractive terms, operating directly in projective space to detect periodicity.
-
-\item An extended sin²-algorithm, presented in Section~\ref{sec:subtractive_algorithm}, which builds upon Karpenkov's approach but incorporates a phase-preserving floor function and cubic field correction to handle complex conjugate roots.
+\item The Hermite Algorithm for Periodicity Detection (HAPD) operating in projective space, producing eventually periodic sequences if and only if the input is a cubic irrational
+\item A modified sin²-algorithm with phase-preserving floor function handling complex conjugate roots
 \end{enumerate}
 
-Both algorithms successfully produce purely periodic sequences for cubic irrationals with complex conjugate roots, providing a complete solution to Hermite's problem from two different mathematical perspectives. The dual approach strengthens our theoretical understanding and offers practical flexibility in implementation.
-
-Our contributions extend beyond the algorithms themselves to include:
-
-\subsection{Outline of the Paper}
-
-The remainder of this paper is organized as follows:
-
+This paper is organized as follows:
 \begin{itemize}
-    \item Section \ref{sec:galois_theory} demonstrates that cubic irrationals cannot have periodic continued fraction expansions, establishing why the problem requires a higher-dimensional approach.
-    
-    \item Section \ref{sec:hapd_algorithm} introduces the HAPD algorithm, extending Karpenkov's work to detect periodicity in cubic irrationals, while Section~\ref{sec:matrix_approach} develops a matrix verification approach.
-    
-    \item Section \ref{sec:matrix_approach} presents the matrix-based characterization of cubic irrationals and demonstrates its equivalence to the algorithmic approach.
-    
-    \item Section \ref{sec:equivalence} formally shows the equivalence between the HAPD algorithm and the matrix characterization.
-    
-    \item Section \ref{sec:subtractive_algorithm} presents our modified sin² algorithm for cubic irrationals with complex conjugate roots.
-    
-    \item Section \ref{sec:numerical_validation} provides numerical validation of our approach across different number types.
-    
-    \item Section \ref{sec:objections} addresses potential objections and edge cases, ensuring the completeness of the solution.
-    
-    \item Section \ref{sec:conclusion} summarizes our findings and discusses their implications for number theory and algorithmic approaches to algebraic number detection.
+\item Section \ref{sec:galois_theory}: proof that cubic irrationals cannot have periodic continued fraction expansions
+\item Section \ref{sec:hapd_algorithm}: the HAPD algorithm and its theoretical foundation
+\item Section \ref{sec:matrix_approach}: matrix-based characterization via companion matrices
+\item Section \ref{sec:matrix_verification}: enhanced matrix verification method
+\item Section \ref{sec:equivalence}: equivalence between algorithmic and matrix approaches
+\item Section \ref{sec:subtractive_algorithm}: modified sin²-algorithm
+\item Section \ref{sec:numerical_validation}: numerical validation across different number classes
+\item Section \ref{sec:objections}: theoretical objections and edge cases
+\item Section \ref{sec:conclusion}: implications and generalizations
 \end{itemize}
-
-Throughout, we maintain mathematical rigor while ensuring that the conceptual insights are accessible to readers with a solid foundation in algebraic number theory and projective geometry.

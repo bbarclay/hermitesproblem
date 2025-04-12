@@ -1,36 +1,9 @@
 \begin{thebibliography}{1}
 
-\bibitem{Cox2012}
-David~A. Cox.
-\newblock {\em Galois Theory}.
-\newblock John Wiley \& Sons, 2nd edition, 2012.
-
-\bibitem{Horn2012}
-Roger~A. Horn and Charles~R. Johnson.
-\newblock {\em Matrix Analysis}.
-\newblock Cambridge University Press, 2nd edition, 2012.
-
-\bibitem{Karpenkov2019}
-Oleg Karpenkov.
-\newblock Periodicity of the $\sin^2$-algorithm for cubic totally-real
-  irrationalities.
-\newblock {\em Journal of Number Theory}, 195:206--228, 2019.
-
-\bibitem{Karpenkov2022}
-Oleg Karpenkov.
-\newblock On hermite's problem, jacobi-perron type algorithms, and dirichlet
-  groups.
-\newblock {\em Acta Arithmetica}, 203(1):27--48, 2022.
-
-\bibitem{Lagrange1770}
-Joseph-Louis Lagrange.
-\newblock Additions au mémoire sur la résolution des équations numériques.
-\newblock {\em Mémoires de l'Académie Royale des Sciences et Belles-Lettres
-  de Berlin}, 24:111--180, 1770.
-
-\bibitem{Perron1907}
-Oskar Perron.
-\newblock Grundlagen für eine theorie des jacobischen kettenbruchalgorithmus.
-\newblock {\em Mathematische Annalen}, 64:1--76, 1907.
+\bibitem{Hermite1848}
+Charles Hermite.
+\newblock Letter to jacobi on continued fractions and number theory.
+\newblock {\em Correspondence with Jacobi}, 1848.
+\newblock Published posthumously in collected works.
 
 \end{thebibliography}
