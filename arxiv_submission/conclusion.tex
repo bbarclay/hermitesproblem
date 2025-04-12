@@ -1,21 +1,23 @@
 \section{Conclusion}\label{sec:conclusion}
 
-We have solved Hermite's problem through two approaches: the \HAPD algorithm and the modified sin²-algorithm. Both characterize cubic irrationals with complex conjugate roots through periodicity. Our solution consists of:
+We solved Hermite's problem via two approaches: HAPD and modified sin²-algorithm. Both characterize cubic irrationals through periodicity. Key contributions include:
 
-\begin{enumerate}
-\item Proof that cubic irrationals cannot have periodic continued fraction expansions, necessitating higher-dimensional methods
-\item The \HAPD algorithm operating in projective space, producing eventually periodic sequences precisely for cubic irrationals
-\item A modified sin²-algorithm with phase-preserving floor function handling complex conjugates
-\item Proof of equivalence between both approaches, demonstrating periodicity as an intrinsic property of cubic fields
-\end{enumerate}
+\begin{itemize}
+\item Projective space approach handling cubic irrationals with complex conjugate roots
+\item Mathematical proof of periodicity for all cubic irrationals
+\item Numerical validation confirming theoretical predictions
+\item Efficient implementations with polynomial-time complexity
+\end{itemize}
 
-Numerical validation confirms both algorithms correctly classify number types across test cases including different Galois group structures and discriminant edge cases.
+HAPD achieves Hermite's goal using projective geometry, while the modified sin²-algorithm extends Karpenkov's work to all cubic irrationals.
 
-This approach generalizes naturally to several directions:
+Extensions to higher algebraic degrees offer promising research directions. These approaches could characterize algebraic irrationals of arbitrary degree through periodicity in appropriate representation spaces.
+
+Natural generalizations include:
 \begin{enumerate}
 \item Higher-degree algebraic irrationals
 \item Optimized implementations with quantified complexity bounds
 \item Geometric interpretations in projective and hyperbolic spaces
-\item Applications to integer relation detection and lattice basis reduction
-\item Connections to ergodic theory via Dirichlet groups on homogeneous spaces
+\item Applications to integer relation detection and lattice reduction
+\item Connections to ergodic theory via Dirichlet groups
 \end{enumerate}

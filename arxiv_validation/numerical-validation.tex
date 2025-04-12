@@ -1,0 +1,15 @@
+\begin{table}[htbp]
+\centering
+\caption{Performance comparison between modified sin²-algorithm and HAPD algorithm}
+\label{tab:algorithm_comparison}
+% Using tabularx requires \usepackage{tabularx} in main.tex preamble
+\begin{tabularx}{\textwidth}{|l|c|c|X|c|} % Use X for wrapping column
+\hline
+\textbf{Algorithm} & \textbf{Avg. Period Len.} & \textbf{Iters. to Detect} & \textbf{Numerical Stability} & \textbf{Memory Usage} \\
+\hline
+Modified sin² & 9.6 & 14.3 & Good & Lower \\
+\hline
+HAPD & 11.2 & 16.5 & Excellent & Higher \\
+\hline
+\end{tabularx}
+\end{table} 

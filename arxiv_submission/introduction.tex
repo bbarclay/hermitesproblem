@@ -1,30 +1,30 @@
 \section{Introduction}\label{sec:intro}
 
-Hermite's original problem, raised in correspondence with Jacobi in 1848 \cite{Hermite1848}, asked for a natural generalization of continued fractions that would characterize cubic irrationals through periodicity. For quadratic irrationals, the answer is known—continued fractions produce an eventually periodic sequence if and only if a number is quadratic irrational. The cubic case has remained unresolved for cubic irrationals with complex conjugate roots.
+Hermite's problem, posed to Jacobi in 1848 \cite{Hermite1848}, sought a generalization of continued fractions that would characterize cubic irrationals through periodicity. Continued fractions produce eventually periodic sequences precisely for quadratic irrationals, but the cubic case with complex conjugate roots remained unsolved.
 
-Four main approaches have been previously attempted:
+Previous approaches include:
 \begin{itemize}
-\item Jacobi-Perron algorithm (1868): higher-dimensional but fails for complex conjugate roots
-\item Brun's algorithm (1920): modified Jacobi-Perron with similar limitations
-\item Poincaré's geometric approach: lacks consistent periodicity properties
-\item Karpenkov's sin²-algorithm: demonstrated periodicity for totally-real cubic irrationals only
+\item Jacobi-Perron algorithm (1868): fails for complex conjugate roots
+\item Brun's algorithm (1920): similar limitations
+\item Poincaré's geometric approach: lacks consistent periodicity
+\item Karpenkov's sin²-algorithm: works only for totally-real cubics
 \end{itemize}
 
-We resolve Hermite's problem by developing:
+We resolve Hermite's problem through:
 \begin{enumerate}
-\item The Hermite Algorithm for Periodicity Detection (HAPD) operating in projective space, producing eventually periodic sequences if and only if the input is a cubic irrational
-\item A modified sin²-algorithm with phase-preserving floor function handling complex conjugate roots
+\item HAPD algorithm in projective space, producing periodic sequences if and only if the input is cubic irrational
+\item Modified sin²-algorithm handling complex conjugate roots via phase-preserving floor functions
 \end{enumerate}
 
-This paper is organized as follows:
+Contents:
 \begin{itemize}
-\item Section \ref{sec:galois_theory}: proof that cubic irrationals cannot have periodic continued fraction expansions
-\item Section \ref{sec:hapd_algorithm}: the HAPD algorithm and its theoretical foundation
-\item Section \ref{sec:matrix_approach}: matrix-based characterization via companion matrices
-\item Section \ref{sec:matrix_verification}: enhanced matrix verification method
-\item Section \ref{sec:equivalence}: equivalence between algorithmic and matrix approaches
-\item Section \ref{sec:subtractive_algorithm}: modified sin²-algorithm
-\item Section \ref{sec:numerical_validation}: numerical validation across different number classes
-\item Section \ref{sec:objections}: theoretical objections and edge cases
-\item Section \ref{sec:conclusion}: implications and generalizations
+\item \S\ref{sec:galois_theory}: proof of continued fraction non-periodicity
+\item \S\ref{sec:hapd_algorithm}: HAPD algorithm foundations
+\item \S\ref{sec:matrix_approach}: matrix characterization via companion matrices
+\item \S\ref{sec:matrix_verification}: matrix verification method
+\item \S\ref{sec:equivalence}: equivalence between approaches
+\item \S\ref{sec:subtractive_algorithm}: modified sin²-algorithm
+\item \S\ref{sec:numerical_validation}: numerical validation
+\item \S\ref{sec:objections}: addressing theoretical objections
+\item \S\ref{sec:conclusion}: implications and generalizations
 \end{itemize}

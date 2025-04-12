@@ -1,6 +1,6 @@
 \section{Matrix Approach}\label{sec:matrix_approach}
 
-This section develops a matrix-based approach to detecting cubic irrationals, offering an alternative computational perspective to the HAPD algorithm.
+The matrix approach offers a direct method for detecting cubic irrationals with distinct computational advantages.
 
 \subsection{Companion Matrix and Trace Sequence}
 
@@ -23,18 +23,18 @@ Let $\alpha$ be a cubic irrational with minimal polynomial $p(x)$ and companion 
     \item $t_n = \alpha^n + \alpha'^n + \alpha''^n$ where $\alpha', \alpha''$ are conjugates of $\alpha$
     \item $(t_n)$ is an integer sequence
     \item $(t_n)$ satisfies the recurrence relation determined by $p(x)$
-    \item For cubic irrationals, $(t_n)$ exhibits a periodic pattern in its values modulo a fixed integer
+    \item For cubic irrationals, $(t_n)$ exhibits periodic patterns modulo a fixed integer
 \end{enumerate}
 \end{theorem}
 
 \begin{proof}
-The eigenvalues of $C_p$ are precisely the roots of $p(x)$, thus $\alpha, \alpha', \alpha''$ for a cubic. Since trace is the sum of eigenvalues, $\text{Tr}(C_p^n) = \alpha^n + \alpha'^n + \alpha''^n$. 
+The eigenvalues of $C_p$ are the roots of $p(x)$: $\alpha, \alpha', \alpha''$. Since trace is the sum of eigenvalues, $\text{Tr}(C_p^n) = \alpha^n + \alpha'^n + \alpha''^n$. 
 
-Since $C_p$ has integer entries, $\text{Tr}(C_p^n)$ must be an integer for all $n$. 
+$C_p$ has integer entries, so $\text{Tr}(C_p^n)$ must be an integer for all $n$. 
 
-By the Cayley-Hamilton theorem, $p(C_p) = 0$, which induces the same recurrence relation on the traces as $p(x)$ does on powers of $\alpha$.
+By the Cayley-Hamilton theorem, $p(C_p) = 0$, inducing the same recurrence relation on the traces as $p(x)$ does on powers of $\alpha$.
 
-For cubic irrationals, the trace sequence demonstrates periodic patterns when examined modulo certain integers, as we show in the following theorem.
+The trace sequence demonstrates periodic patterns when examined modulo certain integers, as shown in the following theorem.
 \end{proof}
 
 \subsection{Periodicity Detection in Trace Sequences}
@@ -66,12 +66,12 @@ For the minimal polynomial $p(x) = x^2 + x + 1$, the trace sequence $(t_n)$ foll
 \subsection{Computational Advantages}
 
 \begin{proposition}[Efficiency]
-The matrix approach for detecting cubic irrationals has several computational advantages:
+The matrix approach offers several computational advantages:
 \begin{enumerate}
-    \item Matrix multiplication requires $O(1)$ operations per iteration (fixed $3 \times 3$ size)
-    \item Only trace values need to be stored, requiring $O(p)$ memory where $p$ is the period
-    \item Period detection is often faster than in the HAPD algorithm
-    \item Working with integer matrices avoids floating-point precision issues
+    \item Fixed $3 \times 3$ matrix size requires O(1) operations per iteration
+    \item Storage limited to trace values: O(p) memory where p is the period
+    \item Typically faster period detection than HAPD algorithm
+    \item Integer matrices avoid floating-point precision issues
 \end{enumerate}
 \end{proposition}
 
@@ -80,7 +80,7 @@ For a cubic irrational $\alpha$, the period of the HAPD algorithm equals the min
 \end{theorem}
 
 \begin{proof}[Sketch]
-Both approaches capture the same underlying structure of the algebraic number. The HAPD algorithm tracks the orbit of $(\alpha, \alpha^2, 1)$ under a specific transformation, while the matrix approach tracks powers of the companion matrix. These are equivalent representations of the same algebraic structure, hence their periods must coincide.
+Both approaches capture the same underlying structure. The HAPD algorithm tracks the orbit of $(\alpha, \alpha^2, 1)$ under a specific transformation, while the matrix approach tracks powers of the companion matrix. These represent the same algebraic structure, hence their periods coincide.
 \end{proof}
 
 \subsection{Relationship to Cubic Fields}
@@ -102,7 +102,7 @@ If $\alpha$ is a unit in a cubic number field, then $\det(C_p) = \pm 1$ and the 
 \end{proposition}
 
 \begin{proposition}[Matrix Interpretation of HAPD]\label{prop:matrix_hapd}
-Each iteration of the HAPD algorithm corresponds to the application of a specific transformation matrix $T_i$ to the current state $(v_1, v_2, v_3)$, where the entries of $T_i$ depend on the integer parts $a_1$ and $a_2$ computed in that iteration.
+Each HAPD iteration corresponds to applying a transformation matrix $T_i$ to the current state $(v_1, v_2, v_3)$, where $T_i$ entries depend on the integer parts $a_1$ and $a_2$ computed in that iteration.
 \end{proposition}
 
 \begin{theorem}[Matrix Interpretation of Periodicity]\label{thm:matrix_periodicity}
@@ -134,4 +134,4 @@ The HAPD algorithm produces an eventually periodic sequence for input $\alpha$ i
 \label{alg:matrix_cubic}
 \end{figure}
 
-This matrix-based approach provides an elegant alternative to the HAPD algorithm, with both theoretical insights into algebraic number structure and practical computational advantages.
+This matrix approach provides both theoretical insights into algebraic number structure and practical computational advantages.

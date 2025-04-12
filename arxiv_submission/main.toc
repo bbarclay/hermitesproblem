@@ -2,48 +2,52 @@
 \contentsline {section}{\numberline {2}Galois Theoretic Proof of Non-Periodicity}{3}{section.2}%
 \contentsline {section}{\numberline {3}Hermite Algorithm for Periodicity Detection (\textsc {HAPD}\xspace )}{5}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Algorithm Definition}{5}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Projective Geometry Interpretation}{9}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.2}Projective Geometry Interpretation}{5}{subsection.3.2}%
 \contentsline {subsection}{\numberline {3.3}Main Periodicity Theorem}{9}{subsection.3.3}%
-\contentsline {section}{\numberline {4}Matrix Approach}{10}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Companion Matrix and Trace Sequence}{10}{subsection.4.1}%
+\contentsline {section}{\numberline {4}Matrix Approach}{9}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Companion Matrix and Trace Sequence}{9}{subsection.4.1}%
 \contentsline {subsection}{\numberline {4.2}Periodicity Detection in Trace Sequences}{10}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Computational Advantages}{11}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.3}Computational Advantages}{10}{subsection.4.3}%
 \contentsline {subsection}{\numberline {4.4}Relationship to Cubic Fields}{11}{subsection.4.4}%
 \contentsline {section}{\numberline {5}Enhanced Matrix-Based Verification}{11}{section.5}%
 \contentsline {subsection}{\numberline {5.1}The Matrix Verification Method}{12}{subsection.5.1}%
 \contentsline {subsection}{\numberline {5.2}Theoretical Foundation}{12}{subsection.5.2}%
 \contentsline {subsection}{\numberline {5.3}Numerical Validation}{13}{subsection.5.3}%
-\contentsline {subsection}{\numberline {5.4}Comparison with the HAPD Algorithm}{14}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.4}Comparison with the HAPD Algorithm}{13}{subsection.5.4}%
 \contentsline {subsection}{\numberline {5.5}Implementation Strategy}{14}{subsection.5.5}%
-\contentsline {section}{\numberline {6}Equivalence of Characterizations}{15}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Structural Equivalence}{15}{subsection.6.1}%
+\contentsline {section}{\numberline {6}Equivalence of Algorithmic and Matrix Approaches}{14}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Structural Equivalence}{14}{subsection.6.1}%
 \contentsline {subsection}{\numberline {6.2}Algebraic Connection}{15}{subsection.6.2}%
-\contentsline {subsection}{\numberline {6.3}Computational Perspective}{16}{subsection.6.3}%
-\contentsline {subsection}{\numberline {6.4}Theoretical Unification}{17}{subsection.6.4}%
-\contentsline {subsection}{\numberline {6.5}Generalizations and Extensions}{18}{subsection.6.5}%
-\contentsline {section}{\numberline {7}Subtractive Algorithm}{18}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Algorithm Description}{19}{subsection.7.1}%
-\contentsline {subsection}{\numberline {7.2}Theoretical Properties}{19}{subsection.7.2}%
-\contentsline {subsection}{\numberline {7.3}Projective Geometric Interpretation}{20}{subsection.7.3}%
-\contentsline {subsection}{\numberline {7.4}Numerical Stability}{20}{subsection.7.4}%
-\contentsline {subsection}{\numberline {7.5}Implementation Considerations}{21}{subsection.7.5}%
-\contentsline {section}{\numberline {8}Numerical Validation and Implementation}{21}{section.8}%
-\contentsline {subsection}{\numberline {8.1}Implementation of the HAPD Algorithm}{21}{subsection.8.1}%
-\contentsline {subsection}{\numberline {8.2}Test Cases and Results}{24}{subsection.8.2}%
-\contentsline {subsection}{\numberline {8.3}Matrix Approach Implementation}{25}{subsection.8.3}%
-\contentsline {subsection}{\numberline {8.4}Combined Approach and Practical Algorithm}{27}{subsection.8.4}%
-\contentsline {subsection}{\numberline {8.5}Validation of the Subtractive Algorithm}{27}{subsection.8.5}%
-\contentsline {subsubsection}{\numberline {8.5.1}Experimental Results}{30}{subsubsection.8.5.1}%
-\contentsline {subsubsection}{\numberline {8.5.2}Comparison with the HAPD Algorithm}{30}{subsubsection.8.5.2}%
-\contentsline {subsection}{\numberline {8.6}Benchmarking and Convergence Analysis}{31}{subsection.8.6}%
-\contentsline {section}{\numberline {9}Addressing Potential Objections}{31}{section.9}%
-\contentsline {subsection}{\numberline {9.1}Relationship to Classical Continued Fractions}{31}{subsection.9.1}%
-\contentsline {subsection}{\numberline {9.2}Numerical Implementation}{34}{subsection.9.2}%
-\contentsline {subsection}{\numberline {9.3}Variation Among Cubic Irrationals}{34}{subsection.9.3}%
-\contentsline {subsection}{\numberline {9.4}Connection to Prior Approaches}{34}{subsection.9.4}%
-\contentsline {subsection}{\numberline {9.5}Encoding Function}{34}{subsection.9.5}%
-\contentsline {subsection}{\numberline {9.6}Complex Cubic Irrationals}{35}{subsection.9.6}%
-\contentsline {subsection}{\numberline {9.7}Computational Complexity}{35}{subsection.9.7}%
-\contentsline {subsection}{\numberline {9.8}Higher Degrees Generalization}{35}{subsection.9.8}%
-\contentsline {subsection}{\numberline {9.9}Uniqueness of Solution}{35}{subsection.9.9}%
-\contentsline {section}{\numberline {10}Conclusion}{36}{section.10}%
+\contentsline {subsection}{\numberline {6.3}Computational Perspective}{15}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Unified Theoretical Framework}{15}{subsection.6.4}%
+\contentsline {subsection}{\numberline {6.5}Implications for Hermite's Problem}{16}{subsection.6.5}%
+\contentsline {subsection}{\numberline {6.6}Generalization to Higher Degrees}{16}{subsection.6.6}%
+\contentsline {subsection}{\numberline {6.7}Algorithmic Extension}{17}{subsection.6.7}%
+\contentsline {section}{\numberline {7}Subtractive Algorithm}{17}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Algorithm Description}{17}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Theoretical Properties}{18}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Projective Geometric Interpretation}{19}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.4}Numerical Stability}{19}{subsection.7.4}%
+\contentsline {subsection}{\numberline {7.5}Implementation Considerations}{19}{subsection.7.5}%
+\contentsline {section}{\numberline {8}Numerical Validation}{19}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Implementation of the \textsc {HAPD}\xspace {} Algorithm}{19}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Numerical Stability Considerations}{20}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}Results from the \textsc {HAPD}\xspace {} Algorithm}{20}{subsection.8.3}%
+\contentsline {subsection}{\numberline {8.4}Limitations and Edge Cases}{21}{subsection.8.4}%
+\contentsline {subsection}{\numberline {8.5}Matrix-Based Verification}{21}{subsection.8.5}%
+\contentsline {subsection}{\numberline {8.6}Comparative Analysis}{22}{subsection.8.6}%
+\contentsline {subsection}{\numberline {8.7}Combined Approach}{23}{subsection.8.7}%
+\contentsline {subsection}{\numberline {8.8}Validation of the Subtractive Algorithm}{23}{subsection.8.8}%
+\contentsline {subsection}{\numberline {8.9}Comparative Performance Analysis}{25}{subsection.8.9}%
+\contentsline {subsection}{\numberline {8.10}Efficiency and Scalability Analysis}{25}{subsection.8.10}%
+\contentsline {section}{\numberline {9}Addressing Potential Objections}{25}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Relationship to Classical Continued Fractions}{25}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}Numerical Implementation}{26}{subsection.9.2}%
+\contentsline {subsection}{\numberline {9.3}Variation Among Cubic Irrationals}{26}{subsection.9.3}%
+\contentsline {subsection}{\numberline {9.4}Connection to Prior Approaches}{26}{subsection.9.4}%
+\contentsline {subsection}{\numberline {9.5}Encoding Function}{26}{subsection.9.5}%
+\contentsline {subsection}{\numberline {9.6}Complex Cubic Irrationals}{27}{subsection.9.6}%
+\contentsline {subsection}{\numberline {9.7}Computational Complexity}{27}{subsection.9.7}%
+\contentsline {subsection}{\numberline {9.8}Higher Degrees Generalization}{27}{subsection.9.8}%
+\contentsline {subsection}{\numberline {9.9}Uniqueness of Solution}{27}{subsection.9.9}%
+\contentsline {section}{\numberline {10}Conclusion}{28}{section.10}%

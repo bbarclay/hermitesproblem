@@ -1,6 +1,6 @@
 \section{Galois Theoretic Proof of Non-Periodicity}\label{sec:galois_theory}
 
-Cubic irrationals cannot have periodic continued fraction expansions, which necessitates our higher-dimensional approach.
+Cubic irrationals cannot have periodic continued fraction expansions, necessitating our higher-dimensional approach.
 
 \begin{definition}[Continued Fraction Expansion]
 For $\alpha \in \mathbb{R}$, the continued fraction expansion is $[a_0; a_1, a_2, \ldots]$ where $a_0 = \floor{\alpha}$ and for $i \geq 1$, $a_i = \floor{\alpha_i}$ with $\alpha_0 = \alpha$ and $\alpha_{i+1} = \frac{1}{\alpha_i - a_i}$.
@@ -27,7 +27,7 @@ A real number $\alpha$ is a cubic irrational if it is a root of an irreducible p
 
 \begin{definition}[Galois Group]
 Let $L/K$ be a field extension. If $L$ is the splitting field of a 
-separable polynomial over $K$, then $\text{Aut}_K(L)$ is called the Galois group 
+separable polynomial over $K$, then $\text{Aut}_K(L)$ is the Galois group 
 of $L$ over $K$, denoted $\Gal(L/K)$.
 \end{definition}
 
@@ -48,11 +48,11 @@ If $\Q \subset F \subset \Q(\alpha)$, then $[\Q(\alpha):\Q] = [\Q(\alpha):F] \cd
 \end{proof}
 
 \begin{theorem}[Non-Periodicity of Cubic Irrationals]\label{thm:non_periodicity}
-If $\alpha$ is a cubic irrational, then the continued fraction expansion of $\alpha$ cannot be eventually periodic.
+Cubic irrationals cannot have eventually periodic continued fraction expansions.
 \end{theorem}
 
 \begin{proof}
-By contradiction. Suppose $\alpha$ is a cubic irrational with minimal polynomial $f(x) = x^3 + px^2 + qx + r \in \Z[x]$ having Galois group $S_3$ or $C_3$, and the continued fraction expansion of $\alpha$ is eventually periodic.
+Assume by contradiction that $\alpha$ is a cubic irrational with minimal polynomial $f(x) = x^3 + px^2 + qx + r \in \Z[x]$ having Galois group $S_3$ or $C_3$, and $\alpha$ has an eventually periodic continued fraction.
 
 By Theorem \ref{thm:lagrange}, $\alpha$ must be a quadratic irrational. Thus, $\exists A, B, C \in \Z$ with $A \neq 0$ and $\gcd(A, B, C) = 1$ such that:
 \begin{equation}\label{eq:quadratic}
@@ -74,12 +74,7 @@ Substituting \eqref{eq:alpha_squared} into \eqref{eq:cubic} and multiplying by $
 -B\alpha^2 - C\alpha - pB\alpha - pC + qA\alpha + rA = 0
 \end{equation}
 
-Substituting \eqref{eq:alpha_squared} again:
-\begin{align*}
--B\left(\frac{-B\alpha - C}{A}\right) - C\alpha - pB\alpha - pC + qA\alpha + rA = 0
-\end{align*}
-
-Simplifying:
+Substituting \eqref{eq:alpha_squared} again and simplifying:
 \begin{equation}\label{eq:combined}
 (B^2 - AC - pAB + qA^2)\alpha + (BC - pAC + rA^2) = 0
 \end{equation}
@@ -95,11 +90,11 @@ From \eqref{eq:coeff2}, assuming $C \neq 0$ (if $C = 0$, then $B = 0$ from \eqre
 B = \frac{pAC - rA^2}{C}
 \end{equation}
 
-Substituting \eqref{eq:B_value} into \eqref{eq:coeff1} and simplifying leads to a relation between the coefficients that implies the existence of a proper intermediate field between $\Q$ and $\Q(\alpha)$, contradicting Proposition \ref{prop:no_intermediate_field} for the $S_3$ case. For the $C_3$ case, $\alpha$ generates a field of degree 3 over $\Q$, which cannot contain a quadratic subfield.
+Substituting \eqref{eq:B_value} into \eqref{eq:coeff1} leads to a relation implying an intermediate field between $\Q$ and $\Q(\alpha)$, contradicting Proposition \ref{prop:no_intermediate_field} for the $S_3$ case. For the $C_3$ case, $\alpha$ generates a field of degree 3 over $\Q$, which cannot contain a quadratic subfield.
 \end{proof}
 
 \begin{corollary}\label{cor:cf_insufficient}
 No direct generalization of continued fractions preserving the connection between periodicity and algebraic degree can characterize cubic irrationals.
 \end{corollary}
 
-The \HAPD{} algorithm, operating in three-dimensional projective space, successfully characterizes cubic irrationals through periodicity.
+The \HAPD{} algorithm, operating in three-dimensional projective space, characterizes cubic irrationals through periodicity.

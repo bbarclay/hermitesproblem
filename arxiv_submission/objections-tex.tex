@@ -7,11 +7,11 @@ The \HAPD{} algorithm operates in three-dimensional projective space rather than
 \end{objection}
 
 \begin{response}
-We proved in Section \ref{sec:galois_theory} that a direct one-dimensional extension is mathematically impossible. The \HAPD{} algorithm satisfies Hermite's criteria by:
+Section \ref{sec:galois_theory} proves a direct one-dimensional extension is impossible. HAPD satisfies Hermite's criteria by:
 \begin{enumerate}
 \item Providing a systematic representation
-\item Producing eventually periodic sequences precisely for cubic irrationals
-\item Extending the pattern connecting periodicity to algebraic degree
+\item Producing periodic sequences precisely for cubic irrationals
+\item Extending the connection between periodicity and algebraic degree
 \end{enumerate}
 \end{response}
 
@@ -25,10 +25,10 @@ Both algorithms require high-precision arithmetic to reliably distinguish cubic 
 Implementation requires:
 \begin{enumerate}
 \item Arbitrary-precision arithmetic libraries
-\item Robust periodicity detection requiring multiple consecutive matches
+\item Robust periodicity detection with multiple consecutive matches
 \item Dual verification through matrix methods
 \end{enumerate}
-Empirical validation confirms 50-100 decimal digits suffice for moderate-sized examples.
+Empirical tests confirm 50-100 decimal digits suffice for moderate examples.
 \end{response}
 
 \subsection{Variation Among Cubic Irrationals}
