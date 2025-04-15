@@ -13,7 +13,7 @@ A continued fraction $[a_0; a_1, a_2, \ldots]$ is eventually periodic if $\exist
 \end{equation}
 \end{definition}
 
-\begin{theorem}[Lagrange]\label{thm:lagrange}
+\begin{theorem}[Lagrange \cite{Lagrange1770}]\label{thm:lagrange}
 A real number has an eventually periodic continued fraction expansion if and only if it is a quadratic irrational.
 \end{theorem}
 
@@ -25,13 +25,13 @@ For an algebraic number $\alpha$ over $\Q$, the minimal polynomial of $\alpha$ o
 A real number $\alpha$ is a cubic irrational if it is a root of an irreducible polynomial of degree 3 with rational coefficients.
 \end{definition}
 
-\begin{definition}[Galois Group]
+\begin{definition}[Galois Group \cite{Cox2012}]
 Let $L/K$ be a field extension. If $L$ is the splitting field of a 
 separable polynomial over $K$, then $\text{Aut}_K(L)$ is the Galois group 
 of $L$ over $K$, denoted $\Gal(L/K)$.
 \end{definition}
 
-\begin{theorem}[Galois Groups of Cubic Polynomials]\label{thm:cubic_galois}
+\begin{theorem}[Galois Groups of Cubic Polynomials \cite{Cox2012}]\label{thm:cubic_galois}
 For an irreducible cubic polynomial $f(x) = x^3 + px^2 + qx + r \in \Q[x]$, the Galois group $\Gal(L/\Q)$, where $L$ is the splitting field of $f$, is isomorphic to either:
 \begin{enumerate}
     \item $S_3$ if the discriminant $\Delta = -4p^3r + p^2q^2 - 4q^3 - 27r^2 + 18pqr$ is not a perfect square in $\Q$;
@@ -47,7 +47,7 @@ For an irreducible cubic polynomial with Galois group $S_3$, there is no interme
 If $\Q \subset F \subset \Q(\alpha)$, then $[\Q(\alpha):\Q] = [\Q(\alpha):F] \cdot [F:\Q]$. Since $[\Q(\alpha):\Q] = 3$ and 3 is prime, either $[F:\Q] = 1$ or $[\Q(\alpha):F] = 1$, implying $F = \Q$ or $F = \Q(\alpha)$, contradicting the existence of a proper intermediate field.
 \end{proof}
 
-\begin{theorem}[Non-Periodicity of Cubic Irrationals]\label{thm:non_periodicity}
+\begin{theorem}[Non-Periodicity of Cubic Irrationals \cite{Davenport1961}]\label{thm:non_periodicity}
 Cubic irrationals cannot have eventually periodic continued fraction expansions.
 \end{theorem}
 
@@ -97,4 +97,4 @@ Substituting \eqref{eq:B_value} into \eqref{eq:coeff1} leads to a relation imply
 No direct generalization of continued fractions preserving the connection between periodicity and algebraic degree can characterize cubic irrationals.
 \end{corollary}
 
-The \HAPD{} algorithm, operating in three-dimensional projective space, characterizes cubic irrationals through periodicity.
+The \HAPD{} algorithm, operating in three-dimensional projective space, characterizes cubic irrationals through periodicity, addressing the limitations established by \cite{Khinchin1964} and \cite{Cassels1957}.

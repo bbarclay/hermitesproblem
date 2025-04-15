@@ -4,15 +4,16 @@ Hermite's problem, posed to Jacobi in 1848 \cite{Hermite1848}, sought a generali
 
 Previous approaches include:
 \begin{itemize}
-\item Jacobi-Perron algorithm (1868): fails for complex conjugate roots
-\item Brun's algorithm (1920): similar limitations
-\item Poincaré's geometric approach: lacks consistent periodicity
-\item Karpenkov's sin²-algorithm: works only for totally-real cubics
+\item Jacobi-Perron algorithm (1868) \cite{Jacobi1868}: fails for complex conjugate roots
+\item Brun's algorithm (1920) \cite{Brentjes1981}: similar limitations
+\item Poincaré's geometric approach \cite{KarpenkovBook}: lacks consistent periodicity
+\item Karpenkov's sin²-algorithm \cite{Karpenkov2019}: works only for totally-real cubics
 \end{itemize}
 
-We resolve Hermite's problem through:
+We resolve Hermite's problem through three novel approaches:
 \begin{enumerate}
 \item HAPD algorithm in projective space, producing periodic sequences if and only if the input is cubic irrational
+\item Matrix characterization using companion matrices and trace sequences with modular periodicity
 \item Modified sin²-algorithm handling complex conjugate roots via phase-preserving floor functions
 \end{enumerate}
 

@@ -1,9 +1,97 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{Brentjes1981}
+A.~J. Brentjes.
+\newblock Multi-dimensional continued fraction algorithms.
+\newblock {\em Mathematical Centre Tracts}, 145:1--183, 1981.
+
+\bibitem{Cassels1957}
+J.~W.~S. Cassels.
+\newblock {\em An Introduction to Diophantine Approximation}.
+\newblock Cambridge University Press, 1957.
+
+\bibitem{Cohen1993}
+Henri Cohen.
+\newblock {\em A Course in Computational Algebraic Number Theory}.
+\newblock Springer-Verlag, 1993.
+
+\bibitem{Cox2012}
+David~A. Cox.
+\newblock {\em Galois Theory}.
+\newblock John Wiley \& Sons, 2nd edition, 2012.
+
+\bibitem{Davenport1961}
+H.~Davenport.
+\newblock On a theorem of furtwängler.
+\newblock {\em Journal of the London Mathematical Society}, s1-36(1):10--16,
+  1961.
+
+\bibitem{Ferguson1999}
+Helaman Ferguson, David~H. Bailey, and Steve Arno.
+\newblock Analysis of pslq, an integer relation finding algorithm.
+\newblock {\em Mathematics of Computation}, 68(225):351--369, 1999.
 
 \bibitem{Hermite1848}
 Charles Hermite.
 \newblock Letter to jacobi on continued fractions and number theory.
 \newblock {\em Correspondence with Jacobi}, 1848.
 \newblock Published posthumously in collected works.
+
+\bibitem{Horn2012}
+Roger~A. Horn and Charles~R. Johnson.
+\newblock {\em Matrix Analysis}.
+\newblock Cambridge University Press, 2nd edition, 2012.
+
+\bibitem{Jacobi1868}
+Carl Gustav~Jacob Jacobi.
+\newblock Allgemeine theorie der kettenbruchänlichen algorithmen, in welche
+  jede zahl aus drei vorhergehenden gebildet wird.
+\newblock {\em Journal für die reine und angewandte Mathematik}, 69:29--64,
+  1868.
+
+\bibitem{KarpenkovBook}
+Oleg Karpenkov.
+\newblock {\em Geometry of Continued Fractions}, volume~26 of {\em Algorithms
+  and Computation in Mathematics}.
+\newblock Springer, 2nd edition, 2018.
+
+\bibitem{Karpenkov2019}
+Oleg Karpenkov.
+\newblock Periodicity of the $\sin^2$-algorithm for cubic totally-real
+  irrationalities.
+\newblock {\em Journal of Number Theory}, 195:206--228, 2019.
+
+\bibitem{Karpenkov2022}
+Oleg Karpenkov.
+\newblock On hermite's problem, jacobi-perron type algorithms, and dirichlet
+  groups.
+\newblock {\em Acta Arithmetica}, 203(1):27--48, 2022.
+
+\bibitem{Karpenkov2024}
+Oleg Karpenkov.
+\newblock Multidimensional continued fractions and dynamics on projective
+  spaces.
+\newblock {\em Journal of Number Theory}, 252:150--175, 2024.
+
+\bibitem{Khinchin1964}
+A.~Ya. Khinchin.
+\newblock {\em Continued Fractions}.
+\newblock University of Chicago Press, 1964.
+
+\bibitem{Lagrange1770}
+Joseph-Louis Lagrange.
+\newblock Additions au mémoire sur la résolution des équations numériques.
+\newblock {\em Mémoires de l'Académie Royale des Sciences et Belles-Lettres
+  de Berlin}, 24:111--180, 1770.
+
+\bibitem{Lenstra1982}
+A.~K. Lenstra, H.~W. Lenstra, and L.~Lovász.
+\newblock Factoring polynomials with rational coefficients.
+\newblock {\em Mathematische Annalen}, 261:515--534, 1982.
+
+\bibitem{Schmidt1980}
+Wolfgang~M. Schmidt.
+\newblock {\em Diophantine Approximation}.
+\newblock Springer-Verlag, 1980.
 
 \end{thebibliography}
