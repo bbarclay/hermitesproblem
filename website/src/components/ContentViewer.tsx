@@ -1,112 +1,255 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { Section } from './ContentUtils';
-import TexSection from './tex/TexSection';
+'use client';
+
+import React, { useEffect, useState } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import TexContent from './tex/TexContent';
+import JsonDebugger from './debug/JsonDebugger';
 
 interface ContentViewerProps {
-  currentFile: string;
-  currentSection: string;
+  file: string;
+  sectionId?: string;
   onNavigatePrev?: () => void;
   onNavigateNext?: () => void;
   hasPrev?: boolean;
   hasNext?: boolean;
+  debug?: boolean;
+  staticContent?: Record<string, any>;
 }
 
 export default function ContentViewer({
-  currentFile,
-  currentSection,
+  file,
+  sectionId,
   onNavigatePrev,
   onNavigateNext,
-  hasPrev = true,
-  hasNext = true,
+  hasPrev = false,
+  hasNext = false,
+  debug = false,
+  staticContent
 }: ContentViewerProps) {
-  const [content, setContent] = useState<Section[]>([]);
+  const [content, setContent] = useState<any>(null);
   const [loading, setLoading] = useState(true);
-  const paperRef = useRef<HTMLDivElement>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [activeSection, setActiveSection] = useState<any>(null);
 
+  // Load content
   useEffect(() => {
-    if (currentFile) {
-      setLoading(true);
-      fetch(`/content/${currentFile}.json`)
+    if (!file) {
+      setError('No file specified');
+      setLoading(false);
+      return;
+    }
+
+    setLoading(true);
+    setError(null);
+
+    // Use staticContent if provided, otherwise fetch from API
+    if (staticContent && staticContent[file]) {
+      const data = staticContent[file];
+      if (!data || !data.sections) {
+        setError('Invalid content format');
+        setLoading(false);
+        return;
+      }
+
+      setContent(data);
+      setLoading(false);
+
+      // Find the active section
+      if (sectionId && data.sections) {
+        // First check top-level sections
+        let section = data.sections.find((s: any) => s.id === sectionId);
+
+        // If not found, check subsections
+        if (!section) {
+          for (const s of data.sections) {
+            if (s.subsections) {
+              const subsection = s.subsections.find((sub: any) => sub.id === sectionId);
+              if (subsection) {
+                section = subsection;
+                break;
+              }
+            }
+          }
+        }
+
+        setActiveSection(section || data.sections[0]);
+      } else if (data.sections && data.sections.length > 0) {
+        // Default to first section if no ID provided
+        setActiveSection(data.sections[0]);
+      }
+    } else {
+      // Remove any .json extension if present
+      const cleanFile = file.replace(/\.json$/, '');
+
+      fetch(`/content/${cleanFile}.json`)
         .then(res => {
-          if (!res.ok) throw new Error(`Error fetching content: ${res.status}`);
+          if (!res.ok) {
+            if (res.status === 404) {
+              throw new Error(`Content file "${cleanFile}.json" not found`);
+            }
+            throw new Error(`Failed to load content: ${res.status} ${res.statusText}`);
+          }
           return res.json();
         })
         .then(data => {
-          if (data && data.sections && Array.isArray(data.sections)) {
-            setContent(data.sections);
-          } else {
-            setContent([]);
+          if (!data || !data.sections) {
+            throw new Error('Invalid content format');
           }
+          setContent(data);
           setLoading(false);
+
+          // Find the active section
+          if (sectionId && data.sections) {
+            // First check top-level sections
+            let section = data.sections.find((s: any) => s.id === sectionId);
+
+            // If not found, check subsections
+            if (!section) {
+              for (const s of data.sections) {
+                if (s.subsections) {
+                  const subsection = s.subsections.find((sub: any) => sub.id === sectionId);
+                  if (subsection) {
+                    section = subsection;
+                    break;
+                  }
+                }
+              }
+            }
+
+            setActiveSection(section || data.sections[0]);
+          } else if (data.sections && data.sections.length > 0) {
+            // Default to first section if no ID provided
+            setActiveSection(data.sections[0]);
+          }
         })
-        .catch(() => {
+        .catch(err => {
+          console.error('Error loading content:', err);
+          setError(err.message);
           setLoading(false);
-          setContent([]);
         });
     }
-  }, [currentFile, currentSection]);
+  }, [file, sectionId, staticContent]);
 
-  const currentSectionContent = content && Array.isArray(content) && content.length > 0
-    ? (currentSection
-      ? content.find(section => section.id === currentSection) || content[0]
-      : content[0])
-    : undefined;
-
+  // Render content based on state
   const renderContent = () => {
-    if (!currentSectionContent) return null;
+    if (loading) {
+      return (
+        <div className="flex justify-center items-center h-64">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 dark:border-blue-400"></div>
+        </div>
+      );
+    }
 
-    // Convert the section to TexSection props format
-    const texSectionProps = {
-      title: currentSectionContent.title || '',
-      id: currentSectionContent.id,
-      level: currentSectionContent.level,
-      content: currentSectionContent.content,
-      blocks: currentSectionContent.blocks?.map(block => ({
-        type: block.type,
-        id: block.id,
-        title: block.title,
-        content: block.content,
-        number: block.number,
-        caption: block.caption,
-        image: block.image
-      })) || [],
-      subsections: currentSectionContent.subsections?.map(subsection => ({
-        title: subsection.title || '',
-        id: subsection.id,
-        level: subsection.level,
-        content: subsection.content,
-        blocks: subsection.blocks?.map(block => ({
-          type: block.type,
-          id: block.id,
-          title: block.title,
-          content: block.content,
-          number: block.number,
-          caption: block.caption,
-          image: block.image
-        })) || []
-      })) || [],
-      currentSubsection: currentSection
-    };
+    if (error) {
+      return (
+        <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-300 px-4 py-3 rounded">
+          <p className="font-bold">Error</p>
+          <p>{error}</p>
+        </div>
+      );
+    }
 
-    return <TexSection {...texSectionProps} />;
+    if (!content) {
+      return (
+        <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 text-yellow-700 dark:text-yellow-300 px-4 py-3 rounded">
+          <p>No content available.</p>
+        </div>
+      );
+    }
+
+    // If we have active section, render it
+    if (activeSection) {
+      return (
+        <div>
+          <h2 id={activeSection.id} className="text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100">{activeSection.title}</h2>
+
+          {activeSection.content && (
+            <div className="mb-8">
+              <TexContent content={activeSection.content.join('\n')} />
+            </div>
+          )}
+
+          {activeSection.subsections && activeSection.subsections.map((subsection: any) => (
+            <div key={subsection.id} className="mb-8">
+              <h3 id={subsection.id} className="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">{subsection.title}</h3>
+
+              {subsection.content && (
+                <TexContent content={subsection.content.join('\n')} />
+              )}
+            </div>
+          ))}
+
+          {debug && (
+            <JsonDebugger
+              data={activeSection}
+              title={`Debug: ${activeSection.title}`}
+              initiallyExpanded={false}
+            />
+          )}
+        </div>
+      );
+    }
+
+    // Fallback to rendering all sections
+    return (
+      <div>
+        {content.sections && content.sections.map((section: any) => (
+          <div key={section.id} className="mb-12">
+            <h2 id={section.id} className="text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100">{section.title}</h2>
+
+            {section.content && (
+              <div className="mb-8">
+                <TexContent content={section.content.join('\n')} />
+              </div>
+            )}
+
+            {section.subsections && section.subsections.map((subsection: any) => (
+              <div key={subsection.id} className="mb-8">
+                <h3 id={subsection.id} className="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">{subsection.title}</h3>
+
+                {subsection.content && (
+                  <TexContent content={subsection.content.join('\n')} />
+                )}
+              </div>
+            ))}
+          </div>
+        ))}
+
+        {debug && (
+          <JsonDebugger
+            data={content}
+            title="Debug: Full Content"
+            initiallyExpanded={false}
+          />
+        )}
+      </div>
+    );
   };
 
   return (
-    <div className="mx-auto max-w-5xl px-4" ref={paperRef}>
-      <div className="gradient-border bg-white shadow-md rounded-lg overflow-hidden">
-        <div className="p-8 academic-paper">
-          <div className="mt-6">
-            {loading ? (
-              <div className="flex items-center justify-center py-12">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-              </div>
-            ) : !currentSectionContent ? (
-              <div className="text-gray-600">No content to display</div>
-            ) : (
-              renderContent()
-            )}
-          </div>
-        </div>
+    <div className="content-viewer">
+      <div className="mb-8">
+        {renderContent()}
+      </div>
+
+      {/* Bottom navigation on mobile */}
+      <div className="mt-6 pb-16 sm:pb-0 flex items-center justify-between text-sm md:hidden">
+        <button
+          onClick={onNavigatePrev}
+          disabled={!hasPrev}
+          className={`flex items-center ${!hasPrev ? 'opacity-50 cursor-not-allowed' : 'hover:text-blue-600 dark:hover:text-blue-400'} bg-white dark:bg-gray-800 px-3 py-2 rounded-md shadow-sm`}
+        >
+          <ChevronLeft size={16} className="mr-1" />
+          Previous
+        </button>
+        <button
+          onClick={onNavigateNext}
+          disabled={!hasNext}
+          className={`flex items-center ${!hasNext ? 'opacity-50 cursor-not-allowed' : 'hover:text-blue-600 dark:hover:text-blue-400'} bg-white dark:bg-gray-800 px-3 py-2 rounded-md shadow-sm`}
+        >
+          Next
+          <ChevronRight size={16} className="ml-1" />
+        </button>
       </div>
     </div>
   );

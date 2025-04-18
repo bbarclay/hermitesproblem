@@ -1,9 +1,15 @@
-@import "tailwindcss";
-@import "tw-animate-css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@custom-variant dark (&:is(.dark *));
+@import "../styles/tex.css";
 
-@theme inline {
+/* Dark mode selector helper */
+.dark, .dark * {
+  /* Dark mode styles will be applied using this selector */
+}
+
+:root {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -41,84 +47,121 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-}
-
-:root {
+  
+  /* Base root variables */
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+  --primary: 221.2 83.2% 53.3%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 210 40% 96.1%;
+  --secondary-foreground: 222.2 47.4% 11.2%;
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 210 40% 96.1%;
+  --accent-foreground: 222.2 47.4% 11.2%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 221.2 83.2% 53.3%;
+
+  /* Academic paper specific variables */
+  --theorem-bg: 204 100% 97%;
+  --definition-bg: 142 76% 97%;
+  --lemma-bg: 0 86% 97%;
+  --example-bg: 48 100% 96%;
+  --proof-bg: 217 33% 97%;
+  --algorithm-bg: 220 14% 96%;
+  --citation-color: 215 14% 34%;
+  --link-color: 221.2 83.2% 53.3%;
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --background: 222.2 47.4% 11.2%;
+  --foreground: 210 40% 98%;
+  --card: 222.2 47.4% 11.2%;
+  --card-foreground: 210 40% 98%;
+  --popover: 222.2 47.4% 11.2%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 210 40% 98%;
+  --primary-foreground: 222.2 47.4% 11.2%;
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: 224.3 76.3% 48%;
+
+  /* Academic paper specific variables for dark mode */
+  --theorem-bg: 215 100% 13%;
+  --definition-bg: 142 70% 9%;
+  --lemma-bg: 0 70% 11%;
+  --example-bg: 48 95% 12%;
+  --proof-bg: 217 33% 10%;
+  --algorithm-bg: 220 14% 12%;
+  --citation-color: 215 14% 65%;
+  --link-color: 217.2 91.2% 59.8%;
 }
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    border-color: hsl(var(--border));
   }
 
   body {
-    @apply bg-background text-foreground;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Additional academic paper styles */
+  .academic-paper {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+
+  .academic-paper .theorem {
+    background-color: hsl(var(--theorem-bg));
+  }
+
+  .academic-paper .definition {
+    background-color: hsl(var(--definition-bg));
+  }
+
+  .academic-paper .lemma {
+    background-color: hsl(var(--lemma-bg));
+  }
+
+  .academic-paper .example {
+    background-color: hsl(var(--example-bg));
+  }
+
+  .academic-paper .proof {
+    background-color: hsl(var(--proof-bg));
+  }
+
+  .academic-paper .algorithm {
+    background-color: hsl(var(--algorithm-bg));
+  }
+
+  .academic-paper .citation {
+    color: hsl(var(--citation-color));
+  }
+
+  .academic-paper a {
+    color: hsl(var(--link-color));
+    text-decoration: underline;
+    text-underline-offset: 2px;
   }
 }
 
@@ -212,4 +255,368 @@ pre {
   padding: 1rem;
   margin: 1rem 0;
   overflow-x: auto;
+}
+
+/* Enhanced Math Content Styling */
+.katex-display {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: linear-gradient(to right, rgba(239, 246, 255, 0.6), rgba(243, 244, 246, 0.3));
+  border-radius: 0.75rem;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  overflow-x: auto;
+  transition: all 0.3s ease;
+}
+
+.dark .katex-display {
+  background: linear-gradient(to right, rgba(17, 24, 39, 0.8), rgba(17, 24, 39, 0.6));
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.2),
+    0 2px 4px -1px rgba(0, 0, 0, 0.1);
+}
+
+.katex-display:hover {
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+}
+
+.dark .katex-display:hover {
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.2),
+    0 4px 6px -2px rgba(0, 0, 0, 0.1);
+}
+
+.dark .katex {
+  color: #e5e7eb;
+}
+
+/* Enhanced Typography */
+.prose {
+  --tw-prose-body: #374151;
+  --tw-prose-headings: #111827;
+  --tw-prose-links: #2563eb;
+  --tw-prose-bold: #111827;
+  --tw-prose-counters: #6b7280;
+  --tw-prose-bullets: #d1d5db;
+  --tw-prose-hr: #e5e7eb;
+  --tw-prose-quotes: #111827;
+  --tw-prose-quote-borders: #e5e7eb;
+  --tw-prose-captions: #6b7280;
+  --tw-prose-code: #111827;
+  --tw-prose-pre-code: #e5e7eb;
+  --tw-prose-pre-bg: #1f2937;
+  --tw-prose-th-borders: #d1d5db;
+  --tw-prose-td-borders: #e5e7eb;
+}
+
+.prose p {
+  margin-bottom: 1.5em;
+  line-height: 1.8;
+}
+
+.prose h2 {
+  margin-top: 2.5em;
+  margin-bottom: 1em;
+}
+
+.prose h3 {
+  margin-top: 2em;
+  margin-bottom: 0.8em;
+}
+
+/* Interactive Elements */
+.interactive-tool {
+  border: 1px solid #e5e7eb;
+  border-radius: 1rem;
+  padding: 2rem;
+  margin: 2rem 0;
+  background: linear-gradient(to bottom right, #ffffff, #f9fafb);
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.dark .interactive-tool {
+  border-color: #374151;
+  background: linear-gradient(to bottom right, #111827, #1f2937);
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.2),
+    0 2px 4px -1px rgba(0, 0, 0, 0.1);
+}
+
+.interactive-tool:hover {
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+}
+
+.dark .interactive-tool:hover {
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.2),
+    0 4px 6px -2px rgba(0, 0, 0, 0.1);
+}
+
+/* Section Transitions */
+.tex-section {
+  opacity: 0;
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Code Blocks */
+pre {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: linear-gradient(to bottom, #1f2937, #111827);
+  border-radius: 0.75rem;
+  overflow-x: auto;
+  color: #e5e7eb;
+}
+
+.dark pre {
+  background: linear-gradient(to bottom, #111827, #0f172a);
+  border: 1px solid #374151;
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.875em;
+}
+
+/* Lists */
+.prose ul,
+.prose ol {
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+  padding-left: 1.625em;
+}
+
+.prose li {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.dark .prose {
+  --tw-prose-body: #e5e7eb;
+  --tw-prose-headings: #f3f4f6;
+  --tw-prose-links: #60a5fa;
+  --tw-prose-bold: #f3f4f6;
+  --tw-prose-counters: #9ca3af;
+  --tw-prose-bullets: #4b5563;
+  --tw-prose-hr: #374151;
+  --tw-prose-quotes: #f3f4f6;
+  --tw-prose-quote-borders: #374151;
+  --tw-prose-captions: #9ca3af;
+  --tw-prose-code: #f3f4f6;
+  --tw-prose-pre-code: #e5e7eb;
+  --tw-prose-pre-bg: #111827;
+  --tw-prose-th-borders: #4b5563;
+  --tw-prose-td-borders: #374151;
+}
+
+/* Blockquotes */
+.prose blockquote {
+  margin: 2rem 0;
+  padding: 1rem 1.5rem;
+  border-left: 4px solid #3b82f6;
+  background: linear-gradient(to right, rgba(239, 246, 255, 0.6), rgba(243, 244, 246, 0.3));
+  border-radius: 0.5rem;
+  font-style: italic;
+  color: #4b5563;
+}
+
+.dark .prose blockquote {
+  border-left-color: #60a5fa;
+  background: linear-gradient(to right, rgba(17, 24, 39, 0.8), rgba(17, 24, 39, 0.6));
+  color: #9ca3af;
+}
+
+/* Tables */
+.prose table {
+  width: 100%;
+  margin: 2rem 0;
+  border-collapse: collapse;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.dark .prose table {
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.2),
+    0 2px 4px -1px rgba(0, 0, 0, 0.1);
+}
+
+.prose th {
+  background: linear-gradient(to right, #f3f4f6, #e5e7eb);
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+}
+
+.dark .prose th {
+  background: linear-gradient(to right, #1f2937, #111827);
+}
+
+.prose td {
+  padding: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.dark .prose td {
+  border-bottom-color: #374151;
+}
+
+/* Images */
+.prose img {
+  border-radius: 0.75rem;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  margin: 2rem 0;
+}
+
+.dark .prose img {
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.2),
+    0 2px 4px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Links */
+.prose a {
+  color: #2563eb;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border-bottom: 1px solid transparent;
+}
+
+.dark .prose a {
+  color: #60a5fa;
+}
+
+.prose a:hover {
+  border-bottom-color: currentColor;
+}
+
+/* Theme transition */
+* {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+/* Disable transitions on page load */
+.preload * {
+  transition: none !important;
+}
+
+/* Add styling for citations and references */
+.citation, .reference {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px dotted #666;
+}
+
+.citation:hover, .reference:hover {
+  border-bottom: 1px solid #333;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Section symbol styling */
+.section-symbol {
+  margin-right: 0.25rem;
+}
+
+/* LaTeX-style environments */
+.algorithm-def {
+  background-color: #f8fafc;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0.5rem;
+  border-left: 3px solid #64748b;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.algorithm-def strong {
+  display: block;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: #1e293b;
+}
+
+.theorem, .lemma, .proposition, .definition, .corollary {
+  background-color: #f8fafc;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0.5rem;
+  border-left: 3px solid #3b82f6;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.proof {
+  padding: 1rem;
+  margin: 1rem 0;
+  font-style: italic;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.proof::after {
+  content: "□";
+  display: block;
+  text-align: right;
+  font-style: normal;
+  margin-top: 0.5rem;
+}
+
+/* Improve math rendering */
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.5rem 0;
+}
+
+/* Sidebar toggle button styles */
+.sidebar-toggle {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 100;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sidebar-toggle:hover {
+  background-color: #f8fafc;
+}
+
+@media print {
+  .sidebar, .sidebar-toggle, .paper-controls {
+    display: none !important;
+  }
 }

@@ -4,28 +4,28 @@ import path from 'path';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { slug: string } }
+  { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
     // Access the slug parameter safely
-    const { slug } = params;
-    
+    const { slug } = await params;
+
     console.log(`API: Received request for slug:`, slug);
-    
+
     if (!slug) {
       console.error('API: Missing slug parameter');
       return NextResponse.json({ error: 'Slug parameter is required' }, { status: 400 });
     }
-    
+
     // Remove .json extension if it exists in the slug
-    const baseName = slug.endsWith('.json') 
-      ? slug.slice(0, -5) 
+    const baseName = slug.endsWith('.json')
+      ? slug.slice(0, -5)
       : slug;
-    
+
     // Construct the file path
     const filePath = path.join(process.cwd(), 'public', 'content', `${baseName}.json`);
     console.log(`API: Looking for file:`, filePath);
-    
+
     // Try to read the file
     let fileContent;
     try {
@@ -33,7 +33,7 @@ export async function GET(
       console.log(`API: Successfully read file ${baseName}.json`);
     } catch (error) {
       console.error(`API: File not found: ${filePath}`);
-      
+
       // Return a default structure if file doesn't exist
       return NextResponse.json({
         sections: [
@@ -46,23 +46,23 @@ export async function GET(
         ]
       });
     }
-    
+
     // Parse and return the JSON
     try {
       const jsonContent = JSON.parse(fileContent);
       return NextResponse.json(jsonContent);
     } catch (parseError) {
       console.error('API: Error parsing JSON:', parseError);
-      return NextResponse.json({ 
+      return NextResponse.json({
         error: 'Invalid JSON format',
-        sections: [] 
+        sections: []
       }, { status: 500 });
     }
   } catch (error) {
     console.error('API: Unexpected error:', error);
-    return NextResponse.json({ 
+    return NextResponse.json({
       error: 'Failed to fetch content',
-      sections: [] 
+      sections: []
     }, { status: 500 });
   }
-} 
+}

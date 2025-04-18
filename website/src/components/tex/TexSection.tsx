@@ -4,9 +4,11 @@ import React from 'react';
 import TexContent from './TexContent';
 import TexBlock from './TexBlock';
 import { TexBlockProps } from './TexBlock';
-import TableOfContents from '../TableOfContents';
 import JsonDebugger from '../debug/JsonDebugger';
 import InteractiveToolsInjector from '../registry/InteractiveToolsInjector';
+import { cn } from '../../lib/utils';
+import { motion } from 'framer-motion';
+import { ChevronRight } from 'lucide-react';
 
 export interface TexSectionProps {
   title: string;
@@ -35,114 +37,167 @@ export default function TexSection({
   subsections = [],
   currentSubsection
 }: TexSectionProps) {
-  // Generate headings for table of contents
-  const generateHeadings = () => {
-    const headings = [
-      { id, text: title, level: 1 }
-    ];
-
-    subsections.forEach(subsection => {
-      headings.push({
-        id: subsection.id,
-        text: subsection.title,
-        level: 2
-      });
-    });
-
-    return headings;
-  };
-
-  const headings = generateHeadings();
-
-  // Scroll to heading when clicked
-  const scrollToHeading = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      const offset = 80;
-      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-      window.scrollTo({
-        top: elementPosition - offset,
-        behavior: 'smooth'
-      });
+  // Animation variants for content
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.05, // Reduced from 0.1 to make animations faster
+        delayChildren: 0.1
+      }
     }
   };
 
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.3 // Reduced from 0.5 for smoother animation
+      }
+    }
+  };
 
+  // Scroll to subsection if specified in URL
+  React.useEffect(() => {
+    if (currentSubsection) {
+      const element = document.getElementById(currentSubsection);
+      if (element) {
+        // Add a slight delay to ensure DOM is fully rendered
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 300);
+      }
+    }
+  }, [currentSubsection]);
 
   // Render the section content
   const renderSectionContent = () => {
     return (
-      <>
-        <div id={id}>
-          <h2 className="text-2xl font-bold mb-6">{title}</h2>
-          {content.map((chunk, index) => (
-            <TexContent key={`content-${index}`} content={chunk} />
-          ))}
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        <motion.div 
+          id={id}
+          className="relative"
+          variants={itemVariants}
+        >
+          <div className="absolute left-0 top-0 w-1 h-full bg-gradient-to-b from-blue-500 to-purple-500 rounded-full opacity-50" />
+          <div className="pl-6">
+            <h2 className="text-4xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+              {title}
+            </h2>
+            <div className="prose prose-lg max-w-none">
+              {content.map((chunk, index) => (
+                <motion.div 
+                  key={`content-${index}`} 
+                  variants={itemVariants}
+                  className="mb-6"
+                >
+                  <TexContent content={chunk} />
+                </motion.div>
+              ))}
+            </div>
 
-          {/* Render standard blocks */}
-          {blocks.map(block => (
-            <TexBlock key={block.id} {...block} />
-          ))}
+            {/* Render standard blocks */}
+            {blocks.map(block => (
+              <motion.div 
+                key={block.id} 
+                variants={itemVariants}
+                className="my-8"
+              >
+                <TexBlock {...block} />
+              </motion.div>
+            ))}
 
-          {/* Interactive Tools Injector */}
-          <InteractiveToolsInjector sectionId={id} content={content} />
-        </div>
+            {/* Interactive Tools Injector */}
+            <motion.div variants={itemVariants}>
+              <InteractiveToolsInjector sectionId={id} content={content} />
+            </motion.div>
+          </div>
+        </motion.div>
 
         {subsections.map(subsection => {
-
-
           return (
-            <div
+            <motion.div
               key={subsection.id}
               id={subsection.id}
-              className={`mt-8 ${currentSubsection === subsection.id ? 'scroll-mt-20' : ''}`}
+              className={cn(
+                "mt-16",
+                currentSubsection === subsection.id && "scroll-mt-20"
+              )}
+              variants={itemVariants}
             >
-              <h3 className="text-xl font-semibold mb-4">{subsection.title}</h3>
-              {subsection.content.map((chunk, index) => (
-                <TexContent key={`subcontent-${subsection.id}-${index}`} content={chunk} />
-              ))}
+              <div className="relative">
+                <div className="absolute left-0 top-0 w-0.5 h-full bg-gradient-to-b from-purple-500 to-pink-500 rounded-full opacity-30" />
+                <div className="pl-6">
+                  <h3 className="text-2xl font-semibold mb-6 flex items-center gap-2">
+                    <ChevronRight className="text-purple-500" size={20} />
+                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-600">
+                      {subsection.title}
+                    </span>
+                  </h3>
+                  <div className="prose prose-lg max-w-none">
+                    {subsection.content.map((chunk, index) => (
+                      <motion.div 
+                        key={`subcontent-${subsection.id}-${index}`}
+                        variants={itemVariants}
+                        className="mb-6"
+                      >
+                        <TexContent content={chunk} />
+                      </motion.div>
+                    ))}
+                  </div>
 
-              {/* Render standard blocks for subsection */}
-              {subsection.blocks && subsection.blocks.map(block => (
-                <TexBlock key={block.id} {...block} />
-              ))}
+                  {/* Render standard blocks for subsection */}
+                  {subsection.blocks && subsection.blocks.map(block => (
+                    <motion.div 
+                      key={block.id}
+                      variants={itemVariants}
+                      className="my-8"
+                    >
+                      <TexBlock {...block} />
+                    </motion.div>
+                  ))}
 
-              {/* Interactive Tools Injector for subsection */}
-              <InteractiveToolsInjector sectionId={subsection.id} content={subsection.content} />
-            </div>
+                  {/* Interactive Tools Injector for subsection */}
+                  <motion.div variants={itemVariants}>
+                    <InteractiveToolsInjector sectionId={subsection.id} content={subsection.content} />
+                  </motion.div>
+                </div>
+              </div>
+            </motion.div>
           );
         })}
-      </>
+      </motion.div>
     );
   };
 
   return (
     <div className="tex-section">
-      {headings.length > 1 && (
-        <TableOfContents
-          headings={headings}
-          onHeadingClick={scrollToHeading}
-          title="In This Section"
-        />
-      )}
-
       {renderSectionContent()}
 
       {/* JSON Debugger */}
-      <JsonDebugger
-        data={{
-          id,
-          title,
-          level,
-          contentCount: content.length,
-          blocksCount: blocks.length,
-          subsectionsCount: subsections.length,
-          subsections: subsections.map(sub => ({ id: sub.id, title: sub.title })),
-          currentSubsection
-        }}
-        title="Debug: Section Data"
-        initiallyExpanded={false}
-      />
+      {process.env.NODE_ENV !== 'production' && (
+        <JsonDebugger
+          data={{
+            id,
+            title,
+            level,
+            contentCount: content.length,
+            blocksCount: blocks.length,
+            subsectionsCount: subsections.length,
+            subsections: subsections.map(sub => ({ id: sub.id, title: sub.title })),
+            currentSubsection
+          }}
+          title="Debug: Section Data"
+          initiallyExpanded={false}
+        />
+      )}
     </div>
   );
 }

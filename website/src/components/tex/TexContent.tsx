@@ -1,66 +1,37 @@
 'use client';
 
 import React from 'react';
-import ReactMarkdown from 'react-markdown';
-import remarkMath from 'remark-math';
-import rehypeKatex from 'rehype-katex';
-import remarkGfm from 'remark-gfm';
-import { preprocessLatex } from '@/lib/tex-utils';
+import EnhancedTexParser from './EnhancedTexParser';
+import { highlightUnparsedTeX } from '@/utils/texDebugger';
 import JsonDebugger from '../debug/JsonDebugger';
+import TexDebugger from '../debug/TexDebugger';
 
 interface TexContentProps {
   content: string;
+  debug?: boolean;
 }
 
-export default function TexContent({ content }: TexContentProps) {
-  const processedContent = preprocessLatex(content);
-
+export default function TexContent({ content, debug = false }: TexContentProps) {
+  // Check if we're in development mode
+  const isDev = process.env.NODE_ENV === 'development';
+  
   return (
     <>
-      <ReactMarkdown
-        remarkPlugins={[remarkMath, remarkGfm]}
-        rehypePlugins={[
-          [rehypeKatex, {
-            throwOnError: false,
-            output: 'html',
-            strict: false,
-            trust: true,
-            macros: {
-              "\\tr": "\\operatorname{tr}",
-              "\\det": "\\operatorname{det}",
-              "\\mod": "\\operatorname{mod}",
-              "\\gcd": "\\operatorname{gcd}",
-              "\\lcm": "\\operatorname{lcm}",
-              "\\sgn": "\\operatorname{sgn}",
-              "\\floor": "\\lfloor#1\\rfloor",
-              "\\ceil": "\\lceil#1\\rceil",
-              "\\Z": "\\mathbb{Z}",
-              "\\N": "\\mathbb{N}",
-              "\\Q": "\\mathbb{Q}",
-              "\\R": "\\mathbb{R}",
-              "\\C": "\\mathbb{C}",
-              "\\epsilon": "\\varepsilon",
-              "\\iff": "\\Leftrightarrow",
-              "\\implies": "\\Rightarrow",
-              "\\to": "\\rightarrow",
-              "\\HAPD": "\\text{HAPD}"
-            }
-          }]
-        ]}
-        className="tex-content"
-      >
-        {processedContent}
-      </ReactMarkdown>
+      <EnhancedTexParser content={content} debug={debug} />
+
+      {/* Include TexDebugger only in development mode or when debug=true */}
+      {(debug || isDev) && <TexDebugger rawTex={content} />}
 
       {/* JSON Debugger */}
-      <JsonDebugger
-        data={{
-          rawContent: content,
-          processedContent: processedContent
-        }}
-        title="Debug: TeX Content"
-        initiallyExpanded={false}
-      />
+      {debug && (
+        <JsonDebugger
+          data={{
+            rawContent: content
+          }}
+          title="Debug: TeX Content"
+          initiallyExpanded={false}
+        />
+      )}
     </>
   );
 }

@@ -1,14 +1,17 @@
+// next.config.js
+// Remove Sentry and bundle analyzer integration if not installed
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Enable static JSON imports
-  webpack(config) {
+  reactStrictMode: true,
+  // SVG optimization
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ['@svgr/webpack'],
+    });
     return config;
   },
-  // Explicitly disable Turbopack
-  experimental: {
-    turbo: false,
-    serverActions: true
-  }
 };
 
-module.exports = nextConfig; 
+module.exports = nextConfig;

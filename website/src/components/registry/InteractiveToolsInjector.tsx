@@ -33,49 +33,49 @@ const InteractiveToolsInjector: React.FC<InteractiveToolsInjectorProps> = ({
 }) => {
   const [expanded, setExpanded] = useState(false);
   const [tools, setTools] = useState<string[]>([]);
-  
+
   // Detect which tools to show based on section content
   useEffect(() => {
     const contentText = content.join(' ').toLowerCase();
     const detectedTools: string[] = [];
-    
+
     if (
-      sectionId.includes('hapd-algorithm') || 
+      sectionId.includes('hapd-algorithm') ||
       sectionId.includes('projective') ||
-      contentText.includes('projective space') || 
+      contentText.includes('projective space') ||
       contentText.includes('hapd algorithm')
     ) {
       detectedTools.push('projective');
     }
-    
+
     if (
       sectionId.includes('subtractive') ||
       contentText.includes('subtractive algorithm')
     ) {
       detectedTools.push('subtractive');
     }
-    
+
     if (
-      sectionId.includes('cubic') || 
-      sectionId.includes('field') || 
+      sectionId.includes('cubic') ||
+      sectionId.includes('field') ||
       sectionId.includes('matrix') ||
-      contentText.includes('cubic field') || 
+      contentText.includes('cubic field') ||
       contentText.includes('minimal polynomial')
     ) {
       detectedTools.push('cubic');
     }
-    
+
     setTools(detectedTools);
   }, [sectionId, content]);
-  
+
   // If no tools detected, don't render anything
   if (tools.length === 0) {
     return null;
   }
-  
+
   return (
     <div className="my-8 border rounded-lg overflow-hidden bg-white shadow-lg">
-      <div 
+      <div
         className="p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border-b flex justify-between items-center cursor-pointer"
         onClick={() => setExpanded(!expanded)}
       >
@@ -87,15 +87,15 @@ const InteractiveToolsInjector: React.FC<InteractiveToolsInjectorProps> = ({
           {expanded ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
         </Button>
       </div>
-      
+
       {expanded && (
         <div className="p-4">
           <p className="text-gray-600 mb-4">
             Explore the mathematical concepts in this section through interactive visualizations.
           </p>
-          
+
           <Tabs defaultValue={tools[0]} className="w-full">
-            <TabsList className="grid w-full" style={{ gridTemplateColumns: `repeat(${tools.length}, 1fr)` }}>
+            <TabsList className={`grid w-full grid-cols-${tools.length}`}>
               {tools.includes('projective') && (
                 <TabsTrigger value="projective">Projective Space</TabsTrigger>
               )}
@@ -106,26 +106,26 @@ const InteractiveToolsInjector: React.FC<InteractiveToolsInjectorProps> = ({
                 <TabsTrigger value="cubic">Cubic Fields</TabsTrigger>
               )}
             </TabsList>
-            
+
             {tools.includes('projective') && (
               <TabsContent value="projective" className="mt-4">
                 <ProjectiveSpaceVisualizer />
               </TabsContent>
             )}
-            
+
             {tools.includes('subtractive') && (
               <TabsContent value="subtractive" className="mt-4">
                 <SubtractiveAlgorithmVisualizer />
               </TabsContent>
             )}
-            
+
             {tools.includes('cubic') && (
               <TabsContent value="cubic" className="mt-4">
                 <CubicFieldExplorer />
               </TabsContent>
             )}
           </Tabs>
-          
+
           <div className="mt-4 text-right">
             <Button asChild variant="outline" size="sm">
               <a href="/interactive" target="_blank" rel="noopener noreferrer">

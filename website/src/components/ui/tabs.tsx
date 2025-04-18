@@ -1,54 +1,79 @@
-"use client"
+import * as React from "react";
 
-import * as React from "react"
-import * as TabsPrimitive from "@radix-ui/react-tabs"
-import { cn } from "@/lib/utils"
+type TabsProps = {
+  defaultValue: string;
+  className?: string;
+  children: React.ReactNode;
+};
 
-const Tabs = TabsPrimitive.Root
+type TabsListProps = {
+  className?: string;
+  children: React.ReactNode;
+  active?: string;
+  setActive?: (v: string) => void;
+};
 
-const TabsList = React.forwardRef<
-  React.ElementRef<typeof TabsPrimitive.List>,
-  React.ComponentPropsWithoutRef<typeof TabsPrimitive.List>
->(({ className, ...props }, ref) => (
-  <TabsPrimitive.List
-    ref={ref}
-    className={cn(
-      "inline-flex h-10 items-center justify-center rounded-md bg-slate-100 p-1 text-slate-500 dark:bg-slate-800 dark:text-slate-400",
-      className
-    )}
-    {...props}
-  />
-))
-TabsList.displayName = TabsPrimitive.List.displayName
+type TabsTriggerProps = {
+  value: string;
+  children: React.ReactNode;
+  className?: string;
+  active?: string;
+  setActive?: (v: string) => void;
+};
 
-const TabsTrigger = React.forwardRef<
-  React.ElementRef<typeof TabsPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger>
->(({ className, ...props }, ref) => (
-  <TabsPrimitive.Trigger
-    ref={ref}
-    className={cn(
-      "inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-white data-[state=active]:text-slate-950 data-[state=active]:shadow-sm dark:ring-offset-slate-950 dark:focus-visible:ring-slate-800 dark:data-[state=active]:bg-slate-950 dark:data-[state=active]:text-slate-50",
-      className
-    )}
-    {...props}
-  />
-))
-TabsTrigger.displayName = TabsPrimitive.Trigger.displayName
+type TabsContentProps = {
+  value: string;
+  className?: string;
+  children: React.ReactNode;
+  active?: string;
+};
 
-const TabsContent = React.forwardRef<
-  React.ElementRef<typeof TabsPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof TabsPrimitive.Content>
->(({ className, ...props }, ref) => (
-  <TabsPrimitive.Content
-    ref={ref}
-    className={cn(
-      "mt-2 ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2 dark:ring-offset-slate-950 dark:focus-visible:ring-slate-800",
-      className
-    )}
-    {...props}
-  />
-))
-TabsContent.displayName = TabsPrimitive.Content.displayName
+export function Tabs({ defaultValue, className, children }: TabsProps) {
+  const [active, setActive] = React.useState(defaultValue);
 
-export { Tabs, TabsList, TabsTrigger, TabsContent }
+  // Only inject props into known tab components
+  const childrenWithProps = React.Children.map(children, child => {
+    if (!React.isValidElement(child)) return child;
+    // Only inject props into our own components
+    if ((child.type === TabsList) || (child.type === TabsContent)) {
+      return React.cloneElement(child as React.ReactElement<any>, { active, setActive });
+    }
+    return child;
+  });
+
+  return (
+    <div className={className}>
+      {childrenWithProps}
+    </div>
+  );
+}
+
+export function TabsList({ className, children, active, setActive }: TabsListProps) {
+  // Only inject props into known tab triggers
+  const childrenWithProps = React.Children.map(children, child => {
+    if (!React.isValidElement(child)) return child;
+    if (child.type === TabsTrigger) {
+      return React.cloneElement(child as React.ReactElement<any>, { active, setActive });
+    }
+    return child;
+  });
+  return <div className={className}>{childrenWithProps}</div>;
+}
+
+export function TabsTrigger({ value, children, className = '', active, setActive }: TabsTriggerProps) {
+  const isActive = active === value;
+  return (
+    <button
+      className={`px-4 py-2 rounded-t ${isActive ? "bg-white shadow font-bold" : "bg-gray-100"} transition ${className}`}
+      onClick={() => setActive && setActive(value)}
+      type="button"
+    >
+      {children}
+    </button>
+  );
+}
+
+export function TabsContent({ value, className, children, active }: TabsContentProps) {
+  if (active !== value) return null;
+  return <div className={className}>{children}</div>;
+}

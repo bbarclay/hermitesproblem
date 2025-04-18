@@ -13,9 +13,10 @@ export interface TexBlockProps {
   id: string;
   title?: string;
   content: string;
-  number: number;
+  number?: number;
   caption?: string;
   image?: string;
+  className?: string;
 }
 
 const blockTypeIcons: Record<string, React.ReactNode> = {

@@ -19,8 +19,7 @@ export const preprocessLatex = (content: string): string => {
     { env: 'corollary', prefix: '**Corollary**' },
     { env: 'objection', prefix: '**Objection**' },
     { env: 'response', prefix: '**Response**' },
-    { env: 'algorithm', prefix: '**Algorithm**' },
-    { env: 'algorithm_def', prefix: '**Algorithm**' }
+    { env: 'algorithm', prefix: '**Algorithm**' }
   ];
   envs.forEach(({ env, prefix }) => {
     processed = processed.replace(
@@ -29,7 +28,16 @@ export const preprocessLatex = (content: string): string => {
     );
   });
 
-  // 3. Convert itemize/enumerate to markdown lists
+  // Special handling for algorithm_def environment
+  processed = processed.replace(
+    /\\begin\{algorithm_def\}(\[[^\]]*\])?([\s\S]*?)\\end\{algorithm_def\}/g,
+    (match, opt, content) => {
+      const title = opt ? opt.replace(/^\[|\]$/g, '') : 'Algorithm';
+      return `\n\n<div class="algorithm-def">\n<strong>${title}</strong>\n\n${content}\n</div>\n\n`;
+    }
+  );
+
+  // 3. Fixed enumerate/itemize processing to prevent numbering issues
   processed = processed.replace(/\\begin\{itemize\}([\s\S]*?)\\end\{itemize\}/g, (match, content) => {
     return content
       .split('\\item')
@@ -37,24 +45,33 @@ export const preprocessLatex = (content: string): string => {
       .map((item: string) => `- ${item.trim()}`)
       .join('\n');
   });
+  
+  // Proper enumerate handling to ensure correct numbering
   processed = processed.replace(/\\begin\{enumerate\}([\s\S]*?)\\end\{enumerate\}/g, (match, content) => {
-    return content
+    const items = content
       .split('\\item')
       .filter(Boolean)
-      .map((item: string, i: number) => `${i + 1}. ${item.trim()}`)
-      .join('\n');
+      .map((item: string, index: number) => `${index + 1}. ${item.trim()}`);
+    
+    return items.join('\n\n');
   });
 
-  // 4. Convert tabular/table to markdown tables (simple heuristic)
-  processed = processed.replace(/\\begin\{tabular\}(\{[^}]*\})?([\s\S]*?)\\end\{tabular\}/g, (match, fmt, table) => {
-    let rows = table.replace(/\\\\/g, '\n').replace(/\\hline/g, '').trim().split('\n');
-    rows = rows.map((row: string) => row.trim()).filter(Boolean);
-    if (rows.length < 2) return rows.join('\n');
-    const header = rows[0].split('&').map((cell: string) => cell.trim()).join(' | ');
-    const divider = rows[0].split('&').map(() => '---').join(' | ');
-    const body = rows.slice(1).map((row: string) => row.split('&').map((cell: string) => cell.trim()).join(' | ')).join('\n');
-    return `${header}\n${divider}\n${body}`;
+  // 4. Improved table conversion with better cell formatting
+  processed = processed.replace(/\\begin\{table\}(\[[^\]]*\])?([\s\S]*?)\\end\{table\}/g, (match, opt, content) => {
+    // Extract caption if present
+    const captionMatch = content.match(/\\caption\{([^}]+)\}/);
+    const caption = captionMatch ? `**Table: ${captionMatch[1]}**\n\n` : '';
+    
+    // Find tabular environment
+    const tabularMatch = content.match(/\\begin\{tabular\}(\{[^}]*\})?([\s\S]*?)\\end\{tabular\}/);
+    if (!tabularMatch) return match; // If no tabular found, return unchanged
+    
+    return caption + processTabular(tabularMatch[2]);
   });
+  
+  // Direct tabular processing for tables outside of table environment
+  processed = processed.replace(/\\begin\{tabular\}(\{[^}]*\})?([\s\S]*?)\\end\{tabular\}/g, 
+    (match, fmt, content) => processTabular(content));
 
   // 5. Convert equations, align, pmatrix, bmatrix, cases to display math
   processed = processed
@@ -92,7 +109,20 @@ export const preprocessLatex = (content: string): string => {
   processed = processed.replace(/\\S/g, '§');
   processed = processed.replace(/\\ref\{([^}]+)\}/g, '[§]');
 
-  // 11. Inline math protection and restoration
+  // 11. Enhanced math commands processing
+  processed = processed
+    .replace(/\\tr(?!\w)/g, '\\operatorname{tr}')
+    .replace(/\\checkmark/g, '✓')
+    .replace(/\\hline/g, '')
+    .replace(/\\HAPD/g, 'HAPD')
+    .replace(/\\mathbb\{([A-Z])\}/g, (_, letter) => {
+      const unicodeMap: Record<string, string> = {
+        'R': 'ℝ', 'Z': 'ℤ', 'N': 'ℕ', 'Q': 'ℚ', 'C': 'ℂ'
+      };
+      return unicodeMap[letter] || letter;
+    });
+
+  // 12. Inline math protection and restoration
   processed = processed
     .replace(/\$([^$\n]+?)\$/g, '§INLINEMATH§$1§ENDINLINEMATH§')
     .replace(/([^$])(\\mathbb|\\frac|\\sqrt|\\left|\\right|\\operatorname)([^$]*?)([^$])/g,
@@ -100,13 +130,13 @@ export const preprocessLatex = (content: string): string => {
         `${prefix}$${command}${content}$${suffix}`)
     .replace(/§INLINEMATH§(.*?)§ENDINLINEMATH§/g, '$$$1$$');
 
-  // 12. Miscellaneous fixes
+  // 13. Miscellaneous fixes
   processed = processed
     .replace(/sin\$\^2\$/g, 'sin²')
     .replace(/\$\^(\d+)\$/g, '^$1')
     .replace(/\[([^\]]*?)\$([^\]]*?)\]/g, '[$1\\$$2]');
 
-  // 13. Cleanup: double spaces, multiple newlines, heading spacing, empty paragraphs
+  // 14. Cleanup: double spaces, multiple newlines, heading spacing, empty paragraphs
   processed = processed
     .replace(/\s{2,}/g, ' ')
     .replace(/\n{3,}/g, '\n\n')
@@ -115,3 +145,44 @@ export const preprocessLatex = (content: string): string => {
 
   return processed;
 };
+
+// Helper function to process tabular content
+function processTabular(content: string): string {
+  // Clean the content
+  content = content.replace(/\\\\$/gm, ''); // Remove trailing newlines
+  
+  // Split into rows
+  let rows = content
+    .replace(/\\\\/g, '\n')
+    .replace(/\\hline/g, '')
+    .trim()
+    .split('\n')
+    .map(row => row.trim())
+    .filter(Boolean);
+  
+  if (rows.length === 0) return '';
+  
+  // Process cells in each row
+  const processedRows = rows.map(row => {
+    // Split the row into cells
+    return row
+      .split('&')
+      .map(cell => cell.trim())
+      .join(' | ');
+  });
+  
+  // Create markdown table
+  if (processedRows.length === 1) {
+    // Just a header
+    return processedRows[0] + '\n' + 
+      processedRows[0].split('|').map(() => '---').join(' | ');
+  } else if (processedRows.length > 1) {
+    // Header and body
+    const header = processedRows[0];
+    const divider = header.split('|').map(() => '---').join(' | ');
+    const body = processedRows.slice(1).join('\n');
+    return `${header}\n${divider}\n${body}`;
+  }
+  
+  return '';
+}

@@ -1,0 +1,18 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "esModuleInterop": true,
+    "module": "commonjs" // Needed for Jest
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "jest.config.js", 
+    "jest.setup.js"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+} 

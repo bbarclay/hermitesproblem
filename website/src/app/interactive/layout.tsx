@@ -1,6 +1,6 @@
 import React from 'react';
 import { Metadata } from 'next';
-import Sidebar from '@/components/Sidebar';
+import SimpleSidebar from '@/components/SimpleSidebar';
 
 export const metadata: Metadata = {
   title: 'Interactive Tools | Hermite\'s Problem',
@@ -14,7 +14,7 @@ export default function InteractiveLayout({
 }) {
   return (
     <div className="flex min-h-screen bg-gray-50">
-      <Sidebar />
+      <SimpleSidebar />
       <main className="flex-1 ml-64">
         {children}
       </main>

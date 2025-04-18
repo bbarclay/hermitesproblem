@@ -8,8 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Play, Pause, RotateCcw, SkipForward, ChevronRight } from 'lucide-react';
-import SubtractiveAlgorithmChart from './SubtractiveAlgorithmChart';
-
+import SubtractiveAlgorithmChart from '@/components/interactive/SubtractiveAlgorithmChart';
 interface SubtractiveAlgorithmVisualizerProps {
   initialAlpha?: number;
   className?: string;

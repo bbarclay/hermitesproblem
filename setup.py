@@ -2,10 +2,9 @@
 Setup script for the Hermite Solver package.
 """
 
-from setuptools import setup, find_packages
 
-setup(
-    name="hermite_solver",
+from setuptools import setup, find_packages
+setup(    name="hermite_solver",
     version="1.0.0",
     description="A rigorous solver for Hermite's problem",
     author="Brandon Barclay",
