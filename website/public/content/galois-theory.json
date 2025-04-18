@@ -1,0 +1,134 @@
+{
+  "filename": "galois-theory.tex",
+  "sections": [
+    {
+      "title": "Galois Theoretic Proof of Non-Periodicity",
+      "id": "galois_theory",
+      "level": "section",
+      "content": [
+        "Cubic irrationals cannot have periodic continued fraction expansions, necessitating our higher-dimensional approach.\n\n\\begin{definition}[Continued Fraction Expansion]\nFor $\\alpha \\in \\mathbb{R}$, the continued fraction expansion is $[a_0; a_1, a_2, \\ldots]$ where $a_0 = \\floor{\\alpha}$ and for $i \\geq 1$, $a_i = \\floor{\\alpha_i}$ with $\\alpha_0 = \\alpha$ and $\\alpha_{i+1} = \\frac{1}{\\alpha_i - a_i}$.\n\\end{definition}\n\n\\begin{definition}[Eventually Periodic Continued Fraction]\nA continued fraction $[a_0; a_1, a_2, \\ldots]$ is eventually periodic if $\\exists N \\geq 0, p > 0$ such that $a_{N+i} = a_{N+p+i}$ for all $i \\geq 0$, denoted as \n\\begin{equation}\n[a_0; a_1, \\ldots, a_{N-1}, \\overline{a_N, \\ldots, a_{N+p-1}}]\n\\end{equation}\n\\end{definition}\n\n\\begin{theorem}[Lagrange \\cite{Lagrange1770}]\\label{thm:lagrange}\nA real number has an eventually periodic continued fraction expansion if and only if it is a quadratic irrational.\n\\end{theorem}\n\n\\begin{definition}[Minimal Polynomial]\nFor an algebraic number $\\alpha$ over $\\Q$, the minimal polynomial of $\\alpha$ over $\\Q$ is the monic polynomial $\\text{min}_\\Q(\\alpha, x) \\in \\Q[x]$ of least degree such that $\\text{min}_\\Q(\\alpha, x)(\\alpha) = 0$.\n\\end{definition}\n\n\\begin{definition}[Cubic Irrational]\nA real number $\\alpha$ is a cubic irrational if it is a root of an irreducible polynomial of degree 3 with rational coefficients.\n\\end{definition}\n\n\\begin{definition}[Galois Group \\cite{Cox2012}]\nLet $L/K$ be a field extension. If $L$ is the splitting field of a \nseparable polynomial over $K$, then $\\text{Aut}_K(L)$ is the Galois group \nof $L$ over $K$, denoted $\\Gal(L/K)$.\n\\end{definition}\n\n\\begin{theorem}[Galois Groups of Cubic Polynomials \\cite{Cox2012}]\\label{thm:cubic_galois}\nFor an irreducible cubic polynomial $f(x) = x^3 + px^2 + qx + r \\in \\Q[x]$, the Galois group $\\Gal(L/\\Q)$, where $L$ is the splitting field of $f$, is isomorphic to either:\n\\begin{enumerate}\n    \\item $S_3$ if the discriminant $\\Delta = -4p^3r + p^2q^2 - 4q^3 - 27r^2 + 18pqr$ is not a perfect square in $\\Q$;\n    \\item $C_3$ if the discriminant is a non-zero perfect square in $\\Q$.\n\\end{enumerate}\n\\end{theorem}\n\n\\begin{proposition}\\label{prop:no_intermediate_field}\nFor an irreducible cubic polynomial with Galois group $S_3$, there is no intermediate field between $\\Q$ and $\\Q(\\alpha)$ where $\\alpha$ is a root of the polynomial.\n\\end{proposition}\n\n\\begin{proof}\nIf $\\Q \\subset F \\subset \\Q(\\alpha)$, then $[\\Q(\\alpha):\\Q] = [\\Q(\\alpha):F] \\cdot [F:\\Q]$. Since $[\\Q(\\alpha):\\Q] = 3$ and 3 is prime, either $[F:\\Q] = 1$ or $[\\Q(\\alpha):F] = 1$, implying $F = \\Q$ or $F = \\Q(\\alpha)$, contradicting the existence of a proper intermediate field.\n\\end{proof}\n\n\\begin{theorem}[Non-Periodicity of Cubic Irrationals \\cite{Davenport1961}]\\label{thm:non_periodicity}\nCubic irrationals cannot have eventually periodic continued fraction expansions.\n\\end{theorem}\n\n\\begin{proof}\nAssume by contradiction that $\\alpha$ is a cubic irrational with minimal polynomial $f(x) = x^3 + px^2 + qx + r \\in \\Z[x]$ having Galois group $S_3$ or $C_3$, and $\\alpha$ has an eventually periodic continued fraction.\n\nBy Theorem \\ref{thm:lagrange}, $\\alpha$ must be a quadratic irrational. Thus, $\\exists A, B, C \\in \\Z$ with $A \\neq 0$ and $\\gcd(A, B, C) = 1$ such that:\n\\begin{equation}\\label{eq:quadratic}\nA\\alpha^2 + B\\alpha + C = 0\n\\end{equation}\n\nBut $\\alpha$ is also a root of its minimal polynomial:\n\\begin{equation}\\label{eq:cubic}\n\\alpha^3 + p\\alpha^2 + q\\alpha + r = 0\n\\end{equation}\n\nFrom \\eqref{eq:quadratic}:\n\\begin{equation}\\label{eq:alpha_squared}\n\\alpha^2 = \\frac{-B\\alpha - C}{A}\n\\end{equation}\n\nSubstituting \\eqref{eq:alpha_squared} into \\eqref{eq:cubic} and multiplying by $A$:\n\\begin{equation}\n-B\\alpha^2 - C\\alpha - pB\\alpha - pC + qA\\alpha + rA = 0\n\\end{equation}\n\nSubstituting \\eqref{eq:alpha_squared} again and simplifying:\n\\begin{equation}\\label{eq:combined}\n(B^2 - AC - pAB + qA^2)\\alpha + (BC - pAC + rA^2) = 0\n\\end{equation}\n\nFor \\eqref{eq:combined} to be satisfied, both coefficients must be zero:\n\\begin{align}\nB^2 - AC - pAB + qA^2 &= 0 \\label{eq:coeff1}\\\\\nBC - pAC + rA^2 &= 0 \\label{eq:coeff2}\n\\end{align}\n\nFrom \\eqref{eq:coeff2}, assuming $C \\neq 0$ (if $C = 0$, then $B = 0$ from \\eqref{eq:quadratic}, contradicting that $\\alpha$ is irrational):\n\\begin{equation}\\label{eq:B_value}\nB = \\frac{pAC - rA^2}{C}\n\\end{equation}\n\nSubstituting \\eqref{eq:B_value} into \\eqref{eq:coeff1} leads to a relation implying an intermediate field between $\\Q$ and $\\Q(\\alpha)$, contradicting Proposition \\ref{prop:no_intermediate_field} for the $S_3$ case. For the $C_3$ case, $\\alpha$ generates a field of degree 3 over $\\Q$, which cannot contain a quadratic subfield.\n\\end{proof}\n\n\\begin{corollary}\\label{cor:cf_insufficient}\nNo direct generalization of continued fractions preserving the connection between periodicity and algebraic degree can characterize cubic irrationals.\n\\end{corollary}\n\nThe \\HAPD{} algorithm, operating in three-dimensional projective space, characterizes cubic irrationals through periodicity, addressing the limitations established by \\cite{Khinchin1964} and \\cite{Cassels1957}."
+      ],
+      "subsections": [],
+      "blocks": [
+        {
+          "type": "theorem",
+          "id": "thm:lagrange",
+          "title": "Lagrange \\cite{Lagrange1770}",
+          "content": "\\label{thm:lagrange}\nA real number has an eventually periodic continued fraction expansion if and only if it is a quadratic irrational.\n",
+          "number": 1
+        },
+        {
+          "type": "theorem",
+          "id": "thm:cubic_galois",
+          "title": "Galois Groups of Cubic Polynomials \\cite{Cox2012}",
+          "content": "\\label{thm:cubic_galois}\nFor an irreducible cubic polynomial $f(x) = x^3 + px^2 + qx + r \\in \\Q[x]$, the Galois group $\\Gal(L/\\Q)$, where $L$ is the splitting field of $f$, is isomorphic to either:\n\\begin{enumerate}\n    \\item $S_3$ if the discriminant $\\Delta = -4p^3r + p^2q^2 - 4q^3 - 27r^2 + 18pqr$ is not a perfect square in $\\Q$;\n    \\item $C_3$ if the discriminant is a non-zero perfect square in $\\Q$.\n\\end{enumerate}\n",
+          "number": 2
+        },
+        {
+          "type": "theorem",
+          "id": "thm:non_periodicity",
+          "title": "Non-Periodicity of Cubic Irrationals \\cite{Davenport1961}",
+          "content": "\\label{thm:non_periodicity}\nCubic irrationals cannot have eventually periodic continued fraction expansions.\n",
+          "number": 3
+        },
+        {
+          "type": "definition",
+          "id": "definition-1",
+          "title": "Continued Fraction Expansion",
+          "content": "\nFor $\\alpha \\in \\mathbb{R}$, the continued fraction expansion is $[a_0; a_1, a_2, \\ldots]$ where $a_0 = \\floor{\\alpha}$ and for $i \\geq 1$, $a_i = \\floor{\\alpha_i}$ with $\\alpha_0 = \\alpha$ and $\\alpha_{i+1} = \\frac{1}{\\alpha_i - a_i}$.\n",
+          "number": 1
+        },
+        {
+          "type": "definition",
+          "id": "definition-2",
+          "title": "Eventually Periodic Continued Fraction",
+          "content": "\nA continued fraction $[a_0; a_1, a_2, \\ldots]$ is eventually periodic if $\\exists N \\geq 0, p > 0$ such that $a_{N+i} = a_{N+p+i}$ for all $i \\geq 0$, denoted as \n\\begin{equation}\n[a_0; a_1, \\ldots, a_{N-1}, \\overline{a_N, \\ldots, a_{N+p-1}}]\n\\end{equation}\n",
+          "number": 2
+        },
+        {
+          "type": "definition",
+          "id": "definition-3",
+          "title": "Minimal Polynomial",
+          "content": "\nFor an algebraic number $\\alpha$ over $\\Q$, the minimal polynomial of $\\alpha$ over $\\Q$ is the monic polynomial $\\text{min}_\\Q(\\alpha, x) \\in \\Q[x]$ of least degree such that $\\text{min}_\\Q(\\alpha, x)(\\alpha) = 0$.\n",
+          "number": 3
+        },
+        {
+          "type": "definition",
+          "id": "definition-4",
+          "title": "Cubic Irrational",
+          "content": "\nA real number $\\alpha$ is a cubic irrational if it is a root of an irreducible polynomial of degree 3 with rational coefficients.\n",
+          "number": 4
+        },
+        {
+          "type": "definition",
+          "id": "definition-5",
+          "title": "Galois Group \\cite{Cox2012}",
+          "content": "\nLet $L/K$ be a field extension. If $L$ is the splitting field of a \nseparable polynomial over $K$, then $\\text{Aut}_K(L)$ is the Galois group \nof $L$ over $K$, denoted $\\Gal(L/K)$.\n",
+          "number": 5
+        },
+        {
+          "type": "proposition",
+          "id": "prop:no_intermediate_field",
+          "title": "",
+          "content": "\\label{prop:no_intermediate_field}\nFor an irreducible cubic polynomial with Galois group $S_3$, there is no intermediate field between $\\Q$ and $\\Q(\\alpha)$ where $\\alpha$ is a root of the polynomial.\n",
+          "number": 1
+        },
+        {
+          "type": "corollary",
+          "id": "cor:cf_insufficient",
+          "title": "",
+          "content": "\\label{cor:cf_insufficient}\nNo direct generalization of continued fractions preserving the connection between periodicity and algebraic degree can characterize cubic irrationals.\n",
+          "number": 1
+        },
+        {
+          "type": "equation",
+          "id": "equation-1",
+          "content": "\n[a_0; a_1, \\ldots, a_{N-1}, \\overline{a_N, \\ldots, a_{N+p-1}}]\n",
+          "number": 1
+        },
+        {
+          "type": "equation",
+          "id": "eq:quadratic",
+          "content": "\\label{eq:quadratic}\nA\\alpha^2 + B\\alpha + C = 0\n",
+          "number": 2
+        },
+        {
+          "type": "equation",
+          "id": "eq:cubic",
+          "content": "\\label{eq:cubic}\n\\alpha^3 + p\\alpha^2 + q\\alpha + r = 0\n",
+          "number": 3
+        },
+        {
+          "type": "equation",
+          "id": "eq:alpha_squared",
+          "content": "\\label{eq:alpha_squared}\n\\alpha^2 = \\frac{-B\\alpha - C}{A}\n",
+          "number": 4
+        },
+        {
+          "type": "equation",
+          "id": "equation-5",
+          "content": "\n-B\\alpha^2 - C\\alpha - pB\\alpha - pC + qA\\alpha + rA = 0\n",
+          "number": 5
+        },
+        {
+          "type": "equation",
+          "id": "eq:combined",
+          "content": "\\label{eq:combined}\n(B^2 - AC - pAB + qA^2)\\alpha + (BC - pAC + rA^2) = 0\n",
+          "number": 6
+        },
+        {
+          "type": "equation",
+          "id": "eq:B_value",
+          "content": "\\label{eq:B_value}\nB = \\frac{pAC - rA^2}{C}\n",
+          "number": 7
+        },
+        {
+          "type": "equation",
+          "id": "eq:coeff1",
+          "content": "\nB^2 - AC - pAB + qA^2 &= 0 \\label{eq:coeff1}\\\\\nBC - pAC + rA^2 &= 0 \\label{eq:coeff2}\n",
+          "number": 8
+        }
+      ]
+    }
+  ]
+}

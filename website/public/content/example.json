@@ -1,0 +1,20 @@
+{
+  "sections": [
+    {
+      "title": "Introduction",
+      "id": "introduction",
+      "level": "section",
+      "content": [
+        "This is a \\textbf{sample} document with \\textit{emphasis} and math: $E = mc^2$.\n\n        \\begin{theorem}\n        For every quadratic irrational $\\alpha$, the continued fraction expansion is eventually periodic.\n        \\end{theorem}\n\n        \\subsection{Details}\n        Here is a list:\n        \\begin{itemize}\n            \\item First item\n            \\item Second item with $a^2 + b^2 = c^2$\n        \\end{itemize}\n\n        Display math:\n        \\begin{equation}\n        \\int_0^\\infty e^{-x} \\, dx = 1\n        \\end{equation}\n\n        \\begin{figure}\n        \\includegraphics[width=0.8\\textwidth]{images/hermite_diagram.png}\n        \\caption{Visualization of Hermite's algorithm.}\n        \\end{figure}"
+      ],
+      "blocks": [
+        {
+          "type": "theorem",
+          "id": "theorem-1",
+          "content": "For every quadratic irrational $\\alpha$, the continued fraction expansion is eventually periodic.",
+          "number": 1
+        }
+      ]
+    }
+  ]
+}

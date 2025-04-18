@@ -1,0 +1,100 @@
+{
+  "filename": "matrix-computational.tex",
+  "sections": [
+    {
+      "title": "Computational Aspects of the Matrix Approach",
+      "id": "matrix_computational",
+      "level": "section",
+      "content": [
+        "Having established the matrix approach using companion matrices and trace sequences as a solution to Hermite's problem, this section focuses on its numerical validation and computational aspects."
+      ],
+      "subsections": [
+        {
+          "title": "Numerical Validation",
+          "id": "numerical-validation",
+          "level": "subsection",
+          "content": [
+            "Our implementation and testing demonstrate exceptional accuracy and efficiency in identifying cubic irrationals.\n\n\\begin{table}[h]\n\\centering\n\\caption{Results of Matrix Verification Method on Different Number Types}\n\\label{tab:matrix_results}\n\\begin{tabular}{|l|l|l|l|}\n\\hline\n\\textbf{Number} & \\textbf{Type} & \\textbf{Classification} & \\textbf{Correct?} \\\\\n\\hline\n$\\sqrt{2}$ & Quadratic Irrational & Not Cubic & \\checkmark \\\\\n$\\sqrt{3}$ & Quadratic Irrational & Not Cubic & \\checkmark \\\\\n$\\frac{1+\\sqrt{5}}{2}$ & Quadratic Irrational & Not Cubic & \\checkmark \\\\\n\\hline\n$\\sqrt[3]{2}$ & Cubic Irrational & Cubic & \\checkmark \\\\\n$\\sqrt[3]{3}$ & Cubic Irrational & Cubic & \\checkmark \\\\\n$1+\\sqrt[3]{2}$ & Cubic Irrational & Cubic & \\checkmark \\\\\n\\hline\n$\\pi$ & Transcendental & Not Cubic & \\checkmark \\\\\n$e$ & Transcendental & Not Cubic & \\checkmark \\\\\n\\hline\n$\\frac{3}{2}$ & Rational & Not Cubic & \\checkmark \\\\\n$\\frac{22}{7}$ & Rational & Not Cubic & \\checkmark \\\\\n\\hline\n\\end{tabular}\n\\end{table}\n\nThe matrix verification method achieves 100\\\n\n\\begin{example}[Detailed Analysis of Cube Root of 2]\nFor $\\alpha = 2^{1/3}$ with minimal polynomial $p(x) = x^3 - 2$:\n\\begin{enumerate}\n    \\item Companion matrix: $C = \\begin{pmatrix} 0 & 0 & 2 \\\\ 1 & 0 & 0 \\\\ 0 & 1 & 0 \\end{pmatrix}$\n    \\item Traces: $\\tr(C^0) = 3$, $\\tr(C^1) = 0$, $\\tr(C^2) = 0$, $\\tr(C^3) = 6$, $\\tr(C^4) = 0$, $\\tr(C^5) = 0$\n    \\item Verification: The trace relations hold perfectly for all $k \\geq 3$:\n    \\begin{align*}\n        \\tr(C^3) &= 0 \\cdot \\tr(C^2) + 0 \\cdot \\tr(C^1) + 2 \\cdot \\tr(C^0) = 0 + 0 + 2 \\cdot 3 = 6 \\\\\n        \\tr(C^4) &= 0 \\cdot \\tr(C^3) + 0 \\cdot \\tr(C^2) + 2 \\cdot \\tr(C^1) = 0 + 0 + 2 \\cdot 0 = 0 \\\\\n        \\tr(C^5) &= 0 \\cdot \\tr(C^4) + 0 \\cdot \\tr(C^3) + 2 \\cdot \\tr(C^2) = 0 + 0 + 2 \\cdot 0 = 0\n    \\end{align*}\n\\end{enumerate}\nThe perfect alignment of these trace relations confirms that $2^{1/3}$ is a cubic irrational.\n\\end{example}"
+          ],
+          "blocks": [
+            {
+              "type": "example",
+              "id": "example-1",
+              "title": "Detailed Analysis of Cube Root of 2",
+              "content": "\nFor $\\alpha = 2^{1/3}$ with minimal polynomial $p(x) = x^3 - 2$:\n\\begin{enumerate}\n    \\item Companion matrix: $C = \\begin{pmatrix} 0 & 0 & 2 \\\\ 1 & 0 & 0 \\\\ 0 & 1 & 0 \\end{pmatrix}$\n    \\item Traces: $\\tr(C^0) = 3$, $\\tr(C^1) = 0$, $\\tr(C^2) = 0$, $\\tr(C^3) = 6$, $\\tr(C^4) = 0$, $\\tr(C^5) = 0$\n    \\item Verification: The trace relations hold perfectly for all $k \\geq 3$:\n    \\begin{align*}\n        \\tr(C^3) &= 0 \\cdot \\tr(C^2) + 0 \\cdot \\tr(C^1) + 2 \\cdot \\tr(C^0) = 0 + 0 + 2 \\cdot 3 = 6 \\\\\n        \\tr(C^4) &= 0 \\cdot \\tr(C^3) + 0 \\cdot \\tr(C^2) + 2 \\cdot \\tr(C^1) = 0 + 0 + 2 \\cdot 0 = 0 \\\\\n        \\tr(C^5) &= 0 \\cdot \\tr(C^4) + 0 \\cdot \\tr(C^3) + 2 \\cdot \\tr(C^2) = 0 + 0 + 2 \\cdot 0 = 0\n    \\end{align*}\n\\end{enumerate}\nThe perfect alignment of these trace relations confirms that $2^{1/3}$ is a cubic irrational.\n",
+              "number": 1
+            },
+            {
+              "type": "equation",
+              "id": "equation-1",
+              "content": "\n        \\tr(C^3) &= 0 \\cdot \\tr(C^2) + 0 \\cdot \\tr(C^1) + 2 \\cdot \\tr(C^0) = 0 + 0 + 2 \\cdot 3 = 6 \\\\\n        \\tr(C^4) &= 0 \\cdot \\tr(C^3) + 0 \\cdot \\tr(C^2) + 2 \\cdot \\tr(C^1) = 0 + 0 + 2 \\cdot 0 = 0 \\\\\n        \\tr(C^5) &= 0 \\cdot \\tr(C^4) + 0 \\cdot \\tr(C^3) + 2 \\cdot \\tr(C^2) = 0 + 0 + 2 \\cdot 0 = 0\n    ",
+              "number": 1
+            },
+            {
+              "type": "table",
+              "id": "tab:matrix_results",
+              "content": "[h]\n\\centering\n\\caption{Results of Matrix Verification Method on Different Number Types}\n\\label{tab:matrix_results}\n\\begin{tabular}{|l|l|l|l|}\n\\hline\n\\textbf{Number} & \\textbf{Type} & \\textbf{Classification} & \\textbf{Correct?} \\\\\n\\hline\n$\\sqrt{2}$ & Quadratic Irrational & Not Cubic & \\checkmark \\\\\n$\\sqrt{3}$ & Quadratic Irrational & Not Cubic & \\checkmark \\\\\n$\\frac{1+\\sqrt{5}}{2}$ & Quadratic Irrational & Not Cubic & \\checkmark \\\\\n\\hline\n$\\sqrt[3]{2}$ & Cubic Irrational & Cubic & \\checkmark \\\\\n$\\sqrt[3]{3}$ & Cubic Irrational & Cubic & \\checkmark \\\\\n$1+\\sqrt[3]{2}$ & Cubic Irrational & Cubic & \\checkmark \\\\\n\\hline\n$\\pi$ & Transcendental & Not Cubic & \\checkmark \\\\\n$e$ & Transcendental & Not Cubic & \\checkmark \\\\\n\\hline\n$\\frac{3}{2}$ & Rational & Not Cubic & \\checkmark \\\\\n$\\frac{22}{7}$ & Rational & Not Cubic & \\checkmark \\\\\n\\hline\n\\end{tabular}\n",
+              "caption": "Results of Matrix Verification Method on Different Number Types",
+              "number": 1
+            }
+          ]
+        },
+        {
+          "title": "Comparison with Other Approaches",
+          "id": "comparison-with-other-approaches",
+          "level": "subsection",
+          "content": [
+            "\\begin{table}[h]\n\\centering\n\\caption{Comparison of the Three Solution Approaches}\n\\label{tab:comparison}\n\\begin{tabular}{|p{0.3\\textwidth}|p{0.3\\textwidth}|p{0.3\\textwidth}|}\n\\hline\n\\textbf{HAPD Algorithm} & \\textbf{Matrix Approach} & \\textbf{Modified sin² Algorithm} \\\\\n\\hline\n\nWorks directly from number $\\alpha$ & Requires minimal polynomial (or candidate) & Works directly from number $\\alpha$ \\\\\n\\hline\nGeometric interpretation (projective space) & Clear algebraic interpretation (traces, eigenvalues) & Algorithmic, based on floor functions \\\\\n\\hline\nProvides representation sequence (pairs) & Provides trace sequence & Provides representation sequence (pairs) \\\\\n\\hline\nHandles complex roots inherently & Handles complex roots inherently (via polynomial) & Explicitly modified for complex roots \\\\\n\\hline\n\nCan be slower numerically & Needs polynomial identification (e.g., PSLQ/LLL) & Sensitivity to phase-preserving floor details \\\\\n\\hline\nPotential precision issues & Robust once polynomial known & Potential precision issues \\\\\n\\hline\nDirect generalization of Hermite's geometric idea & Computationally efficient for verification & Extension of existing algorithm (Karpenkov) \\\\\n\\hline\n\\end{tabular}\n\\end{table}\n\nThe matrix approach excels in computational efficiency and numerical stability once a candidate minimal polynomial is found. However, finding this polynomial typically requires algorithms like PSLQ or LLL, which themselves can be computationally intensive.\n\nThe \\HAPD{} algorithm, in contrast, works directly with the real number without requiring prior identification of its minimal polynomial, and provides a representation system that more directly addresses Hermite's original vision. The modified sin²-algorithm offers another alternative, particularly adapted from existing methods for totally real fields."
+          ],
+          "blocks": [
+            {
+              "type": "table",
+              "id": "tab:comparison",
+              "content": "[h]\n\\centering\n\\caption{Comparison of the Three Solution Approaches}\n\\label{tab:comparison}\n\\begin{tabular}{|p{0.3\\textwidth}|p{0.3\\textwidth}|p{0.3\\textwidth}|}\n\\hline\n\\textbf{HAPD Algorithm} & \\textbf{Matrix Approach} & \\textbf{Modified sin² Algorithm} \\\\\n\\hline\n\nWorks directly from number $\\alpha$ & Requires minimal polynomial (or candidate) & Works directly from number $\\alpha$ \\\\\n\\hline\nGeometric interpretation (projective space) & Clear algebraic interpretation (traces, eigenvalues) & Algorithmic, based on floor functions \\\\\n\\hline\nProvides representation sequence (pairs) & Provides trace sequence & Provides representation sequence (pairs) \\\\\n\\hline\nHandles complex roots inherently & Handles complex roots inherently (via polynomial) & Explicitly modified for complex roots \\\\\n\\hline\n\nCan be slower numerically & Needs polynomial identification (e.g., PSLQ/LLL) & Sensitivity to phase-preserving floor details \\\\\n\\hline\nPotential precision issues & Robust once polynomial known & Potential precision issues \\\\\n\\hline\nDirect generalization of Hermite's geometric idea & Computationally efficient for verification & Extension of existing algorithm (Karpenkov) \\\\\n\\hline\n\\end{tabular}\n",
+              "caption": "Comparison of the Three Solution Approaches",
+              "number": 1
+            }
+          ]
+        },
+        {
+          "title": "Implementation Strategy",
+          "id": "implementation-strategy",
+          "level": "subsection",
+          "content": [
+            "In practice, we recommend a combined approach:\n\\begin{enumerate}\n    \\item Run a few iterations of the \\HAPD{} algorithm to quickly identify rational numbers and detect evidence of periodicity for cubic irrationals.\n    \\item For potential cubic irrationals, use PSLQ or LLL to find a candidate minimal polynomial.\n    \\item Confirm using the matrix verification method, which provides high accuracy with minimal computational overhead once the polynomial is identified.\n\\end{enumerate}\n\nThis hybrid approach leverages the strengths of multiple methods, providing a robust and efficient solution to identifying and characterizing cubic irrationals in practice."
+          ],
+          "blocks": []
+        }
+      ],
+      "blocks": [
+        {
+          "type": "example",
+          "id": "example-1",
+          "title": "Detailed Analysis of Cube Root of 2",
+          "content": "\nFor $\\alpha = 2^{1/3}$ with minimal polynomial $p(x) = x^3 - 2$:\n\\begin{enumerate}\n    \\item Companion matrix: $C = \\begin{pmatrix} 0 & 0 & 2 \\\\ 1 & 0 & 0 \\\\ 0 & 1 & 0 \\end{pmatrix}$\n    \\item Traces: $\\tr(C^0) = 3$, $\\tr(C^1) = 0$, $\\tr(C^2) = 0$, $\\tr(C^3) = 6$, $\\tr(C^4) = 0$, $\\tr(C^5) = 0$\n    \\item Verification: The trace relations hold perfectly for all $k \\geq 3$:\n    \\begin{align*}\n        \\tr(C^3) &= 0 \\cdot \\tr(C^2) + 0 \\cdot \\tr(C^1) + 2 \\cdot \\tr(C^0) = 0 + 0 + 2 \\cdot 3 = 6 \\\\\n        \\tr(C^4) &= 0 \\cdot \\tr(C^3) + 0 \\cdot \\tr(C^2) + 2 \\cdot \\tr(C^1) = 0 + 0 + 2 \\cdot 0 = 0 \\\\\n        \\tr(C^5) &= 0 \\cdot \\tr(C^4) + 0 \\cdot \\tr(C^3) + 2 \\cdot \\tr(C^2) = 0 + 0 + 2 \\cdot 0 = 0\n    \\end{align*}\n\\end{enumerate}\nThe perfect alignment of these trace relations confirms that $2^{1/3}$ is a cubic irrational.\n",
+          "number": 1
+        },
+        {
+          "type": "equation",
+          "id": "equation-1",
+          "content": "\n        \\tr(C^3) &= 0 \\cdot \\tr(C^2) + 0 \\cdot \\tr(C^1) + 2 \\cdot \\tr(C^0) = 0 + 0 + 2 \\cdot 3 = 6 \\\\\n        \\tr(C^4) &= 0 \\cdot \\tr(C^3) + 0 \\cdot \\tr(C^2) + 2 \\cdot \\tr(C^1) = 0 + 0 + 2 \\cdot 0 = 0 \\\\\n        \\tr(C^5) &= 0 \\cdot \\tr(C^4) + 0 \\cdot \\tr(C^3) + 2 \\cdot \\tr(C^2) = 0 + 0 + 2 \\cdot 0 = 0\n    ",
+          "number": 1
+        },
+        {
+          "type": "table",
+          "id": "tab:matrix_results",
+          "content": "[h]\n\\centering\n\\caption{Results of Matrix Verification Method on Different Number Types}\n\\label{tab:matrix_results}\n\\begin{tabular}{|l|l|l|l|}\n\\hline\n\\textbf{Number} & \\textbf{Type} & \\textbf{Classification} & \\textbf{Correct?} \\\\\n\\hline\n$\\sqrt{2}$ & Quadratic Irrational & Not Cubic & \\checkmark \\\\\n$\\sqrt{3}$ & Quadratic Irrational & Not Cubic & \\checkmark \\\\\n$\\frac{1+\\sqrt{5}}{2}$ & Quadratic Irrational & Not Cubic & \\checkmark \\\\\n\\hline\n$\\sqrt[3]{2}$ & Cubic Irrational & Cubic & \\checkmark \\\\\n$\\sqrt[3]{3}$ & Cubic Irrational & Cubic & \\checkmark \\\\\n$1+\\sqrt[3]{2}$ & Cubic Irrational & Cubic & \\checkmark \\\\\n\\hline\n$\\pi$ & Transcendental & Not Cubic & \\checkmark \\\\\n$e$ & Transcendental & Not Cubic & \\checkmark \\\\\n\\hline\n$\\frac{3}{2}$ & Rational & Not Cubic & \\checkmark \\\\\n$\\frac{22}{7}$ & Rational & Not Cubic & \\checkmark \\\\\n\\hline\n\\end{tabular}\n",
+          "caption": "Results of Matrix Verification Method on Different Number Types",
+          "number": 1
+        },
+        {
+          "type": "table",
+          "id": "tab:comparison",
+          "content": "[h]\n\\centering\n\\caption{Comparison of the Three Solution Approaches}\n\\label{tab:comparison}\n\\begin{tabular}{|p{0.3\\textwidth}|p{0.3\\textwidth}|p{0.3\\textwidth}|}\n\\hline\n\\textbf{HAPD Algorithm} & \\textbf{Matrix Approach} & \\textbf{Modified sin² Algorithm} \\\\\n\\hline\n\nWorks directly from number $\\alpha$ & Requires minimal polynomial (or candidate) & Works directly from number $\\alpha$ \\\\\n\\hline\nGeometric interpretation (projective space) & Clear algebraic interpretation (traces, eigenvalues) & Algorithmic, based on floor functions \\\\\n\\hline\nProvides representation sequence (pairs) & Provides trace sequence & Provides representation sequence (pairs) \\\\\n\\hline\nHandles complex roots inherently & Handles complex roots inherently (via polynomial) & Explicitly modified for complex roots \\\\\n\\hline\n\nCan be slower numerically & Needs polynomial identification (e.g., PSLQ/LLL) & Sensitivity to phase-preserving floor details \\\\\n\\hline\nPotential precision issues & Robust once polynomial known & Potential precision issues \\\\\n\\hline\nDirect generalization of Hermite's geometric idea & Computationally efficient for verification & Extension of existing algorithm (Karpenkov) \\\\\n\\hline\n\\end{tabular}\n",
+          "caption": "Comparison of the Three Solution Approaches",
+          "number": 2
+        }
+      ]
+    }
+  ]
+}

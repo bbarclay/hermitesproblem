@@ -1,0 +1,226 @@
+{
+  "filename": "implementation-examples.tex",
+  "sections": [
+    {
+      "title": "Implementation Examples",
+      "id": "implementation_examples",
+      "level": "section",
+      "content": [
+        "This section presents concrete examples of applying our algorithms to specific cubic irrationals, demonstrating periodicity detection and implementation details."
+      ],
+      "subsections": [
+        {
+          "title": "HAPD Implementation",
+          "id": "hapd-implementation",
+          "level": "subsection",
+          "content": [
+            "\\begin{example}[HAPD Algorithm for $\\sqrt[3]{2}$]\\label{ex:cubic_root_2}\nFor $\\alpha = \\sqrt[3]{2}$ with minimal polynomial $x^3 - 2$, the HAPD algorithm produces:\n\n\\begin{center}\n\\begin{tabular}{|c|c|c|c|c|c|}\n\\hline\nIteration & Triple $(v_1, v_2, v_3)$ & $a_1$ & $a_2$ & Next Triple & Encoding \\\\\n\\hline\n1 & $(\\sqrt[3]{2}, \\sqrt[3]{4}, 1)$ & 1 & 1 & $(0.26, 0.26, 0.74)$ & $(1,1)$ \\\\\n\\hline\n2 & $(0.26, 0.26, 0.74)$ & 0 & 0 & $(0.26, 0.26, 0.22)$ & $(0,0)$ \\\\\n\\hline\n3 & $(0.26, 0.26, 0.22)$ & 1 & 1 & $(0.04, 0.04, 0.14)$ & $(1,1)$ \\\\\n\\hline\n4 & $(0.04, 0.04, 0.14)$ & 0 & 0 & $(0.04, 0.04, 0.06)$ & $(0,0)$ \\\\\n\\hline\n5 & $(0.04, 0.04, 0.06)$ & 0 & 0 & $(0.04, 0.04, 0.02)$ & $(0,0)$ \\\\\n\\hline\n6 & $(0.04, 0.04, 0.02)$ & 2 & 2 & $(0, 0, 0)$ & $(2,2)$ \\\\\n\\hline\n\\end{tabular}\n\\end{center}\n\nThe algorithm terminates when all values become zero, indicating periodicity.\n\\end{example}\n\n\\begin{example}[HAPD Algorithm for Golden Ratio]\\label{ex:phi}\nFor $\\phi = \\frac{1+\\sqrt{5}}{2}$ with minimal polynomial $x^2 - x - 1$, we test $\\alpha = \\phi + 0.1$ (which is cubic).\n\n\\begin{center}\n\\begin{tabular}{|c|c|c|c|c|c|}\n\\hline\nIteration & Triple $(v_1, v_2, v_3)$ & $a_1$ & $a_2$ & Next Triple & Encoding \\\\\n\\hline\n1 & $(\\phi+0.1, (\\phi+0.1)^2, 1)$ & 1 & 3 & $(0.718, 1.035, 0.5)$ & $(1,3)$ \\\\\n\\hline\n2 & $(0.718, 1.035, 0.5)$ & 1 & 2 & $(0.218, 0.035, 0.313)$ & $(1,2)$ \\\\\n\\hline\n3 & $(0.218, 0.035, 0.313)$ & 0 & 0 & $(0.218, 0.035, 0.095)$ & $(0,0)$ \\\\\n\\hline\n4 & $(0.218, 0.035, 0.095)$ & 2 & 0 & $(0.028, 0.035, 0.033)$ & $(2,0)$ \\\\\n\\hline\n5 & $(0.028, 0.035, 0.033)$ & 0 & 1 & $(0.028, 0.002, 0.005)$ & $(0,1)$ \\\\\n\\hline\n... & ... & ... & ... & ... & ... \\\\\n\\hline\n\\end{tabular}\n\\end{center}\n\nThe sequence continues with period 12, confirming $\\alpha$ is cubic.\n\\end{example}"
+          ],
+          "blocks": [
+            {
+              "type": "example",
+              "id": "ex:cubic_root_2",
+              "title": "HAPD Algorithm for $\\sqrt[3",
+              "content": "{2}$]\\label{ex:cubic_root_2}\nFor $\\alpha = \\sqrt[3]{2}$ with minimal polynomial $x^3 - 2$, the HAPD algorithm produces:\n\n\\begin{center}\n\\begin{tabular}{|c|c|c|c|c|c|}\n\\hline\nIteration & Triple $(v_1, v_2, v_3)$ & $a_1$ & $a_2$ & Next Triple & Encoding \\\\\n\\hline\n1 & $(\\sqrt[3]{2}, \\sqrt[3]{4}, 1)$ & 1 & 1 & $(0.26, 0.26, 0.74)$ & $(1,1)$ \\\\\n\\hline\n2 & $(0.26, 0.26, 0.74)$ & 0 & 0 & $(0.26, 0.26, 0.22)$ & $(0,0)$ \\\\\n\\hline\n3 & $(0.26, 0.26, 0.22)$ & 1 & 1 & $(0.04, 0.04, 0.14)$ & $(1,1)$ \\\\\n\\hline\n4 & $(0.04, 0.04, 0.14)$ & 0 & 0 & $(0.04, 0.04, 0.06)$ & $(0,0)$ \\\\\n\\hline\n5 & $(0.04, 0.04, 0.06)$ & 0 & 0 & $(0.04, 0.04, 0.02)$ & $(0,0)$ \\\\\n\\hline\n6 & $(0.04, 0.04, 0.02)$ & 2 & 2 & $(0, 0, 0)$ & $(2,2)$ \\\\\n\\hline\n\\end{tabular}\n\\end{center}\n\nThe algorithm terminates when all values become zero, indicating periodicity.\n",
+              "number": 1
+            },
+            {
+              "type": "example",
+              "id": "ex:phi",
+              "title": "HAPD Algorithm for Golden Ratio",
+              "content": "\\label{ex:phi}\nFor $\\phi = \\frac{1+\\sqrt{5}}{2}$ with minimal polynomial $x^2 - x - 1$, we test $\\alpha = \\phi + 0.1$ (which is cubic).\n\n\\begin{center}\n\\begin{tabular}{|c|c|c|c|c|c|}\n\\hline\nIteration & Triple $(v_1, v_2, v_3)$ & $a_1$ & $a_2$ & Next Triple & Encoding \\\\\n\\hline\n1 & $(\\phi+0.1, (\\phi+0.1)^2, 1)$ & 1 & 3 & $(0.718, 1.035, 0.5)$ & $(1,3)$ \\\\\n\\hline\n2 & $(0.718, 1.035, 0.5)$ & 1 & 2 & $(0.218, 0.035, 0.313)$ & $(1,2)$ \\\\\n\\hline\n3 & $(0.218, 0.035, 0.313)$ & 0 & 0 & $(0.218, 0.035, 0.095)$ & $(0,0)$ \\\\\n\\hline\n4 & $(0.218, 0.035, 0.095)$ & 2 & 0 & $(0.028, 0.035, 0.033)$ & $(2,0)$ \\\\\n\\hline\n5 & $(0.028, 0.035, 0.033)$ & 0 & 1 & $(0.028, 0.002, 0.005)$ & $(0,1)$ \\\\\n\\hline\n... & ... & ... & ... & ... & ... \\\\\n\\hline\n\\end{tabular}\n\\end{center}\n\nThe sequence continues with period 12, confirming $\\alpha$ is cubic.\n",
+              "number": 2
+            }
+          ]
+        },
+        {
+          "title": "Matrix Approach Implementation",
+          "id": "matrix-approach-implementation",
+          "level": "subsection",
+          "content": [
+            "\\begin{example}[Trace Sequence for $\\sqrt[3]{2}$]\\label{ex:matrix_cube_root}\nFor $\\alpha = \\sqrt[3]{2}$ with minimal polynomial $p(x) = x^3 - 2$, the companion matrix is:\n\n\\begin{equation}\nC = \\begin{pmatrix}\n0 & 0 & 2 \\\\\n1 & 0 & 0 \\\\\n0 & 1 & 0\n\\end{pmatrix}\n\\end{equation}\n\nComputing traces of powers:\n\\begin{align}\nt_1 &= \\text{Tr}(C) = 0 \\\\\nt_2 &= \\text{Tr}(C^2) = 0 \\\\\nt_3 &= \\text{Tr}(C^3) = 6 \\\\\nt_4 &= \\text{Tr}(C^4) = 0 \\\\\nt_5 &= \\text{Tr}(C^5) = 0 \\\\\nt_6 &= \\text{Tr}(C^6) = 30\n\\end{align}\n\nThe trace sequence $(t_n)$ is periodic with period 3, where each period consists of $(0, 0, 6k)$ for increasing values of $k$.\n\\end{example}\n\n\\begin{example}[Trace Sequence for Plastic Number]\\label{ex:matrix_plastic}\nThe plastic number $\\rho \\approx 1.32471$ is the real root of $x^3 - x - 1 = 0$. Its companion matrix is:\n\n\\begin{equation}\nC = \\begin{pmatrix}\n0 & 1 & 1 \\\\\n1 & 0 & 0 \\\\\n0 & 1 & 0\n\\end{pmatrix}\n\\end{equation}\n\nThe trace sequence is:\n\\begin{align}\nt_1 &= 0 \\\\\nt_2 &= 1 \\\\\nt_3 &= 0 \\\\\nt_4 &= 2 \\\\\nt_5 &= 3 \\\\\nt_6 &= 5 \\\\\nt_7 &= 8 \\\\\n\\end{align}\n\nAfter $t_2$, the sequence follows the recurrence relation $t_{n+2} = t_{n+1} + t_n$ (Fibonacci sequence).\n\\end{example}"
+          ],
+          "blocks": [
+            {
+              "type": "example",
+              "id": "ex:matrix_cube_root",
+              "title": "Trace Sequence for $\\sqrt[3",
+              "content": "{2}$]\\label{ex:matrix_cube_root}\nFor $\\alpha = \\sqrt[3]{2}$ with minimal polynomial $p(x) = x^3 - 2$, the companion matrix is:\n\n\\begin{equation}\nC = \\begin{pmatrix}\n0 & 0 & 2 \\\\\n1 & 0 & 0 \\\\\n0 & 1 & 0\n\\end{pmatrix}\n\\end{equation}\n\nComputing traces of powers:\n\\begin{align}\nt_1 &= \\text{Tr}(C) = 0 \\\\\nt_2 &= \\text{Tr}(C^2) = 0 \\\\\nt_3 &= \\text{Tr}(C^3) = 6 \\\\\nt_4 &= \\text{Tr}(C^4) = 0 \\\\\nt_5 &= \\text{Tr}(C^5) = 0 \\\\\nt_6 &= \\text{Tr}(C^6) = 30\n\\end{align}\n\nThe trace sequence $(t_n)$ is periodic with period 3, where each period consists of $(0, 0, 6k)$ for increasing values of $k$.\n",
+              "number": 1
+            },
+            {
+              "type": "example",
+              "id": "ex:matrix_plastic",
+              "title": "Trace Sequence for Plastic Number",
+              "content": "\\label{ex:matrix_plastic}\nThe plastic number $\\rho \\approx 1.32471$ is the real root of $x^3 - x - 1 = 0$. Its companion matrix is:\n\n\\begin{equation}\nC = \\begin{pmatrix}\n0 & 1 & 1 \\\\\n1 & 0 & 0 \\\\\n0 & 1 & 0\n\\end{pmatrix}\n\\end{equation}\n\nThe trace sequence is:\n\\begin{align}\nt_1 &= 0 \\\\\nt_2 &= 1 \\\\\nt_3 &= 0 \\\\\nt_4 &= 2 \\\\\nt_5 &= 3 \\\\\nt_6 &= 5 \\\\\nt_7 &= 8 \\\\\n\\end{align}\n\nAfter $t_2$, the sequence follows the recurrence relation $t_{n+2} = t_{n+1} + t_n$ (Fibonacci sequence).\n",
+              "number": 2
+            },
+            {
+              "type": "equation",
+              "id": "equation-1",
+              "content": "\nC = \\begin{pmatrix}\n0 & 0 & 2 \\\\\n1 & 0 & 0 \\\\\n0 & 1 & 0\n\\end{pmatrix}\n",
+              "number": 1
+            },
+            {
+              "type": "equation",
+              "id": "equation-2",
+              "content": "\nC = \\begin{pmatrix}\n0 & 1 & 1 \\\\\n1 & 0 & 0 \\\\\n0 & 1 & 0\n\\end{pmatrix}\n",
+              "number": 2
+            },
+            {
+              "type": "equation",
+              "id": "equation-3",
+              "content": "\nt_1 &= \\text{Tr}(C) = 0 \\\\\nt_2 &= \\text{Tr}(C^2) = 0 \\\\\nt_3 &= \\text{Tr}(C^3) = 6 \\\\\nt_4 &= \\text{Tr}(C^4) = 0 \\\\\nt_5 &= \\text{Tr}(C^5) = 0 \\\\\nt_6 &= \\text{Tr}(C^6) = 30\n",
+              "number": 3
+            },
+            {
+              "type": "equation",
+              "id": "equation-4",
+              "content": "\nt_1 &= 0 \\\\\nt_2 &= 1 \\\\\nt_3 &= 0 \\\\\nt_4 &= 2 \\\\\nt_5 &= 3 \\\\\nt_6 &= 5 \\\\\nt_7 &= 8 \\\\\n",
+              "number": 4
+            }
+          ]
+        },
+        {
+          "title": "Subtractive Algorithm Implementation",
+          "id": "subtractive-algorithm-implementation",
+          "level": "subsection",
+          "content": [
+            "\\begin{example}[Subtractive HAPD for $\\sqrt[3]{2}$]\\label{ex:subtractive_cube_root}\nFor $\\alpha = \\sqrt[3]{2}$ with minimal polynomial $x^3 - 2$, the Subtractive HAPD algorithm produces:\n\n\\begin{center}\n\\begin{tabular}{|c|c|c|c|c|c|c|}\n\\hline\nIteration & Triple $(v_1, v_2, v_3)$ & $a_1$ & $a_2$ & $(r_1, r_2)$ & $r_{\\max}$ & Encoding \\\\\n\\hline\n1 & $(\\sqrt[3]{2}, \\sqrt[3]{4}, 1)$ & 1 & 1 & $(0.26, 0.26)$ & 0.26 & $(1,1,1)$ \\\\\n\\hline\n2 & $(0.26, 0.26, 0.26)$ & 1 & 1 & $(0, 0)$ & 0 & $(1,1,-)$ \\\\\n\\hline\n\\end{tabular}\n\\end{center}\n\nThe algorithm terminates when remainders become zero.\n\\end{example}\n\n\\begin{example}[Subtractive HAPD for $\\alpha = \\phi + 0.1$]\\label{ex:subtractive_phi}\nFor $\\alpha = \\phi + 0.1$, the Subtractive HAPD algorithm reveals a period of 8:\n\n\\begin{center}\n\\begin{tabular}{|c|c|c|c|c|c|}\n\\hline\nIteration & Triple $(v_1, v_2, v_3)$ & $a_1$ & $a_2$ & $(r_1, r_2)$ & Encoding \\\\\n\\hline\n1 & $(1.718, 2.952, 1)$ & 1 & 2 & $(0.718, 0.952)$ & $(1,2,2)$ \\\\\n\\hline\n2 & $(0.718, 0.952, 0.952)$ & 0 & 1 & $(0.718, 0)$ & $(0,1,1)$ \\\\\n\\hline\n3 & $(0.718, 0, 0.718)$ & 1 & 0 & $(0, 0)$ & $(1,0,-)$ \\\\\n\\hline\n\\end{tabular}\n\\end{center}\n\nThe algorithm terminates with zero remainders.\n\\end{example}"
+          ],
+          "blocks": [
+            {
+              "type": "example",
+              "id": "ex:subtractive_cube_root",
+              "title": "Subtractive HAPD for $\\sqrt[3",
+              "content": "{2}$]\\label{ex:subtractive_cube_root}\nFor $\\alpha = \\sqrt[3]{2}$ with minimal polynomial $x^3 - 2$, the Subtractive HAPD algorithm produces:\n\n\\begin{center}\n\\begin{tabular}{|c|c|c|c|c|c|c|}\n\\hline\nIteration & Triple $(v_1, v_2, v_3)$ & $a_1$ & $a_2$ & $(r_1, r_2)$ & $r_{\\max}$ & Encoding \\\\\n\\hline\n1 & $(\\sqrt[3]{2}, \\sqrt[3]{4}, 1)$ & 1 & 1 & $(0.26, 0.26)$ & 0.26 & $(1,1,1)$ \\\\\n\\hline\n2 & $(0.26, 0.26, 0.26)$ & 1 & 1 & $(0, 0)$ & 0 & $(1,1,-)$ \\\\\n\\hline\n\\end{tabular}\n\\end{center}\n\nThe algorithm terminates when remainders become zero.\n",
+              "number": 1
+            },
+            {
+              "type": "example",
+              "id": "ex:subtractive_phi",
+              "title": "Subtractive HAPD for $\\alpha = \\phi + 0.1$",
+              "content": "\\label{ex:subtractive_phi}\nFor $\\alpha = \\phi + 0.1$, the Subtractive HAPD algorithm reveals a period of 8:\n\n\\begin{center}\n\\begin{tabular}{|c|c|c|c|c|c|}\n\\hline\nIteration & Triple $(v_1, v_2, v_3)$ & $a_1$ & $a_2$ & $(r_1, r_2)$ & Encoding \\\\\n\\hline\n1 & $(1.718, 2.952, 1)$ & 1 & 2 & $(0.718, 0.952)$ & $(1,2,2)$ \\\\\n\\hline\n2 & $(0.718, 0.952, 0.952)$ & 0 & 1 & $(0.718, 0)$ & $(0,1,1)$ \\\\\n\\hline\n3 & $(0.718, 0, 0.718)$ & 1 & 0 & $(0, 0)$ & $(1,0,-)$ \\\\\n\\hline\n\\end{tabular}\n\\end{center}\n\nThe algorithm terminates with zero remainders.\n",
+              "number": 2
+            }
+          ]
+        },
+        {
+          "title": "Performance Comparison",
+          "id": "performance-comparison",
+          "level": "subsection",
+          "content": [
+            "\\begin{table}[h]\n\\centering\n\\caption{Algorithm Performance Comparison}\n\\label{tab:perf_comparison}\n\\begin{tabular}{|l|c|c|c|}\n\\hline\n\\textbf{Algorithm} & \\textbf{Operations/Iteration} & \\textbf{Memory Usage} & \\textbf{Average Iterations to Periodicity} \\\\\n\\hline\nHAPD & 12 arithmetic & $O(p)$ & 15-25 \\\\\n\\hline\nMatrix-Trace & 27 arithmetic & $O(1)$ & 3-8 \\\\\n\\hline\nSubtractive HAPD & 7 arithmetic & $O(p)$ & 10-20 \\\\\n\\hline\n\\end{tabular}\n\\end{table}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=0.8\\textwidth]{figures/output/performance_comparison.pdf}\n\\caption{Computational performance comparison between the three algorithm implementations for 100 random cubic irrationals.}\n\\label{fig:perf_comparison}\n\\end{figure}"
+          ],
+          "blocks": [
+            {
+              "type": "figure",
+              "id": "fig:perf_comparison",
+              "caption": "Computational performance comparison between the three algorithm implementations for 100 random cubic irrationals.",
+              "image": "figures/output/performance_comparison.pdf",
+              "number": 1
+            },
+            {
+              "type": "table",
+              "id": "tab:perf_comparison",
+              "content": "[h]\n\\centering\n\\caption{Algorithm Performance Comparison}\n\\label{tab:perf_comparison}\n\\begin{tabular}{|l|c|c|c|}\n\\hline\n\\textbf{Algorithm} & \\textbf{Operations/Iteration} & \\textbf{Memory Usage} & \\textbf{Average Iterations to Periodicity} \\\\\n\\hline\nHAPD & 12 arithmetic & $O(p)$ & 15-25 \\\\\n\\hline\nMatrix-Trace & 27 arithmetic & $O(1)$ & 3-8 \\\\\n\\hline\nSubtractive HAPD & 7 arithmetic & $O(p)$ & 10-20 \\\\\n\\hline\n\\end{tabular}\n",
+              "caption": "Algorithm Performance Comparison",
+              "number": 1
+            }
+          ]
+        },
+        {
+          "title": "Implementation Notes",
+          "id": "implementation-notes",
+          "level": "subsection",
+          "content": [
+            "All algorithms were implemented in Python with NumPy for numerical operations and SageMath for algebraic number field computations.\n\n\\begin{lstlisting}[language=Python, caption=Basic implementation of HAPD algorithm]\ndef hapd_algorithm(alpha, max_iterations=100):\n    v1, v2, v3 = alpha, alpha**2, 1\n    sequence = []\n    \n    for i in range(max_iterations):\n        a1 = math.floor(v1/v3)\n        a2 = math.floor(v2/v3)\n        sequence.append((a1, a2))\n        \n        r1 = v1 - a1*v3\n        r2 = v2 - a2*v3\n        \n        v3_new = v3 - a1*r1 - a2*r2\n        v1, v2, v3 = r1, r2, v3_new\n        \n        if v1 == 0 and v2 == 0 and v3 == 0:\n            return \"Periodic\", sequence\n            \n        # Check for periodicity\n        if detect_cycle(sequence):\n            return \"Periodic\", get_period(sequence)\n            \n    return \"Inconclusive\", sequence\n\\end{lstlisting}\n\nKey implementation considerations:\n\\begin{itemize}\n    \\item High-precision arithmetic is essential for reliable periodicity detection\n    \\item Normalization of triples improves numerical stability\n    \\item Early termination conditions significantly reduce computation time\n\\end{itemize}"
+          ],
+          "blocks": []
+        }
+      ],
+      "blocks": [
+        {
+          "type": "example",
+          "id": "ex:cubic_root_2",
+          "title": "HAPD Algorithm for $\\sqrt[3",
+          "content": "{2}$]\\label{ex:cubic_root_2}\nFor $\\alpha = \\sqrt[3]{2}$ with minimal polynomial $x^3 - 2$, the HAPD algorithm produces:\n\n\\begin{center}\n\\begin{tabular}{|c|c|c|c|c|c|}\n\\hline\nIteration & Triple $(v_1, v_2, v_3)$ & $a_1$ & $a_2$ & Next Triple & Encoding \\\\\n\\hline\n1 & $(\\sqrt[3]{2}, \\sqrt[3]{4}, 1)$ & 1 & 1 & $(0.26, 0.26, 0.74)$ & $(1,1)$ \\\\\n\\hline\n2 & $(0.26, 0.26, 0.74)$ & 0 & 0 & $(0.26, 0.26, 0.22)$ & $(0,0)$ \\\\\n\\hline\n3 & $(0.26, 0.26, 0.22)$ & 1 & 1 & $(0.04, 0.04, 0.14)$ & $(1,1)$ \\\\\n\\hline\n4 & $(0.04, 0.04, 0.14)$ & 0 & 0 & $(0.04, 0.04, 0.06)$ & $(0,0)$ \\\\\n\\hline\n5 & $(0.04, 0.04, 0.06)$ & 0 & 0 & $(0.04, 0.04, 0.02)$ & $(0,0)$ \\\\\n\\hline\n6 & $(0.04, 0.04, 0.02)$ & 2 & 2 & $(0, 0, 0)$ & $(2,2)$ \\\\\n\\hline\n\\end{tabular}\n\\end{center}\n\nThe algorithm terminates when all values become zero, indicating periodicity.\n",
+          "number": 1
+        },
+        {
+          "type": "example",
+          "id": "ex:phi",
+          "title": "HAPD Algorithm for Golden Ratio",
+          "content": "\\label{ex:phi}\nFor $\\phi = \\frac{1+\\sqrt{5}}{2}$ with minimal polynomial $x^2 - x - 1$, we test $\\alpha = \\phi + 0.1$ (which is cubic).\n\n\\begin{center}\n\\begin{tabular}{|c|c|c|c|c|c|}\n\\hline\nIteration & Triple $(v_1, v_2, v_3)$ & $a_1$ & $a_2$ & Next Triple & Encoding \\\\\n\\hline\n1 & $(\\phi+0.1, (\\phi+0.1)^2, 1)$ & 1 & 3 & $(0.718, 1.035, 0.5)$ & $(1,3)$ \\\\\n\\hline\n2 & $(0.718, 1.035, 0.5)$ & 1 & 2 & $(0.218, 0.035, 0.313)$ & $(1,2)$ \\\\\n\\hline\n3 & $(0.218, 0.035, 0.313)$ & 0 & 0 & $(0.218, 0.035, 0.095)$ & $(0,0)$ \\\\\n\\hline\n4 & $(0.218, 0.035, 0.095)$ & 2 & 0 & $(0.028, 0.035, 0.033)$ & $(2,0)$ \\\\\n\\hline\n5 & $(0.028, 0.035, 0.033)$ & 0 & 1 & $(0.028, 0.002, 0.005)$ & $(0,1)$ \\\\\n\\hline\n... & ... & ... & ... & ... & ... \\\\\n\\hline\n\\end{tabular}\n\\end{center}\n\nThe sequence continues with period 12, confirming $\\alpha$ is cubic.\n",
+          "number": 2
+        },
+        {
+          "type": "example",
+          "id": "ex:matrix_cube_root",
+          "title": "Trace Sequence for $\\sqrt[3",
+          "content": "{2}$]\\label{ex:matrix_cube_root}\nFor $\\alpha = \\sqrt[3]{2}$ with minimal polynomial $p(x) = x^3 - 2$, the companion matrix is:\n\n\\begin{equation}\nC = \\begin{pmatrix}\n0 & 0 & 2 \\\\\n1 & 0 & 0 \\\\\n0 & 1 & 0\n\\end{pmatrix}\n\\end{equation}\n\nComputing traces of powers:\n\\begin{align}\nt_1 &= \\text{Tr}(C) = 0 \\\\\nt_2 &= \\text{Tr}(C^2) = 0 \\\\\nt_3 &= \\text{Tr}(C^3) = 6 \\\\\nt_4 &= \\text{Tr}(C^4) = 0 \\\\\nt_5 &= \\text{Tr}(C^5) = 0 \\\\\nt_6 &= \\text{Tr}(C^6) = 30\n\\end{align}\n\nThe trace sequence $(t_n)$ is periodic with period 3, where each period consists of $(0, 0, 6k)$ for increasing values of $k$.\n",
+          "number": 3
+        },
+        {
+          "type": "example",
+          "id": "ex:matrix_plastic",
+          "title": "Trace Sequence for Plastic Number",
+          "content": "\\label{ex:matrix_plastic}\nThe plastic number $\\rho \\approx 1.32471$ is the real root of $x^3 - x - 1 = 0$. Its companion matrix is:\n\n\\begin{equation}\nC = \\begin{pmatrix}\n0 & 1 & 1 \\\\\n1 & 0 & 0 \\\\\n0 & 1 & 0\n\\end{pmatrix}\n\\end{equation}\n\nThe trace sequence is:\n\\begin{align}\nt_1 &= 0 \\\\\nt_2 &= 1 \\\\\nt_3 &= 0 \\\\\nt_4 &= 2 \\\\\nt_5 &= 3 \\\\\nt_6 &= 5 \\\\\nt_7 &= 8 \\\\\n\\end{align}\n\nAfter $t_2$, the sequence follows the recurrence relation $t_{n+2} = t_{n+1} + t_n$ (Fibonacci sequence).\n",
+          "number": 4
+        },
+        {
+          "type": "example",
+          "id": "ex:subtractive_cube_root",
+          "title": "Subtractive HAPD for $\\sqrt[3",
+          "content": "{2}$]\\label{ex:subtractive_cube_root}\nFor $\\alpha = \\sqrt[3]{2}$ with minimal polynomial $x^3 - 2$, the Subtractive HAPD algorithm produces:\n\n\\begin{center}\n\\begin{tabular}{|c|c|c|c|c|c|c|}\n\\hline\nIteration & Triple $(v_1, v_2, v_3)$ & $a_1$ & $a_2$ & $(r_1, r_2)$ & $r_{\\max}$ & Encoding \\\\\n\\hline\n1 & $(\\sqrt[3]{2}, \\sqrt[3]{4}, 1)$ & 1 & 1 & $(0.26, 0.26)$ & 0.26 & $(1,1,1)$ \\\\\n\\hline\n2 & $(0.26, 0.26, 0.26)$ & 1 & 1 & $(0, 0)$ & 0 & $(1,1,-)$ \\\\\n\\hline\n\\end{tabular}\n\\end{center}\n\nThe algorithm terminates when remainders become zero.\n",
+          "number": 5
+        },
+        {
+          "type": "example",
+          "id": "ex:subtractive_phi",
+          "title": "Subtractive HAPD for $\\alpha = \\phi + 0.1$",
+          "content": "\\label{ex:subtractive_phi}\nFor $\\alpha = \\phi + 0.1$, the Subtractive HAPD algorithm reveals a period of 8:\n\n\\begin{center}\n\\begin{tabular}{|c|c|c|c|c|c|}\n\\hline\nIteration & Triple $(v_1, v_2, v_3)$ & $a_1$ & $a_2$ & $(r_1, r_2)$ & Encoding \\\\\n\\hline\n1 & $(1.718, 2.952, 1)$ & 1 & 2 & $(0.718, 0.952)$ & $(1,2,2)$ \\\\\n\\hline\n2 & $(0.718, 0.952, 0.952)$ & 0 & 1 & $(0.718, 0)$ & $(0,1,1)$ \\\\\n\\hline\n3 & $(0.718, 0, 0.718)$ & 1 & 0 & $(0, 0)$ & $(1,0,-)$ \\\\\n\\hline\n\\end{tabular}\n\\end{center}\n\nThe algorithm terminates with zero remainders.\n",
+          "number": 6
+        },
+        {
+          "type": "equation",
+          "id": "equation-1",
+          "content": "\nC = \\begin{pmatrix}\n0 & 0 & 2 \\\\\n1 & 0 & 0 \\\\\n0 & 1 & 0\n\\end{pmatrix}\n",
+          "number": 1
+        },
+        {
+          "type": "equation",
+          "id": "equation-2",
+          "content": "\nC = \\begin{pmatrix}\n0 & 1 & 1 \\\\\n1 & 0 & 0 \\\\\n0 & 1 & 0\n\\end{pmatrix}\n",
+          "number": 2
+        },
+        {
+          "type": "equation",
+          "id": "equation-3",
+          "content": "\nt_1 &= \\text{Tr}(C) = 0 \\\\\nt_2 &= \\text{Tr}(C^2) = 0 \\\\\nt_3 &= \\text{Tr}(C^3) = 6 \\\\\nt_4 &= \\text{Tr}(C^4) = 0 \\\\\nt_5 &= \\text{Tr}(C^5) = 0 \\\\\nt_6 &= \\text{Tr}(C^6) = 30\n",
+          "number": 3
+        },
+        {
+          "type": "equation",
+          "id": "equation-4",
+          "content": "\nt_1 &= 0 \\\\\nt_2 &= 1 \\\\\nt_3 &= 0 \\\\\nt_4 &= 2 \\\\\nt_5 &= 3 \\\\\nt_6 &= 5 \\\\\nt_7 &= 8 \\\\\n",
+          "number": 4
+        },
+        {
+          "type": "figure",
+          "id": "fig:perf_comparison",
+          "caption": "Computational performance comparison between the three algorithm implementations for 100 random cubic irrationals.",
+          "image": "figures/output/performance_comparison.pdf",
+          "number": 1
+        },
+        {
+          "type": "table",
+          "id": "tab:perf_comparison",
+          "content": "[h]\n\\centering\n\\caption{Algorithm Performance Comparison}\n\\label{tab:perf_comparison}\n\\begin{tabular}{|l|c|c|c|}\n\\hline\n\\textbf{Algorithm} & \\textbf{Operations/Iteration} & \\textbf{Memory Usage} & \\textbf{Average Iterations to Periodicity} \\\\\n\\hline\nHAPD & 12 arithmetic & $O(p)$ & 15-25 \\\\\n\\hline\nMatrix-Trace & 27 arithmetic & $O(1)$ & 3-8 \\\\\n\\hline\nSubtractive HAPD & 7 arithmetic & $O(p)$ & 10-20 \\\\\n\\hline\n\\end{tabular}\n",
+          "caption": "Algorithm Performance Comparison",
+          "number": 1
+        }
+      ]
+    }
+  ]
+}

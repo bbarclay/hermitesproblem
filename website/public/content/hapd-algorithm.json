@@ -1,0 +1,208 @@
+{
+  "filename": "hapd-algorithm.tex",
+  "sections": [
+    {
+      "title": "Hermite Algorithm for Periodicity Detection (\\HAPD)",
+      "id": "hapd_algorithm",
+      "level": "section",
+      "content": [
+        "\\begin{figure}[htbp]\n\\begin{minipage}{\\textwidth}\n\\centering\n\\includegraphics[width=\\textwidth]{figures/output/hapd_algorithm_flowchart.pdf}\n\\caption{HAPD algorithm flowchart.}\n\\label{fig:hapd_flowchart}\n\\end{minipage}\n\\end{figure}\n\n\\begin{figure}[htbp]\n\\begin{minipage}{\\textwidth}\n\\centering\n\\includegraphics[width=\\textwidth]{figures/output/projective_periodicity_visualization.pdf}\n\\caption{Periodicity detection in projective space: $v_4$ returns to the equivalence region of $v_0$.}\n\\label{fig:projective_visualization}\n\\end{minipage}\n\\end{figure}\n\n\\begin{figure}[htbp]\n\\begin{minipage}{\\textwidth}\n\\centering\n\\includegraphics[width=\\textwidth]{figures/projective_space_regions.pdf}\n\\caption{Projective trajectory for $\\sqrt{^3}{2}$: $v_{11}$ returns to $v_4$ class, establishing period 7.}\n\\label{fig:projective_trajectory}\n\\end{minipage}\n\\end{figure}"
+      ],
+      "subsections": [
+        {
+          "title": "Algorithm Definition",
+          "id": "algorithm-definition",
+          "level": "subsection",
+          "content": [
+            "\\begin{algorithm_def}[\\HAPD{} Algorithm]\\label{alg:hapd}\nFor any real number $\\alpha$:\n\\begin{enumerate}\n    \\item Initialize with $(v_1, v_2, v_3) = (\\alpha, \\alpha^2, 1)$\n    \\item Iterate:\n    \\begin{enumerate}\n        \\item Compute integer parts $a_1 = \\floor{v_1/v_3}$, $a_2 = \\floor{v_2/v_3}$\n        \\item Calculate remainders $r_1 = v_1 - a_1v_3$, $r_2 = v_2 - a_2v_3$\n        \\item Update $(v_1, v_2, v_3) \\leftarrow (r_1, r_2, v_3 - a_1r_1 - a_2r_2)$\n        \\item Record $(a_1, a_2)$\n    \\end{enumerate}\n    \\item Encode each pair $(a_1, a_2)$ using injective function $E$\n\\end{enumerate}\n\\end{algorithm_def}\n\n\\begin{definition}[Encoding Function]\\label{def:encoding}\n$E : \\Z^2 \\to \\N$ defined as $E(a, b) = 2^{|a|} \\cdot 3^{|b|} \\cdot 5^{(\\operatorname{sgn}(a)+1)} \\cdot 7^{(\\operatorname{sgn}(b)+1)}$.\n\\end{definition}\n\n\\begin{proposition}[Computational Complexity]\\label{prop:complexity}\nFor a cubic irrational with minimal polynomial coefficients bounded by $M$, HAPD requires $O(M^3)$ iterations to detect periodicity, each iteration performing $O(1)$ arithmetic operations.\n\\end{proposition}\n\n\\begin{lemma}[Injectivity of Encoding]\\label{lem:encoding_injective}\nThe encoding function $E$ is injective.\n\\end{lemma}\n\n\\begin{proof}\n$E$ uses unique factorization. Components affect different primes: $|a| \\to 2^k$, $|b| \\to 3^k$, $\\operatorname{sgn}(a) \\to 5^k$, $\\operatorname{sgn}(b) \\to 7^k$.\n\\end{proof}"
+          ],
+          "blocks": [
+            {
+              "type": "lemma",
+              "id": "lem:encoding_injective",
+              "title": "Injectivity of Encoding",
+              "content": "\\label{lem:encoding_injective}\nThe encoding function $E$ is injective.\n",
+              "number": 1
+            },
+            {
+              "type": "definition",
+              "id": "def:encoding",
+              "title": "Encoding Function",
+              "content": "\\label{def:encoding}\n$E : \\Z^2 \\to \\N$ defined as $E(a, b) = 2^{|a|} \\cdot 3^{|b|} \\cdot 5^{(\\operatorname{sgn}(a)+1)} \\cdot 7^{(\\operatorname{sgn}(b)+1)}$.\n",
+              "number": 1
+            },
+            {
+              "type": "proposition",
+              "id": "prop:complexity",
+              "title": "Computational Complexity",
+              "content": "\\label{prop:complexity}\nFor a cubic irrational with minimal polynomial coefficients bounded by $M$, HAPD requires $O(M^3)$ iterations to detect periodicity, each iteration performing $O(1)$ arithmetic operations.\n",
+              "number": 1
+            },
+            {
+              "type": "algorithm",
+              "id": "alg:hapd",
+              "title": "\\HAPD{} Algorithm",
+              "content": "\\label{alg:hapd}\nFor any real number $\\alpha$:\n\\begin{enumerate}\n    \\item Initialize with $(v_1, v_2, v_3) = (\\alpha, \\alpha^2, 1)$\n    \\item Iterate:\n    \\begin{enumerate}\n        \\item Compute integer parts $a_1 = \\floor{v_1/v_3}$, $a_2 = \\floor{v_2/v_3}$\n        \\item Calculate remainders $r_1 = v_1 - a_1v_3$, $r_2 = v_2 - a_2v_3$\n        \\item Update $(v_1, v_2, v_3) \\leftarrow (r_1, r_2, v_3 - a_1r_1 - a_2r_2)$\n        \\item Record $(a_1, a_2)$\n    \\end{enumerate}\n    \\item Encode each pair $(a_1, a_2)$ using injective function $E$\n\\end{enumerate}\n",
+              "number": 1
+            }
+          ]
+        },
+        {
+          "title": "Projective Geometry Interpretation",
+          "id": "projective-geometry-interpretation",
+          "level": "subsection",
+          "content": [
+            "\\begin{definition}[Projective Space $\\mathbb{P}^2(\\mathbb{R})$ \\cite{KarpenkovBook}]\n$\\mathbb{P}^2(\\mathbb{R})$ is the set of equivalence classes of non-zero triples $(x : y : z) \\in \\mathbb{R}^3 \\setminus \\{(0,0,0)\\}$ under $(x : y : z) \\sim (\\lambda x : \\lambda y : \\lambda z)$ for $\\lambda \\neq 0$.\n\\end{definition}\n\n\\begin{proposition}[Projective Invariance]\\label{prop:projective_invariance}\nHAPD transformation preserves projective structure.\n\\end{proposition}\n\n\\begin{proof}\nLet $\\lambda \\neq 0$. Consider $(v_1, v_2, v_3)$ and $(\\lambda v_1, \\lambda v_2, \\lambda v_3)$. Integer parts $\\floor{\\lambda v_1/\\lambda v_3} = \\floor{v_1/v_3}$ and $\\floor{\\lambda v_2/\\lambda v_3} = \\floor{v_2/v_3}$ are preserved. Remainders and new $v_3$ scale by $\\lambda$, preserving projective equivalence.\n\\end{proof}\n\n\\begin{definition}[Dirichlet Group \\cite{Karpenkov2022}]\nA Dirichlet group $\\Gamma$ for cubic field $K$ is a discrete subgroup of $\\GL(3,\\mathbb{R})$ preserving the field structure.\n\\end{definition}\n\n\\begin{theorem}[Finiteness of Fundamental Domain \\cite{Karpenkov2022}]\\label{thm:finite_domain}\nFor cubic field $K$, the Dirichlet group $\\Gamma_K$ has a fundamental domain of finite volume in $\\mathbb{P}^2(\\mathbb{R})$.\n\\end{theorem}"
+          ],
+          "blocks": [
+            {
+              "type": "theorem",
+              "id": "thm:finite_domain",
+              "title": "Finiteness of Fundamental Domain \\cite{Karpenkov2022}",
+              "content": "\\label{thm:finite_domain}\nFor cubic field $K$, the Dirichlet group $\\Gamma_K$ has a fundamental domain of finite volume in $\\mathbb{P}^2(\\mathbb{R})$.\n",
+              "number": 1
+            },
+            {
+              "type": "definition",
+              "id": "definition-1",
+              "title": "Projective Space $\\mathbb{P}^2(\\mathbb{R})$ \\cite{KarpenkovBook}",
+              "content": "\n$\\mathbb{P}^2(\\mathbb{R})$ is the set of equivalence classes of non-zero triples $(x : y : z) \\in \\mathbb{R}^3 \\setminus \\{(0,0,0)\\}$ under $(x : y : z) \\sim (\\lambda x : \\lambda y : \\lambda z)$ for $\\lambda \\neq 0$.\n",
+              "number": 1
+            },
+            {
+              "type": "definition",
+              "id": "definition-2",
+              "title": "Dirichlet Group \\cite{Karpenkov2022}",
+              "content": "\nA Dirichlet group $\\Gamma$ for cubic field $K$ is a discrete subgroup of $\\GL(3,\\mathbb{R})$ preserving the field structure.\n",
+              "number": 2
+            },
+            {
+              "type": "proposition",
+              "id": "prop:projective_invariance",
+              "title": "Projective Invariance",
+              "content": "\\label{prop:projective_invariance}\nHAPD transformation preserves projective structure.\n",
+              "number": 1
+            }
+          ]
+        },
+        {
+          "title": "Main Periodicity Theorem",
+          "id": "main-periodicity-theorem",
+          "level": "subsection",
+          "content": [
+            "\\begin{theorem}[Cubic Irrationals Yield Periodic Sequences]\\label{thm:cubic_periodic}\nIf $\\alpha$ is a cubic irrational, the HAPD sequence is eventually periodic.\n\\end{theorem}\n\n\\begin{proof}\nLet $\\alpha$ be a cubic irrational. Start with $(\\alpha, \\alpha^2, 1)$.\n\\begin{enumerate}\n    \\item HAPD transformation preserves the cubic field structure $\\Q(\\alpha)$.\n    \\item By Prop. \\ref{prop:projective_invariance}, the transformation is linear fractional in projective space.\n    \\item By Thm. \\ref{thm:finite_domain}, the Dirichlet group $\\Gamma_{\\Q(\\alpha)}$ has a finite volume fundamental domain $F$.\n    \\item By pigeonhole principle \\cite{Schmidt1980}, the sequence must revisit an equivalence class: $(v^{(m)}) \\sim (v^{(n)})$ for $m < n$.\n\\end{enumerate}\nRevisiting an equivalence class causes subsequent transformations to repeat, yielding periodicity.\n\\end{proof}\n\n\\begin{theorem}[Only Cubic Irrationals Yield Periodic Sequences]\\label{thm:only_cubic_periodic}\nIf the HAPD sequence for $\\alpha$ is eventually periodic, then $\\alpha$ is a cubic irrational.\n\\end{theorem}\n\n\\begin{proof}\nConsider cases:\n\\textbf{Case 1: $\\alpha$ is rational.} HAPD terminates (division by zero or undefined values) due to zero fractional parts.\n\\textbf{Case 2: $\\alpha$ is quadratic irrational.} Minimal polynomial $x^2+px+q=0$ implies $\\alpha^2 = -p\\alpha - q$. Triple $(\\alpha, \\alpha^2, 1)$ lies in subspace $v_2 = -pv_1 - qv_3$. HAPD preserves this, but the group action lacks a finite fundamental domain in the relevant projective subspace \\cite{Khinchin1964}.\n\\end{proof}"
+          ],
+          "blocks": [
+            {
+              "type": "theorem",
+              "id": "thm:cubic_periodic",
+              "title": "Cubic Irrationals Yield Periodic Sequences",
+              "content": "\\label{thm:cubic_periodic}\nIf $\\alpha$ is a cubic irrational, the HAPD sequence is eventually periodic.\n",
+              "number": 1
+            },
+            {
+              "type": "theorem",
+              "id": "thm:only_cubic_periodic",
+              "title": "Only Cubic Irrationals Yield Periodic Sequences",
+              "content": "\\label{thm:only_cubic_periodic}\nIf the HAPD sequence for $\\alpha$ is eventually periodic, then $\\alpha$ is a cubic irrational.\n",
+              "number": 2
+            }
+          ]
+        }
+      ],
+      "blocks": [
+        {
+          "type": "theorem",
+          "id": "thm:finite_domain",
+          "title": "Finiteness of Fundamental Domain \\cite{Karpenkov2022}",
+          "content": "\\label{thm:finite_domain}\nFor cubic field $K$, the Dirichlet group $\\Gamma_K$ has a fundamental domain of finite volume in $\\mathbb{P}^2(\\mathbb{R})$.\n",
+          "number": 1
+        },
+        {
+          "type": "theorem",
+          "id": "thm:cubic_periodic",
+          "title": "Cubic Irrationals Yield Periodic Sequences",
+          "content": "\\label{thm:cubic_periodic}\nIf $\\alpha$ is a cubic irrational, the HAPD sequence is eventually periodic.\n",
+          "number": 2
+        },
+        {
+          "type": "theorem",
+          "id": "thm:only_cubic_periodic",
+          "title": "Only Cubic Irrationals Yield Periodic Sequences",
+          "content": "\\label{thm:only_cubic_periodic}\nIf the HAPD sequence for $\\alpha$ is eventually periodic, then $\\alpha$ is a cubic irrational.\n",
+          "number": 3
+        },
+        {
+          "type": "lemma",
+          "id": "lem:encoding_injective",
+          "title": "Injectivity of Encoding",
+          "content": "\\label{lem:encoding_injective}\nThe encoding function $E$ is injective.\n",
+          "number": 1
+        },
+        {
+          "type": "definition",
+          "id": "def:encoding",
+          "title": "Encoding Function",
+          "content": "\\label{def:encoding}\n$E : \\Z^2 \\to \\N$ defined as $E(a, b) = 2^{|a|} \\cdot 3^{|b|} \\cdot 5^{(\\operatorname{sgn}(a)+1)} \\cdot 7^{(\\operatorname{sgn}(b)+1)}$.\n",
+          "number": 1
+        },
+        {
+          "type": "definition",
+          "id": "definition-2",
+          "title": "Projective Space $\\mathbb{P}^2(\\mathbb{R})$ \\cite{KarpenkovBook}",
+          "content": "\n$\\mathbb{P}^2(\\mathbb{R})$ is the set of equivalence classes of non-zero triples $(x : y : z) \\in \\mathbb{R}^3 \\setminus \\{(0,0,0)\\}$ under $(x : y : z) \\sim (\\lambda x : \\lambda y : \\lambda z)$ for $\\lambda \\neq 0$.\n",
+          "number": 2
+        },
+        {
+          "type": "definition",
+          "id": "definition-3",
+          "title": "Dirichlet Group \\cite{Karpenkov2022}",
+          "content": "\nA Dirichlet group $\\Gamma$ for cubic field $K$ is a discrete subgroup of $\\GL(3,\\mathbb{R})$ preserving the field structure.\n",
+          "number": 3
+        },
+        {
+          "type": "proposition",
+          "id": "prop:complexity",
+          "title": "Computational Complexity",
+          "content": "\\label{prop:complexity}\nFor a cubic irrational with minimal polynomial coefficients bounded by $M$, HAPD requires $O(M^3)$ iterations to detect periodicity, each iteration performing $O(1)$ arithmetic operations.\n",
+          "number": 1
+        },
+        {
+          "type": "proposition",
+          "id": "prop:projective_invariance",
+          "title": "Projective Invariance",
+          "content": "\\label{prop:projective_invariance}\nHAPD transformation preserves projective structure.\n",
+          "number": 2
+        },
+        {
+          "type": "figure",
+          "id": "fig:hapd_flowchart",
+          "caption": "HAPD algorithm flowchart.",
+          "image": "figures/output/hapd_algorithm_flowchart.pdf",
+          "number": 1
+        },
+        {
+          "type": "figure",
+          "id": "fig:projective_visualization",
+          "caption": "Periodicity detection in projective space: $v_4$ returns to the equivalence region of $v_0$.",
+          "image": "figures/output/projective_periodicity_visualization.pdf",
+          "number": 2
+        },
+        {
+          "type": "figure",
+          "id": "fig:projective_trajectory",
+          "caption": "Projective trajectory for $\\sqrt{^3",
+          "image": "figures/projective_space_regions.pdf",
+          "number": 3
+        },
+        {
+          "type": "algorithm",
+          "id": "alg:hapd",
+          "title": "\\HAPD{} Algorithm",
+          "content": "\\label{alg:hapd}\nFor any real number $\\alpha$:\n\\begin{enumerate}\n    \\item Initialize with $(v_1, v_2, v_3) = (\\alpha, \\alpha^2, 1)$\n    \\item Iterate:\n    \\begin{enumerate}\n        \\item Compute integer parts $a_1 = \\floor{v_1/v_3}$, $a_2 = \\floor{v_2/v_3}$\n        \\item Calculate remainders $r_1 = v_1 - a_1v_3$, $r_2 = v_2 - a_2v_3$\n        \\item Update $(v_1, v_2, v_3) \\leftarrow (r_1, r_2, v_3 - a_1r_1 - a_2r_2)$\n        \\item Record $(a_1, a_2)$\n    \\end{enumerate}\n    \\item Encode each pair $(a_1, a_2)$ using injective function $E$\n\\end{enumerate}\n",
+          "number": 1
+        }
+      ]
+    }
+  ]
+}

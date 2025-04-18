@@ -1,0 +1,241 @@
+# Website Plan: Hermite's Problem Interactive Paper (Refined)
+
+## I. Project Goal & Vision
+
+* **Core Goal:** Build an award-winning, interactive online presentation of the “3 Complete Solutions to Hermite’s Problem” paper — a resource so engaging and rigorous that mathematicians and educators alike will embrace it.
+* **Target Audience:**
+  * **Primary:** Mathematical researchers, academics, graduate students
+  * **Secondary:** Undergraduate mathematics students, instructors
+  * **Tertiary:** Science enthusiasts with a moderate-to-advanced math background
+* **Vision:** A site that is:
+  * **Informative & Rigorous:** Delivers the complete paper’s content accurately, preserving every mathematical nuance from the TeX source.  
+  * **Interactive & Exploratory:** Equips users with tools to manipulate formulas, dive into proofs, and simulate scenarios directly from the paper’s solutions.  
+  * **Visually Elegant:** Matches the design polish of world-class interactive math sites, taking cues from Apple and BEHANCE for UI/UX inspiration.  
+  * **Educational & Sticky:** Facilitates deep understanding and encourages repeat visits by teachers, students, and researchers for lecture demos and self-study.  
+  * **Scalable & Modular:** Establishes a robust framework to handle future expansions, additional math papers, and improved interactive modules.
+  * **Marketable:** Conveys the novelty and significance of the “3 Complete Solutions” in a way that stands out within academic and broader STEM communities.
+
+## II. Content Strategy
+
+1. **Source Material & Tex File Review**  
+   * Read and annotate all `.tex` files from `@arxiv_submission` thoroughly (including any references, cross-references, or footnotes).  
+   * Create a granular outline mapping:
+     * Each section, subsection, theorem, lemma, equation, figure, and proof structure.
+     * Potential spots for interactive elements (e.g., where a diagram or equation would benefit from real-time manipulation).  
+
+2. **Content Conversion & Integration**  
+   * **Key Requirement:** Pixel-perfect (or near-perfect) rendering of advanced TeX mathematics, including environments like align, theorem, proof, and any custom macros used in the original paper.  
+   * **Possible Implementation Paths:**  
+     - **Option A:** Pandoc → MDX → React, leveraging KaTeX or MathJax with specialized MDX components.  
+     - **Option B:** Direct custom parsing of TeX (for advanced scenarios with heavy macros or custom environments).  
+     - **Option C:** Hybrid approach with rehype-katex for simpler in-text math, and custom React components for interactive or complex math sections.  
+   * **Planned Workflow:**  
+     1. Build a test corpus with representative TeX constructs (e.g., complicated equations, nested environments, references, footnotes).  
+     2. Test rendering performance and fidelity.  
+     3. Lock in the final pipeline that balances performance, accuracy, and flexibility.  
+     4. Automate content ingestion to facilitate easy updates as the paper evolves.  
+
+3. **Content Enhancement & Teaching Value**  
+   * Identify where extended explanations beyond the TeX are beneficial (e.g., extra detail around steps that students typically find challenging).  
+   * Implement “hover for definition” or “click for pop-up explanation” for advanced terms or references.  
+   * Design “guided pathways” for different user levels (e.g., a simpler walkthrough for undergrads vs. an in-depth approach for seasoned mathematicians).  
+
+4. **Site Structure & User Journey**  
+   * **Homepage:**  
+     - Striking hero section with advanced math or geometric visualization referencing Hermite’s problem.  
+     - Succinct highlight of “3 Complete Solutions” with interactive previews or short animations.  
+     - Author and research background (to convey credibility).  
+   * **Full Paper Reader:**  
+     - Dynamically generated table of contents, collapsible for easy reference.  
+     - Seamless integration of displayed equations and references (hover/click for cross-refs).  
+     - Interactive versions of critical figures — toggling between static images and dynamic versions.  
+     - Adjustable reading preferences (font size, spacing, color mode).  
+   * **Interactive Tools Hub:**  
+     - Aggregates all specialized visualizers and calculators.  
+     - Each tool displayed with a short descriptor, preview image, or short video loop.  
+     - Directly linked from relevant sections in the paper to encourage contextual use.  
+   * **Educational Resources:**  
+     - Additional clarifications for advanced or lesser-known references in Hermite’s problem.  
+     - Ready-to-use teaching activities compatible with the interactive tools.  
+     - Downloadable or online slides and problem sets that integrate with the site’s content.  
+   * **About/Methodology:**  
+     - History of Hermite’s problem and significance of each solution approach.  
+     - Explanation of the parsing system and math libraries used, for transparency and future contributions.  
+     - Publication details, versioning, and references for further research.  
+
+## III. Design & UX (Apple / BEHANCE Grade)
+
+1. **Brand Aesthetics & Identity**  
+   * **Color Palette:**  
+     - Primary: Deep blue (#1E3A8A) & teal (#0D9488) for strong academic, calming vibes.  
+     - Secondary: Golden highlights (#F59E0B) for drawing attention to key statements or key results.  
+     - Neutrals: Crisp, high-contrast grays (#F8FAFC → #0F172A), essential for math text and diagrams.  
+     - Additional semantic colors for success (#10B981), error (#EF4444), and warnings (#F59E0B).  
+   * **Typography:**  
+     - Headers: Spectral or Inter, emphasizing a scholarly-yet-contemporary look.  
+     - Body Text: IBM Plex Sans or Source Sans Pro for readability.  
+     - Math: KaTeX defaults or a similarly crisp font ensuring no misalignment.  
+     - Complementary Monospace: IBM Plex Mono for any code or console-type elements.  
+   * **Iconography & Visualization:**  
+     - Custom mathematical icons for references to specific theorems.  
+     - Subtle animations (e.g., hovering on an icon might reveal a small highlight or transformation).  
+   * **Logo/Visual Identity:**  
+     - Minimalist geometric representation capturing Hermite’s problem theme.  
+     - Ensure the logo adapts for social or print usage (clean vector-based design).  
+
+2. **Layout & Flow**  
+   * **Navigation Patterns:**  
+     - Primary top-level nav for quick access to Homepage, Full Paper, Tools, Educational Resources, About.  
+     - Secondary side navigation (sticky or pinned) for quick jumps within the paper’s sub-sections.  
+     - Breadcrumbs for deeper nested pages (interactive tool details, references, solutions).  
+   * **Responsive Grid System:**  
+     - 12-column fluid grid, ensuring a comfortable 680-720px reading width on desktop for the main text.  
+     - Standard spacing units in multiples of 4px to maintain visual cohesion.  
+   * **Transitions & Feedback:**  
+     - Smooth page transitions with minimal motion (fade/slide).  
+     - Interactive element transitions for dynamic tools (progress or loading indicators while a 3D renderer initializes).  
+
+3. **Key UI Components & States**  
+   * **Header & Footer:**  
+     - Sticky header on desktop, collapsible or hidden on mobile scroll.  
+     - Footer with “Cite this interactive paper” detail, quick references, and social links.  
+   * **Buttons & Inputs:**  
+     - Uniform shapes and brand-aligned color states (primary, secondary, tertiary, icon-only).  
+     - Clear focus outline for accessibility.  
+   * **Interactive Math Components:**  
+     - Inline and block equation rendering.  
+     - Toggling between “static presentation” and “interactive slider-based exploration.”  
+     - Visual cues (hover highlights over terms or cross-references).  
+   * **Cards & Tool Previews:**  
+     - Thumbnails or short looping visuals of the tool in action.  
+     - Descriptive overlays explaining the underlying math.  
+     - Possibly show user ratings or usage metrics if relevant.  
+   * **Accessibility Features:**  
+     - Full keyboard navigation.  
+     - Color contrast ratio ≥ 4.5:1 for text over backgrounds.  
+     - Descriptive alt text for every mathematical figure or diagram.  
+     - Screen-reader-friendly annotation for equations.  
+
+## IV. Technology Stack & Architecture
+
+1. **Core Framework & Language**  
+   * **Next.js 14+** with the App Router.  
+   * **React (Server & Client Components)** for a balanced mix of static content and dynamic interactivity.  
+   * **TypeScript** in strict mode to ensure robust type safety.  
+   * **pnpm** for installing & managing dependencies, ensuring fast installs and better workspace handling.  
+
+2. **Frontend Architecture**  
+   * **Component Organization:**  
+     - `/components/ui` – Basic UI elements (buttons, icons, forms).  
+     - `/components/math` – Math-specific wrappers (equation renderers, theorem blocks).  
+     - `/components/interactive` – Tools and visualizers.  
+     - `/components/layout` – Page-level layouts (header, footer, doc reading layout).  
+   * **State Management:**  
+     - Local state and React Context for small-scale needs (theme toggles, user preferences).  
+     - Zustand or a lightweight store for complex state within large interactive tools.  
+   * **Styling & Animations:**  
+     - **Tailwind CSS** for utility-first styling.  
+     - **shadcn/ui** or a custom design system to unify the library.  
+     - **Framer Motion** for advanced or more expressive animations.  
+
+3. **Math Rendering & TeX Integration**  
+   * **KaTeX** as a default for straightforward, fast math rendering.  
+   * **MathJax** as a fallback for heavier or more exotic TeX commands.  
+   * **rehype-katex** or a custom transformer pipeline to handle .tex → .mdx → React conversions.  
+   * Provide an error handling layer for unsupported macros or multi-line align blocks, prompting a fallback or user notification.  
+
+4. **Interactive Visualizations & Computations**  
+   * **plotly.js** for standard function plots and parametric animations.  
+   * **d3.js** for more customized data visualizations or geometric transformations.  
+   * **THREE.js** for advanced 3D surface rendering if required by Hermite’s problem.  
+   * **Numerical Libraries:**  
+     - **math.js** or **numeric.js** for advanced numeric computations.  
+     - Possibly **SympyJS** if symbolic manipulation is necessary.  
+   * Thorough performance testing to ensure large datasets or complex calculations don’t degrade the user experience.  
+
+5. **Backend & Deployment**  
+   * **Vercel** for SSR and optimized Next.js hosting.  
+   * Optionally, GitHub Actions for automated CI/CD, testing, and preview deployments.  
+   * Image and font optimizations via Next.js built-in tooling.  
+   * **Analytics** for usage stats (Vercel Analytics, Plausible, or Google Analytics 4).  
+
+## V. Interactive Tools (Deep Dive)
+
+1. **Tool Conceptual Design**  
+   * Provide a variety of interactive modules aligning with each solution path of Hermite’s problem:  
+     - **Algebraic Tools:** Step-by-step variable manipulation or expression factorization.  
+     - **Geometric Visualizers:** For solutions relying on geometric interpretations.  
+     - **Parameter Explorers:** Slider-based explorations where changing a constant or exponent reveals how solutions transform.  
+   * Ensure each tool is lightweight, intuitive, and directly references the paper’s text.  
+
+2. **Development Workflow**  
+   1. **Concept & Paper Alignment:** Identify exactly how each tool ties back to the paper’s .tex references.  
+   2. **Prototyping:** Sketch an initial UI flow. Verify mathematical correctness with smaller data sets or simpler equations.  
+   3. **Refinement:** Optimize, test on various screen sizes, confirm performance.  
+   4. **Integration:** Embed within the “Full Paper Reader” at relevant sections and in the “Tools Hub” standalone.  
+   5. **Testing & Documentation:** Provide tool guidelines and in-tool help screens or tooltips.  
+
+3. **Notable Tool Ideas**  
+   * **Proof Path Animator:** Visually highlight each line of a proof, showing intermediate transformations or inferences.  
+   * **3D Plot Explorer:** For solutions that might have higher-dimensional insights, letting users pan, zoom, and overlay data.  
+   * **Interactive Step Calculators:** Let the user attempt steps themselves, checking correctness, akin to an interactive quiz.  
+
+## VI. Expanded Content Management & TeX Workflows
+
+1. **Automated Pipeline**  
+   * **Parsing:** Use unified or custom node-based tooling to parse .tex into a workable AST.  
+   * **Transformation:** Map recognized TeX environments (e.g., \begin{theorem}, \begin{lemma}) to specialized React components.  
+   * **Interactive Tagging:** Mark certain sections or equations to automatically swap with dynamic exploration components.  
+
+2. **References & Cross-References**  
+   * Ensure that \ref, \label, \cite, and \eqref are all handled.  
+   * Build anchor links for each theorem or lemma, with hover or clickable cross-links.  
+   * Possibly generate a mini popup (tooltip) showing the theorem statement or figure preview when the user hovers on a reference.  
+
+3. **Versioning & Updates**  
+   * Keep the pipeline flexible for updated versions of the paper’s TeX files.  
+   * Support incremental builds: only re-render changed sections, to save time in large documents.  
+
+## VII. Project Timeline (Proposed)
+
+1. **Phase 1: Setup & Prototype (Weeks 1-2)**  
+   * Initialize Next.js + TypeScript + pnpm.  
+   * Implement basic site scaffolding (header, footer, theming).  
+   * Conduct first pass at TeX → React pipeline with a variety of sample TeX blocks.  
+
+2. **Phase 2: Infrastructure & Layout (Weeks 3-4)**  
+   * Define final file structure in /components and /app (Next.js 14) folder.  
+   * Build out the “Full Paper Reader” UI + dynamic table of contents.  
+   * Confirm final approach for math rendering (KaTeX, fallback to MathJax).  
+
+3. **Phase 3: Content Integration (Weeks 5-6)**  
+   * Convert all major sections from the Hermite’s problem TeX files.  
+   * Begin embedding smaller interactive elements (simple plots, step-based proofs).  
+   * Implement advanced branding & design tokens across all components (colors, typography).  
+
+4. **Phase 4: Interactive Tools & Enhancements (Weeks 7-9)**  
+   * Build out the major interactive tools described in the paper.  
+   * Integrate these tools contextually in the relevant paper section.  
+   * Finalize Tools Hub with a dedicated page for each tool’s usage and advanced explanations.  
+   * Optimize performance for heavier computations.  
+
+5. **Phase 5: Testing, Accessibility & Launch (Weeks 10-12)**  
+   * Thorough accessibility audits (WCAG 2.1 AA).  
+   * Cross-browser and responsive testing.  
+   * Performance tuning and code splitting for interactive tool sections.  
+   * Prepare marketing materials and official launch.  
+
+## VIII. SEO, Analytics & Community Engagement
+
+1. **SEO Strategy**  
+   * Add structured data focusing on scholarly articles.  
+   * Include meta tags with relevant math and research keywords.  
+   * Optimize for short and descriptive URLs, e.g., /paper/section-1-introduction.  
+
+2. **Analytics & Feedback Loops**  
+   * Track how users navigate from one theorem or tool to another.  
+   * Monitor average time spent in interactive modules vs. reading.  
+   * Add optional feedback forms for each theorem or tool to gather user insights.  
+
+3. **Community Features**  
+   * Provide share functionality with query parameters pre-loaded in the interactive tools

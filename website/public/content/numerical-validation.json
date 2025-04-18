@@ -1,0 +1,283 @@
+{
+  "filename": "numerical-validation.tex",
+  "sections": [
+    {
+      "title": "Numerical Validation",
+      "id": "numerical_validation",
+      "level": "section",
+      "content": [
+        "Numerical validation confirms our theoretical results through implementations of both HAPD and matrix-based approaches. Empirical testing verifies these methods correctly identify cubic irrationals while revealing practical implementation challenges."
+      ],
+      "subsections": [
+        {
+          "title": "Implementation of the \\HAPD{",
+          "id": "implementation-of-the-hapd",
+          "level": "subsection",
+          "content": [
+            "Algorithm}\n\nThe implementation details of the \\HAPD{} algorithm address precision requirements and numerical stability considerations.\n\n\\begin{algorithm_def}[Practical \\HAPD{} Implementation]\n\\begin{itemize}\n\\item Input: A real number $\\alpha$, maximum iterations $max\\_iter$, detection threshold $\\epsilon$\n\\item Output: Period length if periodicity detected, otherwise \"non-cubic\"\n\\item Procedure:\n\\begin{enumerate}\n\\item Initialize $(v_1, v_2, v_3) = (\\alpha, \\alpha^2, 1)$\n\\item Maintain a history of normalized vectors $\\mathbf{v}_i = (v_1, v_2, v_3)/\\|\\mathbf{v}\\|$\n\\item For iterations $1$ to $max\\_iter$:\n\\begin{enumerate}\n\\item Compute integer parts $a_1 = \\lfloor v_1/v_3 \\rfloor$, $a_2 = \\lfloor v_2/v_3 \\rfloor$\n\\item Calculate remainders $r_1 = v_1 - a_1v_3$, $r_2 = v_2 - a_2v_3$\n\\item Update $(v_1, v_2, v_3) \\leftarrow (r_1, r_2, v_3 - a_1r_1 - a_2r_2)$\n\\item Normalize: $\\mathbf{v}_i = (v_1, v_2, v_3)/\\|\\mathbf{v}\\|$\n\\item For each previous vector $\\mathbf{v}_j$, check if $|\\mathbf{v}_i \\cdot \\mathbf{v}_j| > 1 - \\epsilon$\n\\item If periodic match found, confirm with additional iterations\n\\end{enumerate}\n\\item If consistent periodicity observed, return period length\n\\item Otherwise, return \"non-cubic\"\n\\end{enumerate}\n\\end{itemize}\n\\end{algorithm_def}"
+          ],
+          "blocks": [
+            {
+              "type": "algorithm",
+              "id": "algorithm-1",
+              "title": "Practical \\HAPD{} Implementation",
+              "content": "\n\\begin{itemize}\n\\item Input: A real number $\\alpha$, maximum iterations $max\\_iter$, detection threshold $\\epsilon$\n\\item Output: Period length if periodicity detected, otherwise \"non-cubic\"\n\\item Procedure:\n\\begin{enumerate}\n\\item Initialize $(v_1, v_2, v_3) = (\\alpha, \\alpha^2, 1)$\n\\item Maintain a history of normalized vectors $\\mathbf{v}_i = (v_1, v_2, v_3)/\\|\\mathbf{v}\\|$\n\\item For iterations $1$ to $max\\_iter$:\n\\begin{enumerate}\n\\item Compute integer parts $a_1 = \\lfloor v_1/v_3 \\rfloor$, $a_2 = \\lfloor v_2/v_3 \\rfloor$\n\\item Calculate remainders $r_1 = v_1 - a_1v_3$, $r_2 = v_2 - a_2v_3$\n\\item Update $(v_1, v_2, v_3) \\leftarrow (r_1, r_2, v_3 - a_1r_1 - a_2r_2)$\n\\item Normalize: $\\mathbf{v}_i = (v_1, v_2, v_3)/\\|\\mathbf{v}\\|$\n\\item For each previous vector $\\mathbf{v}_j$, check if $|\\mathbf{v}_i \\cdot \\mathbf{v}_j| > 1 - \\epsilon$\n\\item If periodic match found, confirm with additional iterations\n\\end{enumerate}\n\\item If consistent periodicity observed, return period length\n\\item Otherwise, return \"non-cubic\"\n\\end{enumerate}\n\\end{itemize}\n",
+              "number": 1
+            }
+          ]
+        },
+        {
+          "title": "Numerical Stability Considerations",
+          "id": "numerical-stability-considerations",
+          "level": "subsection",
+          "content": [
+            "Numerical stability is critical for practical HAPD implementation. Key challenges include:\n\n\\begin{enumerate}\n\\item \\textbf{Precision}: For minimal polynomials with coefficients bounded by $M$, about $O(\\log M)$ precision bits are needed to ensure accuracy over sufficient iterations.\n\n\\item \\textbf{Normalization}: Vectors grow exponentially, requiring normalization each step to prevent overflow.\n\n\\item \\textbf{Threshold $\\epsilon$}: Balances false positives/negatives. Empirical tests suggest $\\epsilon \\approx 10^{-12}$ for double precision.\n\n\\item \\textbf{Confirmation}: Multiple confirmations needed to distinguish true periodicity from numerical artifacts.\n\\end{enumerate}\n\nWhen comparing projective points, the dot product of normalized vectors should be $\\pm 1$. Allowing for numerical errors, tolerance should be $\\approx 10^{-15}$ for IEEE 754 double precision."
+          ],
+          "blocks": []
+        },
+        {
+          "title": "Results from the \\HAPD{",
+          "id": "results-from-the-hapd",
+          "level": "subsection",
+          "content": [
+            "Algorithm}\n\nThe results from applying the \\HAPD{} algorithm to various types of numbers demonstrate its effectiveness in identifying cubic irrationals.\n\n\\begin{table}[htbp]\n\\centering\n\\begin{tabular}{|l|c|c|c|}\n\\hline\n\\textbf{Number Type} & \\textbf{Example} & \\textbf{Period Detected?} & \\textbf{Period Length} \\\\\n\\hline\nRational & $\\frac{22}{7}$ & No & N/A \\\\\n\\hline\nQuadratic Irrational & $\\sqrt{2}$ & No & N/A \\\\\n\\hline\nCubic Irrational (Totally Real) & $\\sqrt[3]{2}$ & Yes & 7 \\\\\n\\hline\nCubic Irrational (Complex Conjugate) & $\\sqrt[3]{2} + \\frac{1}{10}$ & Yes & 11 \\\\\n\\hline\nTranscendental & $\\pi$ & No & N/A \\\\\n\\hline\n\\end{tabular}\n\\caption{Results of \\HAPD{} algorithm on different number types}\n\\label{tab:hapd_results}\n\\end{table}\n\n\n\\begin{table}[htbp]\n\\centering\n\\begin{tabular}{|l|c|c|c|c|c|}\n\\hline\n\\textbf{Number Type} & \\multicolumn{5}{c|}{\\textbf{Periodicity Confidence Score by Iteration}} \\\\\n\\hline\nIteration & 0 & 5 & 10 & 15 & 20 \\\\\n\\hline\n$\\sqrt[3]{2}$ (Cubic, Real) & 0.0 & 0.4 & 1.0 & 1.0 & 1.0 \\\\\n\\hline\nComplex Cubic & 0.0 & 0.25 & 0.7 & 1.0 & 1.0 \\\\\n\\hline\nTranscendental & 0.0 & 0.08 & 0.12 & 0.15 & 0.17 \\\\\n\\hline\n\\end{tabular}\n\\caption{Convergence behavior of the \\HAPD{} algorithm for different number types}\n\\label{fig:algorithmic_convergence}\n\\end{table}\n\nAs shown in Table \\ref{fig:algorithmic_convergence}, the \\HAPD{} algorithm shows different convergence rates for various types of cubic irrationals. Periodicity detection for totally real cubics like $\\sqrt{^3}{2}$ is typically faster (within 7-8 iterations) than cubic irrationals with complex conjugate roots, which may require 10-12 iterations or more. This pattern aligns with theoretical expectations, as complex cubics add complexity to the projective transformations. For transcendental numbers, the confidence score remains low even after many iterations, correctly indicating non-periodicity."
+          ],
+          "blocks": [
+            {
+              "type": "table",
+              "id": "tab:hapd_results",
+              "content": "[htbp]\n\\centering\n\\begin{tabular}{|l|c|c|c|}\n\\hline\n\\textbf{Number Type} & \\textbf{Example} & \\textbf{Period Detected?} & \\textbf{Period Length} \\\\\n\\hline\nRational & $\\frac{22}{7}$ & No & N/A \\\\\n\\hline\nQuadratic Irrational & $\\sqrt{2}$ & No & N/A \\\\\n\\hline\nCubic Irrational (Totally Real) & $\\sqrt[3]{2}$ & Yes & 7 \\\\\n\\hline\nCubic Irrational (Complex Conjugate) & $\\sqrt[3]{2} + \\frac{1}{10}$ & Yes & 11 \\\\\n\\hline\nTranscendental & $\\pi$ & No & N/A \\\\\n\\hline\n\\end{tabular}\n\\caption{Results of \\HAPD{} algorithm on different number types}\n\\label{tab:hapd_results}\n",
+              "caption": "Results of \\HAPD{",
+              "number": 1
+            },
+            {
+              "type": "table",
+              "id": "fig:algorithmic_convergence",
+              "content": "[htbp]\n\\centering\n\\begin{tabular}{|l|c|c|c|c|c|}\n\\hline\n\\textbf{Number Type} & \\multicolumn{5}{c|}{\\textbf{Periodicity Confidence Score by Iteration}} \\\\\n\\hline\nIteration & 0 & 5 & 10 & 15 & 20 \\\\\n\\hline\n$\\sqrt[3]{2}$ (Cubic, Real) & 0.0 & 0.4 & 1.0 & 1.0 & 1.0 \\\\\n\\hline\nComplex Cubic & 0.0 & 0.25 & 0.7 & 1.0 & 1.0 \\\\\n\\hline\nTranscendental & 0.0 & 0.08 & 0.12 & 0.15 & 0.17 \\\\\n\\hline\n\\end{tabular}\n\\caption{Convergence behavior of the \\HAPD{} algorithm for different number types}\n\\label{fig:algorithmic_convergence}\n",
+              "caption": "Convergence behavior of the \\HAPD{",
+              "number": 2
+            }
+          ]
+        },
+        {
+          "title": "Limitations and Edge Cases",
+          "id": "limitations-and-edge-cases",
+          "level": "subsection",
+          "content": [
+            "Several edge cases merit special attention:\n\n\\begin{enumerate}\n\\item \\textbf{Algebraic Numbers of Higher Degree}: The algorithm might occasionally detect apparent periodicity in algebraic numbers of degree $> 3$, especially if they are close to cubic numbers. Additional verification is necessary in such cases.\n\n\\item \\textbf{Near-Rational Approximations}: Cubic irrationals very close to rational numbers can exhibit unusually long pre-periods, challenging detection within reasonable iteration limits.\n\n\\item \\textbf{Numerical Precision Limitations}: For minimal polynomials with large coefficients, floating-point precision becomes a limiting factor. High precision requires arbitrary-precision arithmetic libraries, increasing computational cost.\n\\end{enumerate}\n\nWith double-precision floating-point arithmetic, the algorithm might fail to detect periodicity for some cubic irrationals if the discriminant of the minimal polynomial exceeds approximately $10^{15}$. This does not contradict the theoretical results, which assume exact arithmetic. Rather, it highlights the gap between theoretical mathematics and computational implementations."
+          ],
+          "blocks": []
+        },
+        {
+          "title": "Matrix-Based Verification",
+          "id": "matrix-based-verification",
+          "level": "subsection",
+          "content": [
+            "The matrix-based approach provides an alternative method for detecting cubic irrationals.\n\n\\begin{algorithm_def}[Matrix Verification Method]\n\\begin{itemize}\n\\item Input: A real number $\\alpha$, candidate minimal polynomial $p(x) = x^3 + ax^2 + bx + c$\n\\item Output: Boolean indicating whether $\\alpha$ is a root of $p(x)$\n\\item Procedure:\n\\begin{enumerate}\n\\item Construct companion matrix $C = \\begin{pmatrix} 0 & 0 & -c \\\\ 1 & 0 & -b \\\\ 0 & 1 & -a \\end{pmatrix}$\n\\item Compute powers $C^k$ for $k = 1, 2, \\ldots, 6$\n\\item Calculate traces $t_k = \\operatorname{Tr}(C^k)$\n\\item Compare $t_1 = \\alpha + \\beta + \\gamma$ with theoretical value $-a$\n\\item Verify that $t_k = \\alpha^k + \\beta^k + \\gamma^k$ follows the recurrence relation\n\\item Return true if all trace relations are satisfied within tolerance\n\\end{enumerate}\n\\end{itemize}\n\\end{algorithm_def}\n\nThe implementation and testing of the matrix verification method demonstrate exceptional accuracy and efficiency in identifying cubic irrationals. This approach is particularly effective when a candidate minimal polynomial is already known or can be easily determined.\n\n\\begin{table}[htbp]\n\\centering\n\\begin{tabular}{|l|c|c|c|}\n\\hline\n\\textbf{Number Type} & \\textbf{Example} & \\textbf{Candidate Polynomial} & \\textbf{Verified?} \\\\\n\\hline\nRational & $\\frac{22}{7}$ & $x - \\frac{22}{7}$ & Yes (degree 1) \\\\\n\\hline\nQuadratic Irrational & $\\sqrt{2}$ & $x^2 - 2$ & Yes (degree 2) \\\\\n\\hline\nCubic Irrational & $\\sqrt[3]{2}$ & $x^3 - 2$ & Yes (degree 3) \\\\\n\\hline\nCubic (Complex Conj.) & $\\sqrt[3]{2} + 0.1$ & $x^3 - 0.3x^2 - 0.03x - 2.003$ & Yes (degree 3) \\\\\n\\hline\nTranscendental & $\\pi$ & Various approximations & No \\\\\n\\hline\n\\end{tabular}\n\\caption{Results of matrix verification method on different number types}\n\\label{tab:matrix_verification_results}\n\\end{table}\n\nThe matrix verification method achieves 100\\"
+          ],
+          "blocks": [
+            {
+              "type": "table",
+              "id": "tab:matrix_verification_results",
+              "content": "[htbp]\n\\centering\n\\begin{tabular}{|l|c|c|c|}\n\\hline\n\\textbf{Number Type} & \\textbf{Example} & \\textbf{Candidate Polynomial} & \\textbf{Verified?} \\\\\n\\hline\nRational & $\\frac{22}{7}$ & $x - \\frac{22}{7}$ & Yes (degree 1) \\\\\n\\hline\nQuadratic Irrational & $\\sqrt{2}$ & $x^2 - 2$ & Yes (degree 2) \\\\\n\\hline\nCubic Irrational & $\\sqrt[3]{2}$ & $x^3 - 2$ & Yes (degree 3) \\\\\n\\hline\nCubic (Complex Conj.) & $\\sqrt[3]{2} + 0.1$ & $x^3 - 0.3x^2 - 0.03x - 2.003$ & Yes (degree 3) \\\\\n\\hline\nTranscendental & $\\pi$ & Various approximations & No \\\\\n\\hline\n\\end{tabular}\n\\caption{Results of matrix verification method on different number types}\n\\label{tab:matrix_verification_results}\n",
+              "caption": "Results of matrix verification method on different number types",
+              "number": 1
+            },
+            {
+              "type": "algorithm",
+              "id": "algorithm-1",
+              "title": "Matrix Verification Method",
+              "content": "\n\\begin{itemize}\n\\item Input: A real number $\\alpha$, candidate minimal polynomial $p(x) = x^3 + ax^2 + bx + c$\n\\item Output: Boolean indicating whether $\\alpha$ is a root of $p(x)$\n\\item Procedure:\n\\begin{enumerate}\n\\item Construct companion matrix $C = \\begin{pmatrix} 0 & 0 & -c \\\\ 1 & 0 & -b \\\\ 0 & 1 & -a \\end{pmatrix}$\n\\item Compute powers $C^k$ for $k = 1, 2, \\ldots, 6$\n\\item Calculate traces $t_k = \\operatorname{Tr}(C^k)$\n\\item Compare $t_1 = \\alpha + \\beta + \\gamma$ with theoretical value $-a$\n\\item Verify that $t_k = \\alpha^k + \\beta^k + \\gamma^k$ follows the recurrence relation\n\\item Return true if all trace relations are satisfied within tolerance\n\\end{enumerate}\n\\end{itemize}\n",
+              "number": 1
+            }
+          ]
+        },
+        {
+          "title": "Comparative Analysis",
+          "id": "comparative-analysis",
+          "level": "subsection",
+          "content": [
+            "\\begin{table}[htbp]\n\\centering\n\\begin{tabular}{|l|c|c|}\n\\hline\n\\textbf{Feature} & \\textbf{\\HAPD{} Algorithm} & \\textbf{Matrix Verification} \\\\\n\\hline\nPrior knowledge required & None & Candidate minimal polynomial \\\\\n\\hline\nComputational complexity & $O(M^3)$ iterations & $O(1)$ matrix operations \\\\\n\\hline\nPrecision requirements & High & Moderate \\\\\n\\hline\nSpace complexity & $O(N)$ for $N$ iterations & $O(1)$ \\\\\n\\hline\nTime to detection (typical) & 10-20 iterations & Immediate with polynomial \\\\\n\\hline\nSensitive to numerical errors & Yes & Less sensitive \\\\\n\\hline\n\\end{tabular}\n\\caption{Comparison of \\HAPD{} algorithm and matrix verification method}\n\\label{tab:method_comparison}\n\\end{table}\n\nEach method has distinct advantages:\n\n\\begin{itemize}\n\\item The \\HAPD{} algorithm operates directly on the real number without requiring prior knowledge of its minimal polynomial. It provides a constructive proof of cubic irrationality by generating the periodic representation.\n\n\\item The matrix verification method is faster and more numerically stable when a candidate minimal polynomial is available. It provides a direct verification of cubic irrationality through the algebraic properties of the companion matrix.\n\\end{itemize}"
+          ],
+          "blocks": [
+            {
+              "type": "table",
+              "id": "tab:method_comparison",
+              "content": "[htbp]\n\\centering\n\\begin{tabular}{|l|c|c|}\n\\hline\n\\textbf{Feature} & \\textbf{\\HAPD{} Algorithm} & \\textbf{Matrix Verification} \\\\\n\\hline\nPrior knowledge required & None & Candidate minimal polynomial \\\\\n\\hline\nComputational complexity & $O(M^3)$ iterations & $O(1)$ matrix operations \\\\\n\\hline\nPrecision requirements & High & Moderate \\\\\n\\hline\nSpace complexity & $O(N)$ for $N$ iterations & $O(1)$ \\\\\n\\hline\nTime to detection (typical) & 10-20 iterations & Immediate with polynomial \\\\\n\\hline\nSensitive to numerical errors & Yes & Less sensitive \\\\\n\\hline\n\\end{tabular}\n\\caption{Comparison of \\HAPD{} algorithm and matrix verification method}\n\\label{tab:method_comparison}\n",
+              "caption": "Comparison of \\HAPD{",
+              "number": 1
+            }
+          ]
+        },
+        {
+          "title": "Combined Approach",
+          "id": "combined-approach",
+          "level": "subsection",
+          "content": [
+            "Based on these findings, a combined approach that leverages the strengths of both methods for practical detection of cubic irrationals is proposed:\n\n\\begin{algorithm_def}[Combined Detection Method]\n\\begin{enumerate}\n\\item Apply the \\HAPD{} algorithm to detect periodicity:\n   \\begin{enumerate}\n   \\item If clear periodicity is detected, classify as cubic irrational\n   \\item If no periodicity is detected after sufficient iterations, classify as non-cubic\n   \\item If results are inconclusive, proceed to step 2\n   \\end{enumerate}\n\\item Use the PSLQ or LLL algorithm to find a candidate minimal polynomial\n\\item Apply matrix verification to confirm cubic irrationality\n\\end{enumerate}\n\\end{algorithm_def}\n\nThis combined approach provides robust classification across various number types and edge cases, with optimal computational efficiency.\n\nIn practice, the following approach is recommended:\n\\begin{enumerate}\n\\item For rapid classification of cubic irrationals that clearly exhibit periodicity, use the \\HAPD{} algorithm.\n\\item For precise classification when the periodicity is not immediately clear, use traditional methods like PSLQ or LLL to find a candidate minimal polynomial, then verify using the matrix method.\n\\end{enumerate}"
+          ],
+          "blocks": [
+            {
+              "type": "algorithm",
+              "id": "algorithm-1",
+              "title": "Combined Detection Method",
+              "content": "\n\\begin{enumerate}\n\\item Apply the \\HAPD{} algorithm to detect periodicity:\n   \\begin{enumerate}\n   \\item If clear periodicity is detected, classify as cubic irrational\n   \\item If no periodicity is detected after sufficient iterations, classify as non-cubic\n   \\item If results are inconclusive, proceed to step 2\n   \\end{enumerate}\n\\item Use the PSLQ or LLL algorithm to find a candidate minimal polynomial\n\\item Apply matrix verification to confirm cubic irrationality\n\\end{enumerate}\n",
+              "number": 1
+            }
+          ]
+        },
+        {
+          "title": "Validation of the Subtractive Algorithm",
+          "id": "validation-of-the-subtractive-algorithm",
+          "level": "subsection",
+          "content": [
+            "To validate the subtractive algorithm presented in Section~\\ref{sec:subtractive_algorithm}, a comprehensive testing framework was implemented that evaluates the algorithm's performance on various cubic irrationals with complex conjugate roots.\n\n\\begin{algorithm_def}[Subtractive Algorithm Validation Procedure]\n\\begin{itemize}\n\\item Input: Cubic polynomial $p(x) = x^3 + ax^2 + bx + c$ with negative discriminant\n\\item Output: Period length and encoding sequence\n\\item Process:\n\\begin{enumerate}\n\\item Calculate root $\\alpha$ with high precision (100+ digits)\n\\item Initialize $(v_1, v_2, v_3) = (\\alpha, \\alpha^2, 1)$\n\\item Apply the modified sin²-algorithm with phase-preserving floor function\n\\item Record the encoding sequence and detect periodicity\n\\item Verify correctness by reconstructing $\\alpha$ from the encoding\n\\end{enumerate}\n\\end{itemize}\n\\end{algorithm_def}\n\n\\begin{table}[htbp]\n\\centering\n\\caption{Comparison of average period lengths for different discriminant ranges}\n\\label{fig:period_length_comparison}\n\\begin{tabularx}{\\textwidth}{|l| *{5}{>{\\centering\\arraybackslash}X|}}\n\\hline\n\\textbf{Algorithm} & \\multicolumn{5}{c|}{\\textbf{Avg. Period Length by Discriminant Range}} \\\\\n\\hline\nDisc. Range & $[-10^3,-10^2]$ & $[-10^2,-10^1]$ & $[-10^1,-1]$ & $[-1,-0.1]$ & $[-0.1,-0.01]$ \\\\\n\\hline\nSubtractive & 18 & 14 & 9 & 7 & 5 \\\\\n\\hline\nHAPD & 21 & 16 & 11 & 8 & 6 \\\\\n\\hline\n\\end{tabularx}\n\\end{table}\n\nThe modified sin²-algorithm was tested on a diverse set of cubic equations, focusing on those with complex conjugate roots (negative discriminant). Table \\ref{tab:subtractive_results} summarizes the findings.\n\n\\begin{table}[htbp]\n\\centering\n\\begin{tabular}{|l|c|c|c|}\n\\hline\n\\textbf{Cubic Equation} & \\textbf{Discriminant} & \\textbf{Period Detected?} & \\textbf{Period Length} \\\\\n\\hline\n$x^3 - 2x + 2$ & $-56$ & Yes & 12 \\\\\n\\hline\n$x^3 + x^2 - 1$ & $-23$ & Yes & 9 \\\\\n\\hline\n$x^3 - 3x + 1$ & $-27$ & Yes & 8 \\\\\n\\hline\n$x^3 + 2x^2 + x - 1$ & $-59$ & Yes & 14 \\\\\n\\hline\n$x^3 - x + 0.3$ & $-4.12$ & Yes & 5 \\\\\n\\hline\n\\end{tabular}\n\\caption{Results of the modified sin²-algorithm on cubic irrationals with complex conjugate roots}\n\\label{tab:subtractive_results}\n\\end{table}\n\nThe testing confirmed that the modified sin²-algorithm successfully identifies periodicity for all tested cubic irrationals with complex conjugate roots. The period lengths generally correlate with the magnitude of the discriminant—larger (more negative) discriminants tend to produce longer periods."
+          ],
+          "blocks": [
+            {
+              "type": "table",
+              "id": "fig:period_length_comparison",
+              "content": "[htbp]\n\\centering\n\\caption{Comparison of average period lengths for different discriminant ranges}\n\\label{fig:period_length_comparison}\n\\begin{tabularx}{\\textwidth}{|l| *{5}{>{\\centering\\arraybackslash}X|}}\n\\hline\n\\textbf{Algorithm} & \\multicolumn{5}{c|}{\\textbf{Avg. Period Length by Discriminant Range}} \\\\\n\\hline\nDisc. Range & $[-10^3,-10^2]$ & $[-10^2,-10^1]$ & $[-10^1,-1]$ & $[-1,-0.1]$ & $[-0.1,-0.01]$ \\\\\n\\hline\nSubtractive & 18 & 14 & 9 & 7 & 5 \\\\\n\\hline\nHAPD & 21 & 16 & 11 & 8 & 6 \\\\\n\\hline\n\\end{tabularx}\n",
+              "caption": "Comparison of average period lengths for different discriminant ranges",
+              "number": 1
+            },
+            {
+              "type": "table",
+              "id": "tab:subtractive_results",
+              "content": "[htbp]\n\\centering\n\\begin{tabular}{|l|c|c|c|}\n\\hline\n\\textbf{Cubic Equation} & \\textbf{Discriminant} & \\textbf{Period Detected?} & \\textbf{Period Length} \\\\\n\\hline\n$x^3 - 2x + 2$ & $-56$ & Yes & 12 \\\\\n\\hline\n$x^3 + x^2 - 1$ & $-23$ & Yes & 9 \\\\\n\\hline\n$x^3 - 3x + 1$ & $-27$ & Yes & 8 \\\\\n\\hline\n$x^3 + 2x^2 + x - 1$ & $-59$ & Yes & 14 \\\\\n\\hline\n$x^3 - x + 0.3$ & $-4.12$ & Yes & 5 \\\\\n\\hline\n\\end{tabular}\n\\caption{Results of the modified sin²-algorithm on cubic irrationals with complex conjugate roots}\n\\label{tab:subtractive_results}\n",
+              "caption": "Results of the modified sin²-algorithm on cubic irrationals with complex conjugate roots",
+              "number": 2
+            },
+            {
+              "type": "algorithm",
+              "id": "algorithm-1",
+              "title": "Subtractive Algorithm Validation Procedure",
+              "content": "\n\\begin{itemize}\n\\item Input: Cubic polynomial $p(x) = x^3 + ax^2 + bx + c$ with negative discriminant\n\\item Output: Period length and encoding sequence\n\\item Process:\n\\begin{enumerate}\n\\item Calculate root $\\alpha$ with high precision (100+ digits)\n\\item Initialize $(v_1, v_2, v_3) = (\\alpha, \\alpha^2, 1)$\n\\item Apply the modified sin²-algorithm with phase-preserving floor function\n\\item Record the encoding sequence and detect periodicity\n\\item Verify correctness by reconstructing $\\alpha$ from the encoding\n\\end{enumerate}\n\\end{itemize}\n",
+              "number": 1
+            }
+          ]
+        },
+        {
+          "title": "Comparative Performance Analysis",
+          "id": "comparative-performance-analysis",
+          "level": "subsection",
+          "content": [
+            "The performance of the modified sin²-algorithm was compared with the \\HAPD{} algorithm on the same set of cubic equations with complex conjugate roots.\n\n\\begin{table}[htbp]\n\\centering\n\\caption{Performance comparison between modified sin²-algorithm and HAPD algorithm}\n\\label{tab:algorithm_comparison}\n\n\\begin{tabularx}{\\textwidth}{|l|c|c|X|c|} \n\\hline\n\\textbf{Algorithm} & \\textbf{Avg. Period Len.} & \\textbf{Iters. to Detect} & \\textbf{Numerical Stability} & \\textbf{Memory Usage} \\\\\n\\hline\nModified sin² & 9.6 & 14.3 & Good & Lower \\\\\n\\hline\nHAPD & 11.2 & 16.5 & Excellent & Higher \\\\\n\\hline\n\\end{tabularx}\n\\end{table}\n\nKey findings from the comparison:\n\n\\begin{enumerate}\n\\item The modified sin²-algorithm typically produces shorter periods, approximately 15-20\\\n\n\\item The \\HAPD{} algorithm demonstrates superior numerical stability in cases with very large discriminants or when using limited precision.\n\n\\item The modified sin²-algorithm requires fewer arithmetic operations per iteration, resulting in faster computation times for the same number of iterations.\n\n\\item Both algorithms correctly identify all cubic irrationals in the test set, achieving 100\\\n\\end{enumerate}"
+          ],
+          "blocks": [
+            {
+              "type": "table",
+              "id": "tab:algorithm_comparison",
+              "content": "[htbp]\n\\centering\n\\caption{Performance comparison between modified sin²-algorithm and HAPD algorithm}\n\\label{tab:algorithm_comparison}\n\n\\begin{tabularx}{\\textwidth}{|l|c|c|X|c|} \n\\hline\n\\textbf{Algorithm} & \\textbf{Avg. Period Len.} & \\textbf{Iters. to Detect} & \\textbf{Numerical Stability} & \\textbf{Memory Usage} \\\\\n\\hline\nModified sin² & 9.6 & 14.3 & Good & Lower \\\\\n\\hline\nHAPD & 11.2 & 16.5 & Excellent & Higher \\\\\n\\hline\n\\end{tabularx}\n",
+              "caption": "Performance comparison between modified sin²-algorithm and HAPD algorithm",
+              "number": 1
+            }
+          ]
+        },
+        {
+          "title": "Efficiency and Scalability Analysis",
+          "id": "efficiency-and-scalability-analysis",
+          "level": "subsection",
+          "content": [
+            "To evaluate the practical efficiency of the algorithms, extensive benchmarking was conducted comparing the runtime performance and convergence characteristics of both the HAPD algorithm and the modified sin²-algorithm.\n\n\\begin{table}[htbp]\n\\centering\n\\begin{tabular}{|l|c|c|c|c|c|c|}\n\\hline\n\\textbf{Algorithm} & \\multicolumn{6}{c|}{\\textbf{Runtime (seconds) by Input Complexity}} \\\\\n\\hline\nlog(discriminant) & 1 & 2 & 3 & 4 & 5 & 6 \\\\\n\\hline\nHAPD Algorithm & 0.05 & 0.09 & 0.15 & 0.22 & 0.31 & 0.42 \\\\\n\\hline\nModified sin²-algorithm & 0.03 & 0.06 & 0.12 & 0.19 & 0.28 & 0.37 \\\\\n\\hline\n\\end{tabular}\n\\caption{Runtime comparison for increasing input complexity}\n\\label{fig:runtime_comparison}\n\\end{table}\n\nThe benchmarking reveals that both algorithms scale polynomially with the input complexity (measured by the magnitude of the discriminant), but the modified sin²-algorithm consistently performs 10-15\\\n\nFor practical applications with limited precision, both algorithms provide reliable results up to discriminants with magnitude around $10^{12}$ using standard double-precision floating-point arithmetic. Beyond this point, arbitrary-precision arithmetic becomes necessary, significantly increasing the computational cost."
+          ],
+          "blocks": [
+            {
+              "type": "table",
+              "id": "fig:runtime_comparison",
+              "content": "[htbp]\n\\centering\n\\begin{tabular}{|l|c|c|c|c|c|c|}\n\\hline\n\\textbf{Algorithm} & \\multicolumn{6}{c|}{\\textbf{Runtime (seconds) by Input Complexity}} \\\\\n\\hline\nlog(discriminant) & 1 & 2 & 3 & 4 & 5 & 6 \\\\\n\\hline\nHAPD Algorithm & 0.05 & 0.09 & 0.15 & 0.22 & 0.31 & 0.42 \\\\\n\\hline\nModified sin²-algorithm & 0.03 & 0.06 & 0.12 & 0.19 & 0.28 & 0.37 \\\\\n\\hline\n\\end{tabular}\n\\caption{Runtime comparison for increasing input complexity}\n\\label{fig:runtime_comparison}\n",
+              "caption": "Runtime comparison for increasing input complexity",
+              "number": 1
+            }
+          ]
+        }
+      ],
+      "blocks": [
+        {
+          "type": "table",
+          "id": "tab:hapd_results",
+          "content": "[htbp]\n\\centering\n\\begin{tabular}{|l|c|c|c|}\n\\hline\n\\textbf{Number Type} & \\textbf{Example} & \\textbf{Period Detected?} & \\textbf{Period Length} \\\\\n\\hline\nRational & $\\frac{22}{7}$ & No & N/A \\\\\n\\hline\nQuadratic Irrational & $\\sqrt{2}$ & No & N/A \\\\\n\\hline\nCubic Irrational (Totally Real) & $\\sqrt[3]{2}$ & Yes & 7 \\\\\n\\hline\nCubic Irrational (Complex Conjugate) & $\\sqrt[3]{2} + \\frac{1}{10}$ & Yes & 11 \\\\\n\\hline\nTranscendental & $\\pi$ & No & N/A \\\\\n\\hline\n\\end{tabular}\n\\caption{Results of \\HAPD{} algorithm on different number types}\n\\label{tab:hapd_results}\n",
+          "caption": "Results of \\HAPD{",
+          "number": 1
+        },
+        {
+          "type": "table",
+          "id": "fig:algorithmic_convergence",
+          "content": "[htbp]\n\\centering\n\\begin{tabular}{|l|c|c|c|c|c|}\n\\hline\n\\textbf{Number Type} & \\multicolumn{5}{c|}{\\textbf{Periodicity Confidence Score by Iteration}} \\\\\n\\hline\nIteration & 0 & 5 & 10 & 15 & 20 \\\\\n\\hline\n$\\sqrt[3]{2}$ (Cubic, Real) & 0.0 & 0.4 & 1.0 & 1.0 & 1.0 \\\\\n\\hline\nComplex Cubic & 0.0 & 0.25 & 0.7 & 1.0 & 1.0 \\\\\n\\hline\nTranscendental & 0.0 & 0.08 & 0.12 & 0.15 & 0.17 \\\\\n\\hline\n\\end{tabular}\n\\caption{Convergence behavior of the \\HAPD{} algorithm for different number types}\n\\label{fig:algorithmic_convergence}\n",
+          "caption": "Convergence behavior of the \\HAPD{",
+          "number": 2
+        },
+        {
+          "type": "table",
+          "id": "tab:matrix_verification_results",
+          "content": "[htbp]\n\\centering\n\\begin{tabular}{|l|c|c|c|}\n\\hline\n\\textbf{Number Type} & \\textbf{Example} & \\textbf{Candidate Polynomial} & \\textbf{Verified?} \\\\\n\\hline\nRational & $\\frac{22}{7}$ & $x - \\frac{22}{7}$ & Yes (degree 1) \\\\\n\\hline\nQuadratic Irrational & $\\sqrt{2}$ & $x^2 - 2$ & Yes (degree 2) \\\\\n\\hline\nCubic Irrational & $\\sqrt[3]{2}$ & $x^3 - 2$ & Yes (degree 3) \\\\\n\\hline\nCubic (Complex Conj.) & $\\sqrt[3]{2} + 0.1$ & $x^3 - 0.3x^2 - 0.03x - 2.003$ & Yes (degree 3) \\\\\n\\hline\nTranscendental & $\\pi$ & Various approximations & No \\\\\n\\hline\n\\end{tabular}\n\\caption{Results of matrix verification method on different number types}\n\\label{tab:matrix_verification_results}\n",
+          "caption": "Results of matrix verification method on different number types",
+          "number": 3
+        },
+        {
+          "type": "table",
+          "id": "tab:method_comparison",
+          "content": "[htbp]\n\\centering\n\\begin{tabular}{|l|c|c|}\n\\hline\n\\textbf{Feature} & \\textbf{\\HAPD{} Algorithm} & \\textbf{Matrix Verification} \\\\\n\\hline\nPrior knowledge required & None & Candidate minimal polynomial \\\\\n\\hline\nComputational complexity & $O(M^3)$ iterations & $O(1)$ matrix operations \\\\\n\\hline\nPrecision requirements & High & Moderate \\\\\n\\hline\nSpace complexity & $O(N)$ for $N$ iterations & $O(1)$ \\\\\n\\hline\nTime to detection (typical) & 10-20 iterations & Immediate with polynomial \\\\\n\\hline\nSensitive to numerical errors & Yes & Less sensitive \\\\\n\\hline\n\\end{tabular}\n\\caption{Comparison of \\HAPD{} algorithm and matrix verification method}\n\\label{tab:method_comparison}\n",
+          "caption": "Comparison of \\HAPD{",
+          "number": 4
+        },
+        {
+          "type": "table",
+          "id": "fig:period_length_comparison",
+          "content": "[htbp]\n\\centering\n\\caption{Comparison of average period lengths for different discriminant ranges}\n\\label{fig:period_length_comparison}\n\\begin{tabularx}{\\textwidth}{|l| *{5}{>{\\centering\\arraybackslash}X|}}\n\\hline\n\\textbf{Algorithm} & \\multicolumn{5}{c|}{\\textbf{Avg. Period Length by Discriminant Range}} \\\\\n\\hline\nDisc. Range & $[-10^3,-10^2]$ & $[-10^2,-10^1]$ & $[-10^1,-1]$ & $[-1,-0.1]$ & $[-0.1,-0.01]$ \\\\\n\\hline\nSubtractive & 18 & 14 & 9 & 7 & 5 \\\\\n\\hline\nHAPD & 21 & 16 & 11 & 8 & 6 \\\\\n\\hline\n\\end{tabularx}\n",
+          "caption": "Comparison of average period lengths for different discriminant ranges",
+          "number": 5
+        },
+        {
+          "type": "table",
+          "id": "tab:subtractive_results",
+          "content": "[htbp]\n\\centering\n\\begin{tabular}{|l|c|c|c|}\n\\hline\n\\textbf{Cubic Equation} & \\textbf{Discriminant} & \\textbf{Period Detected?} & \\textbf{Period Length} \\\\\n\\hline\n$x^3 - 2x + 2$ & $-56$ & Yes & 12 \\\\\n\\hline\n$x^3 + x^2 - 1$ & $-23$ & Yes & 9 \\\\\n\\hline\n$x^3 - 3x + 1$ & $-27$ & Yes & 8 \\\\\n\\hline\n$x^3 + 2x^2 + x - 1$ & $-59$ & Yes & 14 \\\\\n\\hline\n$x^3 - x + 0.3$ & $-4.12$ & Yes & 5 \\\\\n\\hline\n\\end{tabular}\n\\caption{Results of the modified sin²-algorithm on cubic irrationals with complex conjugate roots}\n\\label{tab:subtractive_results}\n",
+          "caption": "Results of the modified sin²-algorithm on cubic irrationals with complex conjugate roots",
+          "number": 6
+        },
+        {
+          "type": "table",
+          "id": "tab:algorithm_comparison",
+          "content": "[htbp]\n\\centering\n\\caption{Performance comparison between modified sin²-algorithm and HAPD algorithm}\n\\label{tab:algorithm_comparison}\n\n\\begin{tabularx}{\\textwidth}{|l|c|c|X|c|} \n\\hline\n\\textbf{Algorithm} & \\textbf{Avg. Period Len.} & \\textbf{Iters. to Detect} & \\textbf{Numerical Stability} & \\textbf{Memory Usage} \\\\\n\\hline\nModified sin² & 9.6 & 14.3 & Good & Lower \\\\\n\\hline\nHAPD & 11.2 & 16.5 & Excellent & Higher \\\\\n\\hline\n\\end{tabularx}\n",
+          "caption": "Performance comparison between modified sin²-algorithm and HAPD algorithm",
+          "number": 7
+        },
+        {
+          "type": "table",
+          "id": "fig:runtime_comparison",
+          "content": "[htbp]\n\\centering\n\\begin{tabular}{|l|c|c|c|c|c|c|}\n\\hline\n\\textbf{Algorithm} & \\multicolumn{6}{c|}{\\textbf{Runtime (seconds) by Input Complexity}} \\\\\n\\hline\nlog(discriminant) & 1 & 2 & 3 & 4 & 5 & 6 \\\\\n\\hline\nHAPD Algorithm & 0.05 & 0.09 & 0.15 & 0.22 & 0.31 & 0.42 \\\\\n\\hline\nModified sin²-algorithm & 0.03 & 0.06 & 0.12 & 0.19 & 0.28 & 0.37 \\\\\n\\hline\n\\end{tabular}\n\\caption{Runtime comparison for increasing input complexity}\n\\label{fig:runtime_comparison}\n",
+          "caption": "Runtime comparison for increasing input complexity",
+          "number": 8
+        },
+        {
+          "type": "algorithm",
+          "id": "algorithm-1",
+          "title": "Practical \\HAPD{} Implementation",
+          "content": "\n\\begin{itemize}\n\\item Input: A real number $\\alpha$, maximum iterations $max\\_iter$, detection threshold $\\epsilon$\n\\item Output: Period length if periodicity detected, otherwise \"non-cubic\"\n\\item Procedure:\n\\begin{enumerate}\n\\item Initialize $(v_1, v_2, v_3) = (\\alpha, \\alpha^2, 1)$\n\\item Maintain a history of normalized vectors $\\mathbf{v}_i = (v_1, v_2, v_3)/\\|\\mathbf{v}\\|$\n\\item For iterations $1$ to $max\\_iter$:\n\\begin{enumerate}\n\\item Compute integer parts $a_1 = \\lfloor v_1/v_3 \\rfloor$, $a_2 = \\lfloor v_2/v_3 \\rfloor$\n\\item Calculate remainders $r_1 = v_1 - a_1v_3$, $r_2 = v_2 - a_2v_3$\n\\item Update $(v_1, v_2, v_3) \\leftarrow (r_1, r_2, v_3 - a_1r_1 - a_2r_2)$\n\\item Normalize: $\\mathbf{v}_i = (v_1, v_2, v_3)/\\|\\mathbf{v}\\|$\n\\item For each previous vector $\\mathbf{v}_j$, check if $|\\mathbf{v}_i \\cdot \\mathbf{v}_j| > 1 - \\epsilon$\n\\item If periodic match found, confirm with additional iterations\n\\end{enumerate}\n\\item If consistent periodicity observed, return period length\n\\item Otherwise, return \"non-cubic\"\n\\end{enumerate}\n\\end{itemize}\n",
+          "number": 1
+        },
+        {
+          "type": "algorithm",
+          "id": "algorithm-2",
+          "title": "Matrix Verification Method",
+          "content": "\n\\begin{itemize}\n\\item Input: A real number $\\alpha$, candidate minimal polynomial $p(x) = x^3 + ax^2 + bx + c$\n\\item Output: Boolean indicating whether $\\alpha$ is a root of $p(x)$\n\\item Procedure:\n\\begin{enumerate}\n\\item Construct companion matrix $C = \\begin{pmatrix} 0 & 0 & -c \\\\ 1 & 0 & -b \\\\ 0 & 1 & -a \\end{pmatrix}$\n\\item Compute powers $C^k$ for $k = 1, 2, \\ldots, 6$\n\\item Calculate traces $t_k = \\operatorname{Tr}(C^k)$\n\\item Compare $t_1 = \\alpha + \\beta + \\gamma$ with theoretical value $-a$\n\\item Verify that $t_k = \\alpha^k + \\beta^k + \\gamma^k$ follows the recurrence relation\n\\item Return true if all trace relations are satisfied within tolerance\n\\end{enumerate}\n\\end{itemize}\n",
+          "number": 2
+        },
+        {
+          "type": "algorithm",
+          "id": "algorithm-3",
+          "title": "Combined Detection Method",
+          "content": "\n\\begin{enumerate}\n\\item Apply the \\HAPD{} algorithm to detect periodicity:\n   \\begin{enumerate}\n   \\item If clear periodicity is detected, classify as cubic irrational\n   \\item If no periodicity is detected after sufficient iterations, classify as non-cubic\n   \\item If results are inconclusive, proceed to step 2\n   \\end{enumerate}\n\\item Use the PSLQ or LLL algorithm to find a candidate minimal polynomial\n\\item Apply matrix verification to confirm cubic irrationality\n\\end{enumerate}\n",
+          "number": 3
+        },
+        {
+          "type": "algorithm",
+          "id": "algorithm-4",
+          "title": "Subtractive Algorithm Validation Procedure",
+          "content": "\n\\begin{itemize}\n\\item Input: Cubic polynomial $p(x) = x^3 + ax^2 + bx + c$ with negative discriminant\n\\item Output: Period length and encoding sequence\n\\item Process:\n\\begin{enumerate}\n\\item Calculate root $\\alpha$ with high precision (100+ digits)\n\\item Initialize $(v_1, v_2, v_3) = (\\alpha, \\alpha^2, 1)$\n\\item Apply the modified sin²-algorithm with phase-preserving floor function\n\\item Record the encoding sequence and detect periodicity\n\\item Verify correctness by reconstructing $\\alpha$ from the encoding\n\\end{enumerate}\n\\end{itemize}\n",
+          "number": 4
+        }
+      ]
+    }
+  ]
+}

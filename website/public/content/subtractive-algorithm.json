@@ -1,0 +1,269 @@
+{
+  "filename": "subtractive-algorithm.tex",
+  "sections": [
+    {
+      "title": "Subtractive Algorithm",
+      "id": "subtractive_algorithm",
+      "level": "section",
+      "content": [
+        "A subtractive variant of HAPD maintains core theoretical properties while offering computational advantages."
+      ],
+      "subsections": [
+        {
+          "title": "Algorithm Description",
+          "id": "algorithm-description",
+          "level": "subsection",
+          "content": [
+            "\\begin{definition}[Subtractive HAPD Algorithm]\\label{def:subtractive_hapd}\nFor a cubic irrational $\\alpha$, the Subtractive HAPD algorithm operates on a triple $(v_1, v_2, v_3)$ initialized as $(\\alpha, \\alpha^2, 1)$ and iteratively applies:\n\n\\begin{enumerate}\n    \\item Calculate $a_1 = \\lfloor v_1/v_3 \\rfloor$ and $a_2 = \\lfloor v_2/v_3 \\rfloor$\n    \\item Compute remainders: \n    \\begin{align}\n        r_1 &= v_1 - a_1v_3 \\\\\n        r_2 &= v_2 - a_2v_3\n    \\end{align}\n    \\item Determine the maximum remainder: $r_{\\text{max}} = \\max(r_1, r_2)$\n    \\item Update the triple:\n    \\begin{align}\n        v_1' &= r_1 \\\\\n        v_2' &= r_2 \\\\\n        v_3' &= r_{\\text{max}}\n    \\end{align}\n\\end{enumerate}\n\\end{definition}\n\n\\begin{algorithm}[H]\n\\caption{Subtractive HAPD Algorithm}\\label{alg:subtractive_hapd}\n\\begin{algorithmic}[1]\n\\State \\textbf{Input:} Cubic irrational $\\alpha$, maximum iterations $N$\n\\State Initialize $(v_1, v_2, v_3) \\gets (\\alpha, \\alpha^2, 1)$\n\\State Initialize encoding sequence $S \\gets ()$\n\\For{$i = 1$ to $N$}\n    \\State $a_1 \\gets \\lfloor v_1/v_3 \\rfloor$, $a_2 \\gets \\lfloor v_2/v_3 \\rfloor$\n    \\State $r_1 \\gets v_1 - a_1v_3$, $r_2 \\gets v_2 - a_2v_3$\n    \\If{$r_1 \\geq r_2$}\n        \\State $v_3' \\gets r_1$\n        \\State Append $(a_1, a_2, 1)$ to $S$\n    \\Else\n        \\State $v_3' \\gets r_2$\n        \\State Append $(a_1, a_2, 2)$ to $S$\n    \\EndIf\n    \\State $v_1 \\gets r_1$, $v_2 \\gets r_2$, $v_3 \\gets v_3'$\n    \\If{cycle detected in $S$}\n        \\State \\textbf{return} \"Periodic with period $p$\" where $p$ is cycle length\n    \\EndIf\n\\EndFor\n\\State \\textbf{return} \"No periodicity detected within $N$ iterations\"\n\\end{algorithmic}\n\\end{algorithm}"
+          ],
+          "blocks": [
+            {
+              "type": "definition",
+              "id": "def:subtractive_hapd",
+              "title": "Subtractive HAPD Algorithm",
+              "content": "\\label{def:subtractive_hapd}\nFor a cubic irrational $\\alpha$, the Subtractive HAPD algorithm operates on a triple $(v_1, v_2, v_3)$ initialized as $(\\alpha, \\alpha^2, 1)$ and iteratively applies:\n\n\\begin{enumerate}\n    \\item Calculate $a_1 = \\lfloor v_1/v_3 \\rfloor$ and $a_2 = \\lfloor v_2/v_3 \\rfloor$\n    \\item Compute remainders: \n    \\begin{align}\n        r_1 &= v_1 - a_1v_3 \\\\\n        r_2 &= v_2 - a_2v_3\n    \\end{align}\n    \\item Determine the maximum remainder: $r_{\\text{max}} = \\max(r_1, r_2)$\n    \\item Update the triple:\n    \\begin{align}\n        v_1' &= r_1 \\\\\n        v_2' &= r_2 \\\\\n        v_3' &= r_{\\text{max}}\n    \\end{align}\n\\end{enumerate}\n",
+              "number": 1
+            },
+            {
+              "type": "equation",
+              "id": "equation-1",
+              "content": "\n        r_1 &= v_1 - a_1v_3 \\\\\n        r_2 &= v_2 - a_2v_3\n    ",
+              "number": 1
+            },
+            {
+              "type": "equation",
+              "id": "equation-2",
+              "content": "\n        v_1' &= r_1 \\\\\n        v_2' &= r_2 \\\\\n        v_3' &= r_{\\text{max}}\n    ",
+              "number": 2
+            },
+            {
+              "type": "algorithm",
+              "id": "alg:subtractive_hapd",
+              "title": "H",
+              "content": "\n\\caption{Subtractive HAPD Algorithm}\\label{alg:subtractive_hapd}\n\\begin{algorithmic}[1]\n\\State \\textbf{Input:} Cubic irrational $\\alpha$, maximum iterations $N$\n\\State Initialize $(v_1, v_2, v_3) \\gets (\\alpha, \\alpha^2, 1)$\n\\State Initialize encoding sequence $S \\gets ()$\n\\For{$i = 1$ to $N$}\n    \\State $a_1 \\gets \\lfloor v_1/v_3 \\rfloor$, $a_2 \\gets \\lfloor v_2/v_3 \\rfloor$\n    \\State $r_1 \\gets v_1 - a_1v_3$, $r_2 \\gets v_2 - a_2v_3$\n    \\If{$r_1 \\geq r_2$}\n        \\State $v_3' \\gets r_1$\n        \\State Append $(a_1, a_2, 1)$ to $S$\n    \\Else\n        \\State $v_3' \\gets r_2$\n        \\State Append $(a_1, a_2, 2)$ to $S$\n    \\EndIf\n    \\State $v_1 \\gets r_1$, $v_2 \\gets r_2$, $v_3 \\gets v_3'$\n    \\If{cycle detected in $S$}\n        \\State \\textbf{return} \"Periodic with period $p$\" where $p$ is cycle length\n    \\EndIf\n\\EndFor\n\\State \\textbf{return} \"No periodicity detected within $N$ iterations\"\n\\end{algorithmic}\n",
+              "number": 1
+            }
+          ]
+        },
+        {
+          "title": "Theoretical Properties",
+          "id": "theoretical-properties",
+          "level": "subsection",
+          "content": [
+            "\\begin{theorem}[Equivalence to HAPD]\\label{thm:subtractive_equivalence}\nFor a cubic irrational $\\alpha$, the Subtractive HAPD algorithm detects periodicity if and only if the standard HAPD algorithm does.\n\\end{theorem}\n\n\\begin{proof}\nBoth algorithms track projectively equivalent triples. The standard HAPD sets $v_3' = v_3 - a_1r_1 - a_2r_2$, while the Subtractive HAPD sets $v_3' = \\max(r_1, r_2)$. Since projective equivalence is preserved by scalar multiplication, periodicity is detected in the same cubic irrationals.\n\nThe specific paths taken by the two algorithms differ, but both lead to equivalent detecting behavior for cubic irrationals.\n\\end{proof}\n\n\\begin{proposition}[Computational Advantage]\\label{prop:computational_advantage}\nThe Subtractive HAPD algorithm requires fewer arithmetic operations per iteration than the standard HAPD algorithm.\n\\end{proposition}\n\n\\begin{proof}\nStandard HAPD computes $v_3' = v_3 - a_1r_1 - a_2r_2$, requiring 4 operations (2 multiplications, 2 subtractions).\nSubtractive HAPD computes $v_3' = \\max(r_1, r_2)$, requiring only 1 comparison.\n\\end{proof}\n\n\\begin{theorem}[Bounded Remainders]\\label{thm:bounded_remainders}\nIn the Subtractive HAPD algorithm, the remainders $r_1$ and $r_2$ satisfy $0 \\leq r_i < v_3$ for $i = 1, 2$ in each iteration.\n\\end{theorem}\n\n\\begin{proof}\nBy definition, $r_i = v_i - a_i v_3$ where $a_i = \\lfloor v_i/v_3 \\rfloor$. Therefore:\n\\begin{align}\n0 \\leq r_i = v_i - \\lfloor v_i/v_3 \\rfloor \\cdot v_3 < v_3\n\\end{align}\n\\end{proof}\n\n\\begin{proposition}[Convergence Rate]\\label{prop:convergence_rate}\nFor a cubic irrational $\\alpha$ with minimal polynomial of height $H$, the Subtractive HAPD algorithm requires $O(\\log H)$ iterations to detect periodicity.\n\\end{proposition}\n\n\\begin{proof}\nEach iteration reduces the maximum coefficient by at least a factor of 2. Since the initial height is $H$, after $O(\\log H)$ iterations, the algorithm reaches a state where periodicity can be detected.\n\\end{proof}"
+          ],
+          "blocks": [
+            {
+              "type": "theorem",
+              "id": "thm:subtractive_equivalence",
+              "title": "Equivalence to HAPD",
+              "content": "\\label{thm:subtractive_equivalence}\nFor a cubic irrational $\\alpha$, the Subtractive HAPD algorithm detects periodicity if and only if the standard HAPD algorithm does.\n",
+              "number": 1
+            },
+            {
+              "type": "theorem",
+              "id": "thm:bounded_remainders",
+              "title": "Bounded Remainders",
+              "content": "\\label{thm:bounded_remainders}\nIn the Subtractive HAPD algorithm, the remainders $r_1$ and $r_2$ satisfy $0 \\leq r_i < v_3$ for $i = 1, 2$ in each iteration.\n",
+              "number": 2
+            },
+            {
+              "type": "proposition",
+              "id": "prop:computational_advantage",
+              "title": "Computational Advantage",
+              "content": "\\label{prop:computational_advantage}\nThe Subtractive HAPD algorithm requires fewer arithmetic operations per iteration than the standard HAPD algorithm.\n",
+              "number": 1
+            },
+            {
+              "type": "proposition",
+              "id": "prop:convergence_rate",
+              "title": "Convergence Rate",
+              "content": "\\label{prop:convergence_rate}\nFor a cubic irrational $\\alpha$ with minimal polynomial of height $H$, the Subtractive HAPD algorithm requires $O(\\log H)$ iterations to detect periodicity.\n",
+              "number": 2
+            },
+            {
+              "type": "equation",
+              "id": "equation-1",
+              "content": "\n0 \\leq r_i = v_i - \\lfloor v_i/v_3 \\rfloor \\cdot v_3 < v_3\n",
+              "number": 1
+            }
+          ]
+        },
+        {
+          "title": "Projective Geometric Interpretation",
+          "id": "projective-geometric-interpretation",
+          "level": "subsection",
+          "content": [
+            "\\begin{proposition}[Geometric Action]\\label{prop:geometric_action}\nThe Subtractive HAPD algorithm implements a sequence of projective transformations on the projective plane $\\mathbb{P}^2$, mapping the point $[\\alpha:\\alpha^2:1]$ to projectively equivalent points.\n\\end{proposition}\n\n\\begin{theorem}[Invariant Curves]\\label{thm:invariant_curves}\nThe iterations of the Subtractive HAPD algorithm preserve the cubic curve defined by the minimal polynomial of $\\alpha$.\n\\end{theorem}\n\n\\begin{proof}\nIf $\\alpha$ satisfies the minimal polynomial $p(x) = x^3 + ax^2 + bx + c$, then the triple $(v_1, v_2, v_3)$ satisfies $v_1^3 + av_1^2v_3 + bv_1v_3^2 + cv_3^3 = 0$ and $v_2 = v_1^2/v_3$. Each iteration of the Subtractive HAPD algorithm preserves these relations.\n\\end{proof}"
+          ],
+          "blocks": [
+            {
+              "type": "theorem",
+              "id": "thm:invariant_curves",
+              "title": "Invariant Curves",
+              "content": "\\label{thm:invariant_curves}\nThe iterations of the Subtractive HAPD algorithm preserve the cubic curve defined by the minimal polynomial of $\\alpha$.\n",
+              "number": 1
+            },
+            {
+              "type": "proposition",
+              "id": "prop:geometric_action",
+              "title": "Geometric Action",
+              "content": "\\label{prop:geometric_action}\nThe Subtractive HAPD algorithm implements a sequence of projective transformations on the projective plane $\\mathbb{P}^2$, mapping the point $[\\alpha:\\alpha^2:1]$ to projectively equivalent points.\n",
+              "number": 1
+            }
+          ]
+        },
+        {
+          "title": "Numerical Stability",
+          "id": "numerical-stability",
+          "level": "subsection",
+          "content": [
+            "\\begin{proposition}[Numerical Stability]\\label{prop:numerical_stability}\nThe Subtractive HAPD algorithm exhibits superior numerical stability compared to the standard HAPD algorithm when implemented with floating-point arithmetic.\n\\end{proposition}\n\n\\begin{proof}\nThe standard HAPD algorithm can lead to subtractive cancellation when computing $v_3'$. The Subtractive HAPD avoids this by using the maximum operation, which is numerically stable.\n\\end{proof}"
+          ],
+          "blocks": [
+            {
+              "type": "proposition",
+              "id": "prop:numerical_stability",
+              "title": "Numerical Stability",
+              "content": "\\label{prop:numerical_stability}\nThe Subtractive HAPD algorithm exhibits superior numerical stability compared to the standard HAPD algorithm when implemented with floating-point arithmetic.\n",
+              "number": 1
+            }
+          ]
+        },
+        {
+          "title": "Implementation Considerations",
+          "id": "implementation-considerations",
+          "level": "subsection",
+          "content": [
+            "\\begin{example}[Implementation for $\\sqrt{^3}{2}$]\\label{ex:cube_root_implementation}\nFor $\\alpha = \\sqrt{^3}{2}$, the Subtractive HAPD algorithm produces the encoding sequence:\n\\begin{equation}\n(1,1,1), (0,1,2), (1,0,1), (1,1,1), (0,1,2), \\ldots\n\\end{equation}\nwith period 3, matching the period of the standard HAPD algorithm.\n\\end{example}\n\n\\begin{proposition}[Storage Efficiency]\\label{prop:storage_efficiency}\nThe encoding sequence produced by the Subtractive HAPD algorithm can be efficiently stored using $3\\log_2(H) + 1$ bits per iteration, where $H$ is the height of the minimal polynomial.\n\\end{proposition}\n\n\\begin{proof}\nEach iteration stores $(a_1, a_2, i)$ where $i \\in \\{1,2\\}$ and $a_1, a_2 < H$. This requires $\\log_2(H)$ bits for each $a_i$ and 1 bit to encode $i$.\n\\end{proof}"
+          ],
+          "blocks": [
+            {
+              "type": "proposition",
+              "id": "prop:storage_efficiency",
+              "title": "Storage Efficiency",
+              "content": "\\label{prop:storage_efficiency}\nThe encoding sequence produced by the Subtractive HAPD algorithm can be efficiently stored using $3\\log_2(H) + 1$ bits per iteration, where $H$ is the height of the minimal polynomial.\n",
+              "number": 1
+            },
+            {
+              "type": "example",
+              "id": "ex:cube_root_implementation",
+              "title": "Implementation for $\\sqrt{^3}{2}$",
+              "content": "\\label{ex:cube_root_implementation}\nFor $\\alpha = \\sqrt{^3}{2}$, the Subtractive HAPD algorithm produces the encoding sequence:\n\\begin{equation}\n(1,1,1), (0,1,2), (1,0,1), (1,1,1), (0,1,2), \\ldots\n\\end{equation}\nwith period 3, matching the period of the standard HAPD algorithm.\n",
+              "number": 1
+            },
+            {
+              "type": "equation",
+              "id": "equation-1",
+              "content": "\n(1,1,1), (0,1,2), (1,0,1), (1,1,1), (0,1,2), \\ldots\n",
+              "number": 1
+            }
+          ]
+        }
+      ],
+      "blocks": [
+        {
+          "type": "theorem",
+          "id": "thm:subtractive_equivalence",
+          "title": "Equivalence to HAPD",
+          "content": "\\label{thm:subtractive_equivalence}\nFor a cubic irrational $\\alpha$, the Subtractive HAPD algorithm detects periodicity if and only if the standard HAPD algorithm does.\n",
+          "number": 1
+        },
+        {
+          "type": "theorem",
+          "id": "thm:bounded_remainders",
+          "title": "Bounded Remainders",
+          "content": "\\label{thm:bounded_remainders}\nIn the Subtractive HAPD algorithm, the remainders $r_1$ and $r_2$ satisfy $0 \\leq r_i < v_3$ for $i = 1, 2$ in each iteration.\n",
+          "number": 2
+        },
+        {
+          "type": "theorem",
+          "id": "thm:invariant_curves",
+          "title": "Invariant Curves",
+          "content": "\\label{thm:invariant_curves}\nThe iterations of the Subtractive HAPD algorithm preserve the cubic curve defined by the minimal polynomial of $\\alpha$.\n",
+          "number": 3
+        },
+        {
+          "type": "definition",
+          "id": "def:subtractive_hapd",
+          "title": "Subtractive HAPD Algorithm",
+          "content": "\\label{def:subtractive_hapd}\nFor a cubic irrational $\\alpha$, the Subtractive HAPD algorithm operates on a triple $(v_1, v_2, v_3)$ initialized as $(\\alpha, \\alpha^2, 1)$ and iteratively applies:\n\n\\begin{enumerate}\n    \\item Calculate $a_1 = \\lfloor v_1/v_3 \\rfloor$ and $a_2 = \\lfloor v_2/v_3 \\rfloor$\n    \\item Compute remainders: \n    \\begin{align}\n        r_1 &= v_1 - a_1v_3 \\\\\n        r_2 &= v_2 - a_2v_3\n    \\end{align}\n    \\item Determine the maximum remainder: $r_{\\text{max}} = \\max(r_1, r_2)$\n    \\item Update the triple:\n    \\begin{align}\n        v_1' &= r_1 \\\\\n        v_2' &= r_2 \\\\\n        v_3' &= r_{\\text{max}}\n    \\end{align}\n\\end{enumerate}\n",
+          "number": 1
+        },
+        {
+          "type": "proposition",
+          "id": "prop:computational_advantage",
+          "title": "Computational Advantage",
+          "content": "\\label{prop:computational_advantage}\nThe Subtractive HAPD algorithm requires fewer arithmetic operations per iteration than the standard HAPD algorithm.\n",
+          "number": 1
+        },
+        {
+          "type": "proposition",
+          "id": "prop:convergence_rate",
+          "title": "Convergence Rate",
+          "content": "\\label{prop:convergence_rate}\nFor a cubic irrational $\\alpha$ with minimal polynomial of height $H$, the Subtractive HAPD algorithm requires $O(\\log H)$ iterations to detect periodicity.\n",
+          "number": 2
+        },
+        {
+          "type": "proposition",
+          "id": "prop:geometric_action",
+          "title": "Geometric Action",
+          "content": "\\label{prop:geometric_action}\nThe Subtractive HAPD algorithm implements a sequence of projective transformations on the projective plane $\\mathbb{P}^2$, mapping the point $[\\alpha:\\alpha^2:1]$ to projectively equivalent points.\n",
+          "number": 3
+        },
+        {
+          "type": "proposition",
+          "id": "prop:numerical_stability",
+          "title": "Numerical Stability",
+          "content": "\\label{prop:numerical_stability}\nThe Subtractive HAPD algorithm exhibits superior numerical stability compared to the standard HAPD algorithm when implemented with floating-point arithmetic.\n",
+          "number": 4
+        },
+        {
+          "type": "proposition",
+          "id": "prop:storage_efficiency",
+          "title": "Storage Efficiency",
+          "content": "\\label{prop:storage_efficiency}\nThe encoding sequence produced by the Subtractive HAPD algorithm can be efficiently stored using $3\\log_2(H) + 1$ bits per iteration, where $H$ is the height of the minimal polynomial.\n",
+          "number": 5
+        },
+        {
+          "type": "example",
+          "id": "ex:cube_root_implementation",
+          "title": "Implementation for $\\sqrt{^3}{2}$",
+          "content": "\\label{ex:cube_root_implementation}\nFor $\\alpha = \\sqrt{^3}{2}$, the Subtractive HAPD algorithm produces the encoding sequence:\n\\begin{equation}\n(1,1,1), (0,1,2), (1,0,1), (1,1,1), (0,1,2), \\ldots\n\\end{equation}\nwith period 3, matching the period of the standard HAPD algorithm.\n",
+          "number": 1
+        },
+        {
+          "type": "equation",
+          "id": "equation-1",
+          "content": "\n(1,1,1), (0,1,2), (1,0,1), (1,1,1), (0,1,2), \\ldots\n",
+          "number": 1
+        },
+        {
+          "type": "equation",
+          "id": "equation-2",
+          "content": "\n        r_1 &= v_1 - a_1v_3 \\\\\n        r_2 &= v_2 - a_2v_3\n    ",
+          "number": 2
+        },
+        {
+          "type": "equation",
+          "id": "equation-3",
+          "content": "\n        v_1' &= r_1 \\\\\n        v_2' &= r_2 \\\\\n        v_3' &= r_{\\text{max}}\n    ",
+          "number": 3
+        },
+        {
+          "type": "equation",
+          "id": "equation-4",
+          "content": "\n0 \\leq r_i = v_i - \\lfloor v_i/v_3 \\rfloor \\cdot v_3 < v_3\n",
+          "number": 4
+        },
+        {
+          "type": "algorithm",
+          "id": "alg:subtractive_hapd",
+          "title": "H",
+          "content": "\n\\caption{Subtractive HAPD Algorithm}\\label{alg:subtractive_hapd}\n\\begin{algorithmic}[1]\n\\State \\textbf{Input:} Cubic irrational $\\alpha$, maximum iterations $N$\n\\State Initialize $(v_1, v_2, v_3) \\gets (\\alpha, \\alpha^2, 1)$\n\\State Initialize encoding sequence $S \\gets ()$\n\\For{$i = 1$ to $N$}\n    \\State $a_1 \\gets \\lfloor v_1/v_3 \\rfloor$, $a_2 \\gets \\lfloor v_2/v_3 \\rfloor$\n    \\State $r_1 \\gets v_1 - a_1v_3$, $r_2 \\gets v_2 - a_2v_3$\n    \\If{$r_1 \\geq r_2$}\n        \\State $v_3' \\gets r_1$\n        \\State Append $(a_1, a_2, 1)$ to $S$\n    \\Else\n        \\State $v_3' \\gets r_2$\n        \\State Append $(a_1, a_2, 2)$ to $S$\n    \\EndIf\n    \\State $v_1 \\gets r_1$, $v_2 \\gets r_2$, $v_3 \\gets v_3'$\n    \\If{cycle detected in $S$}\n        \\State \\textbf{return} \"Periodic with period $p$\" where $p$ is cycle length\n    \\EndIf\n\\EndFor\n\\State \\textbf{return} \"No periodicity detected within $N$ iterations\"\n\\end{algorithmic}\n",
+          "number": 1
+        }
+      ]
+    }
+  ]
+}

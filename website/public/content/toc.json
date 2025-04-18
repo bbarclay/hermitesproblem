@@ -1,0 +1,407 @@
+{
+  "paper": {
+    "title": "Solving Hermite's Problem: Three Novel Approaches for Complete Characterization of Cubic Irrationals",
+    "authors": [
+      "Brandon Barclay"
+    ],
+    "date": "April 2025",
+    "sections": [
+      {
+        "file": "abstract",
+        "title": "Abstract",
+        "id": "abstract",
+        "level": "section"
+      },
+      {
+        "file": "introduction",
+        "title": "Introduction",
+        "id": "intro",
+        "level": "section"
+      },
+      {
+        "file": "galois-theory",
+        "title": "Galois Theoretic Proof of Non-Periodicity",
+        "id": "galois_theory",
+        "level": "section"
+      },
+      {
+        "file": "hapd-algorithm",
+        "title": "Hermite Algorithm for Periodicity Detection (\\HAPD)",
+        "id": "hapd_algorithm",
+        "level": "section"
+      },
+      {
+        "file": "hapd-algorithm",
+        "title": "Algorithm Definition",
+        "id": "algorithm-definition",
+        "level": "subsection"
+      },
+      {
+        "file": "hapd-algorithm",
+        "title": "Projective Geometry Interpretation",
+        "id": "projective-geometry-interpretation",
+        "level": "subsection"
+      },
+      {
+        "file": "hapd-algorithm",
+        "title": "Main Periodicity Theorem",
+        "id": "main-periodicity-theorem",
+        "level": "subsection"
+      },
+      {
+        "file": "matrix-approach",
+        "title": "Matrix Approach",
+        "id": "matrix_approach",
+        "level": "section"
+      },
+      {
+        "file": "matrix-approach",
+        "title": "Companion Matrix and Trace Sequence",
+        "id": "companion-matrix-and-trace-sequence",
+        "level": "subsection"
+      },
+      {
+        "file": "matrix-approach",
+        "title": "Periodicity Detection in Trace Sequences",
+        "id": "periodicity-detection-in-trace-sequences",
+        "level": "subsection"
+      },
+      {
+        "file": "matrix-approach",
+        "title": "The Matrix Verification Method",
+        "id": "the-matrix-verification-method",
+        "level": "subsection"
+      },
+      {
+        "file": "matrix-approach",
+        "title": "Theoretical Foundation via Trace Relations",
+        "id": "theoretical-foundation-via-trace-relations",
+        "level": "subsection"
+      },
+      {
+        "file": "matrix-approach",
+        "title": "Computational Advantages",
+        "id": "computational-advantages",
+        "level": "subsection"
+      },
+      {
+        "file": "matrix-approach",
+        "title": "Relationship to Cubic Fields",
+        "id": "relationship-to-cubic-fields",
+        "level": "subsection"
+      },
+      {
+        "file": "matrix-computational",
+        "title": "Computational Aspects of the Matrix Approach",
+        "id": "matrix_computational",
+        "level": "section"
+      },
+      {
+        "file": "matrix-computational",
+        "title": "Numerical Validation",
+        "id": "numerical-validation",
+        "level": "subsection"
+      },
+      {
+        "file": "matrix-computational",
+        "title": "Comparison with Other Approaches",
+        "id": "comparison-with-other-approaches",
+        "level": "subsection"
+      },
+      {
+        "file": "matrix-computational",
+        "title": "Implementation Strategy",
+        "id": "implementation-strategy",
+        "level": "subsection"
+      },
+      {
+        "file": "matrix-verification",
+        "title": "Computational Aspects of the Matrix Approach",
+        "id": "matrix_computational",
+        "level": "section"
+      },
+      {
+        "file": "matrix-verification",
+        "title": "Numerical Validation",
+        "id": "numerical-validation",
+        "level": "subsection"
+      },
+      {
+        "file": "matrix-verification",
+        "title": "Comparison with Other Approaches",
+        "id": "comparison-with-other-approaches",
+        "level": "subsection"
+      },
+      {
+        "file": "matrix-verification",
+        "title": "Implementation Strategy",
+        "id": "implementation-strategy",
+        "level": "subsection"
+      },
+      {
+        "file": "equivalence",
+        "title": "Equivalence of Algorithmic and Matrix Approaches",
+        "id": "equivalence",
+        "level": "section"
+      },
+      {
+        "file": "equivalence",
+        "title": "Structural Equivalence",
+        "id": "structural-equivalence",
+        "level": "subsection"
+      },
+      {
+        "file": "equivalence",
+        "title": "Algebraic Connection",
+        "id": "algebraic-connection",
+        "level": "subsection"
+      },
+      {
+        "file": "equivalence",
+        "title": "Computational Perspective",
+        "id": "computational-perspective",
+        "level": "subsection"
+      },
+      {
+        "file": "equivalence",
+        "title": "Unified Theoretical Framework",
+        "id": "unified-theoretical-framework",
+        "level": "subsection"
+      },
+      {
+        "file": "equivalence",
+        "title": "Implications for Hermite's Problem",
+        "id": "implications-for-hermite-s-problem",
+        "level": "subsection"
+      },
+      {
+        "file": "equivalence",
+        "title": "Generalization to Higher Degrees",
+        "id": "generalization-to-higher-degrees",
+        "level": "subsection"
+      },
+      {
+        "file": "equivalence",
+        "title": "Algorithmic Extension",
+        "id": "algorithmic-extension",
+        "level": "subsection"
+      },
+      {
+        "file": "subtractive-algorithm",
+        "title": "Subtractive Algorithm",
+        "id": "subtractive_algorithm",
+        "level": "section"
+      },
+      {
+        "file": "subtractive-algorithm",
+        "title": "Algorithm Description",
+        "id": "algorithm-description",
+        "level": "subsection"
+      },
+      {
+        "file": "subtractive-algorithm",
+        "title": "Theoretical Properties",
+        "id": "theoretical-properties",
+        "level": "subsection"
+      },
+      {
+        "file": "subtractive-algorithm",
+        "title": "Projective Geometric Interpretation",
+        "id": "projective-geometric-interpretation",
+        "level": "subsection"
+      },
+      {
+        "file": "subtractive-algorithm",
+        "title": "Numerical Stability",
+        "id": "numerical-stability",
+        "level": "subsection"
+      },
+      {
+        "file": "subtractive-algorithm",
+        "title": "Implementation Considerations",
+        "id": "implementation-considerations",
+        "level": "subsection"
+      },
+      {
+        "file": "numerical-validation",
+        "title": "Numerical Validation",
+        "id": "numerical_validation",
+        "level": "section"
+      },
+      {
+        "file": "numerical-validation",
+        "title": "Implementation of the \\HAPD{",
+        "id": "implementation-of-the-hapd",
+        "level": "subsection"
+      },
+      {
+        "file": "numerical-validation",
+        "title": "Numerical Stability Considerations",
+        "id": "numerical-stability-considerations",
+        "level": "subsection"
+      },
+      {
+        "file": "numerical-validation",
+        "title": "Results from the \\HAPD{",
+        "id": "results-from-the-hapd",
+        "level": "subsection"
+      },
+      {
+        "file": "numerical-validation",
+        "title": "Limitations and Edge Cases",
+        "id": "limitations-and-edge-cases",
+        "level": "subsection"
+      },
+      {
+        "file": "numerical-validation",
+        "title": "Matrix-Based Verification",
+        "id": "matrix-based-verification",
+        "level": "subsection"
+      },
+      {
+        "file": "numerical-validation",
+        "title": "Comparative Analysis",
+        "id": "comparative-analysis",
+        "level": "subsection"
+      },
+      {
+        "file": "numerical-validation",
+        "title": "Combined Approach",
+        "id": "combined-approach",
+        "level": "subsection"
+      },
+      {
+        "file": "numerical-validation",
+        "title": "Validation of the Subtractive Algorithm",
+        "id": "validation-of-the-subtractive-algorithm",
+        "level": "subsection"
+      },
+      {
+        "file": "numerical-validation",
+        "title": "Comparative Performance Analysis",
+        "id": "comparative-performance-analysis",
+        "level": "subsection"
+      },
+      {
+        "file": "numerical-validation",
+        "title": "Efficiency and Scalability Analysis",
+        "id": "efficiency-and-scalability-analysis",
+        "level": "subsection"
+      },
+      {
+        "file": "objections-tex",
+        "title": "Addressing Potential Objections",
+        "id": "objections",
+        "level": "section"
+      },
+      {
+        "file": "objections-tex",
+        "title": "Relationship to Classical Continued Fractions",
+        "id": "relationship-to-classical-continued-fractions",
+        "level": "subsection"
+      },
+      {
+        "file": "objections-tex",
+        "title": "Numerical Implementation",
+        "id": "numerical-implementation",
+        "level": "subsection"
+      },
+      {
+        "file": "objections-tex",
+        "title": "Variation Among Cubic Irrationals",
+        "id": "variation-among-cubic-irrationals",
+        "level": "subsection"
+      },
+      {
+        "file": "objections-tex",
+        "title": "Connection to Prior Approaches",
+        "id": "connection-to-prior-approaches",
+        "level": "subsection"
+      },
+      {
+        "file": "objections-tex",
+        "title": "Encoding Function",
+        "id": "encoding-function",
+        "level": "subsection"
+      },
+      {
+        "file": "objections-tex",
+        "title": "Complex Cubic Irrationals",
+        "id": "complex-cubic-irrationals",
+        "level": "subsection"
+      },
+      {
+        "file": "objections-tex",
+        "title": "Computational Complexity",
+        "id": "computational-complexity",
+        "level": "subsection"
+      },
+      {
+        "file": "objections-tex",
+        "title": "Higher Degrees Generalization",
+        "id": "higher-degrees-generalization",
+        "level": "subsection"
+      },
+      {
+        "file": "objections-tex",
+        "title": "Uniqueness of Solution",
+        "id": "uniqueness-of-solution",
+        "level": "subsection"
+      },
+      {
+        "file": "conclusion",
+        "title": "Conclusion",
+        "id": "conclusion",
+        "level": "section"
+      },
+      {
+        "file": "implementation-examples",
+        "title": "Implementation Examples",
+        "id": "implementation_examples",
+        "level": "section"
+      },
+      {
+        "file": "implementation-examples",
+        "title": "HAPD Implementation",
+        "id": "hapd-implementation",
+        "level": "subsection"
+      },
+      {
+        "file": "implementation-examples",
+        "title": "Matrix Approach Implementation",
+        "id": "matrix-approach-implementation",
+        "level": "subsection"
+      },
+      {
+        "file": "implementation-examples",
+        "title": "Subtractive Algorithm Implementation",
+        "id": "subtractive-algorithm-implementation",
+        "level": "subsection"
+      },
+      {
+        "file": "implementation-examples",
+        "title": "Performance Comparison",
+        "id": "performance-comparison",
+        "level": "subsection"
+      },
+      {
+        "file": "implementation-examples",
+        "title": "Implementation Notes",
+        "id": "implementation-notes",
+        "level": "subsection"
+      },
+      {
+        "file": "bibliography",
+        "title": "Bibliography",
+        "id": "bibliography",
+        "level": "section"
+      },
+      {
+        "file": "main",
+        "title": "Main",
+        "id": "main",
+        "level": "section"
+      }
+    ]
+  }
+}

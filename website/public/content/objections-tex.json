@@ -1,0 +1,95 @@
+{
+  "filename": "objections-tex.tex",
+  "sections": [
+    {
+      "title": "Addressing Potential Objections",
+      "id": "objections",
+      "level": "section",
+      "content": [],
+      "subsections": [
+        {
+          "title": "Relationship to Classical Continued Fractions",
+          "id": "relationship-to-classical-continued-fractions",
+          "level": "subsection",
+          "content": [
+            "\\begin{objection}\nThe \\HAPD{} algorithm operates in three-dimensional projective space rather than with a one-dimensional continued fraction-like expansion.\n\\end{objection}\n\n\\begin{response}\nSection \\ref{sec:galois_theory} proves a direct one-dimensional extension is impossible. HAPD satisfies Hermite's criteria by:\n\\begin{enumerate}\n\\item Providing a systematic representation\n\\item Producing periodic sequences precisely for cubic irrationals\n\\item Extending the connection between periodicity and algebraic degree\n\\end{enumerate}\n\\end{response}"
+          ],
+          "blocks": []
+        },
+        {
+          "title": "Numerical Implementation",
+          "id": "numerical-implementation",
+          "level": "subsection",
+          "content": [
+            "\\begin{objection}\nBoth algorithms require high-precision arithmetic to reliably distinguish cubic irrationals.\n\\end{objection}\n\n\\begin{response}\nImplementation requires:\n\\begin{enumerate}\n\\item Arbitrary-precision arithmetic libraries\n\\item Robust periodicity detection with multiple consecutive matches\n\\item Dual verification through matrix methods\n\\end{enumerate}\nEmpirical tests confirm 50-100 decimal digits suffice for moderate examples.\n\\end{response}"
+          ],
+          "blocks": []
+        },
+        {
+          "title": "Variation Among Cubic Irrationals",
+          "id": "variation-among-cubic-irrationals",
+          "level": "subsection",
+          "content": [
+            "\\begin{objection}\nDo cubic irrationals with different Galois groups ($S_3$ vs. $C_3$) exhibit consistent periodicity?\n\\end{objection}\n\n\\begin{response}\nAll cubic irrationals produce eventually periodic sequences regardless of Galois group:\n\\begin{enumerate}\n\\item $S_3$ case: Periodicity from fundamental domain of Dirichlet group (Theorem \\ref{thm:finite_domain})\n\\item $C_3$ case: Additional symmetry but same finite fundamental domain property\n\\item Cyclotomic fields: Periodicity with simpler patterns due to additional structure\n\\end{enumerate}\n\\end{response}"
+          ],
+          "blocks": []
+        },
+        {
+          "title": "Connection to Prior Approaches",
+          "id": "connection-to-prior-approaches",
+          "level": "subsection",
+          "content": [
+            "\\begin{objection}\nHow does this differ from Jacobi-Perron and other multidimensional continued fraction algorithms?\n\\end{objection}\n\n\\begin{response}\nKey differences:\n\\begin{enumerate}\n\\item Complete characterization theorem: periodicity if and only if input is cubic irrational\n\\item Rigorous proofs in both directions\n\\item Novel matrix-based algebraic structure connection\n\\item Complex conjugate roots case fully resolved\n\\end{enumerate}\n\\end{response}"
+          ],
+          "blocks": []
+        },
+        {
+          "title": "Encoding Function",
+          "id": "encoding-function",
+          "level": "subsection",
+          "content": [
+            "\\begin{objection}\nIs the complex encoding function necessary?\n\\end{objection}\n\n\\begin{response}\nAny injective function $E: \\mathbb{Z}^2 \\to \\mathbb{N}$ preserving periodicity suffices. Alternatives include:\n\\begin{enumerate}\n\\item Cantor's pairing function: $E(a,b) = \\frac{1}{2}(a+b)(a+b+1) + b$\n\\item Direct sequence representation of pairs $(a_1, a_2)$\n\\end{enumerate}\n\\end{response}"
+          ],
+          "blocks": []
+        },
+        {
+          "title": "Complex Cubic Irrationals",
+          "id": "complex-cubic-irrationals",
+          "level": "subsection",
+          "content": [
+            "\\begin{objection}\nHow does the algorithm extend to complex cubic irrationals given floor function limitations?\n\\end{objection}\n\n\\begin{response}\nThe matrix-based characterization (Theorem \\ref{thm:matrix_cubic}) extends directly to complex cubic irrationals. For practical implementation, the \\HAPD{} algorithm can be modified to use a lattice-based floor function mapping to Gaussian integers. The fundamental result remains valid: sequences are eventually periodic precisely for cubic irrationals, whether real or complex.\n\\end{response}"
+          ],
+          "blocks": []
+        },
+        {
+          "title": "Computational Complexity",
+          "id": "computational-complexity",
+          "level": "subsection",
+          "content": [
+            "\\begin{objection}\nIs the $O(M^3)$ complexity practical?\n\\end{objection}\n\n\\begin{response}\nEmpirical evidence shows typical behavior is much better than worst case, with periodicity often detected within few iterations for common cubic irrationals. The matrix verification approach offers complementary efficiency for cases where a minimal polynomial approximation is available.\n\\end{response}"
+          ],
+          "blocks": []
+        },
+        {
+          "title": "Higher Degrees Generalization",
+          "id": "higher-degrees-generalization",
+          "level": "subsection",
+          "content": [
+            "\\begin{objection}\nIs generalization to degree $n > 3$ straightforward?\n\\end{objection}\n\n\\begin{response}\nTheoretically straightforward:\n\\begin{enumerate}\n\\item For degree $n$, use $(n-1)$-dimensional projective space\n\\item Initialize with $(\\alpha, \\alpha^2, \\ldots, \\alpha^{n-1}, 1)$\n\\item $n \\times n$ companion matrix with analogous properties\n\\end{enumerate}\n\nPractical challenges increase with dimension:\n\\begin{enumerate}\n\\item More intensive periodicity detection computation\n\\item Larger fundamental domains requiring more iterations\n\\item Increased numerical precision requirements\n\\end{enumerate}\n\\end{response}"
+          ],
+          "blocks": []
+        },
+        {
+          "title": "Uniqueness of Solution",
+          "id": "uniqueness-of-solution",
+          "level": "subsection",
+          "content": [
+            "\\begin{objection}\nIs this solution unique?\n\\end{objection}\n\n\\begin{response}\nThe specific algorithm is not unique, but any solution must capture the same mathematical structures:\n\\begin{enumerate}\n\\item The cubic field extension $\\Q(\\alpha)/\\Q$ with its Galois action\n\\item Periodic dynamics in appropriate spaces\n\\item Trace properties of companion matrices\n\\item Action of Dirichlet groups with their fundamental domains\n\\end{enumerate}\n\\end{response}"
+          ],
+          "blocks": []
+        }
+      ],
+      "blocks": []
+    }
+  ]
+}

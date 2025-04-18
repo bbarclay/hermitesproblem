@@ -1,0 +1,33 @@
+{
+  "filename": "debug-test.tex",
+  "id": "debug-test",
+  "order": 100,
+  "sections": [
+    {
+      "title": "Debug Test Section",
+      "id": "debug-test-section",
+      "level": "section",
+      "content": [
+        "# Test Heading\n\nThis is a simple test paragraph to verify text rendering. It should appear as normal text in the rendered output.\n\nHere is a second paragraph with **bold** and *italic* text to test markdown rendering.",
+        "Here is a separate content chunk with some math: $E = mc^2$ which should be rendered as an inline equation.",
+        "\\begin{itemize}\n\\item First list item\n\\item Second list item\n\\end{itemize}",
+        "Here is a paragraph with a LaTeX environment that should be processed:\n\n\\begin{theorem}\nThis is a test theorem that should be styled appropriately.\n\\end{theorem}"
+      ],
+      "blocks": [
+        {
+          "type": "theorem",
+          "id": "theorem-test",
+          "content": "This is a test theorem displayed as a block with custom styling.",
+          "number": 1
+        },
+        {
+          "type": "equation",
+          "id": "equation-test",
+          "content": "\\int_0^\\infty e^{-x} dx = 1",
+          "number": 1,
+          "environment": "equation"
+        }
+      ]
+    }
+  ]
+} 
