@@ -113,15 +113,26 @@ export default function Home() {
     // Check if there are previous/next sections
     const hasPrevSection = getCurrentPosition() > 0;
     const hasNextSection = getCurrentPosition() < navigationOrder.length - 1;
+    const [sidebarOpen, setSidebarOpen] = useState(true);
 
     return (
       <main className="flex min-h-screen">
-        <Sidebar
-          currentFile={currentFile}
-          currentSection={currentSection}
-          onNavigate={handleNavigate}
-          staticContent={allContent.toc}
-        />
+        {/* Mobile menu toggle button */}
+        <button 
+          className="lg:hidden fixed top-4 left-4 z-50 p-2 rounded-md bg-background border border-border"
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+        >
+          <Menu className="w-5 h-5" />
+        </button>
+        
+        <div className={`${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 transition-transform duration-200 ease-in-out`}>
+          <Sidebar
+            currentFile={currentFile}
+            currentSection={currentSection}
+            onNavigate={handleNavigate}
+            staticContent={allContent.toc}
+          />
+        </div>
 
         <div className="flex-1">
           {isLoading ? (

@@ -8,6 +8,7 @@ import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import { preprocessTeX } from '@/utils/texPreprocessor';
 import { highlightUnparsedTeX } from '@/utils/texDebugger';
+import ComparisonTable from '../ComparisonTable';
 
 interface EnhancedTexParserProps {
   content: string;
@@ -25,6 +26,30 @@ const EnhancedTexParser: React.FC<EnhancedTexParserProps> = ({
   debug = false
 }) => {
   const [showDebugInfo, setShowDebugInfo] = useState(debug);
+
+  // Check if this is the comparison table section
+  const isComparisonTable = content.includes('Comparison of the Three Solution Approaches') && 
+    content.includes('HAPD Algorithm') && 
+    content.includes('Matrix Approach') && 
+    content.includes('Modified sin² Algorithm');
+
+  // If this is the comparison table, render our specialized component
+  if (isComparisonTable) {
+    return (
+      <>
+        <ComparisonTable />
+        <p className="mt-6">
+          The matrix approach excels in computational efficiency and numerical stability once a candidate minimal polynomial is found. 
+          However, finding this polynomial typically requires algorithms like PSLQ or LLL, which themselves can be computationally intensive.
+        </p>
+        <p className="mt-4">
+          The HAPD algorithm, in contrast, works directly with the real number without requiring prior identification of its minimal polynomial, 
+          and provides a representation system that more directly addresses Hermite's original vision. The modified sin²-algorithm offers another 
+          alternative, particularly adapted from existing methods for totally real fields.
+        </p>
+      </>
+    );
+  }
 
   // Process the content
   const processedContent = preprocessTeX(content);
