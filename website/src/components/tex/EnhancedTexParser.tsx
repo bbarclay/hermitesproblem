@@ -26,14 +26,8 @@ const EnhancedTexParser: React.FC<EnhancedTexParserProps> = ({
 }) => {
   const [showDebugInfo, setShowDebugInfo] = useState(debug);
 
-  // Pre-process the content to handle TeX elements that KaTeX doesn't support natively
-  const processContent = (text: string): string => {
-    // Use the comprehensive TeX preprocessor
-    return preprocessTeX(text);
-  };
-
   // Process the content
-  const processedContent = processContent(content);
+  const processedContent = preprocessTeX(content);
 
   // If debug mode is enabled, highlight unparsed TeX
   const displayContent = showDebugInfo
@@ -107,48 +101,76 @@ const EnhancedTexParser: React.FC<EnhancedTexParserProps> = ({
             div: ({ className, ...props }) => {
               if (className === 'theorem') {
                 return (
-                  <div className="my-4 p-4 bg-[hsl(var(--theorem-bg))] border-l-4 border-blue-500 rounded-md">
-                    {props.children}
+                  <div className="my-6 p-6 bg-[hsl(var(--theorem-bg))] border-l-4 border-blue-500 rounded-md shadow-sm">
+                    <div className="font-serif">{props.children}</div>
                   </div>
                 );
               } else if (className === 'lemma') {
                 return (
-                  <div className="my-4 p-4 bg-[hsl(var(--lemma-bg))] border-l-4 border-indigo-500 rounded-md">
-                    {props.children}
+                  <div className="my-6 p-6 bg-[hsl(var(--lemma-bg))] border-l-4 border-indigo-500 rounded-md shadow-sm">
+                    <div className="font-serif">{props.children}</div>
                   </div>
                 );
               } else if (className === 'definition') {
                 return (
-                  <div className="my-4 p-4 bg-[hsl(var(--definition-bg))] border-l-4 border-green-500 rounded-md">
-                    {props.children}
+                  <div className="my-6 p-6 bg-[hsl(var(--definition-bg))] border-l-4 border-green-500 rounded-md shadow-sm">
+                    <div className="font-serif">{props.children}</div>
                   </div>
                 );
               } else if (className === 'proposition') {
                 return (
-                  <div className="my-4 p-4 bg-[hsl(var(--theorem-bg))] border-l-4 border-purple-500 rounded-md">
-                    {props.children}
+                  <div className="my-6 p-6 bg-[hsl(var(--theorem-bg))] border-l-4 border-purple-500 rounded-md shadow-sm">
+                    <div className="font-serif">{props.children}</div>
                   </div>
                 );
               } else if (className === 'corollary') {
                 return (
-                  <div className="my-4 p-4 bg-[hsl(var(--lemma-bg))] border-l-4 border-pink-500 rounded-md">
-                    {props.children}
+                  <div className="my-6 p-6 bg-[hsl(var(--lemma-bg))] border-l-4 border-pink-500 rounded-md shadow-sm">
+                    <div className="font-serif">{props.children}</div>
                   </div>
                 );
               } else if (className === 'proof') {
                 return (
-                  <div className="my-4 p-4 bg-[hsl(var(--proof-bg))] border-l-4 border-gray-400 rounded-md">
-                    {props.children}
+                  <div className="my-6 p-6 bg-[hsl(var(--proof-bg))] border-l-4 border-gray-400 rounded-md shadow-sm">
+                    <div className="font-serif italic">
+                      {props.children}
+                      <div className="text-right mt-4">□</div>
+                    </div>
                   </div>
                 );
               }
               return <div {...props} />;
             },
 
+            // Handle ordered and unordered lists
+            ol: ({ ...props }) => (
+              <ol className="list-decimal pl-8 my-4 space-y-2" {...props} />
+            ),
+            ul: ({ ...props }) => (
+              <ul className="list-disc pl-8 my-4 space-y-2" {...props} />
+            ),
+            li: ({ ...props }) => (
+              <li className="pl-2" {...props} />
+            ),
+
+            // Handle citations and references
+            a: ({ href, className, ...props }) => {
+              if (className === 'citation') {
+                return (
+                  <a
+                    href={href}
+                    className="text-[hsl(var(--citation-color))] no-underline hover:underline"
+                    {...props}
+                  />
+                );
+              }
+              return <a href={href} className="text-[hsl(var(--link-color))] hover:underline" {...props} />;
+            },
+
             // Custom components for specific elements
             span: ({className, ...props}) => {
               if (className === 'math-display') {
-                return <span className="math-display">{props.children}</span>;
+                return <span className="math-display block my-4 overflow-x-auto">{props.children}</span>;
               }
               return <span {...props} />;
             }

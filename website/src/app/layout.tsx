@@ -46,20 +46,30 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
-                function getThemePreference() {
-                  if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-                    return localStorage.getItem('theme');
-                  }
-                  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                function getInitialTheme() {
+                  const persistedTheme = localStorage.getItem('theme');
+                  if (persistedTheme) return persistedTheme;
+                  
+                  const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                  return systemTheme;
                 }
-                document.documentElement.classList.add('preload');
-                const theme = getThemePreference();
-                document.documentElement.classList.add(theme);
-                window.addEventListener('DOMContentLoaded', () => {
-                  setTimeout(() => {
-                    document.documentElement.classList.remove('preload');
-                  }, 50);
-                });
+
+                function setInitialTheme() {
+                  const theme = getInitialTheme();
+                  document.documentElement.classList.add(theme);
+                  
+                  // Add a class to prevent transition flashing
+                  document.documentElement.classList.add('theme-init');
+                  
+                  // Remove the init class after a short delay to enable transitions
+                  window.addEventListener('load', () => {
+                    setTimeout(() => {
+                      document.documentElement.classList.remove('theme-init');
+                    }, 50);
+                  });
+                }
+
+                setInitialTheme();
               })();
             `
           }}

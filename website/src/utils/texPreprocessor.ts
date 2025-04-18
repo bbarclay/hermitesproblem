@@ -101,11 +101,29 @@ export function preprocessTeX(content: string): string {
     }
   );
 
-  // Handle \\cite commands
+  // Handle citations with options and multiple keys
   processed = processed.replace(
-    /\\cite\{([^}]+)\}/g,
-    (match, citation) => {
-      return `<a href="#citation-${citation}" class="citation" data-citation="${citation}">[${citation}]</a>`;
+    /\\(?:cite[pt]?|citeyear(?:par)?)\*?(?:\[([^\]]*)\])?\{([^}]+)\}/g,
+    (match, options, keys) => {
+      const citeKeys = keys.split(',').map(key => key.trim());
+      const optionsText = options ? ` [${options}]` : '';
+      
+      return citeKeys.map(key => 
+        `<a href="#citation-${key}" class="citation" data-citation-key="${key}">${key}${optionsText}</a>`
+      ).join(', ');
+    }
+  );
+
+  // Handle \textcite separately as it needs different formatting
+  processed = processed.replace(
+    /\\textcite\*?(?:\[([^\]]*)\])?\{([^}]+)\}/g,
+    (match, options, keys) => {
+      const citeKeys = keys.split(',').map(key => key.trim());
+      const optionsText = options ? ` [${options}]` : '';
+      
+      return citeKeys.map(key => 
+        `<a href="#citation-${key}" class="citation textcite" data-citation-key="${key}">${key}${optionsText}</a>`
+      ).join(' and ');
     }
   );
 

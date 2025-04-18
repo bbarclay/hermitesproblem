@@ -37,6 +37,62 @@ export const preprocessLatex = (content: string): string => {
     }
   );
 
+  // Special handling for algorithmic environment
+  processed = processed.replace(
+    /\\begin\{algorithmic\}(?:\[.*?\])?([\s\S]*?)\\end\{algorithmic\}/g,
+    (match, content) => {
+      // First, fix common spacing and formatting issues
+      content = content.replace(/\n\s+/g, '\n').trim();
+      
+      // Process algorithmic commands
+      let result = content
+        // Fix numbered State commands (replace [1] with empty string)
+        .replace(/\[1\]/g, '')
+        // Handle indentation properly by replacing \State with markdown bullet points
+        .replace(/\\State\s+/g, '\n• ')
+        // Replace §tate (special character) with blank
+        .replace(/§tate\s+/g, '\n• ')
+        // Replace control structures with proper indentation
+        .replace(/\\If\{([^}]*)\}/g, '\n**if** $1:')
+        .replace(/\\ElseIf\{([^}]*)\}/g, '\n**else if** $1:')
+        .replace(/\\Else/g, '\n**else**:')
+        .replace(/\\EndIf/g, '')
+        .replace(/\\For\{([^}]*)\}/g, '\n**for** $1:')
+        .replace(/\\EndFor/g, '')
+        .replace(/\\While\{([^}]*)\}/g, '\n**while** $1:')
+        .replace(/\\EndWhile/g, '')
+        // Handle \gets assignment
+        .replace(/\\gets/g, '←')
+        // Clean up \textbf
+        .replace(/\\textbf\{([^}]*)\}/g, '**$1**')
+        // Handle return statements
+        .replace(/\\Return\s+/g, '\n• **return** ');
+      
+      // Clean up empty lines and ensure proper spacing
+      result = result.replace(/\n{3,}/g, '\n\n').trim();
+      
+      return `\n\n<div class="algorithm">\n<pre class="language-algorithm"><code>${result}</code></pre>\n</div>\n\n`;
+    }
+  );
+
+  // Handle algorithm environment with caption and label
+  processed = processed.replace(
+    /\\begin\{algorithm\}(\[[^\]]*\])?([\s\S]*?)\\end\{algorithm\}/g,
+    (match, opt, content) => {
+      const captionMatch = content.match(/\\caption\{([^}]+)\}/);
+      const caption = captionMatch ? `**Algorithm: ${captionMatch[1]}**\n\n` : '';
+      
+      // Extract algorithmic content if present
+      const algorithmicMatch = content.match(/\\begin\{algorithmic\}([\s\S]*?)\\end\{algorithmic\}/);
+      if (algorithmicMatch) {
+        content = content.replace(/\\caption\{([^}]+)\}/, '');
+        content = content.replace(/\\label\{([^}]+)\}/, '');
+      }
+      
+      return `\n\n<div class="algorithm">\n${caption}${content}\n</div>\n\n`;
+    }
+  );
+
   // 3. Fixed enumerate/itemize processing to prevent numbering issues
   processed = processed.replace(/\\begin\{itemize\}([\s\S]*?)\\end\{itemize\}/g, (match, content) => {
     return content

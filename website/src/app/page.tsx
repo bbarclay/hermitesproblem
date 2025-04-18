@@ -65,8 +65,8 @@ export default function Home() {
   // Create a component that uses searchParams
   function HomeContent() {
     const searchParams = useSearchParams();
-    const [currentFile, setCurrentFile] = useState<string>(searchParams.get('file') || 'introduction');
-    const [currentSection, setCurrentSection] = useState<string>(searchParams.get('section') || 'introduction');
+    const [currentFile, setCurrentFile] = useState<string>(searchParams?.get('file') || 'introduction');
+    const [currentSection, setCurrentSection] = useState<string>(searchParams?.get('section') || 'introduction');
     const [isLoading, setIsLoading] = useState(false);
 
     // Handle navigation

@@ -10,8 +10,124 @@ def clean_tex_content(content):
     content = re.sub(r"%.*$", "", content, flags=re.MULTILINE)
     # Remove empty lines
     content = re.sub(r"\n\s*\n", "\n", content)
+    # Process environments and references
+    content = process_environments(content)
     return content.strip()
 
+def process_environments(content):
+    # Process algorithm environments
+    content = process_algorithm_environments(content)
+    # Process theorem environments
+    content = process_theorem_environments(content)
+    # Process figures
+    content = process_figures(content)
+    # Process references
+    content = process_references(content)
+    return content
+
+def process_algorithm_environments(content):
+    """Process algorithm_def environments into React components."""
+    pattern = r"\\begin{algorithm_def}\[(.*?)\]\\label{(.*?)}(.*?)\\end{algorithm_def}"
+    
+    def replace_algorithm(match):
+        title = match.group(1)
+        label = match.group(2)
+        body = match.group(3)
+        
+        # Fix numbering in lists
+        body = re.sub(r"\\begin{enumerate}", "<ol>", body)
+        body = re.sub(r"\\end{enumerate}", "</ol>", body)
+        body = re.sub(r"\\item\s+", "<li>", body)
+        # Ensure each item is closed
+        body = re.sub(r"<li>(.*?)(?=<li>|</ol>)", r"<li>\1</li>", body, flags=re.DOTALL)
+        
+        return f'<Algorithm id="{label}" title="{title}">{body}</Algorithm>'
+    
+    return re.sub(pattern, replace_algorithm, content, flags=re.DOTALL)
+
+def process_theorem_environments(content):
+    """Process theorem and proof environments."""
+    # Process theorems
+    theorem_pattern = r"\\begin{theorem}\[(.*?)\]\\label{(.*?)}(.*?)\\end{theorem}"
+    content = re.sub(
+        theorem_pattern,
+        r'<Theorem id="\2" title="\1">\3</Theorem>',
+        content,
+        flags=re.DOTALL
+    )
+    
+    # Process proofs
+    proof_pattern = r"\\begin{proof}(.*?)\\end{proof}"
+    content = re.sub(
+        proof_pattern,
+        r'<Proof>\1</Proof>',
+        content,
+        flags=re.DOTALL
+    )
+    
+    # Process definitions
+    def_pattern = r"\\begin{definition}\[(.*?)\]\\label{(.*?)}(.*?)\\end{definition}"
+    content = re.sub(
+        def_pattern,
+        r'<Definition id="\2" title="\1">\3</Definition>',
+        content,
+        flags=re.DOTALL
+    )
+    
+    return content
+
+def process_figures(content):
+    """Process figure environments."""
+    figure_pattern = r"\\begin{figure}.*?\\includegraphics.*?{(.*?)}.*?\\caption{(.*?)}\\label{(.*?)}.*?\\end{figure}"
+    
+    def replace_figure(match):
+        path = match.group(1)
+        caption = match.group(2)
+        label = match.group(3)
+        
+        # Convert PDF to appropriate web format if needed
+        web_path = path
+        if path.endswith('.pdf'):
+            web_path = f"/images/{path.split('/')[-1].replace('.pdf', '.png')}"
+        
+        return f'<Figure id="{label}" src="{web_path}" caption="{caption}" />'
+    
+    return re.sub(figure_pattern, replace_figure, content, flags=re.DOTALL)
+
+def process_references(content):
+    """Process cross-references."""
+    # Create a dictionary of all labels and their display text
+    labels = {}
+    
+    # Extract all labelable items (theorems, figures, equations, etc.)
+    label_pattern = r"\\label{(.*?)}"
+    for label in re.findall(label_pattern, content):
+        # Determine the type of label and set appropriate text
+        if label.startswith("fig:"):
+            labels[label] = "Figure"
+        elif label.startswith("thm:"):
+            labels[label] = "Theorem"
+        elif label.startswith("prop:"):
+            labels[label] = "Proposition"
+        elif label.startswith("lem:"):
+            labels[label] = "Lemma"
+        elif label.startswith("def:"):
+            labels[label] = "Definition"
+        elif label.startswith("alg:"):
+            labels[label] = "Algorithm"
+        else:
+            labels[label] = "Section"
+    
+    # Replace references
+    ref_pattern = r"\[(.*?)\]"
+    
+    def replace_ref(match):
+        ref = match.group(1)
+        if ref in labels:
+            return f'<a href="#{ref}" className="reference">{labels[ref]} {ref.split(":")[-1]}</a>'
+        return match.group(0)
+    
+    return re.sub(ref_pattern, replace_ref, content)
 
 def extract_section_info(content):
     """Extract section information from TeX content."""

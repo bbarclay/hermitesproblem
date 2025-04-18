@@ -120,16 +120,16 @@ export default function Sidebar({ currentFile, currentSection, onNavigate, stati
 
   if (loading) {
     return (
-      <div className="fixed top-0 left-0 h-screen bg-gray-100 border-r border-gray-200 flex items-center justify-center w-16 z-50">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+      <div className="fixed top-0 left-0 h-screen bg-gray-100 dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 flex items-center justify-center w-16 z-50">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 dark:border-blue-400"></div>
       </div>
     );
   }
 
   if (!toc) {
     return (
-      <div className="fixed top-0 left-0 h-screen bg-gray-100 border-r border-gray-200 p-4 w-16 z-50">
-        <div className="text-red-500">Failed to load TOC</div>
+      <div className="fixed top-0 left-0 h-screen bg-gray-100 dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 p-4 w-16 z-50">
+        <div className="text-red-500 dark:text-red-400">Failed to load TOC</div>
       </div>
     );
   }
@@ -161,17 +161,17 @@ export default function Sidebar({ currentFile, currentSection, onNavigate, stati
 
       {/* Toggle button */}
       <button
-        className="fixed top-4 left-4 z-50 p-2 bg-white rounded-md shadow-md lg:hidden"
+        className="fixed top-4 left-4 z-50 p-2 bg-white dark:bg-gray-800 rounded-md shadow-md lg:hidden"
         onClick={() => setIsCollapsed(!isCollapsed)}
       >
-        {isCollapsed ? <Menu size={20} /> : <X size={20} />}
+        {isCollapsed ? <Menu size={20} className="text-gray-800 dark:text-gray-200" /> : <X size={20} className="text-gray-800 dark:text-gray-200" />}
       </button>
 
-      <div className={`fixed top-0 left-0 h-screen overflow-y-auto bg-gray-100 border-r border-gray-200 z-40 transition-all duration-300 ${isCollapsed ? 'w-0 lg:w-16' : 'w-64'}`}>
+      <div className={`fixed top-0 left-0 h-screen overflow-y-auto bg-gray-100 dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 z-40 transition-all duration-300 ${isCollapsed ? 'w-0 lg:w-16' : 'w-64'}`}>
         {!isCollapsed && (
           <div className="p-4">
-            <h1 className="text-lg font-bold mb-2">Hermite's Problem</h1>
-            <div className="text-sm text-gray-600 mb-4">Novel Approaches for Cubic Irrationals</div>
+            <h1 className="text-lg font-bold mb-2 dark:text-white">Hermite's Problem</h1>
+            <div className="text-sm text-gray-600 dark:text-gray-400 mb-4">Novel Approaches for Cubic Irrationals</div>
 
             <div className="space-y-1">
               {Object.entries(sectionsByFile).map(([file, sections]) => {
@@ -180,25 +180,27 @@ export default function Sidebar({ currentFile, currentSection, onNavigate, stati
                 const isCurrentFile = file === currentFile;
 
                 return (
-                  <div key={file} className="border-b border-gray-200 pb-1 mb-1">
+                  <div key={file} className="border-b border-gray-200 dark:border-gray-700 pb-1 mb-1">
                     <div
-                      className={`flex items-center justify-between p-2 rounded cursor-pointer hover:bg-gray-200 ${isCurrentFile ? 'bg-blue-100' : ''}`}
+                      className={`flex items-center justify-between p-2 rounded cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 ${isCurrentFile ? 'bg-blue-100 dark:bg-blue-900 dark:bg-opacity-40' : ''}`}
                       onClick={() => toggleFileExpanded(file)}
                     >
                       <div className="flex items-center space-x-2">
-                        {getSectionIcon(file)}
-                        <span className="text-sm font-medium">{fileTitle}</span>
+                        <span className="text-gray-700 dark:text-gray-300">{getSectionIcon(file)}</span>
+                        <span className="text-sm font-medium dark:text-gray-200">{fileTitle}</span>
                       </div>
-                      {isExpanded ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
+                      <span className="text-gray-500 dark:text-gray-400">
+                        {isExpanded ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
+                      </span>
                     </div>
 
                     {isExpanded && (
-                      <div className="ml-5 pl-2 border-l border-gray-300 mt-1 space-y-1">
+                      <div className="ml-5 pl-2 border-l border-gray-300 dark:border-gray-600 mt-1 space-y-1">
                         {sections.map(section => (
                           <div
                             key={section.id}
-                            className={`flex items-center p-1 rounded text-sm hover:bg-gray-200 cursor-pointer ${
-                              currentFile === file && currentSection === section.id ? 'bg-blue-50 text-blue-700 font-semibold' : ''
+                            className={`flex items-center p-1 rounded text-sm hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer ${
+                              currentFile === file && currentSection === section.id ? 'bg-blue-50 dark:bg-blue-900 dark:bg-opacity-40 text-blue-700 dark:text-blue-300 font-semibold' : 'dark:text-gray-300'
                             }`}
                             onClick={() => {
                               onNavigate(file, section.id);
@@ -227,7 +229,7 @@ export default function Sidebar({ currentFile, currentSection, onNavigate, stati
               return (
                 <div
                   key={file}
-                  className={`p-2 rounded-full cursor-pointer hover:bg-gray-200 ${isCurrentFile ? 'bg-blue-100' : ''}`}
+                  className={`p-2 rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 ${isCurrentFile ? 'bg-blue-100 dark:bg-blue-900 dark:bg-opacity-40' : ''}`}
                   onClick={() => {
                     onNavigate(file, sections[0].id);
                     setExpandedFiles(prev => ({
@@ -241,7 +243,9 @@ export default function Sidebar({ currentFile, currentSection, onNavigate, stati
                   }}
                   title={sections[0]?.title || file}
                 >
-                  {getSectionIcon(file)}
+                  <span className="text-gray-700 dark:text-gray-300">
+                    {getSectionIcon(file)}
+                  </span>
                 </div>
               );
             })}
