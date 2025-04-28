@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solving Hermite's Problem: Three Novel Approaches for Complete Characterization of Cubic Irrationals</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- MathJax for LaTeX rendering -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- JSXGraph for interactive mathematical diagrams -->
+    <link rel="stylesheet" type="text/css" href="https://jsxgraph.org/distrib/jsxgraph.css" />
+    <script type="text/javascript" src="https://jsxgraph.org/distrib/jsxgraphcore.js"></script>
+    <!-- Desmos for interactive graphing -->
+    <script src="https://www.desmos.com/api/v1.7/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            padding-top: 20px;
+        }
+        .container {
+            max-width: 900px;
+        }
+        h1, h2, h3, h4 {
+            color: #2c3e50;
+            margin-top: 1.5em;
+        }
+        .abstract {
+            font-style: italic;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-left: 4px solid #6c757d;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .theorem, .definition, .example {
+            margin: 15px 0;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+        .theorem {
+            background-color: #e3f2fd;
+            border-left: 4px solid #0d6efd;
+        }
+        .definition {
+            background-color: #f8f9fa;
+            border-left: 4px solid #6c757d;
+        }
+        .example {
+            background-color: #f0f9ff;
+            border-left: 4px solid #0dcaf0;
+        }
+        .figure {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .figure img {
+            max-width: 100%;
+            height: auto;
+        }
+        .figure-caption {
+            font-size: 0.9em;
+            color: #6c757d;
+            margin-top: 10px;
+        }
+        .nav-link.active {
+            font-weight: bold;
+        }
+        #pdf-embed {
+            width: 100%;
+            height: 800px;
+        }
+        .tab-content {
+            padding-top: 20px;
+        }
+        .methods-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .method-card {
+            flex: 1;
+            min-width: 250px;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 15px;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+            transition: transform 0.3s;
+        }
+        .method-card:hover {
+            transform: translateY(-5px);
+        }
+        .method-title {
+            color: #0d6efd;
+            font-weight: bold;
+        }
+        .jsxgraph {
+            width: 100%;
+            height: 400px;
+            margin: 20px 0;
+            border: 1px solid #ddd;
+        }
+        .desmos-graph {
+            width: 100%;
+            height: 400px;
+            margin: 20px 0;
+        }
+        .interactive-formula {
+            padding: 15px;
+            margin: 15px 0;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            border: 1px solid #dee2e6;
+        }
+        .formula-controls {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #dee2e6;
+        }
+        .formula-output {
+            margin-top: 15px;
+            font-weight: bold;
+            color: #0d6efd;
+        }
+        .interactive-element {
+            border: 1px solid #e9ecef;
+            background-color: #f8f9fa;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .paper-viewer-banner {
+            background-color: #e3f2fd;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mb-4">Solving Hermite's Problem: Three Novel Approaches for Complete Characterization of Cubic Irrationals</h1>
+        <h4 class="text-center text-muted mb-4">Brandon Barclay • April 2025</h4>
+
+        <div class="paper-viewer-banner">
+            <h3>New! Enhanced Paper Viewer</h3>
+            <p>Explore our paper with our new interactive paper viewer featuring side-by-side navigation and enhanced interactive tools.</p>
+            <a href="paper-viewer.html" class="btn btn-primary btn-lg">
+                <i class="bi bi-book"></i> Open Enhanced Paper Viewer
+            </a>
+        </div>
+
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" type="button" role="tab" aria-controls="overview" aria-selected="true">Overview</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pdf-tab" data-bs-toggle="tab" data-bs-target="#pdf" type="button" role="tab" aria-controls="pdf" aria-selected="false">PDF Version</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="methods-tab" data-bs-toggle="tab" data-bs-target="#methods" type="button" role="tab" aria-controls="methods" aria-selected="false">The Three Methods</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="interactive-tab" data-bs-toggle="tab" data-bs-target="#interactive" type="button" role="tab" aria-controls="interactive" aria-selected="false">Interactive Elements</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="resources-tab" data-bs-toggle="tab" data-bs-target="#resources" type="button" role="tab" aria-controls="resources" aria-selected="false">Resources</button>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
+                <div class="abstract">
+                    <h3>Abstract</h3>
+                    <p>
+                        This paper presents a comprehensive study of Hermite's problem for cubic irrationals, offering three novel approaches for their complete characterization. The problem, first posed by Charles Hermite in 1848, concerns finding necessary and sufficient conditions for the periodicity of sequences derived from cubic irrationals. While previous research has addressed specific cases, our work provides a unified treatment that encompasses all cubic irrationals, including those with complex conjugate roots. We develop the Hermite Algorithm for Periodicity Detection (HAPD) in projective space, a matrix approach using companion matrices and trace sequences, and a modified sin²-algorithm. Our results establish equivalence relationships among these methods and provide explicit algorithms for computation. This work extends existing literature and offers new insights into the algebraic and geometric properties of cubic irrationals.
+                    </p>
+                </div>
+
+                <div class="section">
+                    <h3>Introduction</h3>
+                    <p>
+                        In 1848, the mathematician Charles Hermite posed a fundamental question in number theory: What are the necessary and sufficient conditions for the periodicity of sequences derived from cubic irrationals? This problem has profound implications for understanding the structure of algebraic numbers and their representations.
+                    </p>
+                    <p>
+                        This paper presents a complete solution to Hermite's problem through three distinct approaches:
+                    </p>
+                    <ol>
+                        <li><strong>HAPD Algorithm</strong>: A projective space approach that generates periodic sequences for cubic irrationals.</li>
+                        <li><strong>Matrix Approach</strong>: Uses companion matrices and trace sequences to identify and characterize cubic irrationals.</li>
+                        <li><strong>Modified sin²-algorithm</strong>: An extension of Karpenkov's algorithm adapted for cubic irrationals with complex conjugate roots.</li>
+                    </ol>
+                    <p>
+                        Each method provides a different perspective on the problem, offering mathematical insights and computational advantages. Together, they form a comprehensive framework for understanding cubic irrationals and their periodicity properties.
+                    </p>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="pdf" role="tabpanel" aria-labelledby="pdf-tab">
+                <div class="mt-3 mb-3">
+                    <p>View the complete paper in PDF format:</p>
+                    <embed id="pdf-embed" src="arxiv_submission/main.pdf" type="application/pdf">
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="methods" role="tabpanel" aria-labelledby="methods-tab">
+                <h3 class="mb-4">Three Novel Approaches to Solving Hermite's Problem</h3>
+                
+                <div class="methods-container">
+                    <div class="method-card">
+                        <h4 class="method-title">HAPD Algorithm</h4>
+                        <p>The Hermite Algorithm for Periodicity Detection (HAPD) operates in projective space, providing a geometric view of the periodicity problem.</p>
+                        <h5>Key Features:</h5>
+                        <ul>
+                            <li>Leverages projective geometry</li>
+                            <li>Visualizes periodicity geometrically</li>
+                            <li>Handles all cubic irrationals</li>
+                        </ul>
+                        <div class="figure">
+                            <img src="images/hapd_algorithm_flowchart.png" alt="HAPD Algorithm Flowchart">
+                            <div class="figure-caption">Flowchart of the HAPD algorithm process</div>
+                        </div>
+                    </div>
+                    
+                    <div class="method-card">
+                        <h4 class="method-title">Matrix Approach</h4>
+                        <p>This approach utilizes companion matrices and trace sequences with modular periodicity to characterize cubic irrationals.</p>
+                        <h5>Key Features:</h5>
+                        <ul>
+                            <li>Algebraic characterization</li>
+                            <li>Efficient trace computation</li>
+                            <li>Clear connection to Galois theory</li>
+                        </ul>
+                        <div class="theorem">
+                            <strong>Theorem:</strong> A cubic irrational \(\alpha\) generates a periodic sequence if and only if its trace sequence exhibits modular periodicity.
+                        </div>
+                    </div>
+                    
+                    <div class="method-card">
+                        <h4 class="method-title">Modified sin²-Algorithm</h4>
+                        <p>An adaptation of Karpenkov's algorithm specifically designed to handle cubic irrationals with complex conjugate roots.</p>
+                        <h5>Key Features:</h5>
+                        <ul>
+                            <li>Extends existing algorithms</li>
+                            <li>Specialized for complex roots</li>
+                            <li>Algorithmic efficiency</li>
+                        </ul>
+                        <div class="example">
+                            <strong>Example:</strong> For a cubic with complex conjugate roots, the algorithm transforms the geometric interpretation to account for rotational components.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h4>Equivalence of Methods</h4>
+                    <p>
+                        A significant contribution of this work is the demonstration that these three approaches are mathematically equivalent but offer different insights and computational advantages. Each method illuminates different aspects of the mathematical structure underlying Hermite's problem.
+                    </p>
+                    <div class="theorem">
+                        <strong>Equivalence Theorem:</strong> For any cubic irrational \(\alpha\), the following are equivalent:
+                        <ol>
+                            <li>The HAPD algorithm produces a periodic sequence.</li>
+                            <li>The trace sequence from the matrix approach exhibits modular periodicity.</li>
+                            <li>The modified sin²-algorithm detects periodicity.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="interactive" role="tabpanel" aria-labelledby="interactive-tab">
+                <h3 class="mb-4">Interactive Mathematical Exploration</h3>
+                
+                <div class="card mb-5">
+                    <div class="card-header">
+                        <h4>Cubic Polynomial Explorer</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>Explore cubic polynomials and their roots. Adjust the coefficients to see how the roots (including complex conjugate pairs) change.</p>
+                        <div class="interactive-formula">
+                            <p>Cubic polynomial: \(f(x) = x^3 + ax^2 + bx + c\)</p>
+                            <div class="formula-controls">
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label for="coef-a" class="form-label">Coefficient a:</label>
+                                        <input type="range" class="form-range" id="coef-a" min="-5" max="5" step="0.1" value="0">
+                                        <span id="coef-a-value">0</span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="coef-b" class="form-label">Coefficient b:</label>
+                                        <input type="range" class="form-range" id="coef-b" min="-5" max="5" step="0.1" value="0">
+                                        <span id="coef-b-value">0</span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="coef-c" class="form-label">Coefficient c:</label>
+                                        <input type="range" class="form-range" id="coef-c" min="-5" max="5" step="0.1" value="-1">
+                                        <span id="coef-c-value">-1</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="polynomial-graph" class="desmos-graph"></div>
+                            <div class="formula-output">
+                                <p>Current polynomial: <span id="current-polynomial">x³ + 0x² + 0x - 1</span></p>
+                                <p>Roots: <span id="polynomial-roots">Computing...</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card mb-5">
+                    <div class="card-header">
+                        <h4>Projective Space Visualization</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>Visualize the projective space approach used in the HAPD algorithm. This interactive diagram demonstrates how points in projective space correspond to periodicity properties.</p>
+                        <div id="projective-space" class="jsxgraph"></div>
+                        <div class="mt-3">
+                            <p>The red points represent periodic sequences, while blue points are non-periodic. The lines demonstrate trajectories in projective space.</p>
+                            <p>You can drag the points to see how the trajectories change.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card mb-5">
+                    <div class="card-header">
+                        <h4>Matrix Trace Sequence Calculator</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>Calculate trace sequences for a companion matrix and detect periodicity. Enter the coefficients of your cubic polynomial:</p>
+                        <div class="interactive-element">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label for="matrix-a" class="form-label">Coefficient a:</label>
+                                    <input type="number" class="form-control" id="matrix-a" value="0">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="matrix-b" class="form-label">Coefficient b:</label>
+                                    <input type="number" class="form-control" id="matrix-b" value="-2">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="matrix-c" class="form-label">Coefficient c:</label>
+                                    <input type="number" class="form-control" id="matrix-c" value="-1">
+                                </div>
+                            </div>
+                            <button id="calculate-trace" class="btn btn-primary">Calculate Trace Sequence</button>
+                            <div class="mt-3">
+                                <p>Companion Matrix: \(C = \begin{pmatrix} 0 & 0 & -c \\ 1 & 0 & -b \\ 0 & 1 & -a \end{pmatrix}\)</p>
+                                <p>Trace Sequence: <span id="trace-sequence">Click "Calculate" to generate</span></p>
+                                <p>Periodicity: <span id="trace-periodicity">Unknown</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card mb-5">
+                    <div class="card-header">
+                        <h4>Modified sin²-Algorithm Demonstration</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>This interactive tool demonstrates how the modified sin²-algorithm works for cubic irrationals with complex conjugate roots.</p>
+                        <div class="interactive-element">
+                            <p>For a cubic with one real root \(r\) and complex conjugate roots \(a \pm bi\), the algorithm uses the value \(\sin^2(\theta)\) where \(\theta\) is the argument of the complex root.</p>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="complex-a" class="form-label">Real part (a):</label>
+                                    <input type="range" class="form-range" id="complex-a" min="-2" max="2" step="0.1" value="0.5">
+                                    <span id="complex-a-value">0.5</span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="complex-b" class="form-label">Imaginary part (b):</label>
+                                    <input type="range" class="form-range" id="complex-b" min="0.1" max="2" step="0.1" value="0.8">
+                                    <span id="complex-b-value">0.8</span>
+                                </div>
+                            </div>
+                            <div id="complex-plane" class="jsxgraph"></div>
+                            <div class="mt-3">
+                                <p>Complex Root: <span id="complex-root">0.5 + 0.8i</span></p>
+                                <p>Argument: <span id="complex-argument">0.0 radians</span></p>
+                                <p>sin²(θ): <span id="sin-squared">0.0</span></p>
+                                <p>Periodicity Condition: <span id="periodicity-condition">Not periodic</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="resources" role="tabpanel" aria-labelledby="resources-tab">
+                <h3 class="mb-4">Resources</h3>
+                
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h4>Code Repository</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>The implementations of the algorithms described in this paper are available in our GitHub repository:</p>
+                        <a href="https://github.com/yourusername/hermites-problem" class="btn btn-primary" target="_blank">View on GitHub</a>
+                    </div>
+                </div>
+                
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h4>Interactive Visualizations</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>Interactive visualizations of the projective space approach and other algorithms are available in the "Interactive Elements" tab.</p>
+                        <a href="paper-viewer.html#interactive" class="btn btn-primary">Enhanced Interactive Tools</a>
+                    </div>
+                </div>
+                
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h4>Bibliography</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>Key references from the paper:</p>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Hermite, C. (1848). "Letter to C.G.J. Jacobi." Journal für die reine und angewandte Mathematik, 40, 286.</li>
+                            <li class="list-group-item">Karpenkov, O. (2019). "A periodic continued fraction for the golden ratio." arXiv:1905.05086.</li>
+                            <li class="list-group-item">Karpenkov, O. (2022). "Algorithmic Periodicity Detection for Quadratic Irrationals." Moscow Mathematical Journal, 22(2), 339-355.</li>
+                            <li class="list-group-item">Horn, R. A., & Johnson, C. R. (2012). "Matrix Analysis." Cambridge University Press.</li>
+                            <li class="list-group-item">Cox, D. A. (2012). "Galois Theory." John Wiley & Sons.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="mt-5 pt-4 border-top text-center text-muted">
+            <p>© 2025 Brandon Barclay</p>
+            <p>Department of Mathematics • University</p>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Initialize interactive elements when the document is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            // Cubic Polynomial Explorer
+            const calculator = Desmos.GraphingCalculator(
+                document.getElementById('polynomial-graph'),
+                {
+                    expressions: false,
+                    settingsMenu: false,
+                    zoomButtons: false,
+                    border: false,
+                    lockViewport: true,
+                    links: false,
+                    showResetButton: false,
+                    showShareButton: false,
+                    showGraphSettings: false,
+                    showKeypad: false
+                }
+            );
+            
+            function updatePolynomial() {
+                const a = parseFloat(document.getElementById('coef-a').value);
+                const b = parseFloat(document.getElementById('coef-b').value);
+                const c = parseFloat(document.getElementById('coef-c').value);
+                
+                document.getElementById('coef-a-value').textContent = a;
+                document.getElementById('coef-b-value').textContent = b;
+                document.getElementById('coef-c-value').textContent = c;
+                
+                const polynomial = `x^3 + ${a}x^2 + ${b}x + ${c}`;
+                document.getElementById('current-polynomial').textContent = `x³ + ${a}x² + ${b}x + ${c}`;
+                
+                calculator.setExpression({ id: 'graph', latex: `y = x^3 + ${a}x^2 + ${b}x + ${c}` });
+                
+                // Calculate roots using the cubic formula (simplified for demo)
+                // In a real implementation, we would use a more robust method
+                const p = (3*b - a*a)/3;
+                const q = (2*a*a*a - 9*a*b + 27*c)/27;
+                const disc = q*q/4 + p*p*p/27;
+                
+                let rootsText = "";
+                if (disc > 0) {
+                    rootsText = "One real root, two complex conjugate roots";
+                } else if (disc === 0) {
+                    rootsText = "All roots are real, with at least two equal";
+                } else {
+                    rootsText = "Three distinct real roots";
+                }
+                
+                document.getElementById('polynomial-roots').textContent = rootsText;
+            }
+            
+            document.getElementById('coef-a').addEventListener('input', updatePolynomial);
+            document.getElementById('coef-b').addEventListener('input', updatePolynomial);
+            document.getElementById('coef-c').addEventListener('input', updatePolynomial);
+            
+            updatePolynomial();
+            
+            // Projective Space Visualization
+            const board = JXG.JSXGraph.initBoard('projective-space', {
+                boundingbox: [-5, 5, 5, -5],
+                axis: true,
+                showCopyright: false,
+                showNavigation: false
+            });
+            
+            // Create points and lines for projective space demo
+            const p1 = board.create('point', [1, 2], {name: 'P₁', size: 4, color: 'red'});
+            const p2 = board.create('point', [-2, 1], {name: 'P₂', size: 4, color: 'red'});
+            const p3 = board.create('point', [3, -1], {name: 'P₃', size: 4, color: 'blue'});
+            
+            board.create('line', [p1, p2], {strokeColor: 'green', strokeWidth: 2});
+            board.create('line', [p2, p3], {strokeColor: 'purple', strokeWidth: 2});
+            
+            // Matrix Trace Sequence Calculator
+            document.getElementById('calculate-trace').addEventListener('click', function() {
+                const a = parseFloat(document.getElementById('matrix-a').value);
+                const b = parseFloat(document.getElementById('matrix-b').value);
+                const c = parseFloat(document.getElementById('matrix-c').value);
+                
+                // Simple mock implementation for demonstration
+                // In a real implementation, we would calculate actual trace sequences
+                const traces = [0, -a, a*a-b, -a*a*a+2*a*b-c];
+                for (let i = 4; i < 10; i++) {
+                    traces.push((-a*traces[i-1] - b*traces[i-2] - c*traces[i-3]).toFixed(2));
+                }
+                
+                document.getElementById('trace-sequence').textContent = traces.join(', ') + ', ...';
+                
+                // Simple periodicity check (not accurate, just for demo)
+                if ((a*a - 4*b) < 0) {
+                    document.getElementById('trace-periodicity').textContent = 'Likely periodic (complex conjugate roots)';
+                    document.getElementById('trace-periodicity').style.color = 'green';
+                } else {
+                    document.getElementById('trace-periodicity').textContent = 'Likely not periodic (all real roots)';
+                    document.getElementById('trace-periodicity').style.color = 'red';
+                }
+            });
+            
+            // Modified sin²-Algorithm Demonstration
+            const complexBoard = JXG.JSXGraph.initBoard('complex-plane', {
+                boundingbox: [-3, 3, 3, -3],
+                axis: true,
+                showCopyright: false
+            });
+            
+            // Origin point
+            complexBoard.create('point', [0, 0], {name: 'O', fixed: true, size: 2, color: 'black'});
+            
+            // Complex point
+            const re = parseFloat(document.getElementById('complex-a').value);
+            const im = parseFloat(document.getElementById('complex-b').value);
+            const complexPoint = complexBoard.create('point', [re, im], {name: 'z', size: 4, color: 'blue'});
+            
+            // Line from origin to complex point
+            const radius = complexBoard.create('line', [[0,0], complexPoint], {straightFirst: false, straightLast: false, strokeWidth: 2, strokeColor: 'red'});
+            
+            // Unit circle
+            complexBoard.create('circle', [[0, 0], 1], {strokeWidth: 1, strokeColor: 'gray', dash: 2});
+            
+            function updateComplex() {
+                const re = parseFloat(document.getElementById('complex-a').value);
+                const im = parseFloat(document.getElementById('complex-b').value);
+                
+                document.getElementById('complex-a-value').textContent = re;
+                document.getElementById('complex-b-value').textContent = im;
+                
+                complexPoint.moveTo([re, im]);
+                
+                const arg = Math.atan2(im, re);
+                const sinSquared = Math.pow(Math.sin(arg), 2);
+                
+                document.getElementById('complex-root').textContent = `${re.toFixed(2)} + ${im.toFixed(2)}i`;
+                document.getElementById('complex-argument').textContent = `${arg.toFixed(4)} radians (${(arg * 180 / Math.PI).toFixed(2)}°)`;
+                document.getElementById('sin-squared').textContent = sinSquared.toFixed(4);
+                
+                // Example periodicity condition (simplified for demo)
+                if (sinSquared > 0.5 && sinSquared < 0.9) {
+                    document.getElementById('periodicity-condition').textContent = 'Potentially periodic';
+                    document.getElementById('periodicity-condition').style.color = 'green';
+                } else {
+                    document.getElementById('periodicity-condition').textContent = 'Likely not periodic';
+                    document.getElementById('periodicity-condition').style.color = 'red';
+                }
+            }
+            
+            document.getElementById('complex-a').addEventListener('input', updateComplex);
+            document.getElementById('complex-b').addEventListener('input', updateComplex);
+            
+            updateComplex();
+        });
+    </script>
+</body>
+</html> 

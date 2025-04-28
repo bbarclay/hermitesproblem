@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solving Hermite's Problem: Paper Viewer</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            },
+            startup: {
+                pageReady: function() {
+                    return MathJax.startup.defaultPageReady().then(function() {
+                        // Remove loading indicators after MathJax rendering completes
+                        const indicators = document.querySelectorAll('.math-loading');
+                        indicators.forEach(indicator => {
+                            if (indicator && indicator.parentNode) {
+                                indicator.parentNode.removeChild(indicator);
+                            }
+                        });
+                        console.log('MathJax rendering complete');
+                    });
+                }
+            }
+        };
+    </script>
+    <!-- Local MathJax with Fallback -->
+    <script>
+        // Handle MathJax loading
+        function loadMathJax() {
+            const script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+            script.async = true;
+            script.id = 'MathJax-script';
+            script.onerror = function() {
+                console.warn('Failed to load MathJax from CDN, using local MathJax');
+                const fallback = document.createElement('script');
+                fallback.src = 'js/mathjax/tex-mml-chtml.js';
+                fallback.async = true;
+                fallback.id = 'MathJax-script';
+                document.head.appendChild(fallback);
+            };
+            document.head.appendChild(script);
+        }
+        
+        // Handle ES6 polyfill loading
+        function loadPolyfill() {
+            const script = document.createElement('script');
+            script.src = 'https://polyfill.io/v3/polyfill.min.js?features=es6';
+            script.async = true;
+            script.onerror = function() {
+                console.warn('Failed to load polyfill from CDN, using local polyfill');
+                const fallback = document.createElement('script');
+                fallback.src = 'js/polyfill/es6-polyfill.js';
+                fallback.async = true;
+                fallback.onerror = function() {
+                    console.error('Failed to load local polyfill, loading MathJax directly');
+                    loadMathJax();
+                };
+                fallback.onload = loadMathJax;
+                document.head.appendChild(fallback);
+            };
+            script.onload = loadMathJax;
+            document.head.appendChild(script);
+        }
+        
+        // Start the loading process
+        loadPolyfill();
+    </script>
+    <!-- JSXGraph for interactive mathematical diagrams -->
+    <link rel="stylesheet" type="text/css" href="https://jsxgraph.org/distrib/jsxgraph.css" />
+    <script type="text/javascript" src="https://jsxgraph.org/distrib/jsxgraphcore.js"></script>
+    <!-- Desmos for interactive graphing -->
+    <script src="https://www.desmos.com/api/v1.7/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
+    <!-- Prism for code highlighting -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.24.1/themes/prism.min.css">
+    <link rel="stylesheet" href="css/paper-viewer.css">
+</head>
+<body>
+    <!-- Skip to content link for accessibility -->
+    <a href="#main-content" class="skip-to-content">Skip to content</a>
+
+    <div class="container-fluid">
+        <div class="row vh-100">
+            <!-- Sidebar Navigation -->
+            <div class="col-md-3 col-lg-2 sidebar bg-light shadow-sm">
+                <div class="position-sticky pt-3">
+                    <!-- Search Box -->
+                    <div class="search-container mb-3">
+                        <div class="input-group">
+                            <input type="text" class="form-control form-control-sm" id="search-input" placeholder="Search paper...">
+                            <button class="btn btn-outline-secondary btn-sm" type="button" id="search-btn">
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </div>
+                        <div id="search-results" class="search-results"></div>
+                    </div>
+                    
+                    <div class="d-flex align-items-center pb-3 mb-3 border-bottom">
+                        <span class="fs-5 fw-semibold">Paper Sections</span>
+                    </div>
+                    <ul class="nav flex-column" id="paper-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#abstract">
+                                <i class="bi bi-file-text"></i> Abstract
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#introduction">
+                                <i class="bi bi-signpost-2"></i> Introduction
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#hapd-algorithm">
+                                <i class="bi bi-diagram-3"></i> HAPD Algorithm
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#matrix-approach">
+                                <i class="bi bi-grid-3x3"></i> Matrix Approach
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#sin-squared">
+                                <i class="bi bi-distribute-vertical"></i> Modified sin²-Algorithm
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#subtractive-algorithm">
+                                <i class="bi bi-distribute-vertical"></i> Subtractive Algorithm
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#equivalence">
+                                <i class="bi bi-arrow-left-right"></i> Equivalence of Methods
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#implementation">
+                                <i class="bi bi-code-square"></i> Implementation Examples
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#numerical-validation">
+                                <i class="bi bi-graph-up"></i> Numerical Validation
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#conclusion">
+                                <i class="bi bi-check-circle"></i> Conclusion
+                            </a>
+                        </li>
+                    </ul>
+                    
+                    <div class="d-flex align-items-center pb-3 mb-3 border-bottom mt-5">
+                        <span class="fs-5 fw-semibold">Interactive Tools</span>
+                    </div>
+                    <ul class="nav flex-column" id="tools-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#cubic-explorer">
+                                <i class="bi bi-graph-up"></i> Cubic Polynomial Explorer
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#projective-space">
+                                <i class="bi bi-grid-3x3"></i> Projective Space Visualization
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#trace-calculator">
+                                <i class="bi bi-calculator"></i> Matrix Trace Calculator
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#sin-squared-demo">
+                                <i class="bi bi-distribute-vertical"></i> Sin² Algorithm Demo
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#subtractive-demo">
+                                <i class="bi bi-subtract"></i> Subtractive Algorithm Demo
+                            </a>
+                        </li>
+                    </ul>
+                    
+                    <!-- Reading Progress -->
+                    <div class="reading-progress mt-4">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <small class="text-muted">Reading Progress</small>
+                            <small class="text-muted" id="reading-percentage">0%</small>
+                        </div>
+                        <div class="progress" style="height: 4px;">
+                            <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main Content Area -->
+            <div class="col-md-9 col-lg-10 ms-sm-auto px-md-4 content-pane">
+                <!-- Reading Progress Bar -->
+                <div class="progress position-fixed top-0 start-0 end-0" style="height: 4px; z-index: 1000;">
+                    <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                
+                <!-- Top Navigation -->
+                <div class="sticky-top bg-white py-2 mb-3 border-bottom d-flex justify-content-between align-items-center">
+                    <h1 class="h2">Solving Hermite's Problem</h1>
+                    <div class="btn-toolbar">
+                        <div class="btn-group me-2">
+                            <button type="button" class="btn btn-sm btn-outline-secondary" id="toggle-sidebar">
+                                <i class="bi bi-layout-sidebar"></i>
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary" id="toggle-tools">
+                                <i class="bi bi-tools"></i>
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary" id="toggle-toc">
+                                <i class="bi bi-list-ul"></i>
+                            </button>
+                        </div>
+                        <div class="btn-group">
+                            <a href="index.html" class="btn btn-sm btn-outline-primary">
+                                <i class="bi bi-house"></i> Home
+                            </a>
+                            <a href="arxiv_submission/main.pdf" class="btn btn-sm btn-outline-primary" target="_blank">
+                                <i class="bi bi-file-pdf"></i> PDF
+                            </a>
+                            <button type="button" class="btn btn-sm btn-outline-primary" id="print-btn">
+                                <i class="bi bi-printer"></i> Print
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-primary" id="toggle-math-helper">
+                                <i class="bi bi-info-circle"></i> Math Help
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Table of Contents (Initially Hidden) -->
+                <div id="table-of-contents" class="toc-container mb-4" style="display: none;">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">Table of Contents</h5>
+                            <button type="button" class="btn-close" id="close-toc"></button>
+                        </div>
+                        <div class="card-body">
+                            <div class="toc-content" id="toc-content">
+                                <!-- Table of contents will be generated dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Paper Content -->
+                <div class="paper-content" id="main-content">
+                    <!-- Abstract Section -->
+                    <section id="abstract" class="paper-section">
+                        <h2>Abstract</h2>
+                        <div class="abstract-content">
+                            <p>
+                                This paper presents a comprehensive study of Hermite's problem for cubic irrationals, offering three novel approaches for their complete characterization. The problem, first posed by Charles Hermite in 1848, concerns finding necessary and sufficient conditions for the periodicity of sequences derived from cubic irrationals. While previous research has addressed specific cases, our work provides a unified treatment that encompasses all cubic irrationals, including those with complex conjugate roots. We develop the Hermite Algorithm for Periodicity Detection (HAPD) in projective space, a matrix approach using companion matrices and trace sequences, and a modified sin²-algorithm. Our results establish equivalence relationships among these methods and provide explicit algorithms for computation. This work extends existing literature and offers new insights into the algebraic and geometric properties of cubic irrationals.
+                            </p>
+                        </div>
+                    </section>
+                    
+                    <!-- Introduction Section -->
+                    <section id="introduction" class="paper-section">
+                        <h2>Introduction</h2>
+                        <p>
+                            In 1848, the mathematician Charles Hermite posed a fundamental question in number theory: What are the necessary and sufficient conditions for the periodicity of sequences derived from cubic irrationals? This problem has profound implications for understanding the structure of algebraic numbers and their representations.
+                        </p>
+                        
+                        <p>
+                            [Additional introduction content will be inserted here]
+                        </p>
+                        
+                        <!-- Interactive element embedded within the introduction -->
+                        <div class="interactive-element mb-4 mt-4">
+                            <h4>Interactive: Cubic Polynomial Explorer</h4>
+                            <p>Explore how different cubic polynomials behave and visualize their roots:</p>
+                            <div id="intro-cubic-explorer" class="desmos-graph"></div>
+                        </div>
+                    </section>
+                    
+                    <!-- HAPD Algorithm Section -->
+                    <section id="hapd-algorithm" class="paper-section">
+                        <h2>Hermite Algorithm for Periodicity Detection (HAPD)</h2>
+                        <p>
+                            The Hermite Algorithm for Periodicity Detection (HAPD) represents a novel geometric approach to determining the periodicity of sequences derived from cubic irrationals. This approach leverages the properties of projective spaces to characterize the behavior of cubic irrationals.
+                        </p>
+                        
+                        <h3 id="hapd-algorithm-overview">Algorithm Overview</h3>
+                        <p>
+                            The HAPD algorithm is based on the insight that cubic irrationals can be represented as points in projective space, and their periodicity properties are related to the trajectories formed by specific transformations in this space.
+                        </p>
+                        
+                        <p>
+                            Given a cubic polynomial \(P(x) = x^3 + ax^2 + bx + c\) with a cubic irrational root \(\alpha\), the algorithm works as follows:
+                        </p>
+                        
+                        <ol>
+                            <li>Map the cubic irrational to a point in projective space</li>
+                            <li>Apply a sequence of transformations defined by the coefficients of the polynomial</li>
+                            <li>Analyze the resulting trajectory for periodicity patterns</li>
+                        </ol>
+                        
+                        <div class="theorem">
+                            <strong>Theorem:</strong> The sequence generated by the HAPD algorithm for a cubic irrational is periodic if and only if the trajectory of its projective representation is periodic.
+                        </div>
+                        
+                        <!-- Interactive HAPD visualization -->
+                        <div class="interactive-element mb-4">
+                            <h4>Interactive: HAPD Algorithm Visualization</h4>
+                            <div id="hapd-visualization" class="jsxgraph"></div>
+                        </div>
+                    </section>
+                    
+                    <!-- Matrix Approach Section -->
+                    <section id="matrix-approach" class="paper-section">
+                        <h2>Matrix Approach</h2>
+                        <p>
+                            The Matrix Approach to Hermite's problem utilizes linear algebra to characterize the periodicity of cubic irrationals through companion matrices and their properties.
+                        </p>
+                        
+                        <h3 id="matrix-approach-theory">Theoretical Foundation</h3>
+                        <p>
+                            For a cubic polynomial \(P(x) = x^3 + ax^2 + bx + c\), we construct its companion matrix:
+                        </p>
+                        
+                        <p>
+                            \[C = \begin{pmatrix} 0 & 0 & -c \\ 1 & 0 & -b \\ 0 & 1 & -a \end{pmatrix}\]
+                        </p>
+                        
+                        <p>
+                            The key insight of this approach is that the trace sequence of powers of the companion matrix \(\{Tr(C^n)\}_{n=1}^{\infty}\) exhibits particular patterns when the corresponding cubic irrational generates a periodic sequence.
+                        </p>
+                        
+                        <div class="theorem">
+                            <strong>Trace Periodicity Theorem:</strong> A cubic irrational generates a periodic sequence if and only if its trace sequence exhibits modular periodicity.
+                        </div>
+                        
+                        <!-- Interactive matrix calculator -->
+                        <div class="interactive-element mb-4">
+                            <h4>Interactive: Matrix Trace Sequence Calculator</h4>
+                            <div id="matrix-calculator" class="interactive-tool">
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label for="matrix-calc-a" class="form-label">Coefficient a:</label>
+                                        <input type="number" class="form-control" id="matrix-calc-a" value="0">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="matrix-calc-b" class="form-label">Coefficient b:</label>
+                                        <input type="number" class="form-control" id="matrix-calc-b" value="-2">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="matrix-calc-c" class="form-label">Coefficient c:</label>
+                                        <input type="number" class="form-control" id="matrix-calc-c" value="-1">
+                                    </div>
+                                </div>
+                                <button id="calculate-matrix-trace" class="btn btn-primary">Calculate Trace Sequence</button>
+                                <div class="mt-3">
+                                    <p>Companion Matrix: \(C = \begin{pmatrix} 0 & 0 & -c \\ 1 & 0 & -b \\ 0 & 1 & -a \end{pmatrix}\)</p>
+                                    <p>Trace Sequence: <span id="matrix-trace-sequence">Click "Calculate" to generate</span></p>
+                                    <p>Periodicity: <span id="matrix-trace-periodicity">Unknown</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <!-- Modified sin² Algorithm Section -->
+                    <section id="sin-squared" class="paper-section">
+                        <h2>Modified sin²-Algorithm</h2>
+                        <p>
+                            The Modified sin²-Algorithm is an extension of Karpenkov's algorithm specifically designed to handle cubic irrationals with complex conjugate roots.
+                        </p>
+                        
+                        <h3 id="sin-squared-concept">Key Concept</h3>
+                        <p>
+                            When a cubic polynomial has one real root and two complex conjugate roots, the periodicity properties can be determined by examining the argument of the complex roots.
+                        </p>
+                        
+                        <p>
+                            For a cubic with complex conjugate roots \(a \pm bi\), the algorithm analyzes the value \(\sin^2(\theta)\) where \(\theta\) is the argument of the complex root.
+                        </p>
+                        
+                        <div class="theorem">
+                            <strong>Theorem:</strong> A cubic irrational with complex conjugate roots generates a periodic sequence if and only if \(\sin^2(\theta)\) is a rational number with a denominator that is a power of 2 or 3 times a power of 2.
+                        </div>
+                        
+                        <!-- Interactive sin² demonstration -->
+                        <div class="interactive-element mb-4">
+                            <h4>Interactive: sin² Algorithm Demonstration</h4>
+                            <div id="sin-squared-visualization" class="jsxgraph"></div>
+                        </div>
+                    </section>
+
+                    <!-- Subtractive Algorithm Section (New) -->
+                    <section id="subtractive-algorithm" class="paper-section">
+                        <h2>Subtractive Algorithm</h2>
+                        <p>
+                            The Subtractive Algorithm is a variation of the HAPD algorithm that offers improved numerical stability and faster convergence for certain classes of cubic irrationals.
+                        </p>
+                        
+                        <h3 id="subtractive-algorithm-concept">Algorithm Concept</h3>
+                        <p>
+                            The Subtractive Algorithm modifies the fundamental HAPD approach by focusing on greatest common divisor techniques rather than projective transformations.
+                        </p>
+                        
+                        <p>
+                            Given a cubic polynomial \(P(x) = x^3 + ax^2 + bx + c\) with a cubic irrational root \(\alpha\), the algorithm works as follows:
+                        </p>
+                        
+                        <ol>
+                            <li>Initialize with a triple $(v_1, v_2, v_3) = (\alpha, \alpha^2, 1)$</li>
+                            <li>Compute integer parts $a_1 = \lfloor v_1/v_3 \rfloor$, $a_2 = \lfloor v_2/v_3 \rfloor$</li>
+                            <li>Calculate remainders $r_1 = v_1 - a_1v_3$, $r_2 = v_2 - a_2v_3$</li>
+                            <li>Find $r_{max} = \max(r_1, r_2)$</li>
+                            <li>Update the triple to $(r_1, r_2, r_{max})$</li>
+                            <li>Repeat until a pattern emerges or all values become zero</li>
+                        </ol>
+                        
+                        <div class="theorem">
+                            <strong>Theorem:</strong> The Subtractive Algorithm produces a periodic sequence if and only if the input number is a cubic irrational.
+                        </div>
+                        
+                        <!-- Interactive Subtractive Algorithm demonstration -->
+                        <div class="interactive-element mb-4">
+                            <h4>Interactive: Subtractive Algorithm Demonstration</h4>
+                            <div id="subtractive-algorithm-visualization" class="jsxgraph"></div>
+                            <div class="mt-3">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text">Cubic polynomial:</span>
+                                            <input type="text" class="form-control" id="subtractive-poly" value="x^3 - 2" placeholder="Enter cubic polynomial (e.g., x^3 - 2)">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button id="run-subtractive" class="btn btn-primary">Run Algorithm</button>
+                                    </div>
+                                </div>
+                                <div class="results-container mt-3">
+                                    <h5>Algorithm Steps:</h5>
+                                    <table class="table table-striped" id="subtractive-results">
+                                        <thead>
+                                            <tr>
+                                                <th>Iteration</th>
+                                                <th>Triple $(v_1, v_2, v_3)$</th>
+                                                <th>$a_1$</th>
+                                                <th>$a_2$</th>
+                                                <th>$(r_1, r_2)$</th>
+                                                <th>$r_{max}$</th>
+                                                <th>Encoding</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- Results will be filled dynamically -->
+                                        </tbody>
+                                    </table>
+                                    <div id="subtractive-conclusion" class="alert alert-info mt-3" style="display: none;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <!-- Equivalence of Methods Section -->
+                    <section id="equivalence" class="paper-section">
+                        <h2>Equivalence of Methods</h2>
+                        <p>
+                            A significant contribution of this work is demonstrating that the three approaches—HAPD, Matrix Approach, and Modified sin²-Algorithm—are mathematically equivalent despite their different formulations.
+                        </p>
+                        
+                        <h3 id="equivalence-theorem">Equivalence Theorem</h3>
+                        <p>
+                            The three methods are connected through the underlying algebraic structure of cubic irrationals and their periodicity properties.
+                        </p>
+                        
+                        <div class="theorem">
+                            <strong>Equivalence Theorem:</strong> For any cubic irrational \(\alpha\), the following are equivalent:
+                            <ol>
+                                <li>The HAPD algorithm produces a periodic sequence for \(\alpha\).</li>
+                                <li>The trace sequence from the matrix approach exhibits modular periodicity.</li>
+                                <li>The modified sin²-algorithm detects periodicity conditions for \(\alpha\).</li>
+                            </ol>
+                        </div>
+                        
+                        <p>
+                            This equivalence provides multiple perspectives for approaching Hermite's problem, each with its own computational advantages and theoretical insights.
+                        </p>
+                        
+                        <!-- Interactive comparison of methods -->
+                        <div class="interactive-element mb-4">
+                            <h4>Interactive: Methods Comparison</h4>
+                            <div id="methods-comparison" class="interactive-tool"></div>
+                        </div>
+                    </section>
+                    
+                    <!-- Implementation Examples Section -->
+                    <section id="implementation" class="paper-section">
+                        <h2>Implementation Examples</h2>
+                        <p>
+                            We provide practical implementations of all three methods to demonstrate their application to concrete examples of cubic irrationals.
+                        </p>
+                        
+                        <h3 id="implementation-hapd">HAPD Algorithm Implementation</h3>
+                        <p>
+                            The following Python implementation demonstrates the HAPD algorithm:
+                        </p>
+                        
+                        <!-- Code samples with syntax highlighting -->
+                        <div class="code-block">
+                            <h4>HAPD Algorithm Implementation</h4>
+                            <pre><code class="language-python">
+def hapd_algorithm(a, b, c):
+    """
+    Implementation of the HAPD algorithm for cubic irrationals.
+    
+    Parameters:
+    a, b, c: Coefficients of the cubic polynomial x^3 + ax^2 + bx + c
+    
+    Returns:
+    Boolean indicating whether the sequence is periodic
+    """
+    # Initialize the point in projective space
+    x, y, z = 1, 0, 0
+    
+    # Map of visited points to detect periodicity
+    visited_points = {}
+    
+    # Maximum iterations before concluding non-periodicity
+    max_iterations = 1000
+    
+    for i in range(max_iterations):
+        # Store the point in the map
+        point_key = (round(x/z, 10), round(y/z, 10)) if z != 0 else (x, y)
+        
+        if point_key in visited_points:
+            # Found a periodic cycle
+            return True, i - visited_points[point_key]
+        
+        visited_points[point_key] = i
+        
+        # Apply the transformation defined by the cubic polynomial
+        x_new = y
+        y_new = z
+        z_new = c*x + b*y + a*z
+        
+        x, y, z = x_new, y_new, z_new
+                        </code></pre>
+                        </div>
+                        
+                        <h3 id="implementation-matrix">Matrix Approach Implementation</h3>
+                        <p>
+                            A Python implementation of the matrix approach using NumPy:
+                        </p>
+                        
+                        <div class="code-block">
+                            <h4>Matrix Approach Implementation</h4>
+                            <pre><code class="language-python">
+import numpy as np
+
+def matrix_periodicity(a, b, c, max_traces=100):
+    """
+    Check for periodicity using the matrix approach.
+    
+    Parameters:
+    a, b, c: Coefficients of the cubic polynomial x^3 + ax^2 + bx + c
+    max_traces: Maximum number of trace values to compute
+    
+    Returns:
+    Boolean indicating whether the sequence is periodic
+    """
+    # Construct the companion matrix
+    C = np.array([
+        [0, 0, -c],
+        [1, 0, -b],
+        [0, 1, -a]
+    ])
+    
+    # Compute the trace sequence
+    traces = []
+    current_matrix = np.identity(3)
+    
+    for i in range(max_traces):
+        current_matrix = current_matrix @ C
+        trace = np.trace(current_matrix)
+        traces.append(round(trace, 10))
+        
+        # Check for periodicity by looking for repeating subsequences
+        for period in range(1, len(traces) // 2 + 1):
+            if len(traces) >= 2 * period:
+                if traces[-period:] == traces[-2*period:-period]:
+                    return True, period, traces
+    
+    return False, 0, traces
+                            </code></pre>
+                        </div>
+                    </section>
+                    
+                    <!-- Numerical Validation Section -->
+                    <section id="numerical-validation" class="paper-section">
+                        <h2>Numerical Validation</h2>
+                        <p>
+                            To validate our theoretical results, we performed extensive numerical experiments on various classes of cubic irrationals.
+                        </p>
+                        
+                        <h3 id="validation-cases">Test Cases</h3>
+                        <p>
+                            Our validation focused on three primary classes of cubic polynomials:
+                        </p>
+                        
+                        <ol>
+                            <li>Polynomials with all real roots</li>
+                            <li>Polynomials with one real and two complex conjugate roots</li>
+                            <li>Special cases with known periodicity properties</li>
+                        </ol>
+                        
+                        <p>
+                            For each class, we verified that all three methods produced consistent results regarding periodicity.
+                        </p>
+                        
+                        <!-- Interactive validation tool -->
+                        <div class="interactive-element mb-4">
+                            <h4>Interactive: Numerical Validation Tool</h4>
+                            <div id="validation-tool" class="interactive-tool">
+                                <div class="card">
+                                    <div class="card-header">
+                                        Comparative Method Validation
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="mb-3">
+                                            <label for="validation-polynomial" class="form-label">Enter coefficients (a,b,c) of x³ + ax² + bx + c:</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="validation-a" placeholder="a" value="0">
+                                                <input type="text" class="form-control" id="validation-b" placeholder="b" value="-2">
+                                                <input type="text" class="form-control" id="validation-c" placeholder="c" value="-1">
+                                                <button class="btn btn-primary" id="validate-btn">Validate</button>
+                                            </div>
+                                        </div>
+                                        <div class="results mt-3">
+                                            <h5>Results:</h5>
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Method</th>
+                                                        <th>Periodic?</th>
+                                                        <th>Period</th>
+                                                        <th>Details</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="validation-results">
+                                                    <tr>
+                                                        <td>HAPD Algorithm</td>
+                                                        <td>-</td>
+                                                        <td>-</td>
+                                                        <td>-</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Matrix Approach</td>
+                                                        <td>-</td>
+                                                        <td>-</td>
+                                                        <td>-</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>sin²-Algorithm</td>
+                                                        <td>-</td>
+                                                        <td>-</td>
+                                                        <td>-</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <!-- Conclusion Section -->
+                    <section id="conclusion" class="paper-section">
+                        <h2>Conclusion</h2>
+                        <p>
+                            This paper presents a comprehensive solution to Hermite's problem for cubic irrationals through three complementary approaches: the HAPD algorithm in projective space, the matrix approach using companion matrices, and the modified sin²-algorithm.
+                        </p>
+                        
+                        <h3 id="conclusion-contributions">Key Contributions</h3>
+                        <p>
+                            The main contributions of this work include:
+                        </p>
+                        
+                        <ol>
+                            <li>A complete characterization of cubic irrationals that generate periodic sequences</li>
+                        </ol>
+                    </section>
+                </div>
+                
+                <!-- Interactive Tools Area (Initially Hidden) -->
+                <div class="tools-content" style="display: none;">
+                    <section id="cubic-explorer" class="tool-section">
+                        <h2>Cubic Polynomial Explorer</h2>
+                        <p>Explore cubic polynomials and their roots. Adjust the coefficients to see how the roots change.</p>
+                        
+                        <div class="interactive-formula">
+                            <p>Cubic polynomial: \(f(x) = x^3 + ax^2 + bx + c\)</p>
+                            <div class="formula-controls">
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label for="coef-a" class="form-label">Coefficient a:</label>
+                                        <input type="range" class="form-range" id="coef-a" min="-5" max="5" step="0.1" value="0">
+                                        <span id="coef-a-value">0</span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="coef-b" class="form-label">Coefficient b:</label>
+                                        <input type="range" class="form-range" id="coef-b" min="-5" max="5" step="0.1" value="0">
+                                        <span id="coef-b-value">0</span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="coef-c" class="form-label">Coefficient c:</label>
+                                        <input type="range" class="form-range" id="coef-c" min="-5" max="5" step="0.1" value="-1">
+                                        <span id="coef-c-value">-1</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="polynomial-graph" class="desmos-graph"></div>
+                            <div class="formula-output">
+                                <p>Current polynomial: <span id="current-polynomial">x³ + 0x² + 0x - 1</span></p>
+                                <p>Roots: <span id="polynomial-roots">Computing...</span></p>
+                            </div>
+                        </div>
+                        
+                        <!-- Presets for interesting polynomials -->
+                        <div class="mt-4">
+                            <h4>Interesting Examples</h4>
+                            <div class="btn-group">
+                                <button class="btn btn-outline-primary btn-sm preset-btn" data-a="0" data-b="-3" data-c="1">Pure Cubic</button>
+                                <button class="btn btn-outline-primary btn-sm preset-btn" data-a="0" data-b="-2" data-c="-1">Three Real Roots</button>
+                                <button class="btn btn-outline-primary btn-sm preset-btn" data-a="1" data-b="1" data-c="1">Complex Conjugate Roots</button>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <section id="projective-space" class="tool-section">
+                        <h2>Projective Space Visualization</h2>
+                        <p>Visualize the projective space approach used in the HAPD algorithm.</p>
+                        <div id="projective-space-viz" class="jsxgraph"></div>
+                        <div class="mt-3">
+                            <p>The red points represent periodic sequences, while blue points are non-periodic. The lines demonstrate trajectories in projective space.</p>
+                        </div>
+                    </section>
+                    
+                    <section id="trace-calculator" class="tool-section">
+                        <h2>Matrix Trace Sequence Calculator</h2>
+                        <p>Calculate trace sequences for a companion matrix and detect periodicity.</p>
+                        <div class="interactive-element">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label for="matrix-a" class="form-label">Coefficient a:</label>
+                                    <input type="number" class="form-control" id="matrix-a" value="0">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="matrix-b" class="form-label">Coefficient b:</label>
+                                    <input type="number" class="form-control" id="matrix-b" value="-2">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="matrix-c" class="form-label">Coefficient c:</label>
+                                    <input type="number" class="form-control" id="matrix-c" value="-1">
+                                </div>
+                            </div>
+                            <button id="calculate-trace" class="btn btn-primary">Calculate Trace Sequence</button>
+                            <div class="mt-3">
+                                <p>Companion Matrix: \(C = \begin{pmatrix} 0 & 0 & -c \\ 1 & 0 & -b \\ 0 & 1 & -a \end{pmatrix}\)</p>
+                                <p>Trace Sequence: <span id="trace-sequence">Click "Calculate" to generate</span></p>
+                                <p>Periodicity: <span id="trace-periodicity">Unknown</span></p>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <section id="sin-squared-demo" class="tool-section">
+                        <h2>Modified sin²-Algorithm Demonstration</h2>
+                        <p>This interactive tool demonstrates how the modified sin²-algorithm works for cubic irrationals with complex conjugate roots.</p>
+                        <div class="interactive-element">
+                            <p>For a cubic with one real root \(r\) and complex conjugate roots \(a \pm bi\), the algorithm uses the value \(\sin^2(\theta)\) where \(\theta\) is the argument of the complex root.</p>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="complex-a" class="form-label">Real part (a):</label>
+                                    <input type="range" class="form-range" id="complex-a" min="-2" max="2" step="0.1" value="0.5">
+                                    <span id="complex-a-value">0.5</span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="complex-b" class="form-label">Imaginary part (b):</label>
+                                    <input type="range" class="form-range" id="complex-b" min="0.1" max="2" step="0.1" value="0.8">
+                                    <span id="complex-b-value">0.8</span>
+                                </div>
+                            </div>
+                            <div id="complex-plane" class="jsxgraph"></div>
+                            <div class="mt-3">
+                                <p>Complex Root: <span id="complex-root">0.5 + 0.8i</span></p>
+                                <p>Argument: <span id="complex-argument">0.0 radians</span></p>
+                                <p>sin²(θ): <span id="sin-squared">0.0</span></p>
+                                <p>Periodicity Condition: <span id="periodicity-condition">Not periodic</span></p>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <section id="subtractive-demo" class="tool-section">
+                        <h2>Subtractive Algorithm Demonstration</h2>
+                        <p>This interactive tool demonstrates the Subtractive Algorithm variant of the HAPD method for cubic irrationals.</p>
+                        <div class="interactive-element">
+                            <p>The Subtractive Algorithm uses a modified approach that focuses on remainder operations for improved numerical stability.</p>
+                            <div class="row mb-3">
+                                <div class="col-md-8">
+                                    <label for="subtractive-input" class="form-label">Cubic polynomial:</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="subtractive-input" value="x^3 - 2" placeholder="Enter in form x^3 + ax^2 + bx + c">
+                                        <button class="btn btn-primary" id="subtractive-calculate">Calculate</button>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="subtractive-iterations" class="form-label">Max iterations:</label>
+                                    <input type="number" class="form-control" id="subtractive-iterations" min="1" max="50" value="20">
+                                </div>
+                            </div>
+                            
+                            <div class="results-container mt-4">
+                                <h5>Algorithm Execution:</h5>
+                                <table class="table table-striped" id="subtractive-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Iteration</th>
+                                            <th>Triple $(v_1, v_2, v_3)$</th>
+                                            <th>$a_1$</th>
+                                            <th>$a_2$</th>
+                                            <th>$(r_1, r_2)$</th>
+                                            <th>$r_{max}$</th>
+                                            <th>Encoding</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="subtractive-results-body">
+                                        <!-- Results will appear here -->
+                                    </tbody>
+                                </table>
+                                <div class="mt-3">
+                                    <p>Algorithm conclusion: <span id="subtractive-conclusion-text" class="fw-bold">Run the algorithm to see results</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <h4>Comparison with HAPD</h4>
+                            <p>The Subtractive Algorithm typically converges faster than standard HAPD for certain classes of cubic irrationals:</p>
+                            <div id="subtractive-comparison" class="jsxgraph"></div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mathematical Notation Helper (initially hidden) -->
+    <div id="math-helper" class="math-helper-container" style="display: none;">
+        <div class="math-helper-header">
+            <h5>Mathematical Notation Helper</h5>
+            <button type="button" class="btn-close" id="close-math-helper" aria-label="Close"></button>
+        </div>
+        <div class="math-helper-content">
+            <div class="accordion" id="notationAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading-cubic">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-cubic" aria-expanded="true" aria-controls="collapse-cubic">
+                            Cubic Polynomials
+                        </button>
+                    </h2>
+                    <div id="collapse-cubic" class="accordion-collapse collapse show" aria-labelledby="heading-cubic" data-bs-parent="#notationAccordion">
+                        <div class="accordion-body">
+                            <p>\(P(x) = x^3 + ax^2 + bx + c\) represents a general cubic polynomial where:</p>
+                            <ul>
+                                <li>\(a\), \(b\), and \(c\) are the coefficients</li>
+                                <li>A root \(\alpha\) satisfies \(P(\alpha) = 0\)</li>
+                                <li>A <em>cubic irrational</em> is an irrational root of a cubic polynomial with rational coefficients</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading-projective">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-projective" aria-expanded="false" aria-controls="collapse-projective">
+                            Projective Space
+                        </button>
+                    </h2>
+                    <div id="collapse-projective" class="accordion-collapse collapse" aria-labelledby="heading-projective" data-bs-parent="#notationAccordion">
+                        <div class="accordion-body">
+                            <p>Projective space \(\mathbb{P}^2\) consists of points \([x:y:z]\) where:</p>
+                            <ul>
+                                <li>\([x:y:z]\) represents an equivalence class: \([x:y:z] = [\lambda x:\lambda y:\lambda z]\) for any \(\lambda \neq 0\)</li>
+                                <li>A point \((x,y)\) in the Euclidean plane corresponds to \([x:y:1]\) in projective space</li>
+                                <li>Points \([x:y:0]\) represent points at infinity</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading-matrix">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-matrix" aria-expanded="false" aria-controls="collapse-matrix">
+                            Companion Matrix
+                        </button>
+                    </h2>
+                    <div id="collapse-matrix" class="accordion-collapse collapse" aria-labelledby="heading-matrix" data-bs-parent="#notationAccordion">
+                        <div class="accordion-body">
+                            <p>The companion matrix for \(P(x) = x^3 + ax^2 + bx + c\) is:</p>
+                            <p>\[C = \begin{pmatrix} 0 & 0 & -c \\ 1 & 0 & -b \\ 0 & 1 & -a \end{pmatrix}\]</p>
+                            <p>Properties:</p>
+                            <ul>
+                                <li>The characteristic polynomial of \(C\) is exactly \(P(x)\)</li>
+                                <li>The trace of \(C^n\) forms the sequence used in the Matrix Approach</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading-sinSquared">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-sinSquared" aria-expanded="false" aria-controls="collapse-sinSquared">
+                            Sin² Algorithm
+                        </button>
+                    </h2>
+                    <div id="collapse-sinSquared" class="accordion-collapse collapse" aria-labelledby="heading-sinSquared" data-bs-parent="#notationAccordion">
+                        <div class="accordion-body">
+                            <p>For a cubic with complex conjugate roots \(a \pm bi\):</p>
+                            <ul>
+                                <li>\(\theta\) is the argument of the complex root: \(\theta = \arctan(b/a)\)</li>
+                                <li>\(\sin^2(\theta)\) is the key value analyzed for periodicity</li>
+                                <li>The sequence is periodic if \(\sin^2(\theta)\) is a rational number with denominator \(2^n\) or \(3 \cdot 2^n\)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="search-common-symbols">
+                <div class="input-group mt-3">
+                    <input type="text" class="form-control" id="symbol-search" placeholder="Search symbols...">
+                </div>
+                <div class="common-symbols mt-2">
+                    <span class="symbol-label">Common symbols:</span>
+                    <button class="btn btn-sm btn-outline-secondary symbol-btn" data-symbol="\alpha">α</button>
+                    <button class="btn btn-sm btn-outline-secondary symbol-btn" data-symbol="\beta">β</button>
+                    <button class="btn btn-sm btn-outline-secondary symbol-btn" data-symbol="\gamma">γ</button>
+                    <button class="btn btn-sm btn-outline-secondary symbol-btn" data-symbol="\theta">θ</button>
+                    <button class="btn btn-sm btn-outline-secondary symbol-btn" data-symbol="\lambda">λ</button>
+                    <button class="btn btn-sm btn-outline-secondary symbol-btn" data-symbol="\mathbb{P}">ℙ</button>
+                    <button class="btn btn-sm btn-outline-secondary symbol-btn" data-symbol="\mathbb{R}">ℝ</button>
+                    <button class="btn btn-sm btn-outline-secondary symbol-btn" data-symbol="\mathbb{C}">ℂ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.24.1/prism.min.js"></script>
+    <script src="js/paper-viewer.js"></script>
+</body>
+</html> 

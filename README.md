@@ -1,130 +1,62 @@
-# HAPD: Hermite Algorithm for Periodicity Detection
+# Solving Hermite's Problem: Interactive Academic Paper
 
-![HAPD Algorithm Flowchart](generate_figures/hapd_algorithm_flowchart.png)
+This repository contains an interactive academic paper exploring novel approaches to solving Hermite's Problem for cubic irrationals. The paper presents three complementary methods:
 
-[![Python Version](https://img.shields.io/badge/python-3.8%2B-blue)](https://www.python.org/downloads/)
-[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
-[![Made with Manim](https://img.shields.io/badge/Made%20with-Manim-ff8157.svg)](https://www.manim.community/)
+1. **HAPD Algorithm**: A projective space approach for detecting periodicity in cubic irrationals
+2. **Matrix Approach**: Using companion matrices and trace sequences
+3. **Modified sin²-Algorithm**: An adaptation for cubic irrationals with complex conjugate roots
+4. **Subtractive Algorithm**: A numerically stable variation of the HAPD algorithm
 
-A mathematical research project exploring Hermite's Problem of detecting periodicity in cubic irrationals through projective geometry.
+## Interactive Features
 
-## 🔍 About The Project
+The paper includes multiple interactive tools to help visualize and understand the algorithms:
 
-This repository contains the implementation of the Hermite Algorithm for Periodicity Detection (HAPD), a novel approach to solving Hermite's Problem in number theory. The algorithm leverages projective geometry to detect periodicity in cubic irrationals with complex conjugate roots.
+- **Cubic Polynomial Explorer**: Visualize cubic polynomials and their roots
+- **Projective Space Visualization**: Explore the HAPD algorithm in projective space
+- **Matrix Trace Calculator**: Calculate trace sequences for companion matrices
+- **Sin² Algorithm Demo**: Visualize the periodicity conditions for complex roots
+- **Subtractive Algorithm Demo**: Explore the numerically stable variant of HAPD
+- **Mathematical Notation Helper**: Tooltips and explanations for mathematical concepts
 
-<p align="center">
-  <img src="generate_figures/cubic_trajectories.png" width="700" alt="Cubic Trajectories">
-</p>
+## Structure
 
-### Key Features
+- **`githubpages/`**: Contains the web version of the paper with all interactive elements
+- **`arxiv_submission/`**: Contains the LaTeX source code for the paper submitted to arXiv
+- **`figures/`**: Contains static visualizations and diagrams used in both versions
 
-- **Projective Geometric Approach**: Detects periodicity in cubic irrationals using projective space transformations
-- **High Precision Computations**: Utilizes arbitrary precision arithmetic for reliable numerical results
-- **Visualizations**: Includes multiple visualizations of algorithm operation and projective trajectories
-- **Complementary Methods**: Implements both the HAPD algorithm and conventional approaches for comparison
+## How to Use
 
-<p align="center">
-  <img src="generate_figures/algorithm_comparison_chart.png" width="700" alt="Algorithm Comparison">
-</p>
+You can access the interactive paper in two ways:
 
-## 🚀 Getting Started
+1. **Online**: Visit [https://username.github.io/hermites-problem](https://username.github.io/hermites-problem)
+2. **Locally**: Clone this repository and open `githubpages/index.html` or `githubpages/paper-viewer.html` in your browser
 
-### Prerequisites
+## Requirements for Local Viewing
 
-- Python 3.8+
-- Manim (for visualizations)
-- OpenGL/Metal support (for GPU acceleration)
+- Modern web browser with JavaScript enabled
+- Internet connection for loading external resources (optional)
+- Local HTTP server (optional, for better experience)
 
-### Installation
+## Citation
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/bbarclay/hermitesproblem.git
-   cd hermitesproblem
-   ```
+If you use this work in your research, please cite:
 
-2. Install the required dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. Install the package in development mode:
-   ```bash
-   pip install -e .
-   ```
-
-## 📊 Usage
-
-### Core Algorithm
-
-```python
-from hermite_solver import HermiteSolver
-
-# Initialize the solver
-solver = HermiteSolver(max_iterations=1000)
-
-# Test if a number is a cubic irrational
-result = solver.detect_cubic_irrational(2**(1/3), full_analysis=True)
-
-# Print the detection result
-print(f"Is cubic irrational: {result['is_cubic']}")
-print(f"Period length: {result['period']}")
 ```
-
-### Rendering Visualizations
-
-To render visualizations with GPU acceleration:
-
-```bash
-# Make the render script executable
-chmod +x render_visualizations.sh
-
-# Run the render script
-./render_visualizations.sh
-```
-
-<p align="center">
-  <img src="generate_figures/projective_periodicity_visualization.png" width="700" alt="Projective Periodicity">
-</p>
-
-## 📋 Project Structure
-
-- `hermite_solver/`: Core algorithm implementation
-  - `hapd.py`: Main HAPD algorithm implementation
-  - `matrix_approach.py`: Matrix-based verification methods
-  - `computational_methods.py`: Supplementary computational approaches
-  - `utils.py`: Utility functions for numerical operations
-- `py_testing/`: Test suite and benchmarks
-- `py_presentation/`: Presentation materials created with Manim
-- `generate_figures/`: Scripts for generating visualizations
-
-## 🔬 Mathematical Background
-
-Hermite's Problem concerns the detection of periodicity in the continued fraction expansion of cubic irrationals. HAPD introduces a projective geometric framework that overcomes limitations of traditional approaches.
-
-<p align="center">
-  <img src="generate_figures/projective_space_regions.png" width="700" alt="Projective Space Regions">
-</p>
-
-## 📝 Citation
-
-If you use this algorithm in your research, please cite:
-
-```bibtex
-@article{barclay2025hapd,
-  title={A Complete Solution to Hermite's Problem For Cubic Irrationals with Complex Conjugate Roots},
-  author={Barclay, Brandon},
-  journal={ArXiv},
-  year={2025}
+@article{hermite_problem2025,
+  author = {Brandon Barclay},
+  title = {Solving Hermite's Problem: Three Novel Approaches for Complete Characterization of Cubic Irrationals},
+  year = {2025},
+  journal = {arXiv preprint},
+  url = {https://arxiv.org/abs/xxxx.xxxxx}
 }
 ```
 
-## 📄 License
+## License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+This work is licensed under the Creative Commons Attribution 4.0 International License (CC-BY 4.0).
 
-## 📧 Contact
+## Acknowledgments
 
-Brandon Barclay - barclaybrandon@hotmail.com
-
-Project Link: [https://github.com/bbarclay/hermitesproblem](https://github.com/bbarclay/hermitesproblem) 
+- Charles Hermite for the original problem formulation
+- The mathematical community for prior work on continued fractions and cubic irrationals
+- Libraries used: MathJax, JSXGraph, Desmos, Bootstrap, Prism.js 
