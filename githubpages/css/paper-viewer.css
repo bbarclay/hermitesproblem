@@ -61,6 +61,9 @@ body {
     background-color: var(--body-bg);
     overflow-x: hidden;
     transition: background-color 0.3s ease, color 0.3s ease;
+    margin: 0;
+    padding: 0;
+    font-size: calc(1rem * var(--font-size-multiplier));
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -705,48 +708,6 @@ code {
     font-size: 0.9em;
 }
 
-.font-size-controls {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    z-index: 1000;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.font-size-controls button {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 1px solid var(--card-border);
-    background-color: var(--card-bg);
-    color: var(--body-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 2px 5px var(--box-shadow);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.font-size-controls button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px var(--box-shadow-hover);
-}
-
-.font-size-controls button.font-size-decrease {
-    font-size: 12px;
-}
-
-.font-size-controls button.font-size-reset {
-    font-size: 14px;
-}
-
-.font-size-controls button.font-size-increase {
-    font-size: 16px;
-}
-
 /* Focus styles for accessibility */
 a:focus, button:focus, input:focus, select:focus, textarea:focus, [tabindex]:focus {
     outline: 3px solid var(--link-color);
@@ -813,7 +774,6 @@ body:not(.keyboard-nav) [tabindex]:focus {
 @media print {
     .skip-to-content, 
     .keyboard-shortcut-modal, 
-    .font-size-controls, 
     .dark-mode-toggle,
     .back-to-top {
         display: none !important;
@@ -1216,4 +1176,16 @@ h3:hover .section-buttons {
 
 .math-tooltip.visible {
     opacity: 1;
+}
+
+/* Add styles for the font size controls in the navbar */
+.font-size-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem 0.5rem;
+}
+
+.font-size-control i {
+    font-size: 14px;
 } 

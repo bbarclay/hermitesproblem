@@ -7,6 +7,7 @@
 \usepackage{xcolor}
 \usepackage{mathtools}
 \usepackage{geometry}
+\usepackage{listings}
 \geometry{
   a4paper,
   left=1in,
@@ -31,6 +32,7 @@
 \usepackage{xspace}
 \usepackage{caption}
 \usepackage{textcomp}  % More complete text companion fonts
+\usepackage{tocvsec2}  % To control ToC depth
 
 % Fix for font warnings
 \DeclareRobustCommand{\scshape}{\fontshape{sc}\selectfont}
@@ -109,7 +111,7 @@
 
 % Title information
 \title{Solving Hermite's Problem: Three Novel Approaches for Complete Characterization of Cubic Irrationals}
-\author{Brandon Barclay}
+\author{Brandon Barclay\thanks{Email: barclaybrandon@hotmail.com}\thanks{Interactive materials available at: \url{https://bbarclay.github.io/hermitesproblem/}}}
 \date{April 2025}
 
 \begin{document}
@@ -117,17 +119,25 @@
 \maketitle
 
 \input{abstract.tex}
+
+% Control ToC depth to make it more concise
+\settocdepth{section}  % Only include sections, not subsections
 \tableofcontents
 \newpage
+
+% Set back to normal depth for the document itself
+\settocdepth{subsection}
 
 \input{introduction.tex}
 \input{galois-theory.tex}
 \input{hapd-algorithm.tex}
 \input{matrix-approach.tex}
 \input{matrix-computational.tex}
+\input{matrix-verification.tex}  % Previously had a reference to this as "§??"
 \input{equivalence.tex}
 \input{subtractive-algorithm.tex}
 \input{numerical-validation.tex}
+\input{implementation-examples.tex}  % Adding implementation examples to fix section order
 \input{objections-tex.tex}
 \input{conclusion.tex}
 

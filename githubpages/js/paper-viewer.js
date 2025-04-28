@@ -1431,44 +1431,30 @@
 
     // Add font size controls for accessibility
     function addFontSizeControls() {
-        const fontControls = document.createElement('div');
-        fontControls.className = 'font-size-controls';
-        fontControls.innerHTML = `
-            <button class="font-size-decrease" aria-label="Decrease font size">A-</button>
-            <button class="font-size-reset" aria-label="Reset font size">A</button>
-            <button class="font-size-increase" aria-label="Increase font size">A+</button>
-        `;
-        
-        document.body.appendChild(fontControls);
-        
-        // Get stored font size or use default of 100%
-        const storedFontSize = localStorage.getItem('fontSize') || '100';
-        document.documentElement.style.fontSize = `${storedFontSize}%`;
-        
-        // Decrease font size
-        fontControls.querySelector('.font-size-decrease').addEventListener('click', function() {
-            const currentSize = parseInt(localStorage.getItem('fontSize') || '100');
-            if (currentSize > 70) { // Don't go smaller than 70%
-                const newSize = currentSize - 10;
-                document.documentElement.style.fontSize = `${newSize}%`;
-                localStorage.setItem('fontSize', newSize);
-            }
+        // We don't need to create the controls anymore, as they're now in the navbar
+        // But we keep the functionality for the font size adjustment
+
+        // Set initial font size from localStorage or use default
+        let currentFontSize = parseFloat(localStorage.getItem('paper-viewer-font-size') || 1);
+        document.documentElement.style.setProperty('--font-size-multiplier', currentFontSize);
+
+        // Listen for clicks on the font size controls that are now in the navbar
+        document.getElementById('decrease-font').addEventListener('click', () => {
+            currentFontSize = Math.max(0.8, currentFontSize - 0.1);
+            document.documentElement.style.setProperty('--font-size-multiplier', currentFontSize);
+            localStorage.setItem('paper-viewer-font-size', currentFontSize);
         });
-        
-        // Reset font size
-        fontControls.querySelector('.font-size-reset').addEventListener('click', function() {
-            document.documentElement.style.fontSize = '100%';
-            localStorage.setItem('fontSize', '100');
+
+        document.getElementById('reset-font').addEventListener('click', () => {
+            currentFontSize = 1;
+            document.documentElement.style.setProperty('--font-size-multiplier', currentFontSize);
+            localStorage.setItem('paper-viewer-font-size', currentFontSize);
         });
-        
-        // Increase font size
-        fontControls.querySelector('.font-size-increase').addEventListener('click', function() {
-            const currentSize = parseInt(localStorage.getItem('fontSize') || '100');
-            if (currentSize < 200) { // Don't go larger than 200%
-                const newSize = currentSize + 10;
-                document.documentElement.style.fontSize = `${newSize}%`;
-                localStorage.setItem('fontSize', newSize);
-            }
+
+        document.getElementById('increase-font').addEventListener('click', () => {
+            currentFontSize = Math.min(1.5, currentFontSize + 0.1);
+            document.documentElement.style.setProperty('--font-size-multiplier', currentFontSize);
+            localStorage.setItem('paper-viewer-font-size', currentFontSize);
         });
     }
 

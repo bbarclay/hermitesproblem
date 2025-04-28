@@ -4,15 +4,15 @@ This section presents concrete examples of applying our algorithms to specific c
 
 \subsection{HAPD Implementation}
 
-\begin{example}[HAPD Algorithm for Cube Root of 2]\label{ex:cubic_root_2}
-For $\alpha = \sqrt[3]{2}$ with minimal polynomial $x^3 - 2$, the HAPD algorithm produces:
+\begin{example}[HAPD Algorithm for $\root 3 \of{2}$]\label{ex:cubic_root_2}
+For $\alpha = \root 3 \of{2}$ with minimal polynomial $x^3 - 2$, the HAPD algorithm produces:
 
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
 Iteration & Triple $(v_1, v_2, v_3)$ & $a_1$ & $a_2$ & Next Triple & Encoding \\
 \hline
-1 & $(\sqrt[3]{2}, \sqrt[3]{4}, 1)$ & 1 & 1 & $(0.26, 0.26, 0.74)$ & $(1,1)$ \\
+1 & $(\root 3 \of{2}, \root 3 \of{4}, 1)$ & 1 & 1 & $(0.26, 0.26, 0.74)$ & $(1,1)$ \\
 \hline
 2 & $(0.26, 0.26, 0.74)$ & 0 & 0 & $(0.26, 0.26, 0.22)$ & $(0,0)$ \\
 \hline
@@ -58,8 +58,8 @@ The sequence continues with period 12, confirming $\alpha$ is cubic.
 
 \subsection{Matrix Approach Implementation}
 
-\begin{example}[Trace Sequence for Cube Root of 2]\label{ex:matrix_cube_root}
-For $\alpha = \sqrt[3]{2}$ with minimal polynomial $p(x) = x^3 - 2$, the companion matrix is:
+\begin{example}[Trace Sequence for $\root 3 \of{2}$]\label{ex:matrix_cube_root}
+For $\alpha = \root 3 \of{2}$ with minimal polynomial $p(x) = x^3 - 2$, the companion matrix is:
 
 \begin{equation}
 C = \begin{pmatrix}
@@ -109,15 +109,15 @@ After $t_2$, the sequence follows the recurrence relation $t_{n+2} = t_{n+1} + t
 
 \subsection{Subtractive Algorithm Implementation}
 
-\begin{example}[Subtractive HAPD for Cube Root of 2]\label{ex:subtractive_cube_root}
-For $\alpha = \sqrt[3]{2}$ with minimal polynomial $x^3 - 2$, the Subtractive HAPD algorithm produces:
+\begin{example}[Subtractive HAPD for $\root 3 \of{2}$]\label{ex:subtractive_cube_root}
+For $\alpha = \root 3 \of{2}$ with minimal polynomial $x^3 - 2$, the Subtractive HAPD algorithm produces:
 
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
 Iteration & Triple $(v_1, v_2, v_3)$ & $a_1$ & $a_2$ & $(r_1, r_2)$ & $r_{\max}$ & Encoding \\
 \hline
-1 & $(\sqrt[3]{2}, \sqrt[3]{4}, 1)$ & 1 & 1 & $(0.26, 0.26)$ & 0.26 & $(1,1,1)$ \\
+1 & $(\root 3 \of{2}, \root 3 \of{4}, 1)$ & 1 & 1 & $(0.26, 0.26)$ & 0.26 & $(1,1,1)$ \\
 \hline
 2 & $(0.26, 0.26, 0.26)$ & 1 & 1 & $(0, 0)$ & 0 & $(1,1,-)$ \\
 \hline
@@ -166,19 +166,18 @@ Subtractive HAPD & 7 arithmetic & $O(p)$ & 10-20 \\
 \end{tabular}
 \end{table}
 
-% Figure is missing, so commented out
-%\begin{figure}[h]
-%\centering
-%\includegraphics[width=0.8\textwidth]{figures/output/performance_comparison.pdf}
-%\caption{Computational performance comparison between the three algorithm implementations for 100 random cubic irrationals.}
-%\label{fig:perf_comparison}
-%\end{figure}
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/output/performance_comparison.pdf}
+\caption{Computational performance comparison between the three algorithm implementations for 100 random cubic irrationals.}
+\label{fig:perf_comparison}
+\end{figure}
 
 \subsection{Implementation Notes}
 
 All algorithms were implemented in Python with NumPy for numerical operations and SageMath for algebraic number field computations.
 
-\begin{verbatim}
+\begin{lstlisting}[language=Python, caption=Basic implementation of HAPD algorithm]
 def hapd_algorithm(alpha, max_iterations=100):
     v1, v2, v3 = alpha, alpha**2, 1
     sequence = []
@@ -202,7 +201,7 @@ def hapd_algorithm(alpha, max_iterations=100):
             return "Periodic", get_period(sequence)
             
     return "Inconclusive", sequence
-\end{verbatim}
+\end{lstlisting}
 
 Key implementation considerations:
 \begin{itemize}

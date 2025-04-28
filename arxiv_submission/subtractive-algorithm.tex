@@ -129,4 +129,26 @@ The encoding sequence produced by the Subtractive HAPD algorithm can be efficien
 
 \begin{proof}
 Each iteration stores $(a_1, a_2, i)$ where $i \in \{1,2\}$ and $a_1, a_2 < H$. This requires $\log_2(H)$ bits for each $a_i$ and 1 bit to encode $i$.
+\end{proof}
+
+\begin{lemma}[Relationship Between HAPD and Subtractive Algorithm]\label{lem:hapd_subtractive}
+For any cubic irrational $\alpha$, let $S_H(n)$ be the sequence of steps required for the standard HAPD algorithm to complete $n$ iterations, and let $S_S(n)$ be the sequence of steps required for the Subtractive algorithm to complete $n$ iterations. Then:
+
+\begin{enumerate}
+\item The two algorithms are projectively equivalent, i.e., they produce sequences that reflect the same underlying periodicity properties.
+\item For any $n \geq 1$, $S_S(n) \leq c \cdot S_H(n)$ for some constant $c \leq 3$.
+\item Conversely, $S_H(n) \leq d \cdot S_S(n)$ for some constant $d \leq 2$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+\begin{enumerate}
+\item Projective equivalence: Both algorithms operate on triples in projective space. The standard HAPD algorithm uses the transformation $T(v_1, v_2, v_3) = (r_1, r_2, v_3 - a_1r_1 - a_2r_2)$. The Subtractive algorithm decomposes this transformation into simpler steps, each corresponding to elementary projective transformations. The composition of these transformations yields an equivalent projective action on the space.
+
+\item Bound on Subtractive steps: Each HAPD iteration requires computing two integer parts and remainders, then updating the triple. The Subtractive algorithm may need to perform up to three subtraction operations per coordinate (in the worst case when $a_1$ and $a_2$ are both large), resulting in at most $3 \cdot S_H(n)$ steps.
+
+\item Bound on HAPD steps: Conversely, each step of the Subtractive algorithm performs at least one fundamental operation that must be calculated in the standard algorithm. At most, the Subtractive algorithm splits each HAPD iteration into two parts, resulting in the bound $S_H(n) \leq 2 \cdot S_S(n)$.
+\end{enumerate}
+
+These bounds guarantee that if one algorithm terminates with periodicity in $O(f(M))$ steps, the other will also terminate in $O(f(M))$ steps, preserving the asymptotic complexity.
 \end{proof} 

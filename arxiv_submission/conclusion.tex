@@ -1,24 +1,59 @@
 \section{Conclusion}\label{sec:conclusion}
 
-We solved Hermite's problem via three distinct approaches: HAPD, matrix characterization, and modified sin²-algorithm. All three methods characterize cubic irrationals through periodicity. Key contributions include:
+We have presented three novel approaches to Hermite's classical problem of characterizing cubic irrationals through periodicity. Our unified solution bridges algebraic number theory, projective geometry, and computational mathematics.
 
+The \HAPD{} algorithm provides a geometric characterization operating in projective space $\mathbb{P}^2(\mathbb{R})$, generating periodic sequences if and only if the input is a cubic irrational. The matrix approach offers an algebraic perspective through companion matrices and trace sequences, mathematically equivalent to the \HAPD{} algorithm but with computational advantages. The subtractive algorithm provides a numerically stable variant that preserves the theoretical properties while enhancing practical implementation.
+
+Our three key contributions are:
+\begin{enumerate}
+\item \textbf{Complete Characterization:} We provide necessary and sufficient conditions for cubic irrationality through periodicity, addressing Hermite's problem comprehensively.
+\item \textbf{Multiple Perspectives:} Our three equivalent approaches offer insights from geometric, algebraic, and computational viewpoints, enhancing understanding of the underlying mathematical structures.
+\item \textbf{Practical Implementation:} The algorithms are accompanied by detailed analysis of computational complexity and numerical considerations, facilitating practical applications.
+\end{enumerate}
+
+The theoretical analysis is complemented by numerical validation confirming the efficacy of our approaches. The algorithms correctly identify cubic irrationals with high accuracy, distinguishing them from other number types.
+
+Our solution to Hermite's problem extends the classical theory of continued fractions to cubic irrationals, establishing a fundamental connection between algebraic degree and periodicity that parallels Lagrange's theorem for quadratic irrationals.
+
+\subsection{Future Work}
+
+Building on the foundations established in this paper, several promising directions for future research emerge:
+
+\begin{enumerate}
+\item \textbf{Higher Degree Generalization:} A natural extension of our work is to algebraic numbers of degree greater than three. We conjecture:
+
+\begin{conjecture}[Higher Degree Generalization]\label{conj:higher_degree}
+For any integer $n \geq 2$, there exists an algorithm operating in $n$-dimensional projective space that produces eventually periodic sequences if and only if the input is an algebraic number of degree $n$.
+\end{conjecture}
+
+The key components required for such a generalization include:
 \begin{itemize}
-\item Projective space approach handling cubic irrationals with complex conjugate roots
-\item Matrix characterization using trace sequences with modular periodicity 
-\item Mathematical proof of periodicity for all cubic irrationals
-\item Numerical validation confirming theoretical predictions
-\item Efficient implementations with polynomial-time complexity
+\item A representation in $n$-dimensional projective space that captures the algebraic structure of degree-$n$ fields
+\item A transformation that preserves the field structure while allowing for efficient encoding of the transformation parameters
+\item A periodicity detection mechanism that can identify equivalence classes in the projective space
 \end{itemize}
 
-HAPD achieves Hermite's goal \cite{Hermite1848} using projective geometry, the matrix approach provides a computationally efficient characterization \cite{Horn2012, Cohen1993}, and the modified sin²-algorithm extends Karpenkov's work \cite{Karpenkov2019, Karpenkov2022} to all cubic irrationals.
+\item \textbf{Computational Optimizations:} Develop specialized data structures and algorithms to improve the practical efficiency of periodicity detection, particularly for high-degree cases.
 
-Extensions to higher algebraic degrees offer promising research directions. These approaches could characterize algebraic irrationals of arbitrary degree through periodicity in appropriate representation spaces.
+\item \textbf{Applications in Number Theory:} Investigate applications to other number-theoretic problems, such as Diophantine approximation, irrationality measures, and transcendence proofs.
 
-Natural generalizations include:
-\begin{enumerate}
-\item Higher-degree algebraic irrationals \cite{Karpenkov2024}
-\item Optimized implementations with quantified complexity bounds \cite{Ferguson1999}
-\item Geometric interpretations in projective and hyperbolic spaces \cite{KarpenkovBook}
-\item Applications to integer relation detection \cite{Ferguson1999} and lattice reduction \cite{Lenstra1982}
-\item Connections to ergodic theory via Dirichlet groups \cite{Karpenkov2022}
+\item \textbf{Quantum Computing Implementation:} Explore quantum algorithms that could potentially offer polynomial speedup for periodicity detection in algebraic numbers.
+
+\item \textbf{Connection to Ergodic Theory:} Further develop the relationship between our algorithms and ergodic theory, particularly the dynamics on homogeneous spaces.
 \end{enumerate}
+
+These directions represent exciting possibilities for extending the mathematical and computational framework developed in this paper, potentially yielding insights into both fundamental number theory and practical algorithmic applications.
+
+\subsection{Interactive Materials}
+
+To facilitate deeper understanding and exploration of the algorithms presented in this paper, we have developed interactive visualizations and computational tools that are freely available online. These resources allow readers to:
+
+\begin{itemize}
+\item Experiment with the HAPD algorithm and observe its periodicity detection in real-time
+\item Visualize projective space transformations and their relationship to cubic irrationals
+\item Test the matrix verification approach with custom inputs
+\item Explore the subtractive algorithm's behavior on various cubic polynomials
+\item Compare the performance characteristics of all three approaches
+\end{itemize}
+
+These interactive materials, along with source code and additional examples, can be accessed at \url{https://bbarclay.github.io/hermitesproblem/}. We encourage interested readers to use these tools to develop intuition about the theoretical concepts and to explore the algorithms' behavior with custom inputs beyond the examples presented in this paper.

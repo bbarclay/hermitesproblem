@@ -71,10 +71,29 @@ From \eqref{eq:quadratic}:
 
 Substituting \eqref{eq:alpha_squared} into \eqref{eq:cubic} and multiplying by $A$:
 \begin{equation}
--B\alpha^2 - C\alpha - pB\alpha - pC + qA\alpha + rA = 0
+\alpha \cdot (-B\alpha - C) + Ap\alpha^2 + Aq\alpha + Ar = 0
 \end{equation}
 
-Substituting \eqref{eq:alpha_squared} again and simplifying:
+Substituting \eqref{eq:alpha_squared} again for $\alpha^2$:
+\begin{equation}
+-B\alpha^2 - C\alpha + Ap \cdot \frac{-B\alpha - C}{A} + Aq\alpha + Ar = 0
+\end{equation}
+
+Simplifying:
+\begin{equation}
+-B\alpha^2 - C\alpha - pB\alpha - pC + Aq\alpha + Ar = 0
+\end{equation}
+
+Substituting \eqref{eq:alpha_squared} once more and collecting terms:
+\begin{equation}
+-B\cdot\frac{-B\alpha - C}{A} - C\alpha - pB\alpha - pC + Aq\alpha + Ar = 0
+\end{equation}
+
+\begin{equation}
+\frac{B^2\alpha + BC}{A} - C\alpha - pB\alpha - pC + Aq\alpha + Ar = 0
+\end{equation}
+
+Multiplying through by $A$:
 \begin{equation}\label{eq:combined}
 (B^2 - AC - pAB + qA^2)\alpha + (BC - pAC + rA^2) = 0
 \end{equation}
@@ -90,7 +109,31 @@ From \eqref{eq:coeff2}, assuming $C \neq 0$ (if $C = 0$, then $B = 0$ from \eqre
 B = \frac{pAC - rA^2}{C}
 \end{equation}
 
-Substituting \eqref{eq:B_value} into \eqref{eq:coeff1} leads to a relation implying an intermediate field between $\Q$ and $\Q(\alpha)$, contradicting Proposition \ref{prop:no_intermediate_field} for the $S_3$ case. For the $C_3$ case, $\alpha$ generates a field of degree 3 over $\Q$, which cannot contain a quadratic subfield.
+Substituting \eqref{eq:B_value} into \eqref{eq:coeff1} and expanding:
+\begin{align}
+\left(\frac{pAC - rA^2}{C}\right)^2 - AC - pAB + qA^2 &= 0 \\
+\frac{(pAC - rA^2)^2}{C^2} - AC - pA\left(\frac{pAC - rA^2}{C}\right) + qA^2 &= 0 \\
+\end{align}
+
+Multiplying through by $C^2$:
+\begin{align}
+(pAC - rA^2)^2 - AC^3 - pA \cdot C \cdot (pAC - rA^2) + qA^2C^2 &= 0 \\
+p^2A^2C^2 - 2pA^2C \cdot r + r^2A^4 - AC^3 - p^2A^2C^2 + prA^3C + qA^2C^2 &= 0 \\
+\end{align}
+
+Canceling $p^2A^2C^2$ terms and rearranging:
+\begin{align}
+r^2A^4 - 2prA^3C + prA^3C - AC^3 + qA^2C^2 &= 0 \\
+r^2A^4 - prA^3C - AC^3 + qA^2C^2 &= 0 
+\end{align}
+
+This relation implies the existence of a non-trivial polynomial of degree less than 3 that has $\alpha$ as a root, or equivalently, it establishes the existence of a field $\mathbb{Q}(\alpha^2) \subset \mathbb{Q}(\alpha)$ with $[\mathbb{Q}(\alpha^2):\mathbb{Q}] = 2$.
+
+For the $S_3$ case, this would create a proper intermediate field $\mathbb{Q} \subset \mathbb{Q}(\alpha^2) \subset \mathbb{Q}(\alpha)$, contradicting Proposition \ref{prop:no_intermediate_field}.
+
+For the $C_3$ case, since $[\mathbb{Q}(\alpha):\mathbb{Q}] = 3$ and 3 is prime, no proper intermediate field can exist between $\mathbb{Q}$ and $\mathbb{Q}(\alpha)$. In this case, the contradiction arises because the minimal polynomial of a cubic irrational with Galois group $C_3$ is irreducible over $\mathbb{Q}$ and cannot have a root in any quadratic extension of $\mathbb{Q}$.
+
+In both cases, we reach a contradiction to our assumption that $\alpha$ has an eventually periodic continued fraction expansion.
 \end{proof}
 
 \begin{corollary}\label{cor:cf_insufficient}

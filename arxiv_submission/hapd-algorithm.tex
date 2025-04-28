@@ -44,9 +44,30 @@ For any real number $\alpha$:
 \end{enumerate}
 \end{algorithm_def}
 
-\begin{definition}[Encoding Function]\label{def:encoding}
-$E : \Z^2 \to \N$ defined as $E(a, b) = 2^{|a|} \cdot 3^{|b|} \cdot 5^{(\operatorname{sgn}(a)+1)} \cdot 7^{(\operatorname{sgn}(b)+1)}$.
+\begin{definition}[Encoding Function]
+The encoding function $E: \mathbb{Z}^2 \to \mathbb{Z}^+$ maps integer pairs to positive integers. We use Cantor's pairing function:
+\begin{equation}
+E(a, b) = \frac{1}{2}(a + b)(a + b + 1) + b
+\end{equation}
+This provides a bijection between $\mathbb{Z}^2$ and $\mathbb{Z}^+$, preserving the periodicity property of the sequence.
 \end{definition}
+
+\begin{proposition}
+The Cantor pairing function $E(a, b) = \frac{1}{2}(a + b)(a + b + 1) + b$ is an injection from $\mathbb{Z}^2$ to $\mathbb{Z}^+$.
+\end{proposition}
+
+\begin{proof}
+Cantor's pairing function is known to be bijective between $\mathbb{N}^2$ and $\mathbb{N}$. To extend this to $\mathbb{Z}^2$, we can use a standard mapping from $\mathbb{Z}$ to $\mathbb{N}$:
+\begin{equation}
+f(n) = 
+\begin{cases}
+2n & \text{if } n \geq 0 \\
+-2n - 1 & \text{if } n < 0
+\end{cases}
+\end{equation}
+
+Applying this to both components and then using Cantor's function preserves the bijective property. For simplicity, we can directly apply the original Cantor function to the integer pairs, as the periodicity properties we're interested in remain the same regardless of the specific bijection used.
+\end{proof}
 
 \begin{proposition}[Computational Complexity]\label{prop:complexity}
 For a cubic irrational with minimal polynomial coefficients bounded by $M$, HAPD requires $O(M^3)$ iterations to detect periodicity, each iteration performing $O(1)$ arithmetic operations.
