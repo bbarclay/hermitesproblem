@@ -28,7 +28,7 @@ The paper includes multiple interactive tools to help visualize and understand t
 
 You can access the interactive paper in two ways:
 
-1. **Online**: Visit [https://username.github.io/hermites-problem](https://username.github.io/hermites-problem)
+1. **Online**: Visit [https://bbarclay.github.io/hermitesproblem](https://bbarclay.github.io/hermitesproblem)
 2. **Locally**: Clone this repository and open `githubpages/index.html` or `githubpages/paper-viewer.html` in your browser
 
 ## Requirements for Local Viewing
