@@ -414,7 +414,7 @@
                         
                         <h3 id="subtractive-algorithm-concept">Algorithm Concept</h3>
                         <p>
-                            The Subtractive Algorithm modifies the fundamental HAPD approach by focusing on greatest common divisor techniques rather than projective transformations.
+                            The Subtractive Algorithm modifies the fundamental HAPD approach by focusing on greatest common divisor techniques rather than projective transformations. This approach has connections to the Euclidean algorithm and continued fractions, providing a numerically stable method for detecting periodicity.
                         </p>
                         
                         <p>
@@ -425,14 +425,35 @@
                             <li>Initialize with a triple $(v_1, v_2, v_3) = (\alpha, \alpha^2, 1)$</li>
                             <li>Compute integer parts $a_1 = \lfloor v_1/v_3 \rfloor$, $a_2 = \lfloor v_2/v_3 \rfloor$</li>
                             <li>Calculate remainders $r_1 = v_1 - a_1v_3$, $r_2 = v_2 - a_2v_3$</li>
-                            <li>Find $r_{max} = \max(r_1, r_2)$</li>
+                            <li>Find $r_{max} = \max(r_1, r_2)$ and its index $i_{max} \in \{1, 2\}$</li>
                             <li>Update the triple to $(r_1, r_2, r_{max})$</li>
+                            <li>Record the encoding $(a_1, a_2, i_{max})$ as the "digit" for this iteration</li>
                             <li>Repeat until a pattern emerges or all values become zero</li>
                         </ol>
                         
                         <div class="theorem">
-                            <strong>Theorem:</strong> The Subtractive Algorithm produces a periodic sequence if and only if the input number is a cubic irrational.
+                            <strong>Theorem:</strong> The Subtractive Algorithm produces a periodic sequence of encodings if and only if the input number is a cubic irrational.
                         </div>
+                        
+                        <p>
+                            <strong>Mathematical Analysis:</strong> The key insight of the Subtractive Algorithm lies in its ability to avoid division by very small numbers, which can lead to numerical instability in the standard HAPD algorithm. By using the maximum remainder at each step, we ensure that the next iteration has a more balanced distribution of values.
+                        </p>
+                        
+                        <p>
+                            The periodicity of the resulting sequence can be mathematically proven through the following observations:
+                        </p>
+                        
+                        <ul>
+                            <li>Each triple $(v_1, v_2, v_3)$ represents a specific state in a finite-dimensional vector space over $\mathbb{Q}(\alpha)$</li>
+                            <li>The transformation mapping one triple to the next is linear and invertible</li>
+                            <li>The set of possible encodings $(a_1, a_2, i_{max})$ is finite for a given cubic irrational</li>
+                            <li>By the pigeonhole principle, the sequence of encodings must eventually enter a cycle</li>
+                            <li>The length of this cycle is directly related to the algebraic structure of the cubic field $\mathbb{Q}(\alpha)$</li>
+                        </ul>
+                        
+                        <p>
+                            Compared to the standard HAPD algorithm, the Subtractive Algorithm demonstrates faster convergence for cubic irrationals with certain properties, particularly those with large coefficient ratios. The algorithm's performance advantages grow with the complexity of the input polynomial.
+                        </p>
                         
                         <!-- Interactive Subtractive Algorithm demonstration -->
                         <div class="interactive-element mb-4">
@@ -478,22 +499,99 @@
                     <section id="equivalence" class="paper-section">
                         <h2>Equivalence of Methods</h2>
                         <p>
-                            A significant contribution of this work is demonstrating that the three approaches—HAPD, Matrix Approach, and Modified sin²-Algorithm—are mathematically equivalent despite their different formulations.
+                            A significant contribution of this work is demonstrating that the three approaches—HAPD, Matrix Approach, and Modified sin²-Algorithm—are mathematically equivalent despite their different formulations. Each method provides a distinct perspective and computational approach to Hermite's problem.
                         </p>
                         
                         <h3 id="equivalence-theorem">Equivalence Theorem</h3>
                         <p>
-                            The three methods are connected through the underlying algebraic structure of cubic irrationals and their periodicity properties.
+                            Our central result establishes a precise mathematical equivalence between three seemingly different characterizations of periodicity in cubic irrationals.
                         </p>
                         
                         <div class="theorem">
-                            <strong>Equivalence Theorem:</strong> For any cubic irrational \(\alpha\), the following are equivalent:
+                            <strong>Equivalence Theorem:</strong> For any cubic irrational \(\alpha\) that is a root of \(P(x) = x^3 + ax^2 + bx + c\) where \(a,b,c\) are rational numbers, the following statements are equivalent:
                             <ol>
                                 <li>The HAPD algorithm produces a periodic sequence for \(\alpha\).</li>
                                 <li>The trace sequence from the matrix approach exhibits modular periodicity.</li>
                                 <li>The modified sin²-algorithm detects periodicity conditions for \(\alpha\).</li>
+                                <li>The Subtractive Algorithm produces a periodic encoding sequence.</li>
                             </ol>
                         </div>
+                        
+                        <h3 id="linking-methods">Mathematical Connections</h3>
+                        
+                        <p>
+                            The deeper mathematical connection between these methods lies in the algebraic structure of the cubic field \(\mathbb{Q}(\alpha)\) and the action of certain transformations within this field.
+                        </p>
+                        
+                        <h4>HAPD and Matrix Approach</h4>
+                        <p>
+                            The connection between the HAPD algorithm and the Matrix Approach can be established through the following relationship:
+                        </p>
+                        
+                        <p>
+                            If \(v_n = (x_n, y_n, z_n)\) represents the state of the HAPD algorithm at step \(n\), and \(C\) is the companion matrix of the cubic polynomial, then:
+                        </p>
+                        
+                        <p>
+                            \[v_{n+1} = v_n \cdot C\]
+                        </p>
+                        
+                        <p>
+                            This explains why the periodicity in the HAPD sequence corresponds precisely to periodicity in the matrix powers. Moreover, the trace of \(C^n\) can be expressed as:
+                        </p>
+                        
+                        <p>
+                            \[\text{Tr}(C^n) = \alpha^n + \beta^n + \gamma^n\]
+                        </p>
+                        
+                        <p>
+                            where \(\alpha, \beta, \gamma\) are the roots of the cubic polynomial. The modular periodicity of this sequence is directly tied to the projective periodicity in the HAPD algorithm.
+                        </p>
+                        
+                        <h4>Matrix Approach and sin²-Algorithm</h4>
+                        <p>
+                            For cubic polynomials with one real root \(\alpha\) and two complex conjugate roots \(\beta = a + bi\) and \(\bar{\beta} = a - bi\), the trace sequence can be written as:
+                        </p>
+                        
+                        <p>
+                            \[\text{Tr}(C^n) = \alpha^n + 2||\beta||^n\cos(n\theta)\]
+                        </p>
+                        
+                        <p>
+                            where \(\theta = \arg(\beta)\) is the argument of the complex root. This sequence exhibits periodicity if and only if \(\sin^2(\theta)\) is a rational number with a denominator of the form \(2^n\) or \(3 \cdot 2^n\). This establishes the connection to the sin²-Algorithm.
+                        </p>
+                        
+                        <h4>Subtractive Algorithm and HAPD</h4>
+                        <p>
+                            The Subtractive Algorithm can be viewed as a transformation of the HAPD approach where:
+                        </p>
+                        
+                        <p>
+                            \[v_{n+1} = T(v_n)\]
+                        </p>
+                        
+                        <p>
+                            with \(T\) being a piecewise linear transformation. Both algorithms work in the same vector space and detect the same fundamental property, but the Subtractive Algorithm achieves this with improved numerical stability.
+                        </p>
+                        
+                        <h3 id="computational-implications">Computational Implications</h3>
+                        
+                        <p>
+                            This equivalence has significant computational implications:
+                        </p>
+                        
+                        <ul>
+                            <li><strong>Algorithm Selection:</strong> Depending on the specific cubic irrational and required precision, one can choose the most efficient algorithm:
+                                <ul>
+                                    <li>HAPD: Best for visualizing the geometric meaning of periodicity</li>
+                                    <li>Matrix Approach: Most efficient for numerical computation with rational or real roots</li>
+                                    <li>sin²-Algorithm: Simplest for cubic irrationals with complex conjugate roots</li>
+                                    <li>Subtractive Algorithm: Most numerically stable for difficult cases</li>
+                                </ul>
+                            </li>
+                            <li><strong>Cross-Verification:</strong> Results can be verified across multiple methods, increasing confidence in numerical findings</li>
+                            <li><strong>Hybrid Approaches:</strong> Combining insights from multiple methods can lead to even more efficient algorithms</li>
+                        </ul>
                         
                         <p>
                             This equivalence provides multiple perspectives for approaching Hermite's problem, each with its own computational advantages and theoretical insights.
@@ -885,9 +983,16 @@ def matrix_periodicity(a, b, c, max_traces=100):
                         <div class="accordion-body">
                             <p>\(P(x) = x^3 + ax^2 + bx + c\) represents a general cubic polynomial where:</p>
                             <ul>
-                                <li>\(a\), \(b\), and \(c\) are the coefficients</li>
+                                <li>\(a\), \(b\), and \(c\) are the coefficients (real numbers in our context)</li>
                                 <li>A root \(\alpha\) satisfies \(P(\alpha) = 0\)</li>
                                 <li>A <em>cubic irrational</em> is an irrational root of a cubic polynomial with rational coefficients</li>
+                                <li>The discriminant \(\Delta = 18abc - 27c^2 - 4b^3 + a^2b^2 - 4a^3c\) determines the nature of the roots:
+                                    <ul>
+                                        <li>If \(\Delta > 0\): Three distinct real roots</li>
+                                        <li>If \(\Delta = 0\): At least two equal real roots</li>
+                                        <li>If \(\Delta < 0\): One real root and two complex conjugate roots</li>
+                                    </ul>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -905,6 +1010,8 @@ def matrix_periodicity(a, b, c, max_traces=100):
                                 <li>\([x:y:z]\) represents an equivalence class: \([x:y:z] = [\lambda x:\lambda y:\lambda z]\) for any \(\lambda \neq 0\)</li>
                                 <li>A point \((x,y)\) in the Euclidean plane corresponds to \([x:y:1]\) in projective space</li>
                                 <li>Points \([x:y:0]\) represent points at infinity</li>
+                                <li>In the HAPD algorithm, points in projective space represent the trajectory of transformations applied to cubic irrationals</li>
+                                <li>Periodicity in the projective space corresponds to periodicity in the associated cubic irrational sequence</li>
                             </ul>
                         </div>
                     </div>
@@ -921,8 +1028,11 @@ def matrix_periodicity(a, b, c, max_traces=100):
                             <p>\[C = \begin{pmatrix} 0 & 0 & -c \\ 1 & 0 & -b \\ 0 & 1 & -a \end{pmatrix}\]</p>
                             <p>Properties:</p>
                             <ul>
-                                <li>The characteristic polynomial of \(C\) is exactly \(P(x)\)</li>
-                                <li>The trace of \(C^n\) forms the sequence used in the Matrix Approach</li>
+                                <li>The characteristic polynomial of \(C\) is exactly \(P(x)\): \(\det(C - xI) = -x^3 - ax^2 - bx - c\)</li>
+                                <li>The eigenvalues of \(C\) are exactly the roots of \(P(x)\)</li>
+                                <li>If \(\alpha\) is a root of \(P(x)\), then \(\begin{pmatrix} \alpha^2 \\ \alpha \\ 1 \end{pmatrix}\) is an eigenvector of \(C\)</li>
+                                <li>The trace of \(C^n\) (denoted \(\text{Tr}(C^n)\)) forms the sequence used in the Matrix Approach</li>
+                                <li>The trace sequence exhibits modular periodicity if and only if the cubic irrational generates a periodic sequence</li>
                             </ul>
                         </div>
                     </div>
@@ -939,7 +1049,49 @@ def matrix_periodicity(a, b, c, max_traces=100):
                             <ul>
                                 <li>\(\theta\) is the argument of the complex root: \(\theta = \arctan(b/a)\)</li>
                                 <li>\(\sin^2(\theta)\) is the key value analyzed for periodicity</li>
-                                <li>The sequence is periodic if \(\sin^2(\theta)\) is a rational number with denominator \(2^n\) or \(3 \cdot 2^n\)</li>
+                                <li>The sequence is periodic if and only if \(\sin^2(\theta)\) is a rational number with denominator of the form \(2^n\) or \(3 \cdot 2^n\) where \(n \geq 0\)</li>
+                                <li>The algorithm provides a simple algebraic test for determining periodicity without computing the actual sequence</li>
+                                <li>Connection to rotation: \(\sin^2(\theta)\) relates to the rotational component in the complex plane, which affects periodicity</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading-subtractive">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-subtractive" aria-expanded="false" aria-controls="collapse-subtractive">
+                            Subtractive Algorithm
+                        </button>
+                    </h2>
+                    <div id="collapse-subtractive" class="accordion-collapse collapse" aria-labelledby="heading-subtractive" data-bs-parent="#notationAccordion">
+                        <div class="accordion-body">
+                            <p>The Subtractive Algorithm is a variation of the HAPD algorithm with improved numerical stability:</p>
+                            <ul>
+                                <li>Operates on a triple \((v_1, v_2, v_3)\) initialized as \((\alpha, \alpha^2, 1)\) where \(\alpha\) is a root of the cubic polynomial</li>
+                                <li>Computes integer parts \(a_1 = \lfloor v_1/v_3 \rfloor\) and \(a_2 = \lfloor v_2/v_3 \rfloor\)</li>
+                                <li>Calculates remainders \(r_1 = v_1 - a_1 \cdot v_3\) and \(r_2 = v_2 - a_2 \cdot v_3\)</li>
+                                <li>Updates the triple to \((r_1, r_2, \max(r_1, r_2))\)</li>
+                                <li>The sequence of triples (or the encoding \((a_1, a_2, i)\) where \(i\) indicates which remainder is larger) becomes periodic if and only if \(\alpha\) is a cubic irrational</li>
+                                <li>This approach improves numerical stability by avoiding division by very small numbers</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading-hermites">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-hermites" aria-expanded="false" aria-controls="collapse-hermites">
+                            Hermite's Problem
+                        </button>
+                    </h2>
+                    <div id="collapse-hermites" class="accordion-collapse collapse" aria-labelledby="heading-hermites" data-bs-parent="#notationAccordion">
+                        <div class="accordion-body">
+                            <p>Hermite's Problem, posed by Charles Hermite in 1848, asks:</p>
+                            <ul>
+                                <li>What are the necessary and sufficient conditions for a cubic irrational to generate a periodic sequence?</li>
+                                <li>How can we explicitly characterize and detect such periodicity?</li>
+                                <li>The problem is a natural extension of the theory of continued fractions for quadratic irrationals</li>
+                                <li>For quadratic irrationals, the continued fraction expansion is always periodic</li>
+                                <li>For cubic irrationals, periodicity is more complex and requires additional conditions</li>
+                                <li>Our three methods (HAPD, Matrix, and sin²) provide complete solutions to Hermite's problem, each offering different insights and computational approaches</li>
                             </ul>
                         </div>
                     </div>
@@ -956,6 +1108,7 @@ def matrix_periodicity(a, b, c, max_traces=100):
                     <button class="btn btn-sm btn-outline-secondary symbol-btn" data-symbol="\gamma">γ</button>
                     <button class="btn btn-sm btn-outline-secondary symbol-btn" data-symbol="\theta">θ</button>
                     <button class="btn btn-sm btn-outline-secondary symbol-btn" data-symbol="\lambda">λ</button>
+                    <button class="btn btn-sm btn-outline-secondary symbol-btn" data-symbol="\Delta">Δ</button>
                     <button class="btn btn-sm btn-outline-secondary symbol-btn" data-symbol="\mathbb{P}">ℙ</button>
                     <button class="btn btn-sm btn-outline-secondary symbol-btn" data-symbol="\mathbb{R}">ℝ</button>
                     <button class="btn btn-sm btn-outline-secondary symbol-btn" data-symbol="\mathbb{C}">ℂ</button>

@@ -1,0 +1,89 @@
+<div class="methods-section">
+    <h2 class="mb-4">Three Novel Approaches to Hermite's Problem</h2>
+    <div class="row g-4 mb-4">
+        <div class="col-md-4">
+            <div class="card method-card p-3 h-100">
+                <div class="text-center"><i class="bi bi-diagram-3 method-icon"></i></div>
+                <h4 class="text-center">HAPD Algorithm</h4>
+                <p>The Hermite Algorithm for Periodicity Detection (HAPD) uses projective geometry to visualize and detect periodicity in cubic irrationals.</p>
+                <ul>
+                    <li>Leverages projective space \(\mathbb{P}^2\)</li>
+                    <li>Geometric interpretation of periodicity</li>
+                    <li>Handles all cubic irrationals</li>
+                </ul>
+                <a href="paper-viewer.html#hapd-algorithm" class="btn btn-outline-primary btn-sm mt-2">Learn More</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card method-card p-3 h-100">
+                <div class="text-center"><i class="bi bi-grid-3x3 method-icon"></i></div>
+                <h4 class="text-center">Matrix Approach</h4>
+                <p>Uses companion matrices and trace sequences to algebraically characterize periodicity in cubic irrationals.</p>
+                <ul>
+                    <li>Companion matrix encodes the polynomial</li>
+                    <li>Trace sequence reveals modular periodicity</li>
+                    <li>Connects to Galois theory</li>
+                </ul>
+                <a href="paper-viewer.html#matrix-approach" class="btn btn-outline-primary btn-sm mt-2">Learn More</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card method-card p-3 h-100">
+                <div class="text-center"><i class="bi bi-distribute-vertical method-icon"></i></div>
+                <h4 class="text-center">Modified sin²-Algorithm</h4>
+                <p>An extension of Karpenkov's algorithm, adapted for cubics with complex conjugate roots, using the squared sine of the argument.</p>
+                <ul>
+                    <li>Specialized for complex roots</li>
+                    <li>Simple algebraic periodicity test</li>
+                    <li>Algorithmic efficiency</li>
+                </ul>
+                <a href="paper-viewer.html#sin-squared" class="btn btn-outline-primary btn-sm mt-2">Learn More</a>
+            </div>
+        </div>
+    </div>
+    <h4 class="mt-5">Comparison Table</h4>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped mt-2">
+            <thead class="table-light">
+                <tr>
+                    <th>Method</th>
+                    <th>Perspective</th>
+                    <th>Strengths</th>
+                    <th>Best For</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>HAPD Algorithm</td>
+                    <td>Geometric / Projective</td>
+                    <td>Visual intuition, works for all cubics</td>
+                    <td>Understanding structure, teaching</td>
+                </tr>
+                <tr>
+                    <td>Matrix Approach</td>
+                    <td>Algebraic / Linear</td>
+                    <td>Efficient computation, links to Galois theory</td>
+                    <td>Numerical work, algebraic insight</td>
+                </tr>
+                <tr>
+                    <td>sin²-Algorithm</td>
+                    <td>Trigonometric / Complex</td>
+                    <td>Simple periodicity test for complex roots</td>
+                    <td>Special cases, quick checks</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="mt-5">
+        <h4>Equivalence of Methods</h4>
+        <div class="alert alert-secondary">
+            <strong>Theorem:</strong> For any cubic irrational \(\alpha\), the following are equivalent:
+            <ol>
+                <li>The HAPD algorithm produces a periodic sequence for \(\alpha\).</li>
+                <li>The trace sequence from the matrix approach exhibits modular periodicity.</li>
+                <li>The modified sin²-algorithm detects periodicity for \(\alpha\).</li>
+            </ol>
+            <div class="mt-2">Each method offers a unique lens, but all lead to the same mathematical truth.</div>
+        </div>
+    </div>
+</div> 
