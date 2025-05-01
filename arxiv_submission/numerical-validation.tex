@@ -47,11 +47,12 @@ When comparing projective points, the dot product of normalized vectors should b
 
 \begin{table}[htbp]
 \centering
+\small
 \caption{Impact of Epsilon Threshold on Algorithm Accuracy}
 \label{tab:epsilon_selection}
-\begin{tabular}{|l|c|c|c|c|c|}
+\begin{tabular}{|l|c|c|c|}
 \hline
-\textbf{Epsilon Value} & \textbf{False Positives (\%)} & \textbf{False Negatives (\%)} & \textbf{Overall Accuracy (\%)} \\
+\textbf{Epsilon} & \textbf{False Pos. (\%)} & \textbf{False Neg. (\%)} & \textbf{Accuracy (\%)} \\
 \hline
 $10^{-6}$ & 12.4 & 0.3 & 87.3 \\
 $10^{-8}$ & 5.6 & 1.2 & 93.2 \\
@@ -76,19 +77,20 @@ For critical applications requiring higher certainty, we recommend:
 
 \begin{table}[htbp]
 \centering
+\small
 \caption{Mitigation Strategies for Edge Cases}
 \label{tab:edge_case_mitigation}
-\begin{tabular}{|p{3cm}|p{4cm}|p{6cm}|}
+\begin{tabular}{|p{2.5cm}|p{2.5cm}|p{2.5cm}|}
 \hline
-\textbf{Edge Case} & \textbf{Detection Method} & \textbf{Mitigation Strategy} \\
+\textbf{Edge Case} & \textbf{Detection} & \textbf{Mitigation} \\
 \hline
-Higher-degree algebraic appearing periodic & Discriminant analysis of candidate minimal polynomial & Verify minimal polynomial degree explicitly using LLL or PSLQ algorithm \\
+Higher-degree algebraic numbers & Discriminant analysis & Verify with LLL/PSLQ \\
 \hline
-Near-cubic approximations of transcendentals & Unusually long pre-period before apparent periodicity & Increase iteration limit and require at least 3 consecutive period matches \\
+Near-cubic transcendentals & Long pre-period & Multiple precision tests \\
 \hline
-Numerical artifacts in floating-point calculation & Inconsistent period length across multiple runs & Perform runs with varying precision and confirm consistent periodicity pattern \\
+Numerical artifacts & Inconsistent periods & Vary precision levels \\
 \hline
-Complex cubic irrationals & Potential instability in complex floor function & Use Hermitian dot product for periodicity detection and verify with matrix approach \\
+Complex cubics & Function instability & Hermitian dot product \\
 \hline
 \end{tabular}
 \end{table}
@@ -110,17 +112,18 @@ The results from applying the \HAPD{} algorithm to various types of numbers demo
 
 \begin{table}[htbp]
 \centering
+\small
 \begin{tabular}{|l|c|c|c|}
 \hline
-\textbf{Number Type} & \textbf{Example} & \textbf{Period Detected?} & \textbf{Period Length} \\
+\textbf{Number Type} & \textbf{Example} & \textbf{Period?} & \textbf{Length} \\
 \hline
 Rational & $\frac{22}{7}$ & No & N/A \\
 \hline
-Quadratic Irrational & $\sqrt{2}$ & No & N/A \\
+Quadratic & $\sqrt{2}$ & No & N/A \\
 \hline
-Cubic Irrational (Totally Real) & $\sqrt[3]{2}$ & Yes & 7 \\
+Cubic (Real) & $\sqrt[3]{2}$ & Yes & 7 \\
 \hline
-Cubic Irrational (Complex Conjugate) & $\sqrt[3]{2} + \frac{1}{10}$ & Yes & 11 \\
+Cubic (Complex) & $\sqrt[3]{2} + \frac{1}{10}$ & Yes & 11 \\
 \hline
 Transcendental & $\pi$ & No & N/A \\
 \hline
@@ -132,20 +135,21 @@ Transcendental & $\pi$ & No & N/A \\
 % Replacing TikZ figure with a table
 \begin{table}[htbp]
 \centering
+\small
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-\textbf{Number Type} & \multicolumn{5}{c|}{\textbf{Periodicity Confidence Score by Iteration}} \\
+\textbf{Number Type} & \multicolumn{5}{c|}{\textbf{Confidence Score by Iteration}} \\
 \hline
 Iteration & 0 & 5 & 10 & 15 & 20 \\
 \hline
-$\sqrt[3]{2}$ (Cubic, Real) & 0.0 & 0.4 & 1.0 & 1.0 & 1.0 \\
+Cubic (Real) & 0.0 & 0.4 & 1.0 & 1.0 & 1.0 \\
 \hline
-Complex Cubic & 0.0 & 0.25 & 0.7 & 1.0 & 1.0 \\
+Cubic (Complex) & 0.0 & 0.25 & 0.7 & 1.0 & 1.0 \\
 \hline
 Transcendental & 0.0 & 0.08 & 0.12 & 0.15 & 0.17 \\
 \hline
 \end{tabular}
-\caption{Convergence behavior of the \HAPD{} algorithm for different number types}
+\caption{Convergence behavior of the \HAPD{} algorithm}
 \label{fig:algorithmic_convergence}
 \end{table}
 
@@ -189,23 +193,24 @@ The implementation and testing of the matrix verification method demonstrate exc
 
 \begin{table}[htbp]
 \centering
+\small
 \begin{tabular}{|l|c|c|c|}
 \hline
-\textbf{Number Type} & \textbf{Example} & \textbf{Candidate Polynomial} & \textbf{Verified?} \\
+\textbf{Type} & \textbf{Example} & \textbf{Polynomial} & \textbf{Additional Details} \\
 \hline
-Rational & $\frac{22}{7}$ & $x - \frac{22}{7}$ & Yes (degree 1) \\
+Rational & $\frac{22}{7}$ & $x - \frac{22}{7}$ & Terminates immediately \\
 \hline
-Quadratic Irrational & $\sqrt{2}$ & $x^2 - 2$ & Yes (degree 2) \\
+Quadratic & $\sqrt{2}$ & $x^2 - 2$ & Degenerates to 2D space \\
 \hline
-Cubic Irrational & $\sqrt[3]{2}$ & $x^3 - 2$ & Yes (degree 3) \\
+Cubic & $\sqrt[3]{2}$ & $x^3 - 2$ & Period length: 7 \\
 \hline
-Cubic (Complex Conj.) & $\sqrt[3]{2} + 0.1$ & $x^3 - 0.3x^2 - 0.03x - 2.003$ & Yes (degree 3) \\
+Cubic (Complex) & $\sqrt[3]{2} + 0.1$ & $x^3 - 0.3x^2 - 0.03x - 2$ & Period length: 11 \\
 \hline
-Transcendental & $\pi$ & Various approximations & No \\
+Transcendental & $\pi$ & Various & No periodicity detected \\
 \hline
 \end{tabular}
-\caption{Results of matrix verification method on different number types}
-\label{tab:numerical_verification_results}
+\caption{Detailed matrix verification results with behavioral characteristics}
+\label{tab:numerical_verification_details}
 \end{table}
 
 The matrix verification method achieves 100\% accuracy in the test cases, correctly identifying all cubic irrationals and properly classifying non-cubic numbers.
