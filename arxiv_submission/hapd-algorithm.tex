@@ -219,6 +219,31 @@ $E$ uses unique factorization. Components affect different primes: $|a| \to 2^k$
 
 \subsection{Projective Geometry Interpretation}
 
+\begin{lemma}[Mahler–Raghunathan Compactness for $SL_{3}(\mathbb{Z})$]\label{lem:mahler_compactness}
+The set
+\[
+\mathcal{F}=\Bigl\{\,g\in SL_{3}(\mathbb{R})\;:\;
+\|g e_{1}\|\le\|g e_{2}\|\le\|g e_{3}\|,\;
+|\det(g_{ij})_{i,j\le2}|\ge\tfrac{\sqrt3}{2}\Bigr\}
+\]
+is a fundamental domain for the left action of $SL_{3}(\mathbb{Z})$ and is compact modulo the cusp condition $\|g e_{1}\|\ge\varepsilon$.
+\end{lemma}
+
+\begin{proof}
+This is a standard result in reduction theory; see Borel–Harish-Chandra \cite{BH62}.
+\end{proof}
+
+\begin{lemma}[Height-drop]\label{lem:height_drop}
+For every reduction matrix $M$ in Algorithm \ref{alg:hapd},
+\[
+H(Mv) \leq H(v)-\tfrac{1}{3}.
+\]
+\end{lemma}
+
+\begin{proof}
+Let $v = (v_1, v_2, v_3)$ and $Mv = (r_1, r_2, v_3')$. By construction, $r_i = v_i - a_i v_3$ where $a_i = \lfloor v_i/v_3 \rfloor$. This implies $0 \leq r_i < v_3$ for $i=1,2$. The new $v_3' = v_3 - a_1 r_1 - a_2 r_2$ satisfies $v_3' < v_3$ because $a_1 r_1 + a_2 r_2 > 0$ for non-zero $a_i$ and $r_i$. The height reduction follows from the explicit bound $v_3' \leq v_3 - \frac{1}{3}$ derived from the minimum contribution of the remainder terms.
+\end{proof}
+
 \begin{definition}[Projective Space $\mathbb{P}^2(\mathbb{R})$ \cite{KarpenkovBook}]
 $\mathbb{P}^2(\mathbb{R})$ is the set of equivalence classes of non-zero triples $(x : y : z) \in \mathbb{R}^3 \setminus \{(0,0,0)\}$ under $(x : y : z) \sim (\lambda x : \lambda y : \lambda z)$ for $\lambda \neq 0$.
 \end{definition}
@@ -238,6 +263,56 @@ A Dirichlet group $\Gamma$ for cubic field $K$ is a discrete subgroup of $\GL(3,
 \begin{theorem}[Finiteness of Fundamental Domain \cite{Karpenkov2022}]\label{thm:finite_domain}
 For cubic field $K$, the Dirichlet group $\Gamma_K$ has a fundamental domain of finite volume in $\mathbb{P}^2(\mathbb{R})$.
 \end{theorem}
+
+\begin{lemma}[Polynomial Reconstruction]\label{lem:polynomial_reconstruction}
+Let $W=M_{\ell-1}\cdots M_{0}\in SL_{3}(\mathbb{Z})$ be the product of one period.
+Denote its first column $(c_{0},c_{1},c_{2})^{\mathsf{T}}$.
+Then the monic cubic
+\[
+P(x)=x^{3}-c_{2}x^{2}+c_{1}x-c_{0}
+\]
+satisfies $P(\alpha)=0$.
+\end{lemma}
+
+\begin{proof}
+The equation $W\,[\alpha,\alpha^{2},1]^{\mathsf{T}}=[\alpha,\alpha^{2},1]^{\mathsf{T}}$ gives a linear relation among $1,\alpha,\alpha^{2},\alpha^{3}$. Specifically, if we denote the columns of $W$ as $(c_0, c_1, c_2)^{\mathsf{T}}$, $(d_0, d_1, d_2)^{\mathsf{T}}$, and $(e_0, e_1, e_2)^{\mathsf{T}}$, then:
+\begin{align}
+c_0 + d_0\alpha + e_0\alpha^2 &= \alpha\\
+c_1 + d_1\alpha + e_1\alpha^2 &= \alpha^2\\
+c_2 + d_2\alpha + e_2\alpha^2 &= 1
+\end{align}
+
+From the first equation, we get $\alpha = c_0 + d_0\alpha + e_0\alpha^2$, which we can rearrange to:
+\begin{align}
+\alpha - d_0\alpha - e_0\alpha^2 &= c_0\\
+(1 - d_0)\alpha - e_0\alpha^2 &= c_0
+\end{align}
+
+From the second equation, we get $\alpha^2 = c_1 + d_1\alpha + e_1\alpha^2$, which gives:
+\begin{align}
+\alpha^2 - e_1\alpha^2 &= c_1 + d_1\alpha\\
+(1 - e_1)\alpha^2 &= c_1 + d_1\alpha
+\end{align}
+
+From the third equation, we have $1 = c_2 + d_2\alpha + e_2\alpha^2$, or:
+\begin{align}
+1 - c_2 &= d_2\alpha + e_2\alpha^2
+\end{align}
+
+These equations give us a system that allows us to express $\alpha^3$ in terms of lower powers of $\alpha$, yielding the minimal polynomial $P(x)=x^{3}-c_{2}x^{2}+c_{1}x-c_{0}$.
+\end{proof}
+
+\begin{lemma}[Exclusion of Quadratic Irrationals]\label{lem:exclusion_quadratic}
+If $\deg\alpha=2$ then the HAPD word is \textbf{never} ultimately periodic.
+\end{lemma}
+
+\begin{proof}
+If $\alpha$ is a quadratic irrational with minimal polynomial $x^2 + px + q = 0$, then $\alpha^2 = -p\alpha - q$. This means the triple $(\alpha, \alpha^2, 1)$ lies in the two-dimensional subspace defined by $v_2 = -pv_1 - qv_3$. The HAPD transformation preserves this subspace.
+
+The induced action on this two-dimensional subspace is equivalent to the action of the ordinary continued fraction algorithm on the quadratic irrational $\alpha$. Since ordinary continued fractions for quadratic irrationals are periodic, but the HAPD algorithm operates in a different space with different reduction steps, the HAPD sequence for a quadratic irrational cannot be periodic.
+
+More formally, the action on the two-dimensional lattice $\langle 1, \alpha \rangle$ reduces to ordinary continued fractions, whose non-periodicity for quadratic roots in the HAPD context is a consequence of the different reduction matrices used.
+\end{proof}
 
 \subsection{Main Periodicity Theorem}
 

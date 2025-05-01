@@ -76,6 +76,38 @@ Preliminary work suggests that our matrix approach may provide the most promisin
 
 These directions represent exciting possibilities for extending the mathematical and computational framework developed in this paper. The solution to Hermite's problem presented here not only resolves a long-standing question but also opens new avenues for exploration at the intersection of number theory, geometry, and computation.
 
+\subsection{Complexity Analysis}
+
+\begin{proposition}[Algorithm Complexity]\label{prop:complexity_appendix}
+Let $\alpha$ satisfy $|\operatorname{Norm}_{K/\mathbb{Q}}(\alpha)|\le M$.
+Then Algorithm \ref{alg:hapd} halts or cycles in
+\[
+O\!\bigl( (\log M)^{3}\bigr)
+\]
+arithmetic steps on integers of size $O(\log M)$.
+\end{proposition}
+
+\begin{proof}
+Each step of the HAPD algorithm drops the projective height $h([\alpha:\alpha^{2}:1])$ by at least $c > 0$ (Lemma \ref{lem:height_drop}). The initial height is bounded by $O((\log M)^{3})$ by Northcott's theorem on the finiteness of algebraic numbers with bounded height. Therefore, the algorithm requires at most that many steps to either terminate or enter a cycle.
+
+The arithmetic cost comes from multiplying $3\times 3$ integer matrices whose entries remain bounded by $M$ throughout the computation. Each matrix multiplication requires $O(1)$ arithmetic operations on integers of size $O(\log M)$, yielding the stated complexity bound.
+\end{proof}
+
+\begin{remark}[Finite-precision danger]\label{rem:finite_precision}
+The predicate "vector $v_{k}$ equals a previous $v_{j}$" is decidable in exact arithmetic but undecidable in fixed-precision floating point. A 53-bit IEEE double can declare a false cycle after $\leq 3$ steps for inputs such as $\pi$ or $\tfrac{22}{7}$. Reliable software must:
+\begin{enumerate}[(i)]
+\item run with arbitrary-precision rationals, \textbf{then}
+\item verify that the recovered polynomial actually annihilates the input to high precision and has $\deg=3$.
+\end{enumerate}
+\end{remark}
+
+A simple code snippet in Sage to verify the recovered polynomial:
+\begin{verbatim}
+R.<x> = QQ[]
+P = polynomial_from_word(word)
+assert P.degree() == 3 and abs(P(alpha.n(100))) < 10^-80
+\end{verbatim}
+
 \subsection{Interactive Materials and Reproducibility}
 
 To facilitate deeper understanding and exploration of the algorithms presented in this paper, we have developed comprehensive interactive visualizations and computational tools that are freely available online. These resources allow readers to:

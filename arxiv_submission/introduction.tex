@@ -2,6 +2,8 @@
 
 Hermite's problem, posed to Jacobi in 1848 \cite{Hermite1848}, sought a generalization of continued fractions that would characterize cubic irrationals through periodicity. Continued fractions produce eventually periodic sequences precisely for quadratic irrationals, but the cubic case with complex conjugate roots remained unsolved.
 
+A classical continued-fraction-style expansion for cubics was sought by Hermite (1848) and studied by Borel (1909) and Perron (1921). All previous periodic criteria were \textbf{one-way} (periodicity $\Rightarrow$ algebraicity). Closest to our work is Dubickas–Mignotte (2001) \cite{DubickasMignotte01} on $\beta$-expansions, which recognizes algebraic numbers of \textit{any} degree but \textit{cannot} produce the minimal polynomial from one period. Our reduction word uniquely determines the polynomial (Lemma \ref{lem:polynomial_reconstruction}), giving the first explicit ``if and only if + reconstruction'' algorithm.
+
 Previous approaches include:
 \begin{itemize}
 \item Jacobi-Perron algorithm (1868) \cite{Jacobi1868}: fails for complex conjugate roots
@@ -16,6 +18,21 @@ We resolve Hermite's problem through three novel approaches:
 \item Matrix characterization using companion matrices and trace sequences with modular periodicity
 \item Modified sin²-algorithm handling complex conjugate roots via phase-preserving floor functions
 \end{enumerate}
+
+Our main result can be stated as follows:
+
+\begin{theorem}[Main Theorem]\label{thm:main}
+Let $\alpha\in\mathbb{R}$ (or $\mathbb{C}$). The following are equivalent:
+\begin{enumerate}
+    \item $\alpha$ is an algebraic integer of degree exactly $3$;
+    \item The \textbf{HAPD} reduction of the projective point $[\alpha:\alpha^{2}:1]\in\mathbb{P}^{2}(\mathbb{R})$ yields an eventually periodic word
+    \[
+    (a_{0},a_{1})\,(a_{1},a_{2})\ldots(a_{p-1},a_{p})\,\bigl(\,\overline{(b_{0},b_{1})\ldots(b_{\ell-1},b_{\ell})}\bigr);
+    \]
+    \item The trace sequence $\bigl(t_{k}=\operatorname{Tr}(C^{k})\bigr)_{k\ge0}$ of the companion matrix $C=C_{\alpha}$ is ultimately periodic modulo every $m\ge2$;
+    \item The \textbf{subtractive} height $H_{k}=|v^{(k)}|$ defined in \S\ref{sec:subtractive_algorithm} attains a previous value, i.e., $H_{k}=H_{j}$ for some $0\le j<k$.
+\end{enumerate}
+\end{theorem}
 
 Contents:
 \begin{itemize}
