@@ -1,0 +1,105 @@
+conclusion.tex:\section{Conclusion}\label{sec:conclusion}
+conclusion.tex:\begin{conjecture}[Higher Degree Generalization]\label{conj:higher_degree}
+conclusion.tex:\begin{proposition}[Algorithm Complexity]\label{prop:complexity_appendix}
+conclusion.tex:\begin{remark}[Finite-precision danger]\label{rem:finite_precision}
+equivalence.tex:\section{Equivalence of Algorithmic and Matrix Approaches}\label{sec:equivalence}
+equivalence.tex:\begin{theorem}[Structural Equivalence]\label{thm:struct_equiv}
+equivalence.tex:\begin{proposition}[Algebraic Transformation Equivalence]\label{prop:alg_equiv}
+equivalence.tex:\begin{theorem}[Computational Equivalence]\label{thm:comp_equiv}
+equivalence.tex:\begin{theorem}[Unified Characterization]\label{thm:unified_char}
+equivalence.tex:\begin{theorem}[Completeness of Solution]\label{thm:complete_solution}
+galois-theory.tex:\section{Galois Theoretic Proof of Non-Periodicity}\label{sec:galois_theory}
+galois-theory.tex:\begin{theorem}[Lagrange \cite{Lagrange1770}]\label{thm:lagrange}
+galois-theory.tex:\begin{theorem}[Galois Groups of Cubic Polynomials \cite{Cox2012}]\label{thm:cubic_galois}
+galois-theory.tex:\begin{proposition}\label{prop:no_intermediate_field}
+galois-theory.tex:\begin{theorem}[Non-Periodicity of Cubic Irrationals \cite{Davenport1961}]\label{thm:non_periodicity}
+galois-theory.tex:\begin{equation}\label{eq:quadratic}
+galois-theory.tex:\begin{equation}\label{eq:cubic}
+galois-theory.tex:\begin{equation}\label{eq:alpha_squared}
+galois-theory.tex:\begin{equation}\label{eq:combined}
+galois-theory.tex:B^2 - AC - pAB + qA^2 &= 0 \label{eq:coeff1}\\
+galois-theory.tex:BC - pAC + rA^2 &= 0 \label{eq:coeff2}
+galois-theory.tex:\begin{equation}\label{eq:B_value}
+galois-theory.tex:\begin{corollary}\label{cor:cf_insufficient}
+hapd-algorithm.tex:\section{The HAPD Algorithm}\label{sec:hapd}
+hapd-algorithm.tex:\begin{definition}[Dirichlet Group $\Gamma_k$]\label{def:dirichlet_group}
+hapd-algorithm.tex:\begin{theorem}[Finite-Volume Fundamental Domain]\label{thm:finite_volume}
+hapd-algorithm.tex:\begin{theorem}[HAPD and Dirichlet Group Correspondence]\label{thm:hapd_dirichlet}
+hapd-algorithm.tex:\begin{theorem}[Periodicity via Dirichlet's Pigeonhole]\label{thm:periodicity}
+hapd-algorithm.tex:\label{alg:hapd}
+hapd-algorithm.tex:\begin{theorem}[Cubic Characterization]\label{thm:cubic_periodic}
+hapd-algorithm.tex:\begin{theorem}[Only Cubic Periodicity]\label{thm:only_cubic_periodic}
+hapd-algorithm.tex:\section{Hermite Algorithm for Periodicity Detection (\HAPD)}\label{sec:hapd_algorithm}
+hapd-algorithm.tex:\label{fig:hapd_flowchart}
+hapd-algorithm.tex:\label{fig:projective_visualization}
+hapd-algorithm.tex:\label{fig:projective_trajectory}
+hapd-algorithm.tex:\begin{algorithm_def}[\HAPD{} Algorithm]\label{alg:hapd_detailed}
+hapd-algorithm.tex:\begin{proposition}[Computational Complexity]\label{prop:complexity}
+hapd-algorithm.tex:\begin{lemma}[Injectivity of Encoding]\label{lem:encoding_injective}
+hapd-algorithm.tex:\begin{lemma}[Mahler–Raghunathan Compactness for $SL_{3}(\mathbb{Z})$]\label{lem:mahler_compactness}
+hapd-algorithm.tex:\begin{lemma}[Height-drop]\label{lem:height_drop}
+hapd-algorithm.tex:\begin{proposition}[Projective Invariance]\label{prop:projective_invariance}
+hapd-algorithm.tex:\begin{theorem}[Finiteness of Fundamental Domain \cite{Karpenkov2022}]\label{thm:finite_domain}
+hapd-algorithm.tex:\begin{lemma}[Polynomial Reconstruction]\label{lem:polynomial_reconstruction}
+hapd-algorithm.tex:\begin{lemma}[Exclusion of Quadratic Irrationals]\label{lem:exclusion_quadratic}
+hapd-algorithm.tex:\begin{theorem}[Cubic Irrationals Yield Periodic Sequences]\label{thm:cubic_periodic}
+hapd-algorithm.tex:\begin{theorem}[Only Cubic Irrationals Yield Periodic Sequences]\label{thm:only_cubic_periodic}
+implementation-examples.tex:\section{Implementation Examples}\label{sec:implementation_examples}
+implementation-examples.tex:\begin{example}[HAPD Algorithm for Cube Root of 2]\label{ex:cubic_root_2}
+implementation-examples.tex:\begin{example}[HAPD Algorithm for Golden Ratio]\label{ex:phi}
+implementation-examples.tex:\begin{example}[Trace Sequence for Cube Root of 2]\label{ex:matrix_cube_root}
+implementation-examples.tex:\begin{example}[Trace Sequence for Plastic Number]\label{ex:matrix_plastic}
+implementation-examples.tex:\begin{example}[Subtractive HAPD for Cube Root of 2]\label{ex:subtractive_cube_root}
+implementation-examples.tex:\begin{example}[Subtractive HAPD for $\alpha = \phi + 0.1$]\label{ex:subtractive_phi}
+implementation-examples.tex:\label{tab:perf_comparison}
+implementation-examples.tex:%\label{fig:perf_comparison}
+introduction.tex:\section{Introduction}\label{sec:intro}
+introduction.tex:\begin{theorem}[Main Theorem]\label{thm:main}
+matrix-approach.tex:\section{Matrix Approach and Verification}\label{sec:matrix_approach}
+matrix-approach.tex:\begin{definition}[Companion Matrix]\label{def:companion_matrix}
+matrix-approach.tex:\begin{theorem}[Trace Sequence Properties]\label{thm:trace_properties}
+matrix-approach.tex:\begin{theorem}[Trace Relations for Cubic Irrationals]\label{thm:trace_relations}
+matrix-approach.tex:\begin{corollary}[Matrix Characterization via Trace Relations]\label{cor:matrix_characterization_trace}
+matrix-approach.tex:\begin{theorem}[Cubic Irrational Trace Periodicity]\label{thm:trace_periodicity}
+matrix-approach.tex:\begin{theorem}[Matrix Characterization of Cubic Irrationals]\label{thm:matrix_cubic}
+matrix-approach.tex:\label{alg:matrix_verification}
+matrix-approach.tex:\label{tab:matrix_verification_examples}
+matrix-approach.tex:\begin{theorem}[Matrix-HAPD Equivalence]\label{thm:matrix_hapd_equiv}
+matrix-approach.tex:\begin{theorem}[Trace and Class Number]\label{thm:trace_class_number}
+matrix-approach.tex:\begin{corollary}\label{cor:class_number_one}
+matrix-approach.tex:\label{tab:theoretical_comparison}
+matrix-computational.tex:\section{Computational Aspects of the Matrix Approach}\label{sec:matrix_computational}
+matrix-computational.tex:\label{tab:matrix_results}
+matrix-computational.tex:\label{tab:comparison}
+matrix-verification.tex:\section{Matrix Verification Method}\label{sec:matrix_verification}
+matrix-verification.tex:\label{tab:matrix_verification_examples}
+matrix-verification.tex:\label{tab:verification_comparison}
+numerical-validation.tex:\section{Numerical Validation}\label{sec:numerical_validation}
+numerical-validation.tex:\label{tab:epsilon_selection}
+numerical-validation.tex:\label{tab:edge_case_mitigation}
+numerical-validation.tex:\label{tab:hapd_results}
+numerical-validation.tex:\label{fig:algorithmic_convergence}
+numerical-validation.tex:\label{tab:numerical_verification_details}
+numerical-validation.tex:\label{tab:method_comparison}
+numerical-validation.tex:\label{fig:period_length_comparison}
+numerical-validation.tex:\label{tab:subtractive_results}
+numerical-validation.tex:\label{tab:algorithm_comparison}
+numerical-validation.tex:\label{fig:runtime_comparison}
+objections-tex.tex:\section{Addressing Potential Objections}\label{sec:objections}
+objections-tex.tex:\begin{theorem}[Finite Fundamental Domain]\label{thm:finite_domain_objection}
+subtractive-algorithm.tex:\section{Subtractive Algorithm}\label{sec:subtractive_algorithm}
+subtractive-algorithm.tex:\begin{definition}[Subtractive HAPD Algorithm]\label{def:subtractive_hapd}
+subtractive-algorithm.tex:\caption{Subtractive HAPD Algorithm}\label{alg:subtractive_hapd}
+subtractive-algorithm.tex:\begin{theorem}[Equivalence to HAPD]\label{thm:subtractive_equivalence}
+subtractive-algorithm.tex:\begin{proposition}[Computational Advantage]\label{prop:computational_advantage}
+subtractive-algorithm.tex:\begin{theorem}[Bounded Remainders]\label{thm:bounded_remainders}
+subtractive-algorithm.tex:\begin{proposition}[Convergence Rate]\label{prop:convergence_rate}
+subtractive-algorithm.tex:\begin{definition}[Modified $\sin^2$-map]\label{def:modified_sin2}
+subtractive-algorithm.tex:\label{fig:complex_embedding}
+subtractive-algorithm.tex:\begin{lemma}[Complex Conjugate Preservation]\label{lem:complex_conjugate}
+subtractive-algorithm.tex:\begin{proposition}[Geometric Action]\label{prop:geometric_action}
+subtractive-algorithm.tex:\begin{theorem}[Invariant Curves]\label{thm:invariant_curves}
+subtractive-algorithm.tex:\begin{proposition}[Numerical Stability]\label{prop:numerical_stability}
+subtractive-algorithm.tex:\begin{example}[Implementation for $\sqrt{^3}{2}$]\label{ex:cube_root_implementation}
+subtractive-algorithm.tex:\begin{proposition}[Storage Efficiency]\label{prop:storage_efficiency}
+subtractive-algorithm.tex:\begin{lemma}[Relationship Between HAPD and Subtractive Algorithm]\label{lem:hapd_subtractive}
