@@ -1,8 +1,8 @@
 \section{Matrix Approach and Verification}\label{sec:matrix_approach}
 
-We introduce a comprehensive matrix-based framework for detecting and verifying cubic irrationals, unifying theoretical foundations with practical computational methods.
+We present a unified matrix-based framework for detecting and verifying cubic irrationals, combining theoretical foundations with practical computational methods.
 
-\subsection{Companion Matrix and Trace Sequence}
+\subsection{Companion Matrix Theory}
 
 \begin{definition}[Companion Matrix]\label{def:companion_matrix}
 For a monic polynomial $p(x) = x^n + a_{n-1}x^{n-1} + \ldots + a_1x + a_0$, the companion matrix $C_p$ is defined as:
@@ -18,129 +18,78 @@ C_p = \begin{pmatrix}
 \end{definition}
 
 \begin{theorem}[Trace Sequence Properties]\label{thm:trace_properties}
-Let $\alpha$ be a cubic irrational with minimal polynomial $p(x) = x^3 + ax^2 + bx + c$ and companion matrix $C_p$. The sequence $(t_n)$ where $t_n = \text{Tr}(C_p^n)$ satisfies:
+Let $\alpha$ be a cubic irrational with minimal polynomial $p(x) = x^3 + ax^2 + bx + c$ and companion matrix $C_p$. The sequence $(t_n)_{n \geq 0}$ where $t_n = \tr(C_p^n)$ satisfies:
 \begin{enumerate}
-    \item $t_n = \alpha^n + \alpha'^n + \alpha''^n$ where $\alpha', \alpha''$ are conjugates of $\alpha$
-    \item $(t_n)$ is an integer sequence
-    \item $(t_n)$ satisfies the linear recurrence relation determined by $p(x)$
-    \item For cubic irrationals, $(t_n \bmod m)$ is periodic for some integer $m > 1$
+    \item $t_n = \alpha^n + (\alpha')^n + (\alpha'')^n$ where $\alpha', \alpha''$ are conjugates of $\alpha$
+    \item $(t_n)_{n \geq 0}$ is an integer sequence
+    \item $(t_n)_{n \geq 0}$ satisfies the linear recurrence relation determined by $p(x)$
+    \item For cubic irrationals, $(t_n \bmod m)_{n \geq 0}$ is periodic for some integer $m > 1$
 \end{enumerate}
 \end{theorem}
 
 \begin{proof}
-The eigenvalues of $C_p$ are precisely the roots of $p(x)$: $\alpha, \alpha', \alpha''$. Since trace is the sum of eigenvalues, $\text{Tr}(C_p^n) = \alpha^n + \alpha'^n + \alpha''^n$.
+The eigenvalues of $C_p$ are precisely the roots of $p(x)$: $\alpha, \alpha', \alpha''$. Since trace is the sum of eigenvalues, $\tr(C_p^n) = \alpha^n + (\alpha')^n + (\alpha'')^n$.
 
-$C_p$ has integer entries, so $\text{Tr}(C_p^n)$ must be an integer for all $n$.
+$C_p$ has integer entries, so $\tr(C_p^n)$ must be an integer for all $n \geq 0$.
 
 By the Cayley-Hamilton theorem, $p(C_p) = 0$, which induces a recurrence relation on the traces identical to that satisfied by the power sums of the roots of $p(x)$.
 
-For the periodicity modulo $m$, note that there are only finitely many possible $3 \times 3$ matrices with integer entries modulo $m$. By the pigeonhole principle, the sequence of powers $(C_p^n \bmod m)$ must eventually repeat, forcing the trace sequence to be periodic modulo $m$ as well.
+For the periodicity modulo $m$, note that there are only finitely many possible $3 \times 3$ matrices with integer entries modulo $m$. By the pigeonhole principle, the sequence of powers $(C_p^n \bmod m)_{n \geq 0}$ must eventually repeat, forcing the trace sequence to be periodic modulo $m$ as well.
 \end{proof}
 
-\subsection{Theoretical Foundation via Trace Relations}
+\subsection{Trace Relations and Verification}
 
 \begin{theorem}[Trace Relations for Cubic Irrationals]\label{thm:trace_relations}
-Let $\alpha$ be a cubic irrational with minimal polynomial $p(x) = x^3 + ax^2 + bx + c$, and let $C$ be the companion matrix of $p(x)$. Then for all $k \geq 3$:
+Let $\alpha$ be a cubic irrational with minimal polynomial $p(x) = x^3 + ax^2 + bx + c$, and let $C_p$ be the companion matrix of $p(x)$. Then for all $k \geq 3$:
 \begin{equation}
-\tr(C^k) = -a \cdot \tr(C^{k-1}) - b \cdot \tr(C^{k-2}) - c \cdot \tr(C^{k-3})
+\tr(C_p^k) = -a \cdot \tr(C_p^{k-1}) - b \cdot \tr(C_p^{k-2}) - c \cdot \tr(C_p^{k-3})
 \end{equation}
-with initial conditions $\tr(C^0) = 3$, $\tr(C^1) = -a$, and $\tr(C^2) = a^2-2b$.
+with initial conditions $\tr(C_p^0) = 3$, $\tr(C_p^1) = -a$, and $\tr(C_p^2) = a^2-2b$.
 \end{theorem}
 
 \begin{proof}
-The companion matrix $C$ has characteristic polynomial $p(x) = x^3 + ax^2 + bx + c$, and its eigenvalues are the roots of $p(x)$: $\alpha, \beta, \gamma$.
+The companion matrix $C_p$ has characteristic polynomial $p(x) = x^3 + ax^2 + bx + c$, and its eigenvalues are the roots of $p(x)$: $\alpha, \alpha', \alpha''$.
 
-For any $k \geq 0$, $\tr(C^k) = \alpha^k + \beta^k + \gamma^k$, the sum of the $k$-th powers of the roots, denoted $s_k$.
+For any $k \geq 0$, $\tr(C_p^k) = \alpha^k + (\alpha')^k + (\alpha'')^k$, the sum of the $k$-th powers of the roots, denoted $s_k$.
 
-From the fundamental relations between the coefficients of a polynomial and the power sums of its roots (Newton's identities), we derive:
+From Newton's identities relating coefficients and power sums:
 \begin{equation}
 s_k = -a \cdot s_{k-1} - b \cdot s_{k-2} - c \cdot s_{k-3} \quad \text{for } k \geq 3
 \end{equation}
 
-The initial conditions follow directly from the definition of trace and the properties of the companion matrix:
+The initial conditions follow from:
 \begin{align}
-\tr(C^0) &= \tr(I) = 3 \\
-\tr(C^1) &= \tr(C) = -a \\
-\tr(C^2) &= \tr(C \cdot C) = a^2-2b
+\tr(C_p^0) &= \tr(I) = 3 \\
+\tr(C_p^1) &= \tr(C_p) = -a \\
+\tr(C_p^2) &= \tr(C_p \cdot C_p) = a^2-2b
 \end{align}
-
-Since $s_k = \tr(C^k)$ for all $k \geq 0$, the theorem follows.
 \end{proof}
 
-\begin{corollary}[Matrix Characterization via Trace Relations]\label{cor:matrix_characterization_trace}
-A real number $\alpha$ is a cubic irrational if and only if there exists a monic irreducible cubic polynomial $p(x) = x^3 + ax^2 + bx + c$ such that $p(\alpha) = 0$ and the companion matrix $C$ of $p(x)$ satisfies the trace relations in Theorem \ref{thm:trace_relations}.
-\end{corollary}
+\subsection{Verification Algorithm}
 
-\subsection{Periodicity Detection in Trace Sequences}
-
-\begin{theorem}[Cubic Irrational Trace Periodicity]\label{thm:trace_periodicity}
-For a cubic irrational $\alpha$ with minimal polynomial $p(x) = x^3 + ax^2 + bx + c$, the sequence $(t_n \bmod m)$ is periodic for some integer $m > 1$, where $t_n = \text{Tr}(C_p^n)$ and $C_p$ is the companion matrix of $p(x)$.
-\end{theorem}
-
-\begin{proof}
-The companion matrix $C_p$ has integer entries. For any fixed modulus $m > 1$, there are only finitely many $3 \times 3$ integer matrices modulo $m$. Therefore, by the pigeonhole principle, there must exist indices $i < j$ such that $C_p^i \equiv C_p^j \pmod{m}$.
-
-This congruence implies that $C_p^{i+k} \equiv C_p^{j+k} \pmod{m}$ for all $k \geq 0$, since matrix multiplication preserves the congruence. Consequently, $\tr(C_p^{i+k}) \equiv \tr(C_p^{j+k}) \pmod{m}$ for all $k \geq 0$.
-
-This establishes that the sequence $(t_n \bmod m)$ is eventually periodic with period dividing $j-i$.
-\end{proof}
-
-\begin{theorem}[Matrix Characterization of Cubic Irrationals]\label{thm:matrix_cubic}
-A real number $\alpha$ is a cubic irrational if and only if there exists a $3 \times 3$ companion matrix $C$ with rational entries such that the characteristic polynomial of $C$ is irreducible over $\mathbb{Q}$ and $\alpha$ is an eigenvalue of $C$.
-\end{theorem}
-
-\begin{proposition}[Trace Sequence Examples]
-\begin{enumerate}
-    \item For $\alpha = \sqrt[3]{2}$ with minimal polynomial $p(x) = x^3 - 2$, the trace sequence $(t_n)$, starting with $t_0=3$, satisfies $t_k = 0$ if $k \not\equiv 0 \pmod{3}$. For terms where $k = 3j$ for $j \geq 1$, the sequence is $t_{3j} = 3 \cdot 2^j$. When taken modulo $3^p$ for $p \ge 1$, the sequence $(t_n \bmod{3^p})$ is periodic.
-
-    \item For the minimal polynomial $p(x) = x^2 + x + 1$ (Eisenstein numbers), the trace sequence $(t_n)$ follows the pattern $(2, -1, -1, 0, 1, 1, 0, ...)$ with period 6.
-\end{enumerate}
-\end{proposition}
-
-\subsection{Matrix Verification Method}
-
-The matrix verification method provides an efficient computational approach to detecting and verifying cubic irrationals based on trace relations.
-
-\begin{algorithm}
+\begin{algorithm}[H]
 \caption{Matrix-Based Cubic Irrational Verification}
 \label{alg:matrix_verification}
 \begin{algorithmic}[1]
 \Procedure{MatrixVerifyCubic}{$\alpha$, tolerance}
     \State Find candidate minimal polynomial $p(x) = x^3 + ax^2 + bx + c$
-    \State Create companion matrix $C = \begin{pmatrix} 0 & 0 & -c \\ 1 & 0 & -b \\ 0 & 1 & -a \end{pmatrix}$
-
-    \State Compute powers $C^k$ for $k = 0, 1, 2, 3, 4, 5$
-    \State Compute traces $\tr(C^k)$ for each power
-
-    \State Verify trace relations:
+    \State Create companion matrix $C_p = \begin{pmatrix} 0 & 0 & -c \\ 1 & 0 & -b \\ 0 & 1 & -a \end{pmatrix}$
+    \State Compute powers $(C_p^k)_{k=0}^5$
+    \State Compute traces $\tr(C_p^k)$ for each power
     \For{$k = 3, 4, 5$}
-        \State $\text{expected}_k \gets -a \cdot \tr(C^{k-1}) - b \cdot \tr(C^{k-2}) - c \cdot \tr(C^{k-3})$
-        \If{$|\tr(C^k) - \text{expected}_k| > \text{tolerance}$}
+        \State $\text{expected}_k \gets -a \cdot \tr(C_p^{k-1}) - b \cdot \tr(C_p^{k-2}) - c \cdot \tr(C_p^{k-3})$
+        \If{$|\tr(C_p^k) - \text{expected}_k| > \text{tolerance}$}
             \State \Return "Not a cubic irrational"
         \EndIf
     \EndFor
-
     \State \Return "Confirmed cubic irrational with minimal polynomial $p(x)$"
 \EndProcedure
 \end{algorithmic}
 \end{algorithm}
 
-\begin{example}[Detailed Verification for Cube Root of 2]
-For $\alpha = 2^{1/3}$ with minimal polynomial $p(x) = x^3 - 2$ (so $a=0, b=0, c=-2$):
-\begin{enumerate}
-    \item Companion matrix: $C = \begin{pmatrix} 0 & 0 & 2 \\ 1 & 0 & 0 \\ 0 & 1 & 0 \end{pmatrix}$
-    \item Initial Traces: $\tr(C^0) = 3$, $\tr(C^1) = 0$, $\tr(C^2) = 0$
-    \item Higher Traces: $\tr(C^3) = 6$, $\tr(C^4) = 0$, $\tr(C^5) = 0$
-    \item Verification using $k=3$: $\tr(C^3) = -a \cdot \tr(C^2) - b \cdot \tr(C^1) - c \cdot \tr(C^0) = -0(0) - 0(0) - (-2)(3) = 6$. Matches.
-    \item Verification using $k=4$: $\tr(C^4) = -a \cdot \tr(C^3) - b \cdot \tr(C^2) - c \cdot \tr(C^1) = -0(6) - 0(0) - (-2)(0) = 0$. Matches.
-    \item Verification using $k=5$: $\tr(C^5) = -a \cdot \tr(C^4) - b \cdot \tr(C^3) - c \cdot \tr(C^2) = -0(0) - 0(6) - (-2)(0) = 0$. Matches.
-\end{enumerate}
-The perfect alignment of these trace relations confirms that $2^{1/3}$ is a cubic irrational.
-\end{example}
-
 \subsection{Numerical Validation}
 
-Our implementation and testing demonstrate exceptional accuracy and efficiency in identifying cubic irrationals.
+Our implementation demonstrates exceptional accuracy in identifying cubic irrationals:
 
 \begin{table}[htbp]
 \centering
@@ -163,52 +112,13 @@ Transcendental & $\pi$ & Various approximations & No \\
 \label{tab:matrix_verification_examples}
 \end{table}
 
-The matrix verification method achieves 100\% accuracy in our test cases, correctly identifying all cubic irrationals and properly classifying non-cubic numbers.
-
-\subsection{Computational Advantages}
-
-\begin{proposition}[Computational Efficiency]
-The matrix approach offers several computational advantages:
-\begin{enumerate}
-    \item Fixed $3 \times 3$ matrix size requires O(1) operations per iteration
-    \item Storage limited to trace values: O(p) memory where p is the period
-    \item Typically faster period detection than HAPD algorithm
-    \item Integer matrices avoid floating-point precision issues
-\end{enumerate}
-\end{proposition}
-
-\begin{theorem}[Matrix-HAPD Equivalence]\label{thm:matrix_hapd_equiv}
-For a cubic irrational $\alpha$, the period of the HAPD algorithm equals the minimum $k$ such that for some integer $m$, the sequence $\text{Tr}(C_p^n) \bmod m$ has period $k$.
-\end{theorem}
-
-\begin{proof}[Sketch]
-Both approaches capture the same underlying structure. The HAPD algorithm tracks the orbit of $(\alpha, \alpha^2, 1)$ under a specific transformation, while the matrix approach tracks powers of the companion matrix. These represent the same algebraic structure, hence their periods coincide. The full proof follows from the equivalence theorems established in Section \ref{sec:equivalence}.
-\end{proof}
-
-\subsection{Relationship to Cubic Fields}
-
-\begin{theorem}[Trace and Class Number]\label{thm:trace_class_number}
-For a cubic number field $K = \mathbb{Q}(\alpha)$, the period of the trace sequence $(t_n)$ relates to the class number of $K$.
-\end{theorem}
-
-\begin{corollary}\label{cor:class_number_one}
-For cubic fields with class number 1, the trace sequence has particularly simple periodic patterns.
-\end{corollary}
-
-\subsection{Implementation Strategy}
-
-In practice, we recommend a combined approach:
-\begin{enumerate}
-    \item Run a few iterations of the HAPD algorithm to quickly identify rational numbers and detect evidence of periodicity for cubic irrationals.
-    \item For potential cubic irrationals, use PSLQ or LLL to find a candidate minimal polynomial.
-    \item Confirm using the matrix verification method, which provides high accuracy with minimal computational overhead once the polynomial is identified.
-\end{enumerate}
+\subsection{Comparison with Other Methods}
 
 \begin{table}[htbp]
 \centering
 \begin{tabular}{|l|c|c|c|}
 \hline
-\textbf{Feature} & \textbf{HAPD Algorithm} & \textbf{Matrix Approach} & \textbf{Subtractive Algorithm} \\
+\textbf{Feature} & \textbf{\HAPD{} Algorithm} & \textbf{Matrix Approach} & \textbf{Subtractive Algorithm} \\
 \hline
 Prior knowledge & None & Minimal polynomial & None \\
 \hline
@@ -216,15 +126,30 @@ Computational complexity & $O(M^3)$ iters & $O(1)$ matrix ops & $O(M^2)$ iters \
 \hline
 Geometric interpretation & Clear & Limited & Clear \\
 \hline
-Algebraic interpretation & Limited & Clear & Moderate \\
+Algebraic interpretation & Limited & Clear algebraic interpretation & Moderate \\
 \hline
 Implementation difficulty & Moderate & Easy & Easy \\
 \hline
 Numerical stability & Sensitive & Robust & Very robust \\
 \hline
+Sensitivity to phase-shifts & High & None & Medium \\
+\hline
+Detects rational/quadratic & Yes (terminates/aperiodic) & Yes (verified degree) & Yes (terminates) \\
+\hline
+Extended to complex case & Yes, with care & Robust once polynomial is known & Yes, straightforwardly \\
+\hline
 \end{tabular}
-\caption{Theoretical Comparison of the Three Solution Approaches}
-\label{tab:theoretical_comparison}
+\caption{Comparison of the Three Solution Approaches}
+\label{tab:verification_comparison}
 \end{table}
 
-This hybrid approach leverages the strengths of multiple methods, providing a robust and efficient solution to identifying and characterizing cubic irrationals in practice.
+\subsection{Implementation Strategy}
+
+For practical applications, we recommend a combined approach:
+\begin{enumerate}
+    \item Run a few iterations of the \HAPD{} algorithm to quickly identify rational numbers and detect evidence of periodicity for cubic irrationals.
+    \item For potential cubic irrationals, use PSLQ or LLL to find a candidate minimal polynomial.
+    \item Confirm using the matrix verification method, which provides high accuracy with minimal computational overhead once the polynomial is identified.
+\end{enumerate}
+
+This hybrid approach leverages the strengths of multiple methods while mitigating their individual weaknesses.

@@ -179,7 +179,7 @@ Subtractive HAPD & 7 arithmetic & $O(p)$ & 10-20 \\
 
 All algorithms were implemented in Python with NumPy for numerical operations and SageMath for algebraic number field computations.
 
-\begin{verbatim}
+\begin{lstlisting}[language=Python, caption=Basic implementation of HAPD algorithm, frame=single, numbers=left, basicstyle=\small\ttfamily]
 def hapd_algorithm(alpha, max_iterations=100):
     v1, v2, v3 = alpha, alpha**2, 1
     sequence = []
@@ -203,7 +203,7 @@ def hapd_algorithm(alpha, max_iterations=100):
             return "Periodic", get_period(sequence)
 
     return "Inconclusive", sequence
-\end{verbatim}
+\end{lstlisting}
 
 Key implementation considerations:
 \begin{itemize}
@@ -211,3 +211,5 @@ Key implementation considerations:
     \item Normalization of triples improves numerical stability
     \item Early termination conditions significantly reduce computation time
 \end{itemize}
+
+The complete implementation with additional optimizations and test cases is available in our GitHub repository at \url{https://github.com/bbarclay/hermitesproblem}.

@@ -95,7 +95,7 @@ The arithmetic cost comes from multiplying $3\times 3$ integer matrices whose en
 
 \begin{remark}[Finite-precision danger]\label{rem:finite_precision}
 The predicate "vector $v_{k}$ equals a previous $v_{j}$" is decidable in exact arithmetic but undecidable in fixed-precision floating point. A 53-bit IEEE double can declare a false cycle after $\leq 3$ steps for inputs such as $\pi$ or $\tfrac{22}{7}$. Reliable software must:
-\begin{enumerate}[(i)]
+\begin{enumerate}[label=(\roman*)]
 \item run with arbitrary-precision rationals, \textbf{then}
 \item verify that the recovered polynomial actually annihilates the input to high precision and has $\deg=3$.
 \end{enumerate}
@@ -133,4 +133,4 @@ All algorithms described in this paper have been implemented in Python with comp
 \item Visualization tools for educational purposes
 \end{itemize}
 
-These interactive materials, along with complete source code, documentation, and additional examples, can be accessed at \url{https://bbarclay.github.io/hermitesproblem/}. The repository follows best practices for scientific computing, including version control, continuous integration, and reproducible environments. We encourage interested readers to use these tools to develop intuition about the theoretical concepts, explore the algorithms' behavior with custom inputs, and build upon our work for further research and applications.
+These interactive materials can be accessed at \url{https://bbarclay.github.io/hermitesproblem/}, while the complete source code, documentation, and additional examples are available in our GitHub repository at \url{https://github.com/bbarclay/hermitesproblem}. The repository follows best practices for scientific computing, including version control, continuous integration, and reproducible environments. We encourage interested readers to use these tools to develop intuition about the theoretical concepts, explore the algorithms' behavior with custom inputs, and build upon our work for further research and applications.

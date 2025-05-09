@@ -1,10 +1,9 @@
 \begin{thebibliography}{10}
 
-\bibitem{Borel1969}
-Armand Borel.
-\newblock {\em Introduction aux groupes arithmétiques}, volume~XV of {\em
-  Publications de l'Institut de Mathématique de l'Université de Strasbourg}.
-\newblock Hermann, 1969.
+\bibitem{BH62}
+Armand Borel and {Harish-Chandra}.
+\newblock Arithmetic subgroups of algebraic groups.
+\newblock {\em Annals of Mathematics}, 75(3):485--535, 1962.
 
 \bibitem{Brentjes1981}
 A.~J. Brentjes.
@@ -79,6 +78,11 @@ Joseph-Louis Lagrange.
 Oskar Perron.
 \newblock Grundlagen für eine theorie des jacobischen kettenbruchalgorithmus.
 \newblock {\em Mathematische Annalen}, 64:1--76, 1907.
+
+\bibitem{Schmidt70}
+Wolfgang~M. Schmidt.
+\newblock {\em Diophantine Approximation}.
+\newblock Springer, 1970.
 
 \bibitem{Schmidt1980}
 Wolfgang~M. Schmidt.
