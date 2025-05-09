@@ -1,5 +1,10 @@
 \begin{thebibliography}{10}
 
+\bibitem{BH62}
+Armand Borel and {Harish-Chandra}.
+\newblock Arithmetic subgroups of algebraic groups.
+\newblock {\em Annals of Mathematics}, 75(3):485--535, 1962.
+
 \bibitem{Brentjes1981}
 A.~J. Brentjes.
 \newblock Multi-dimensional continued fraction algorithms.
@@ -9,11 +14,6 @@ A.~J. Brentjes.
 J.~W.~S. Cassels.
 \newblock {\em An Introduction to Diophantine Approximation}.
 \newblock Cambridge University Press, 1957.
-
-\bibitem{Cohen1993}
-Henri Cohen.
-\newblock {\em A Course in Computational Algebraic Number Theory}.
-\newblock Springer-Verlag, 1993.
 
 \bibitem{Cox2012}
 David~A. Cox.
@@ -26,21 +26,11 @@ H.~Davenport.
 \newblock {\em Journal of the London Mathematical Society}, s1-36(1):10--16,
   1961.
 
-\bibitem{Ferguson1999}
-Helaman Ferguson, David~H. Bailey, and Steve Arno.
-\newblock Analysis of pslq, an integer relation finding algorithm.
-\newblock {\em Mathematics of Computation}, 68(225):351--369, 1999.
-
 \bibitem{Hermite1848}
 Charles Hermite.
 \newblock Letter to jacobi on continued fractions and number theory.
 \newblock {\em Correspondence with Jacobi}, 1848.
 \newblock Published posthumously in collected works.
-
-\bibitem{Horn2012}
-Roger~A. Horn and Charles~R. Johnson.
-\newblock {\em Matrix Analysis}.
-\newblock Cambridge University Press, 2nd edition, 2012.
 
 \bibitem{Jacobi1868}
 Carl Gustav~Jacob Jacobi.
@@ -84,15 +74,15 @@ Joseph-Louis Lagrange.
 \newblock {\em Mémoires de l'Académie Royale des Sciences et Belles-Lettres
   de Berlin}, 24:111--180, 1770.
 
-\bibitem{Lenstra1982}
-A.~K. Lenstra, H.~W. Lenstra, and L.~Lovász.
-\newblock Factoring polynomials with rational coefficients.
-\newblock {\em Mathematische Annalen}, 261:515--534, 1982.
-
 \bibitem{Perron1907}
 Oskar Perron.
 \newblock Grundlagen für eine theorie des jacobischen kettenbruchalgorithmus.
 \newblock {\em Mathematische Annalen}, 64:1--76, 1907.
+
+\bibitem{Schmidt70}
+Wolfgang~M. Schmidt.
+\newblock {\em Diophantine Approximation}.
+\newblock Springer, 1970.
 
 \bibitem{Schmidt1980}
 Wolfgang~M. Schmidt.

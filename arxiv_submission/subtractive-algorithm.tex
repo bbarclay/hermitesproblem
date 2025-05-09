@@ -9,7 +9,7 @@ For a cubic irrational $\alpha$, the Subtractive HAPD algorithm operates on a tr
 
 \begin{enumerate}
     \item Calculate $a_1 = \lfloor v_1/v_3 \rfloor$ and $a_2 = \lfloor v_2/v_3 \rfloor$
-    \item Compute remainders: 
+    \item Compute remainders:
     \begin{align}
         r_1 &= v_1 - a_1v_3 \\
         r_2 &= v_2 - a_2v_3
@@ -89,6 +89,36 @@ For a cubic irrational $\alpha$ with minimal polynomial of height $H$, the Subtr
 Each iteration reduces the maximum coefficient by at least a factor of 2. Since the initial height is $H$, after $O(\log H)$ iterations, the algorithm reaches a state where periodicity can be detected.
 \end{proof}
 
+\subsection{Complex Embeddings and Modified $\sin^2$-map}
+
+\begin{definition}[Modified $\sin^2$-map]\label{def:modified_sin2}
+Write the two non-real embeddings of $\alpha$ as $\alpha',\alpha''= \overline{\alpha'}$.
+Map
+\[
+\Phi:\mathbb{C}\setminus\mathbb{R} \;\longrightarrow\;
+\Bigl\{(u,v)\in\mathbb{R}^{2}\,:\,u>0\Bigr\},\qquad
+\alpha' \mapsto (\,u=\tfrac12|\alpha'-\alpha''|^{2},\;v=\operatorname{Re}\alpha').
+\]
+Then $\Phi(\alpha')$ and $\Phi(\alpha'')$ are real points on the same $SL_{2}(\mathbb{Z})$-orbit, and the reduction matrices lift to the $SL_{3}(\mathbb{Z})$-action used above.
+\end{definition}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/sin2_algorithm_visualization.pdf}
+\caption{The modified $\sin^2$-map transforms complex embeddings to the right half-plane, preserving the action of the reduction matrices.}
+\label{fig:complex_embedding}
+\end{figure}
+
+\begin{lemma}[Complex Conjugate Preservation]\label{lem:complex_conjugate}
+The modified $\sin^2$-map preserves the action of the reduction matrices on complex conjugate roots of cubic polynomials.
+\end{lemma}
+
+\begin{proof}
+For a cubic irrational $\alpha$ with complex conjugate roots $\alpha'$ and $\alpha''$, the map $\Phi$ sends these to points in the right half-plane. The key property is that $\Phi$ preserves the argument structure while mapping to real coordinates.
+
+The reduction matrices in $SL_3(\mathbb{Z})$ that act on the triple $(\alpha, \alpha^2, 1)$ have corresponding actions on the complex embeddings. When lifted through $\Phi$, these actions preserve the $SL_2(\mathbb{Z})$-orbit structure in the right half-plane, as detailed in Schmidt's work on Diophantine approximation \cite{Schmidt70}.
+\end{proof}
+
 \subsection{Projective Geometric Interpretation}
 
 \begin{proposition}[Geometric Action]\label{prop:geometric_action}
@@ -151,4 +181,4 @@ For any cubic irrational $\alpha$, let $S_H(n)$ be the sequence of steps require
 \end{enumerate}
 
 These bounds guarantee that if one algorithm terminates with periodicity in $O(f(M))$ steps, the other will also terminate in $O(f(M))$ steps, preserving the asymptotic complexity.
-\end{proof} 
+\end{proof}

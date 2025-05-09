@@ -3,11 +3,48 @@
 \documentclass[a4paper,11pt]{article}
 \usepackage{amsmath,amssymb,amsthm,amsfonts}
 \usepackage{graphicx}
+% Load hyperref last (with a few exceptions)
 \usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  filecolor=magenta,
+  urlcolor=cyan,
+  citecolor=green,
+  pdftitle={Solving Hermite's Problem: Three Novel Approaches},
+  pdfauthor={Brandon Barclay},
+  pdfsubject={Mathematics},
+  pdfkeywords={Cubic irrationals, Hermite's problem, continued fractions}
+}
 \usepackage{xcolor}
 \usepackage{mathtools}
 \usepackage{geometry}
 \usepackage{listings}
+\lstset{
+  basicstyle=\small\ttfamily,
+  breaklines=true,
+  commentstyle=\color{gray},
+  keywordstyle=\color{blue},
+  stringstyle=\color{purple},
+  numberstyle=\tiny\color{gray},
+  showstringspaces=false,
+  tabsize=2
+}
+\usepackage{microtype} % Better typography and hyphenation
+\usepackage{tocloft}  % Better ToC formatting
+% Configure ToC formatting
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftsubsecleader}{\cftdotfill{\cftdotsep}}
+\setlength{\cftbeforesecskip}{6pt}
+\setlength{\cftbeforesubsecskip}{3pt}
+\usepackage{titlesec}  % Control section formatting
+% Configure section spacing
+\titlespacing*{\section}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+\titlespacing*{\subsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\titlespacing*{\subsubsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+% Custom hyphenation rules for problematic words
+\hyphenation{pe-ri-od-ic-i-ty char-ac-ter-i-za-tion Di-o-phan-tine}
 \geometry{
   a4paper,
   left=1in,
@@ -54,12 +91,18 @@
   format=plain,
   justification=justified,
   singlelinecheck=true,
-  belowskip=30pt,
-  aboveskip=20pt,
-  margin=50pt,
-  parskip=10pt,
+  belowskip=15pt,
+  aboveskip=10pt,
+  margin=40pt,
+  parskip=5pt,
   position=bottom
 }
+
+% Better figure placement
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\floatpagefraction}{0.7}
 
 % Configure counters for continuous numbering
 \counterwithout{figure}{section}
@@ -101,24 +144,50 @@
 \newcommand{\tuple}[1]{\left( #1 \right)}
 \newcommand{\seq}[1]{\left[ #1 \right]}
 \newcommand{\HAPD}{\textsc{HAPD}\xspace}
+\newcommand{\sinsq}{$\sin^2$}
 
 % Adjust spacing for figures
-\setlength{\textfloatsep}{40pt plus 10pt minus 10pt}
-\setlength{\floatsep}{40pt plus 10pt minus 10pt}
-\setlength{\intextsep}{40pt plus 10pt minus 10pt}
-\setlength{\abovecaptionskip}{20pt plus 10pt minus 5pt}
-\setlength{\belowcaptionskip}{20pt plus 10pt minus 5pt}
+\setlength{\textfloatsep}{30pt plus 5pt minus 5pt}
+\setlength{\floatsep}{30pt plus 5pt minus 5pt}
+\setlength{\intextsep}{30pt plus 5pt minus 5pt}
+\setlength{\abovecaptionskip}{10pt plus 5pt minus 3pt}
+\setlength{\belowcaptionskip}{10pt plus 5pt minus 3pt}
 
 % Title information
 \title{Solving Hermite's Problem: Three Novel Approaches for Complete Characterization of Cubic Irrationals}
-\author{Brandon Barclay\thanks{Email: barclaybrandon@hotmail.com}\thanks{Interactive materials available at: \url{https://bbarclay.github.io/hermitesproblem/}}}
+\author{Brandon Barclay\textsuperscript{*}}
 \date{April 2025}
+
+\makeatletter
+\def\@maketitle{%
+  \newpage
+  \null
+  \vskip 2em%
+  \begin{center}%
+  \let \footnote \thanks
+    {\LARGE \@title \par}%
+    \vskip 1.5em%
+    {\large
+      \lineskip .5em%
+      \begin{tabular}[t]{c}%
+        \@author
+      \end{tabular}\par}%
+    \vskip 1em%
+    {\large \@date}%
+  \end{center}%
+  \par
+  \vskip 1.5em%
+  \footnotetext{*Email: barclaybrandon@hotmail.com}
+}
+\makeatother
 
 \begin{document}
 
 \maketitle
 
 \input{abstract.tex}
+
+% ToC configuration moved to preamble
 
 % Control ToC depth to make it more concise
 \settocdepth{section}  % Only include sections, not subsections
@@ -132,12 +201,11 @@
 \input{galois-theory.tex}
 \input{hapd-algorithm.tex}
 \input{matrix-approach.tex}
-\input{matrix-computational.tex}
-\input{matrix-verification.tex}  % Previously had a reference to this as "§??"
+% Removed matrix-computational.tex as its content is merged into matrix-approach.tex
 \input{equivalence.tex}
 \input{subtractive-algorithm.tex}
 \input{numerical-validation.tex}
-\input{implementation-examples.tex}  % Adding implementation examples to fix section order
+\input{implementation-examples.tex}
 \input{objections-tex.tex}
 \input{conclusion.tex}
 

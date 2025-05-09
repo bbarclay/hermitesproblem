@@ -7,14 +7,14 @@ Previous approaches include:
 \item Jacobi-Perron algorithm (1868) \cite{Jacobi1868}: fails for complex conjugate roots
 \item Brun's algorithm (1920) \cite{Brentjes1981}: similar limitations
 \item Poincaré's geometric approach \cite{KarpenkovBook}: lacks consistent periodicity
-\item Karpenkov's sin²-algorithm \cite{Karpenkov2019}: works only for totally-real cubics
+\item Karpenkov's $\sin^2$-algorithm \cite{Karpenkov2019}: works only for totally-real cubics
 \end{itemize}
 
 We resolve Hermite's problem through three novel approaches:
 \begin{enumerate}
 \item HAPD algorithm in projective space, producing periodic sequences if and only if the input is cubic irrational
 \item Matrix characterization using companion matrices and trace sequences with modular periodicity
-\item Modified sin²-algorithm handling complex conjugate roots via phase-preserving floor functions
+\item Modified $\sin^2$-algorithm handling complex conjugate roots via phase-preserving floor functions
 \end{enumerate}
 
 Contents:
@@ -22,12 +22,13 @@ Contents:
 \item \S\ref{sec:galois_theory}: proof of continued fraction non-periodicity
 \item \S\ref{sec:hapd_algorithm}: HAPD algorithm foundations
 \item \S\ref{sec:matrix_approach}: matrix characterization via companion matrices
-\item \S\ref{sec:matrix_verification}: matrix verification method
+% Removed reference to matrix-verification as it's merged
 \item \S\ref{sec:equivalence}: equivalence between approaches
-\item \S\ref{sec:subtractive_algorithm}: modified sin²-algorithm
+\item \S\ref{sec:subtractive_algorithm}: modified $\sin^2$-algorithm
 \item \S\ref{sec:numerical_validation}: numerical validation
+\item \S\ref{sec:implementation_examples}: implementation examples
 \item \S\ref{sec:objections}: addressing theoretical objections
 \item \S\ref{sec:conclusion}: implications and generalizations
 \end{itemize}
 
-\textbf{Computational Approach}. Our work combines theoretical insights with practical verification, offering a computational framework for exploring cubic irrationals (Section \ref{sec:matrix_verification}). We develop algorithms that determine whether a given real number is cubic irrational based on the periodicity of its HAPD sequence. These algorithms are implemented and tested with various inputs, providing empirical validation of the theoretical results.
+\textbf{Computational Approach}. Our work combines theoretical insights with practical verification, offering a computational framework for exploring cubic irrationals (Section~\ref{sec:matrix_approach}). We develop algorithms that determine whether a given real number is cubic irrational based on the periodicity of its HAPD sequence. These algorithms are implemented and tested with various inputs, providing empirical validation of the theoretical results.

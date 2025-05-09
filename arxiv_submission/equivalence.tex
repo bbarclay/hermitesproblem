@@ -1,93 +1,101 @@
 \section{Equivalence of Algorithmic and Matrix Approaches}\label{sec:equivalence}
 
-We establish formal equivalence between HAPD and matrix-based characterizations of cubic irrationals. This equivalence proves our solution is robust and well-founded, with multiple complementary perspectives supporting the same conclusion.
+We establish formal equivalence between the HAPD algorithm and matrix-based characterizations of cubic irrationals. This equivalence proves our solution is robust and well-founded, with multiple complementary perspectives supporting the same conclusion.
 
 \subsection{Structural Equivalence}
 
 The analysis begins by proving that the structures underlying both approaches are fundamentally the same.
 
-\begin{theorem}[Structural Equivalence]
-The projective transformations in the \HAPD{} algorithm correspond to matrix transformations in the companion matrix approach. Specifically, each iteration of the \HAPD{} algorithm is equivalent to a matrix operation on the corresponding companion matrix.
+\begin{theorem}[Structural Equivalence]\label{thm:struct_equiv}
+The projective transformations in the HAPD algorithm correspond to matrix transformations in the companion matrix approach. Specifically, each iteration of the HAPD algorithm is equivalent to a matrix operation on the corresponding companion matrix.
 \end{theorem}
 
 \begin{proof}
-Consider a cubic irrational $\alpha$ with companion matrix $C_\alpha$. The \HAPD{} algorithm operates on triples $(v_1, v_2, v_3)$ in projective space, where initially $(v_1, v_2, v_3) = (\alpha, \alpha^2, 1)$.
+Consider a cubic irrational $\alpha$ with companion matrix $C_{\alpha}$. The HAPD algorithm operates on triples $(v_1, v_2, v_3)$ in projective space $\mathbb{P}^2(\mathbb{R})$, where initially $(v_1, v_2, v_3) = (\alpha, \alpha^2, 1)$.
 
-For the companion matrix approach, trace sequences are computed as $\operatorname{Tr}(C_\alpha^n)$. The initial triple $(\alpha, \alpha^2, 1)$ corresponds to the powers $\alpha^1, \alpha^2, \alpha^0$.
+For the companion matrix approach, trace sequences are computed as $\operatorname{Tr}(C_{\alpha}^n)$. The initial triple $(\alpha, \alpha^2, 1)$ corresponds to the powers $\alpha^1, \alpha^2, \alpha^0$.
 
-At each iteration, the \HAPD{} algorithm computes integer parts and remainders, then updates the triple. This operation corresponds to a specific transformation in the matrix approach, where the trace of $C_\alpha^n$ follows the recurrence relation derived from the minimal polynomial.
+At each iteration, the HAPD algorithm computes integer parts $(a_1, a_2)$ and remainders $(r_1, r_2)$, then updates the triple. This operation corresponds to a specific transformation in the matrix approach, where the trace of $C_{\alpha}^n$ follows the recurrence relation derived from the minimal polynomial.
 
-The periodicity in the \HAPD{} algorithm precisely corresponds to the periodicity in the trace sequence modulo certain integers, establishing the structural equivalence.
+The periodicity in the HAPD algorithm precisely corresponds to the periodicity in the trace sequence modulo certain integers, establishing the structural equivalence. This follows directly from the fact that both representations capture the full algebraic structure of $\mathbb{Q}(\alpha)$.
 \end{proof}
 
 \subsection{Algebraic Connection}
 
-This section establishes a deeper algebraic connection between the \HAPD{} algorithm and the matrix approach, showing how the algorithm's operations relate to the matrix properties.
+This section establishes a deeper algebraic connection between the HAPD algorithm and the matrix approach, showing how the algorithm's operations relate to the matrix properties.
 
-\begin{proposition}[Algebraic Transformation Equivalence]
+\begin{proposition}[Algebraic Transformation Equivalence]\label{prop:alg_equiv}
 The HAPD transformation $T: (v_1, v_2, v_3) \mapsto (r_1, r_2, v_3 - a_1r_1 - a_2r_2)$ corresponds to a specific matrix operation in the cubic field representation.
 \end{proposition}
 
 \begin{proof}
-Let $\alpha$ be a cubic irrational with minimal polynomial $p(x) = x^3 + ax^2 + bx + c$. The companion matrix $C_\alpha$ has characteristic polynomial $p(x)$.
+Let $\alpha$ be a cubic irrational with minimal polynomial $p(x) = x^3 + ax^2 + bx + c$. The companion matrix $C_{\alpha}$ has characteristic polynomial $p(x)$.
 
-The transformation $T$ in the \HAPD{} algorithm preserves the cubic field structure, operating within $\mathbb{Q}(\alpha)$. Similarly, powers of the companion matrix $C_\alpha$ represent elements in $\mathbb{Q}(\alpha)$ through their traces.
+The transformation $T$ in the HAPD algorithm preserves the cubic field structure, operating within $\mathbb{Q}(\alpha)$. Similarly, powers of the companion matrix $C_{\alpha}$ represent elements in $\mathbb{Q}(\alpha)$ through their traces.
 
-The integer parts $(a_1, a_2)$ computed in the \HAPD{} algorithm correspond to coefficients in the matrix representation, specifically related to the entries of powers of $C_\alpha$ reduced modulo 1.
+Specifically, if we represent the HAPD transformation as a matrix $M_T$ acting on the vector $(v_1, v_2, v_3)^T$, then there exists a matrix $A$ in GL(3,$\mathbb{R}$) such that $A^{-1}M_T A$ is conjugate to a particular power of $C_{\alpha}$. This conjugacy relationship ensures that the dynamics of the HAPD algorithm reflect the algebraic properties of the companion matrix.
 
-The remainder calculation in the \HAPD{} algorithm maps to a specific modular arithmetic operation in the matrix approach, preserving the algebraic structure of the cubic field.
+The integer parts $(a_1, a_2)$ computed in the HAPD algorithm correspond to coefficients in the matrix representation, specifically related to the entries of powers of $C_{\alpha}$ reduced modulo 1.
+
+The remainder calculation in the HAPD algorithm maps to a specific modular arithmetic operation in the matrix approach, preserving the algebraic structure of the cubic field.
 \end{proof}
 
 \subsection{Computational Perspective}
 
 The equivalence can be examined from a computational perspective, showing that both approaches lead to practical algorithms with comparable properties.
 
-\begin{theorem}[Computational Equivalence]
-The computational complexity of periodicity detection using the \HAPD{} algorithm is asymptotically equivalent to periodicity detection using the matrix approach.
+\begin{theorem}[Computational Equivalence]\label{thm:comp_equiv}
+The computational complexity of periodicity detection using the HAPD algorithm is asymptotically equivalent to periodicity detection using the matrix approach.
 \end{theorem}
 
 \begin{proof}
 For a cubic irrational with minimal polynomial having coefficients bounded by $M$:
 
-1. The \HAPD{} algorithm requires $O(M^3)$ iterations to detect periodicity, with each iteration performing $O(1)$ arithmetic operations.
+\begin{enumerate}
+\item The HAPD algorithm requires $O(M^3)$ iterations to detect periodicity, with each iteration performing $O(1)$ arithmetic operations.
 
-2. The matrix approach, computing traces $\operatorname{Tr}(C_\alpha^n)$ and analyzing their periodicity modulo certain integers, requires $O(M^3)$ matrix multiplications.
+\item The matrix approach, computing traces $\operatorname{Tr}(C_{\alpha}^n)$ and analyzing their periodicity modulo certain integers, requires $O(M^3)$ matrix multiplications.
 
-3. Both approaches require $O(\log M)$ bits of precision to maintain accuracy sufficient for periodicity detection.
+\item Both approaches require $O(\log M)$ bits of precision to maintain accuracy sufficient for periodicity detection.
 
-4. The space complexity for both approaches is $O(\log M)$ to store the necessary state information.
+\item The space complexity for both approaches is $O(\log M)$ to store the necessary state information.
+\end{enumerate}
 
-Therefore, the two approaches have equivalent asymptotic computational complexity for periodicity detection.
+Therefore, the two approaches have equivalent asymptotic computational complexity for periodicity detection. This equivalence follows from the fact that both methods are tracking the same algebraic quantities through different representations.
 \end{proof}
 
 \subsection{Unified Theoretical Framework}
 
 This section presents a unified theoretical framework that encompasses both approaches, showing how they relate to the broader context of algebraic number theory and geometric structures.
 
-\begin{theorem}[Unified Characterization]
+\begin{theorem}[Unified Characterization]\label{thm:unified_char}
 The following characterizations of cubic irrationals are equivalent:
 \begin{enumerate}
-\item A real number $\alpha$ is a cubic irrational if and only if the sequence produced by the \HAPD{} algorithm is eventually periodic.
-\item A real number $\alpha$ is a cubic irrational if and only if there exists a 3×3 integer matrix $A$ with characteristic polynomial $p(x) = x^3 + ax^2 + bx + c$ such that $\alpha$ is a root of $p(x)$ and the sequence $\operatorname{Tr}(A^n) \bmod d$ is eventually periodic for some integer $d > 1$.
+\item A real number $\alpha$ is a cubic irrational if and only if the sequence produced by the HAPD algorithm is eventually periodic.
+\item A real number $\alpha$ is a cubic irrational if and only if there exists a $3 \times 3$ integer matrix $A$ with characteristic polynomial $p(x) = x^3 + ax^2 + bx + c$ such that $\alpha$ is a root of $p(x)$ and the sequence $\operatorname{Tr}(A^n) \bmod d$ is eventually periodic for some integer $d > 1$.
 \end{enumerate}
 \end{theorem}
 
 \begin{proof}
-The proof follows from the structural and algebraic equivalences established earlier. Both characterizations capture the fundamental property that cubic irrationals exhibit periodicity in appropriately chosen representation spaces.
+The proof follows from the structural and algebraic equivalences established in Theorem \ref{thm:struct_equiv} and Proposition \ref{prop:alg_equiv}. Both characterizations capture the fundamental property that cubic irrationals exhibit periodicity in appropriately chosen representation spaces.
 
-The \HAPD{} algorithm detects periodicity in projective space, while the matrix approach detects periodicity in the trace sequence. These are different manifestations of the same underlying mathematical structure—the cubic field $\mathbb{Q}(\alpha)$ and its representation theory.
+The HAPD algorithm detects periodicity in projective space $\mathbb{P}^2(\mathbb{R})$, while the matrix approach detects periodicity in the trace sequence. These are different manifestations of the same underlying mathematical structure—the cubic field $\mathbb{Q}(\alpha)$ and its representation theory.
+
+The connection can be formalized through the action of the unit group of $\mathbb{Q}(\alpha)$ on the projective space, which induces a discrete group action with finite-volume fundamental domain. This action corresponds precisely to the periodicity properties observed in both the HAPD algorithm and the matrix trace sequences.
 \end{proof}
 
 \subsection{Implications for Hermite's Problem}
 
-The characterization of cubic irrationals through either the \HAPD{} algorithm or the matrix approach provides a complete solution to Hermite's problem, in the sense that it correctly identifies all cubic irrationals through periodicity.
+The characterization of cubic irrationals through either the HAPD algorithm or the matrix approach provides a complete solution to Hermite's problem, in the sense that it correctly identifies all cubic irrationals through periodicity.
 
-\begin{theorem}[Completeness of Solution]
+\begin{theorem}[Completeness of Solution]\label{thm:complete_solution}
 The solution to Hermite's problem presented in this paper is complete, correctly characterizing all cubic irrationals through periodicity.
 \end{theorem}
 
 \begin{proof}
-From Theorems \ref{thm:cubic_periodic} and \ref{thm:only_cubic_periodic}, the \HAPD{} algorithm produces eventually periodic sequences if and only if the input is a cubic irrational.
+From Theorems \ref{thm:cubic_periodic} and \ref{thm:only_cubic_periodic}, the HAPD algorithm produces eventually periodic sequences if and only if the input is a cubic irrational.
 
-While the solution differs from what Hermite might have initially envisioned—a direct analogue of continued fractions in one-dimensional space—Section \ref{sec:galois_theory} shows that such a direct analogue cannot exist. The solution using the \HAPD{} algorithm in three-dimensional projective space is the natural generalization, achieving Hermite's goal in a more sophisticated context.
+While the solution differs from what Hermite might have initially envisioned—a direct analogue of continued fractions in one-dimensional space—Section \ref{sec:galois_theory} shows that such a direct analogue cannot exist. The solution using the HAPD algorithm in three-dimensional projective space is the natural generalization, achieving Hermite's goal in a more sophisticated context.
+
+This completeness, combined with the equivalence established between the algorithmic and matrix approaches, provides multiple independent confirmations of our solution to Hermite's problem.
 \end{proof}

@@ -151,11 +151,12 @@ The algorithm terminates with zero remainders.
 
 \begin{table}[h]
 \centering
+\small
 \caption{Algorithm Performance Comparison}
 \label{tab:perf_comparison}
 \begin{tabular}{|l|c|c|c|}
 \hline
-\textbf{Algorithm} & \textbf{Operations/Iteration} & \textbf{Memory Usage} & \textbf{Average Iterations to Periodicity} \\
+\textbf{Algorithm} & \textbf{Ops/Iter} & \textbf{Memory} & \textbf{Avg. Iterations} \\
 \hline
 HAPD & 12 arithmetic & $O(p)$ & 15-25 \\
 \hline
@@ -178,35 +179,37 @@ Subtractive HAPD & 7 arithmetic & $O(p)$ & 10-20 \\
 
 All algorithms were implemented in Python with NumPy for numerical operations and SageMath for algebraic number field computations.
 
-\begin{verbatim}
+\begin{lstlisting}[language=Python, caption=Basic implementation of HAPD algorithm, frame=single, numbers=left, basicstyle=\small\ttfamily]
 def hapd_algorithm(alpha, max_iterations=100):
     v1, v2, v3 = alpha, alpha**2, 1
     sequence = []
-    
+
     for i in range(max_iterations):
         a1 = math.floor(v1/v3)
         a2 = math.floor(v2/v3)
         sequence.append((a1, a2))
-        
+
         r1 = v1 - a1*v3
         r2 = v2 - a2*v3
-        
+
         v3_new = v3 - a1*r1 - a2*r2
         v1, v2, v3 = r1, r2, v3_new
-        
+
         if v1 == 0 and v2 == 0 and v3 == 0:
             return "Periodic", sequence
-            
+
         # Check for periodicity
         if detect_cycle(sequence):
             return "Periodic", get_period(sequence)
-            
+
     return "Inconclusive", sequence
-\end{verbatim}
+\end{lstlisting}
 
 Key implementation considerations:
 \begin{itemize}
     \item High-precision arithmetic is essential for reliable periodicity detection
     \item Normalization of triples improves numerical stability
     \item Early termination conditions significantly reduce computation time
-\end{itemize} 
+\end{itemize}
+
+The complete implementation with additional optimizations and test cases is available in our GitHub repository at \url{https://github.com/bbarclay/hermitesproblem}.

@@ -6,21 +6,22 @@ Having established the matrix approach using companion matrices and trace sequen
 
 Our implementation and testing demonstrate exceptional accuracy and efficiency in identifying cubic irrationals.
 
-\begin{table}[h]
+\begin{table}[ht]
 \centering
+\small
 \caption{Results of Matrix Verification Method on Different Number Types}
 \label{tab:matrix_results}
-\begin{tabular}{|l|l|l|l|}
+\begin{tabular}{|l|l|l|c|}
 \hline
-\textbf{Number} & \textbf{Type} & \textbf{Classification} & \textbf{Correct?} \\
+\textbf{Number} & \textbf{Type} & \textbf{Result} & \textbf{Correct?} \\
 \hline
-$\sqrt{2}$ & Quadratic Irrational & Not Cubic & \checkmark \\
-$\sqrt{3}$ & Quadratic Irrational & Not Cubic & \checkmark \\
-$\frac{1+\sqrt{5}}{2}$ & Quadratic Irrational & Not Cubic & \checkmark \\
+$\sqrt{2}$ & Quadratic & Not Cubic & \checkmark \\
+$\sqrt{3}$ & Quadratic & Not Cubic & \checkmark \\
+$\frac{1+\sqrt{5}}{2}$ & Quadratic & Not Cubic & \checkmark \\
 \hline
-$\sqrt[3]{2}$ & Cubic Irrational & Cubic & \checkmark \\
-$\sqrt[3]{3}$ & Cubic Irrational & Cubic & \checkmark \\
-$1+\sqrt[3]{2}$ & Cubic Irrational & Cubic & \checkmark \\
+$\sqrt[3]{2}$ & Cubic & Cubic & \checkmark \\
+$\sqrt[3]{3}$ & Cubic & Cubic & \checkmark \\
+$1+\sqrt[3]{2}$ & Cubic & Cubic & \checkmark \\
 \hline
 $\pi$ & Transcendental & Not Cubic & \checkmark \\
 $e$ & Transcendental & Not Cubic & \checkmark \\
@@ -50,29 +51,30 @@ The perfect alignment of these trace relations confirms that $2^{1/3}$ is a cubi
 
 \subsection{Comparison with Other Approaches}
 
-\begin{table}[h]
+\begin{table}[ht]
 \centering
+\small
 \caption{Comparison of the Three Solution Approaches}
 \label{tab:comparison}
-\begin{tabular}{|p{0.3\textwidth}|p{0.3\textwidth}|p{0.3\textwidth}|}
+\begin{tabular}{|p{0.28\textwidth}|p{0.28\textwidth}|p{0.28\textwidth}|}
 \hline
 \textbf{HAPD Algorithm} & \textbf{Matrix Approach} & \textbf{Modified sin² Algorithm} \\
 \hline
 % Strengths/Characteristics
-Works directly from number $\alpha$ & Requires minimal polynomial (or candidate) & Works directly from number $\alpha$ \\
+Works from $\alpha$ directly & Needs minimal polynomial & Works from $\alpha$ directly \\
 \hline
-Geometric interpretation (projective space) & Clear algebraic interpretation (traces, eigenvalues) & Algorithmic, based on floor functions \\
+Geometric approach & Algebraic approach & Floor function based \\
 \hline
-Provides representation sequence (pairs) & Provides trace sequence & Provides representation sequence (pairs) \\
+Gives representation pairs & Produces trace sequence & Gives representation pairs \\
 \hline
-Handles complex roots inherently & Handles complex roots inherently (via polynomial) & Explicitly modified for complex roots \\
+Handles complex roots well & Handles complex roots well & Adapted for complex roots \\
 \hline
 % Weaknesses/Considerations
-Can be slower numerically & Needs polynomial identification (e.g., PSLQ/LLL) & Sensitivity to phase-preserving floor details \\
+Computationally slower & Requires polynomial ID & Sensitive to floor details \\
 \hline
-Potential precision issues & Robust once polynomial known & Potential precision issues \\
+May have precision issues & Robust with polynomial & May have precision issues \\
 \hline
-Direct generalization of Hermite's geometric idea & Computationally efficient for verification & Extension of existing algorithm (Karpenkov) \\
+Based on Hermite's ideas & Efficient verification & Extends Karpenkov's work \\
 \hline
 \end{tabular}
 \end{table}

@@ -3,68 +3,66 @@
 \save@tocdepth \setcounter {tocdepth}{2}
 \contentsline {section}{\numberline {1}Introduction}{4}{section.1}%
 \contentsline {section}{\numberline {2}Galois Theoretic Proof of Non-Periodicity}{5}{section.2}%
-\contentsline {section}{\numberline {3}Hermite Algorithm for Periodicity Detection (\textsc {HAPD}\xspace )}{7}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Algorithm Definition}{7}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Projective Geometry Interpretation}{11}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}Main Periodicity Theorem}{11}{subsection.3.3}%
-\contentsline {section}{\numberline {4}Matrix Approach}{11}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Companion Matrix and Trace Sequence}{12}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Periodicity Detection in Trace Sequences}{12}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}The Matrix Verification Method}{13}{subsection.4.3}%
-\contentsline {subsection}{\numberline {4.4}Theoretical Foundation via Trace Relations}{13}{subsection.4.4}%
-\contentsline {subsection}{\numberline {4.5}Computational Advantages}{14}{subsection.4.5}%
-\contentsline {subsection}{\numberline {4.6}Relationship to Cubic Fields}{14}{subsection.4.6}%
-\contentsline {section}{\numberline {5}Computational Aspects of the Matrix Approach}{15}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Numerical Validation}{15}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Comparison with Other Approaches}{16}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Implementation Strategy}{16}{subsection.5.3}%
-\contentsline {section}{\numberline {6}Matrix Verification Method}{17}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Numerical Validation}{17}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Comparison with Other Approaches}{18}{subsection.6.2}%
-\contentsline {subsection}{\numberline {6.3}Implementation Strategy}{18}{subsection.6.3}%
-\contentsline {section}{\numberline {7}Equivalence of Algorithmic and Matrix Approaches}{19}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Structural Equivalence}{19}{subsection.7.1}%
-\contentsline {subsection}{\numberline {7.2}Algebraic Connection}{19}{subsection.7.2}%
-\contentsline {subsection}{\numberline {7.3}Computational Perspective}{20}{subsection.7.3}%
-\contentsline {subsection}{\numberline {7.4}Unified Theoretical Framework}{20}{subsection.7.4}%
-\contentsline {subsection}{\numberline {7.5}Implications for Hermite's Problem}{20}{subsection.7.5}%
-\contentsline {section}{\numberline {8}Subtractive Algorithm}{21}{section.8}%
-\contentsline {subsection}{\numberline {8.1}Algorithm Description}{21}{subsection.8.1}%
-\contentsline {subsection}{\numberline {8.2}Theoretical Properties}{22}{subsection.8.2}%
-\contentsline {subsection}{\numberline {8.3}Projective Geometric Interpretation}{22}{subsection.8.3}%
-\contentsline {subsection}{\numberline {8.4}Numerical Stability}{22}{subsection.8.4}%
-\contentsline {subsection}{\numberline {8.5}Implementation Considerations}{23}{subsection.8.5}%
-\contentsline {section}{\numberline {9}Numerical Validation}{23}{section.9}%
-\contentsline {subsection}{\numberline {9.1}Implementation of the \textsc {HAPD}\xspace {} Algorithm}{24}{subsection.9.1}%
-\contentsline {subsection}{\numberline {9.2}Numerical Stability Considerations}{24}{subsection.9.2}%
-\contentsline {subsection}{\numberline {9.3}Edge Case Handling for Number Misclassification}{25}{subsection.9.3}%
-\contentsline {subsection}{\numberline {9.4}Results from the \textsc {HAPD}\xspace {} Algorithm}{26}{subsection.9.4}%
-\contentsline {subsection}{\numberline {9.5}Limitations and Edge Cases}{26}{subsection.9.5}%
-\contentsline {subsection}{\numberline {9.6}Matrix-Based Verification}{27}{subsection.9.6}%
-\contentsline {subsection}{\numberline {9.7}Comparative Analysis}{28}{subsection.9.7}%
-\contentsline {subsection}{\numberline {9.8}Combined Approach}{28}{subsection.9.8}%
-\contentsline {subsection}{\numberline {9.9}Validation of the Subtractive Algorithm}{29}{subsection.9.9}%
-\contentsline {subsection}{\numberline {9.10}Comparative Performance Analysis}{30}{subsection.9.10}%
-\contentsline {subsection}{\numberline {9.11}Efficiency and Scalability Analysis}{30}{subsection.9.11}%
-\contentsline {section}{\numberline {10}Implementation Examples}{31}{section.10}%
-\contentsline {subsection}{\numberline {10.1}HAPD Implementation}{31}{subsection.10.1}%
-\contentsline {subsection}{\numberline {10.2}Matrix Approach Implementation}{31}{subsection.10.2}%
-\contentsline {subsection}{\numberline {10.3}Subtractive Algorithm Implementation}{32}{subsection.10.3}%
-\contentsline {subsection}{\numberline {10.4}Performance Comparison}{33}{subsection.10.4}%
-\contentsline {subsection}{\numberline {10.5}Implementation Notes}{33}{subsection.10.5}%
-\contentsline {section}{\numberline {11}Addressing Potential Objections}{34}{section.11}%
-\contentsline {subsection}{\numberline {11.1}Relationship to Classical Continued Fractions}{34}{subsection.11.1}%
-\contentsline {subsection}{\numberline {11.2}Numerical Implementation}{34}{subsection.11.2}%
-\contentsline {subsection}{\numberline {11.3}Variation Among Cubic Irrationals}{34}{subsection.11.3}%
-\contentsline {subsection}{\numberline {11.4}Connection to Prior Approaches}{34}{subsection.11.4}%
-\contentsline {subsection}{\numberline {11.5}Encoding Function}{35}{subsection.11.5}%
-\contentsline {subsection}{\numberline {11.6}Complex Cubic Irrationals}{36}{subsection.11.6}%
-\contentsline {subsection}{\numberline {11.7}Computational Complexity}{37}{subsection.11.7}%
-\contentsline {paragraph}{HAPD Algorithm Bit-Complexity Analysis:}{37}{section*.21}%
-\contentsline {paragraph}{Matrix Verification Bit-Complexity:}{37}{section*.22}%
-\contentsline {paragraph}{Practical Performance:}{38}{section*.23}%
-\contentsline {subsection}{\numberline {11.8}Higher Degrees Generalization}{38}{subsection.11.8}%
-\contentsline {subsection}{\numberline {11.9}Uniqueness of Solution}{38}{subsection.11.9}%
-\contentsline {section}{\numberline {12}Conclusion}{39}{section.12}%
-\contentsline {subsection}{\numberline {12.1}Future Work}{39}{subsection.12.1}%
-\contentsline {subsection}{\numberline {12.2}Interactive Materials}{40}{subsection.12.2}%
+\contentsline {section}{\numberline {3}Hermite Algorithm for Periodicity Detection (\textsc {HAPD}\xspace )}{6}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Geometric Foundation}{6}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}The HAPD Algorithm and its Relation to the Dirichlet Group}{7}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Algorithm Description}{8}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Algorithm Definition}{10}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Projective Geometry Interpretation}{12}{subsection.3.5}%
+\contentsline {subsection}{\numberline {3.6}Main Periodicity Theorem}{13}{subsection.3.6}%
+\contentsline {section}{\numberline {4}Matrix Approach and Verification}{14}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Companion Matrix Theory}{14}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Trace Relations and Verification}{14}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Verification Algorithm}{15}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Numerical Validation}{15}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Comparison with Other Methods}{15}{subsection.4.5}%
+\contentsline {subsection}{\numberline {4.6}Implementation Strategy}{15}{subsection.4.6}%
+\contentsline {section}{\numberline {5}Equivalence of Algorithmic and Matrix Approaches}{16}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Structural Equivalence}{16}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Algebraic Connection}{17}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Computational Perspective}{17}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Unified Theoretical Framework}{17}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}Implications for Hermite's Problem}{18}{subsection.5.5}%
+\contentsline {section}{\numberline {6}Subtractive Algorithm}{18}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Algorithm Description}{18}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Theoretical Properties}{19}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Complex Embeddings and Modified $\sin ^2$-map}{20}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Projective Geometric Interpretation}{21}{subsection.6.4}%
+\contentsline {subsection}{\numberline {6.5}Numerical Stability}{21}{subsection.6.5}%
+\contentsline {subsection}{\numberline {6.6}Implementation Considerations}{21}{subsection.6.6}%
+\contentsline {section}{\numberline {7}Numerical Validation}{22}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Implementation of the \textsc {HAPD}\xspace {} Algorithm}{22}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Numerical Stability Considerations}{23}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Edge Case Handling for Number Misclassification}{23}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.4}Results from the \textsc {HAPD}\xspace {} Algorithm}{24}{subsection.7.4}%
+\contentsline {subsection}{\numberline {7.5}Limitations and Edge Cases}{25}{subsection.7.5}%
+\contentsline {subsection}{\numberline {7.6}Matrix-Based Verification}{25}{subsection.7.6}%
+\contentsline {subsection}{\numberline {7.7}Comparative Analysis}{26}{subsection.7.7}%
+\contentsline {subsection}{\numberline {7.8}Combined Approach}{26}{subsection.7.8}%
+\contentsline {subsection}{\numberline {7.9}Validation of the Subtractive Algorithm}{27}{subsection.7.9}%
+\contentsline {subsection}{\numberline {7.10}Comparative Performance Analysis}{28}{subsection.7.10}%
+\contentsline {subsection}{\numberline {7.11}Efficiency and Scalability Analysis}{28}{subsection.7.11}%
+\contentsline {section}{\numberline {8}Implementation Examples}{29}{section.8}%
+\contentsline {subsection}{\numberline {8.1}HAPD Implementation}{29}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Matrix Approach Implementation}{29}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}Subtractive Algorithm Implementation}{30}{subsection.8.3}%
+\contentsline {subsection}{\numberline {8.4}Performance Comparison}{31}{subsection.8.4}%
+\contentsline {subsection}{\numberline {8.5}Implementation Notes}{31}{subsection.8.5}%
+\contentsline {section}{\numberline {9}Addressing Potential Objections}{31}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Relationship to Classical Continued Fractions}{31}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}Numerical Implementation}{32}{subsection.9.2}%
+\contentsline {subsection}{\numberline {9.3}Variation Among Cubic Irrationals}{32}{subsection.9.3}%
+\contentsline {subsection}{\numberline {9.4}Connection to Prior Approaches}{32}{subsection.9.4}%
+\contentsline {subsection}{\numberline {9.5}Encoding Function}{33}{subsection.9.5}%
+\contentsline {subsection}{\numberline {9.6}Complex Cubic Irrationals}{33}{subsection.9.6}%
+\contentsline {subsection}{\numberline {9.7}Computational Complexity}{34}{subsection.9.7}%
+\contentsline {paragraph}{HAPD Algorithm Bit-Complexity Analysis:}{35}{response.82}%
+\contentsline {paragraph}{Matrix Verification Bit-Complexity:}{35}{Item.129}%
+\contentsline {paragraph}{Practical Performance:}{36}{Item.132}%
+\contentsline {subsection}{\numberline {9.8}Higher Degrees Generalization}{36}{subsection.9.8}%
+\contentsline {subsection}{\numberline {9.9}Uniqueness of Solution}{36}{subsection.9.9}%
+\contentsline {section}{\numberline {10}Conclusion}{36}{section.10}%
+\contentsline {subsection}{\numberline {10.1}Summary of Results}{37}{subsection.10.1}%
+\contentsline {subsection}{\numberline {10.2}Future Work}{37}{subsection.10.2}%
+\contentsline {subsection}{\numberline {10.3}Complexity Analysis}{39}{subsection.10.3}%
+\contentsline {subsection}{\numberline {10.4}Interactive Materials and Reproducibility}{39}{subsection.10.4}%
