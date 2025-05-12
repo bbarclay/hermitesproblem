@@ -135,7 +135,7 @@
     <animate attributeName="opacity" values="0.7;1;0.7" dur="4s" repeatCount="indefinite" />
   </text>
   <text x="600" y="80" text-anchor="middle" font-family="Arial" font-size="20" fill="#bdc3c7">
-    Cubic Irrationals & Continued Fractions
+    Cubic Irrationals &amp; Continued Fractions
   </text>
   
   <!-- Cubic Function Visualization -->
