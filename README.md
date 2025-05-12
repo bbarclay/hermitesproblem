@@ -1,5 +1,7 @@
 # Solving Hermite's Problem: Interactive Academic Paper
 
+<img src="hermite-animation.svg" alt="Hermite's Problem Visualization" width="100%"/>
+
 This repository contains an interactive academic paper exploring novel approaches to solving Hermite's Problem for cubic irrationals. The paper presents three complementary methods:
 
 1. **HAPD Algorithm**: A projective space approach for detecting periodicity in cubic irrationals
