@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="1200" height="300" viewBox="0 0 1200 300" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+    
+    @keyframes dash {
+      to {
+        stroke-dashoffset: -1000;
+      }
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+    }
+    
+    @keyframes colorShift {
+      0% { stroke: #3498db; }
+      33% { stroke: #9b59b6; }
+      66% { stroke: #2ecc71; }
+      100% { stroke: #3498db; }
+    }
+    
+    @keyframes gradientFlow {
+      0% { stop-color: #3498db; }
+      50% { stop-color: #9b59b6; }
+      100% { stop-color: #3498db; }
+    }
+    
+    .background {
+      fill: url(#grad);
+    }
+    
+    .grid line {
+      stroke: rgba(255, 255, 255, 0.1);
+      stroke-width: 1;
+    }
+    
+    .rotating-cube {
+      transform-origin: center;
+      animation: rotate 20s linear infinite;
+    }
+    
+    .cubic-curve {
+      fill: none;
+      stroke: #f1c40f;
+      stroke-width: 3;
+      stroke-dasharray: 5, 5;
+      animation: dash 30s linear infinite;
+    }
+    
+    .equation-symbol {
+      font-family: 'Arial', sans-serif;
+      font-size: 24px;
+      font-weight: bold;
+      fill: #ecf0f1;
+      animation: pulse 4s ease-in-out infinite;
+    }
+    
+    .floating-point {
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    .projective-line {
+      stroke-dasharray: 10;
+      animation: dash 15s linear infinite, colorShift 8s linear infinite;
+      stroke-width: 2;
+      fill: none;
+    }
+    
+    .resonance-circle {
+      fill: none;
+      stroke-width: 2;
+      animation: colorShift 12s linear infinite;
+    }
+  </style>
+  
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2c3e50" stop-opacity="1">
+        <animate attributeName="stop-color" 
+                 values="#2c3e50; #34495e; #2c3e50" 
+                 dur="10s" repeatCount="indefinite" />
+      </stop>
+      <stop offset="100%" stop-color="#1a1a2e" stop-opacity="1">
+        <animate attributeName="stop-color" 
+                 values="#1a1a2e; #16213e; #1a1a2e" 
+                 dur="10s" repeatCount="indefinite" />
+      </stop>
+    </linearGradient>
+    
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect class="background" x="0" y="0" width="1200" height="300" />
+  
+  <!-- Grid Lines -->
+  <g class="grid">
+    <!-- Horizontal grid lines -->
+    <line x1="0" y1="50" x2="1200" y2="50" />
+    <line x1="0" y1="100" x2="1200" y2="100" />
+    <line x1="0" y1="150" x2="1200" y2="150" />
+    <line x1="0" y1="200" x2="1200" y2="200" />
+    <line x1="0" y1="250" x2="1200" y2="250" />
+    
+    <!-- Vertical grid lines -->
+    <line x1="100" y1="0" x2="100" y2="300" />
+    <line x1="200" y1="0" x2="200" y2="300" />
+    <line x1="300" y1="0" x2="300" y2="300" />
+    <line x1="400" y1="0" x2="400" y2="300" />
+    <line x1="500" y1="0" x2="500" y2="300" />
+    <line x1="600" y1="0" x2="600" y2="300" />
+    <line x1="700" y1="0" x2="700" y2="300" />
+    <line x1="800" y1="0" x2="800" y2="300" />
+    <line x1="900" y1="0" x2="900" y2="300" />
+    <line x1="1000" y1="0" x2="1000" y2="300" />
+    <line x1="1100" y1="0" x2="1100" y2="300" />
+  </g>
+  
+  <!-- Title Text -->
+  <text x="600" y="50" text-anchor="middle" font-family="Arial" font-size="36" font-weight="bold" fill="#ecf0f1">
+    Hermite's Problem
+    <animate attributeName="opacity" values="0.7;1;0.7" dur="4s" repeatCount="indefinite" />
+  </text>
+  <text x="600" y="80" text-anchor="middle" font-family="Arial" font-size="20" fill="#bdc3c7">
+    Cubic Irrationals & Continued Fractions
+  </text>
+  
+  <!-- Cubic Function Visualization -->
+  <path class="cubic-curve" d="M 100,250 C 300,50 500,350 700,150 S 900,250 1100,50" filter="url(#glow)" />
+  
+  <!-- Rotating Cube -->
+  <g class="rotating-cube" transform="translate(300, 170)">
+    <!-- Cube faces -->
+    <polygon points="0,0 40,-40 80,0 40,40" fill="#3498db" fill-opacity="0.5" stroke="#ecf0f1" stroke-width="2" />
+    <polygon points="80,0 40,-40 40,-80 80,-40" fill="#9b59b6" fill-opacity="0.5" stroke="#ecf0f1" stroke-width="2" />
+    <polygon points="80,0 80,-40 40,0" fill="#2ecc71" fill-opacity="0.5" stroke="#ecf0f1" stroke-width="2" />
+    
+    <!-- Animation for color change -->
+    <animate xlink:href="polygon" attributeName="fill" 
+             values="#3498db;#9b59b6;#2ecc71;#3498db" 
+             dur="10s" repeatCount="indefinite" />
+  </g>
+  
+  <!-- Projective Space Visualization -->
+  <g transform="translate(900, 180)">
+    <circle class="resonance-circle" cx="0" cy="0" r="60" stroke="#e74c3c" />
+    <circle class="resonance-circle" cx="0" cy="0" r="40" stroke="#f39c12" />
+    <circle class="resonance-circle" cx="0" cy="0" r="20" stroke="#2ecc71" />
+    
+    <line class="projective-line" x1="-70" y1="-70" x2="70" y2="70" stroke="#3498db" />
+    <line class="projective-line" x1="70" y1="-70" x2="-70" y2="70" stroke="#9b59b6" />
+    
+    <!-- Animate the circles growing/shrinking -->
+    <animate xlink:href=".resonance-circle" attributeName="r" 
+             values="20;25;20;15;20" 
+             dur="8s" repeatCount="indefinite" />
+  </g>
+  
+  <!-- Mathematical Symbols -->
+  <g transform="translate(200, 220)">
+    <text class="equation-symbol" x="0" y="0">x³ - 3x + 1 = 0</text>
+  </g>
+  
+  <g transform="translate(500, 170)">
+    <text class="equation-symbol" x="0" y="0">φ = [0;1,1,1,...]</text>
+  </g>
+  
+  <!-- Floating Points -->
+  <g class="floating-point" transform="translate(400, 200)">
+    <circle cx="0" cy="0" r="5" fill="#e74c3c">
+      <animate attributeName="r" values="5;7;5" dur="3s" repeatCount="indefinite" />
+    </circle>
+  </g>
+  
+  <g class="floating-point" transform="translate(700, 120)" style="animation-delay: 1s">
+    <circle cx="0" cy="0" r="5" fill="#f1c40f">
+      <animate attributeName="r" values="5;7;5" dur="3s" repeatCount="indefinite" />
+    </circle>
+  </g>
+  
+  <g class="floating-point" transform="translate(800, 220)" style="animation-delay: 2s">
+    <circle cx="0" cy="0" r="5" fill="#2ecc71">
+      <animate attributeName="r" values="5;7;5" dur="3s" repeatCount="indefinite" />
+    </circle>
+  </g>
+  
+  <!-- Matrix Representation -->
+  <g transform="translate(1000, 130)">
+    <rect x="-40" y="-40" width="80" height="80" fill="none" stroke="#ecf0f1" stroke-width="2" />
+    <line x1="-40" y1="-13" x2="40" y2="-13" stroke="#ecf0f1" stroke-width="1" />
+    <line x1="-40" y1="13" x2="40" y2="13" stroke="#ecf0f1" stroke-width="1" />
+    <line x1="-13" y1="-40" x2="-13" y2="40" stroke="#ecf0f1" stroke-width="1" />
+    <line x1="13" y1="-40" x2="13" y2="40" stroke="#ecf0f1" stroke-width="1" />
+    
+    <text x="-27" y="-20" font-family="Arial" font-size="16" fill="#3498db">0</text>
+    <text x="0" y="-20" font-family="Arial" font-size="16" fill="#3498db">1</text>
+    <text x="27" y="-20" font-family="Arial" font-size="16" fill="#3498db">0</text>
+    
+    <text x="-27" y="7" font-family="Arial" font-size="16" fill="#3498db">0</text>
+    <text x="0" y="7" font-family="Arial" font-size="16" fill="#3498db">0</text>
+    <text x="27" y="7" font-family="Arial" font-size="16" fill="#3498db">1</text>
+    
+    <text x="-27" y="33" font-family="Arial" font-size="16" fill="#3498db">-1</text>
+    <text x="0" y="33" font-family="Arial" font-size="16" fill="#3498db">3</text>
+    <text x="27" y="33" font-family="Arial" font-size="16" fill="#3498db">0</text>
+    
+    <animate attributeName="opacity" values="0.8;1;0.8" dur="4s" repeatCount="indefinite" />
+  </g>
+</svg> 

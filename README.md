@@ -1,7 +1,7 @@
 # 🧮 Solving Hermite's Problem 🧮
 ### An Interactive Mathematical Journey
 
-<img src="https://via.placeholder.com/1400x400?text=Hermite's+Problem+Interactive+Visualization" alt="Hermite's Problem Visualization" width="100%"/>
+<img src="hermite-animation.svg" alt="Hermite's Problem Visualization" width="100%"/>
 
 <p align="center">
   <b>Revolutionizing our understanding of cubic irrationals through interactive visualization</b>
