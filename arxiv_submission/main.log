@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025/Homebrew) (preloaded format=pdflatex 2025.3.15)  9 MAY 2025 04:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025/Homebrew) (preloaded format=pdflatex 2025.3.15)  9 MAY 2025 04:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1482,8 +1482,33 @@ Package microtype Info: Loading generic protrusion settings for font family
 [13]
 
 [14]
-Overfull \hbox (138.63103pt too wide) in paragraph at lines 119--142
- [][] 
+Underfull \hbox (badness 10000) in paragraph at lines 140--140
+[]|\OT1/cmr/bx/n/10.95 (+20) HAPD Al-go-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 140--140
+[]|\OT1/cmr/bx/n/10.95 (+20) Matrix Ap-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 140--140
+[]|\OT1/cmr/m/n/10.95 (+20) Minimal poly-no-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 140--140
+[]|\OT1/cmr/m/n/10.95 (+20) Yes (ter-mi-
+ []
+
+
+Underfull \hbox (badness 7740) in paragraph at lines 140--140
+[]|\OT1/cmr/m/n/10.95 (+20) Yes (ver-i-fied de-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 140--140
+[]|\OT1/cmr/m/n/10.95 (+20) Yes, straight-for-
  []
 
 
@@ -1505,7 +1530,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `superscript' on input line 92.
 
-<figures/sin2_algorithm_visualization.pdf, id=867, 569.7724pt x 424.52495pt>
+<figures/sin2_algorithm_visualization.pdf, id=865, 569.7724pt x 424.52495pt>
 File: figures/sin2_algorithm_visualization.pdf Graphic file (type pdf)
 <use figures/sin2_algorithm_visualization.pdf>
 Package pdftex.def Info: figures/sin2_algorithm_visualization.pdf  used on inpu
@@ -1513,12 +1538,12 @@ t line 107.
 (pdftex.def)             Requested size: 362.37569pt x 270.00435pt.
 
 
-[20 <./figures/sin2_algorithm_visualization.pdf>]
+[20]
 Package hyperref Info: bookmark level for unknown example defaults to 0 on inpu
 t line 148.
 
 
-[21]) (./numerical-validation.tex
+[21 <./figures/sin2_algorithm_visualization.pdf>]) (./numerical-validation.tex
 LaTeX Font Info:    Font shape `OT1/cmr/bx/sc' in size <12> not available
 (Font)              Font shape `OT1/cmr/bx/n' tried instead on input line 5.
 
@@ -1672,7 +1697,7 @@ f-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/Cellar/texlive/202
 Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/symbols/
 msbm10.pfb></usr/local/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/p
 ublic/cm-super/sfrm1095.pfb>
-Output written on main.pdf (41 pages, 543869 bytes).
+Output written on main.pdf (41 pages, 543441 bytes).
 PDF statistics:
  1567 PDF objects out of 1728 (max. 8388607)
  1204 compressed objects within 13 object streams

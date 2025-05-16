@@ -50,7 +50,7 @@ with initial conditions $\tr(C_p^0) = 3$, $\tr(C_p^1) = -a$, and $\tr(C_p^2) = a
 \begin{proof}
 The companion matrix $C_p$ has characteristic polynomial $p(x) = x^3 + ax^2 + bx + c$, and its eigenvalues are the roots of $p(x)$: $\alpha, \alpha', \alpha''$.
 
-For any $k \geq 0$, $\tr(C_p^k) = \alpha^k + (\alpha')^k + (\alpha'')^k$, the sum of the $k$-th powers of the roots, denoted $s_k$.
+For any $k \geq 0, \tr(C_p^k) = \alpha^k + (\alpha')^k + (\alpha'')^k$, the sum of the $k$-th powers of the roots, denoted $s_k$.
 
 From Newton's identities relating coefficients and power sums:
 \begin{equation}
@@ -116,8 +116,7 @@ Transcendental & $\pi$ & Various approximations & No \\
 
 \begin{table}[htbp]
 \centering
-\begin{tabular}{|l|c|c|c|}
-\hline
+\begin{tabularx}{\textwidth}{lXXX} % Changed from llll to lXXX for wrapping
 \textbf{Feature} & \textbf{\HAPD{} Algorithm} & \textbf{Matrix Approach} & \textbf{Subtractive Algorithm} \\
 \hline
 Prior knowledge & None & Minimal polynomial & None \\
@@ -138,7 +137,7 @@ Detects rational/quadratic & Yes (terminates/aperiodic) & Yes (verified degree) 
 \hline
 Extended to complex case & Yes, with care & Robust once polynomial is known & Yes, straightforwardly \\
 \hline
-\end{tabular}
+\end{tabularx} % Changed to end{tabularx}
 \caption{Comparison of the Three Solution Approaches}
 \label{tab:verification_comparison}
 \end{table}

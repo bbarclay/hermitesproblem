@@ -21,13 +21,13 @@
 \contentsline {subsection}{\numberline {5.1}Structural Equivalence}{16}{subsection.5.1}%
 \contentsline {subsection}{\numberline {5.2}Algebraic Connection}{17}{subsection.5.2}%
 \contentsline {subsection}{\numberline {5.3}Computational Perspective}{17}{subsection.5.3}%
-\contentsline {subsection}{\numberline {5.4}Unified Theoretical Framework}{17}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.4}Unified Theoretical Framework}{18}{subsection.5.4}%
 \contentsline {subsection}{\numberline {5.5}Implications for Hermite's Problem}{18}{subsection.5.5}%
 \contentsline {section}{\numberline {6}Subtractive Algorithm}{18}{section.6}%
 \contentsline {subsection}{\numberline {6.1}Algorithm Description}{18}{subsection.6.1}%
 \contentsline {subsection}{\numberline {6.2}Theoretical Properties}{19}{subsection.6.2}%
 \contentsline {subsection}{\numberline {6.3}Complex Embeddings and Modified \ensuremath {\sin ^2}-map}{20}{subsection.6.3}%
-\contentsline {subsection}{\numberline {6.4}Projective Geometric Interpretation}{21}{subsection.6.4}%
+\contentsline {subsection}{\numberline {6.4}Projective Geometric Interpretation}{20}{subsection.6.4}%
 \contentsline {subsection}{\numberline {6.5}Numerical Stability}{21}{subsection.6.5}%
 \contentsline {subsection}{\numberline {6.6}Implementation Considerations}{21}{subsection.6.6}%
 \contentsline {section}{\numberline {7}Numerical Validation}{22}{section.7}%
